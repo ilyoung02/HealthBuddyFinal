@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">HealthBuddyPro</string>
+
+    <!-- 주제 선택 예시 -->
+    <string-array name="topic_array">
+        <item>가슴</item>
+        <item>등</item>
+        <item>어깨</item>
+        <item>하체</item>
+    </string-array>
+
+    <!-- 위치 선택 예시 -->
+    <string-array name="location_array">
+        <item>중리동</item>
+        <item>수성구</item>
+        <item>달서구</item>
+    </string-array>
+
+    <!-- 카테고리 선택 예시 -->
+    <string-array name="category_array">
+        <item>성별무관</item>
+        <item>남성전용</item>
+        <item>여성전용</item>
+    </string-array>
+</resources>

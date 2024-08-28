@@ -1,0 +1,108 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    tools:context=".ProfileDetailActivity">
+
+    <!-- 프로필 이미지 -->
+    <ImageView
+        android:id="@+id/profile_image"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scaleType="centerCrop"
+        android:src="@drawable/user1"
+        android:background="@drawable/profile_background"
+        android:elevation="1dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/profile_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="홍길동 남자 22"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="13dp"
+            android:background="@drawable/profile_intro_background">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="구력 6년"
+                android:textSize="14sp"
+                android:textColor="@color/white"
+                android:background="@drawable/profile_tag"
+                android:padding="4dp"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="벤치프레스"
+                android:textSize="14sp"
+                android:textColor="@color/white"
+                android:background="@drawable/profile_tag"
+                android:padding="4dp"
+                android:layout_marginEnd="8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="스쿼트"
+                android:textSize="14sp"
+                android:textColor="@color/white"
+                android:background="@drawable/profile_tag"
+                android:padding="4dp"
+                android:layout_marginEnd="8dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="13dp">
+
+            <!-- 소개글 파트 -->
+            <TextView
+                android:id="@+id/profile_intro"
+                android:layout_width="0dp"
+                android:layout_height="115dp"
+                android:layout_weight="1"
+                android:text="운동 같이 하실분? 같이 운동하면서 친해지실 분!"
+                android:textSize="16sp"
+                android:textColor="@android:color/black"
+                android:background="@drawable/profile_intro_background"
+                android:padding="8dp" />
+
+            <!-- 채팅 버튼 -->
+            <Button
+                android:id="@+id/btn_chat"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="30dp"
+                android:text="채팅"
+                android:textColor="@android:color/white"
+                android:clickable="true"
+                android:focusable="true" />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
