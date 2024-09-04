@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="?android:attr/windowBackground">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="루틴 정보 수정"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="#수정하고자 하는 입력란에 입력 한 뒤 저장을 눌러주세요"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="20dp"/>
+
+
+        <!-- 루틴 제목 입력 -->
+        <TextView
+            android:id="@+id/tv_routine_title_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="루틴 제목"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/et_routine_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="변경할 루틴 제목 입력"
+            android:inputType="text"
+            android:padding="12dp"
+            android:background="@android:drawable/edit_text"
+            android:textSize="16sp"/>
+
+        <!-- 루틴 기간 선택 -->
+        <TextView
+            android:id="@+id/tv_routine_period_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="루틴 기간"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <EditText
+                android:id="@+id/et_start_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="시작일 변경"
+                android:inputType="none"
+                android:padding="12dp"
+                android:background="@android:drawable/edit_text"
+                android:textSize="16sp"
+                android:focusable="false"
+                android:clickable="true"/>
+
+            <EditText
+                android:id="@+id/et_end_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="종료일 변경"
+                android:inputType="none"
+                android:padding="12dp"
+                android:background="@android:drawable/edit_text"
+                android:textSize="16sp"
+                android:layout_marginStart="8dp"
+                android:focusable="false"
+                android:clickable="true"/>
+        </LinearLayout>
+
+
+        <!-- 수행 요일 선택 -->
+        <TextView
+            android:id="@+id/tv_routine_days_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="수행 요일"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/cb_monday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="월"/>
+
+            <CheckBox
+                android:id="@+id/cb_tuesday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="화"/>
+
+            <CheckBox
+                android:id="@+id/cb_wednesday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="수"/>
+
+            <CheckBox
+                android:id="@+id/cb_thursday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="목"/>
+
+            <CheckBox
+                android:id="@+id/cb_friday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="금"/>
+
+            <CheckBox
+                android:id="@+id/cb_saturday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="토"/>
+
+            <CheckBox
+                android:id="@+id/cb_sunday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="일"/>
+        </LinearLayout>
+
+        <!-- 운동 종류 선택 -->
+        <TextView
+            android:id="@+id/tv_routine_exercise_type_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="루틴 운동 수정"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"/>
+
+        <LinearLayout
+            android:id="@+id/exercise_fixList_container"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:divider="@android:color/darker_gray"
+                android:dividerHeight="3dp" />
+
+        </LinearLayout>
+
+        <!-- 저장 버튼 -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_save_routine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="수정 완료"
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_btn"
+            android:textColor="@android:color/white"/>
+
+    </LinearLayout>
+
+</ScrollView>
