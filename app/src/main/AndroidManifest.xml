@@ -17,76 +17,76 @@
         android:theme="@style/Theme.HealthBuddyPro"
         tools:targetApi="31">
         <activity
-            android:name=".set_routine"
+            android:name=".temp_DG.set_routine"
             android:exported="false" />
         <activity
-            android:name=".set_routine_exercise"
+            android:name=".temp_DG.set_routine_exercise"
             android:exported="false" />
         <activity
             android:name=".routine_check_view"
             android:exported="false" />
         <activity
-            android:name=".group_start02"
+            android:name=".temp_DG.group_start02"
             android:exported="false" />
         <activity
-            android:name=".complete_today_workout"
+            android:name=".temp_DG.complete_today_workout"
             android:exported="false" />
         <activity
             android:name=".add_exercise"
             android:exported="false" />
         <activity
-            android:name=".quit_hb04"
+            android:name=".temp_DG.quit_hb04"
             android:exported="false" />
         <activity
-            android:name=".quit_hb03"
+            android:name=".temp_DG.quit_hb03"
             android:exported="false" />
         <activity
-            android:name=".quit_hb02"
+            android:name=".temp_DG.quit_hb02"
             android:exported="false" />
         <activity
-            android:name=".quit_hb01"
+            android:name=".temp_DG.quit_hb01"
             android:exported="false" />
         <activity
-            android:name=".make_routine03"
+            android:name=".temp_DG.make_routine03"
             android:exported="false" />
         <activity
-            android:name=".make_routine02"
+            android:name=".temp_DG.make_routine02"
             android:exported="false" />
         <activity
-            android:name=".make_routine01"
+            android:name=".temp_DG.make_routine01"
             android:exported="false" />
         <activity
-            android:name=".group_locked"
+            android:name=".temp_DG.group_locked"
             android:exported="false" />
         <activity
-            android:name=".workout_fix_item"
+            android:name=".temp_DG.workout_fix_item"
             android:exported="false" />
         <activity
-            android:name=".today_routine"
+            android:name=".temp_DG.today_routine"
             android:exported="false" />
         <activity
-            android:name=".routine_list_item"
+            android:name=".temp_DG.routine_list_item"
             android:exported="false" />
         <activity
-            android:name=".routine_list"
+            android:name=".temp_DG.routine_list"
             android:exported="false" />
         <activity
-            android:name=".routine_check_item"
+            android:name=".temp_DG.routine_check_item"
             android:exported="false" />
         <activity
-            android:name=".routine_check"
+            android:name=".temp_DG.routine_check"
             android:exported="false" />
         <activity
-            android:name=".popup_edit_workout"
+            android:name=".temp_DG.popup_edit_workout"
             android:exported="false" />
         <activity
-            android:name=".single_group_choicepage"
+            android:name=".temp_DG.single_group_choicepage"
             android:exported="false" />
         <activity
-            android:name=".location_check"
+            android:name=".temp_DG.location_check"
             android:exported="false" />
         <activity
-            android:name=".fix_routine"
+            android:name=".temp_DG.fix_routine"
             android:exported="false" />
 
         <meta-data

@@ -1,4 +1,4 @@
-package com.example.healthbuddypro;
+package com.example.healthbuddypro.temp_DG;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -18,6 +18,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+
+import com.example.healthbuddypro.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
