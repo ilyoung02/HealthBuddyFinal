@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center"
+    android:background="#FFFFFF">
+
+    <!-- Group Info -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingBottom="16dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/user1_icon"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:contentDescription="User 1 Icon"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/user1_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="홍길동"
+                android:textSize="16sp"
+                android:textColor="#4484FF"
+                android:gravity="center"/>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/group_icon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:contentDescription="Group Icon"
+            android:layout_gravity="center"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/user2_icon"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:contentDescription="User 2 Icon"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/user2_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="김현우"
+                android:textSize="16sp"
+                android:textColor="#4484FF"
+                android:gravity="center"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Group Points and Rank -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingBottom="24dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="#F5F5F5"
+            android:padding="16dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/group_points_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Group Points"
+                android:textSize="14sp"
+                android:textColor="#666666"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/group_points"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="24sp"
+                android:textColor="#000000"
+                android:gravity="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="#F5F5F5"
+            android:padding="16dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/group_rank_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Group Rank"
+                android:textSize="14sp"
+                android:textColor="#666666"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/group_rank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="24sp"
+                android:textColor="#000000"
+                android:gravity="center"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- List of Groups -->
+    <LinearLayout
+        android:id="@+id/group_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <!-- Group list items will be added dynamically -->
+    </LinearLayout>
+
+</LinearLayout>

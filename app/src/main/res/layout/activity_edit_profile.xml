@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center_vertical"
+    android:background="#FFFFFF">
+
+    <!-- App Title with Image -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/profile_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="50dp"
+            android:text="내 프로필"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Profile Image -->
+    <ImageView
+        android:id="@+id/profile_image"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop" />
+
+    <!-- Change Photo Text -->
+    <TextView
+        android:id="@+id/change_photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="사진 변경"
+        android:textColor="@android:color/holo_blue_light"
+        android:layout_gravity="center"
+        android:paddingBottom="24dp"/>
+
+    <!-- Nickname -->
+    <TextView
+        android:id="@+id/nickname_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="닉네임"
+        android:textColor="#000000"
+        android:paddingBottom="4dp"/>
+
+    <EditText
+        android:id="@+id/nickname_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="닉네임을 입력하세요"
+        android:textColor="#000000"
+        android:background="@android:color/transparent"
+        android:paddingBottom="16dp"/>
+
+    <!-- Gym Location -->
+    <TextView
+        android:id="@+id/gym_location_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="헬스장 위치"
+        android:textColor="#000000"
+        android:paddingBottom="4dp"/>
+
+    <EditText
+        android:id="@+id/gym_location_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="헬스장 위치를 입력하세요"
+        android:textColor="#000000"
+        android:background="@android:color/transparent"
+        android:paddingBottom="16dp"/>
+
+    <!-- Workout Experience -->
+    <TextView
+        android:id="@+id/workout_experience_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="운동 경력"
+        android:textColor="#000000"
+        android:paddingBottom="4dp"/>
+
+    <EditText
+        android:id="@+id/workout_experience_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="운동 경력을 입력하세요"
+        android:textColor="#000000"
+        android:background="@android:color/transparent"
+        android:paddingBottom="16dp"/>
+
+    <!-- Introduction -->
+    <TextView
+        android:id="@+id/introduction_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="소개글"
+        android:textColor="#000000"
+        android:paddingBottom="4dp"/>
+
+    <EditText
+        android:id="@+id/introduction_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="자기소개를 입력하세요"
+        android:textColor="#000000"
+        android:background="@android:color/transparent"
+        android:paddingBottom="16dp"/>
+
+    <!-- Confirm and Cancel Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="24dp">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/confirm_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="확인"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#6795ED"
+            android:minHeight="48dp"
+            android:textSize="16sp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/cancel_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="취소"
+            android:textColor="#666666"
+            android:backgroundTint="#E0E0E0"
+            android:minHeight="48dp"
+            android:textSize="16sp"/>
+    </LinearLayout>
+
+</LinearLayout>
