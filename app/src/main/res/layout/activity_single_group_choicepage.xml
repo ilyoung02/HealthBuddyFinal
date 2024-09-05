@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:gravity="center"
-            android:text="홍길동 & 김현우 루틴"
+            android:text="홍길동 김현우 루틴"
             android:textStyle="bold"
             android:textColor="#000000"
             android:textSize="20sp" />
