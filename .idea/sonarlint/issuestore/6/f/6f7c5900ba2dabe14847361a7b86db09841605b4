@@ -1,8 +1,0 @@
-
-t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(æ½½‡üÿÿÿÿ
-K
-java:S1874="0Remove this use of "getColor"; it is deprecated.(š«²¤ùÿÿÿÿ
-F
-java:S1874?"0Remove this use of "getColor"; it is deprecated.(£íž˜
-B
-java:S1602B",Remove useless curly braces around statement(Óñ˜¤

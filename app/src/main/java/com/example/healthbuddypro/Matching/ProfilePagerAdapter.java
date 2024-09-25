@@ -7,6 +7,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 import com.example.healthbuddypro.R;
 import java.util.List;
 
@@ -31,10 +33,18 @@ public class ProfilePagerAdapter extends RecyclerView.Adapter<ProfilePagerAdapte
     public void onBindViewHolder(@NonNull ProfileViewHolder holder, int position) {
         UserProfile profile = profiles.get(position);
 
-        holder.profileImage.setImageResource(profile.getImageResId());
-        holder.name.setText(profile.getName());
-        holder.details.setText(profile.getDetails());
+        // 닉네임과 성별을 텍스트뷰에 설정
+        holder.name.setText(profile.getNickName());
+        holder.gender.setText(profile.getGender());
+        holder.age.setText(profile.getGender());
 
+        // 이미지 로딩 (Glide 사용)
+        Glide.with(holder.itemView.getContext())
+                .load(profile.getImage()) // 이미지 URL 로드
+                .placeholder(R.drawable.user1) // 기본 이미지
+                .into(holder.profileImageView);
+
+        // 프로필 항목 클릭 리스너
         holder.itemView.setOnClickListener(v -> listener.onProfileClick(profile));
     }
 
@@ -43,16 +53,20 @@ public class ProfilePagerAdapter extends RecyclerView.Adapter<ProfilePagerAdapte
         return profiles.size();
     }
 
+    // ViewHolder 클래스
     static class ProfileViewHolder extends RecyclerView.ViewHolder {
-        ImageView profileImage;
+        ImageView profileImageView;
         TextView name;
-        TextView details;
+        TextView gender;
+        TextView age;
 
         public ProfileViewHolder(@NonNull View itemView) {
             super(itemView);
-            profileImage = itemView.findViewById(R.id.profile_image);
+            // item_profile.xml 파일 참고
+            profileImageView = itemView.findViewById(R.id.profile_image);
             name = itemView.findViewById(R.id.profile_name);
-            details = itemView.findViewById(R.id.profile_details);
+            gender = itemView.findViewById(R.id.profile_gender);
+            age = itemView.findViewById(R.id.profile_age);
         }
     }
 
