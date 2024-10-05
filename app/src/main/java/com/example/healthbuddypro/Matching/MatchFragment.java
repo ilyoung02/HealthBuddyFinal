@@ -124,13 +124,12 @@ public class MatchFragment extends Fragment {
         // 받아온 profile 데이터를 ProfilePagerAdapter로 설정
         adapter = new ProfilePagerAdapter(profiles, profile -> {
             Intent intent = new Intent(getContext(), ProfileDetailActivity.class);
-            intent.putExtra("profileId", profile.getProfileId());
+            intent.putExtra("profileId", profile.getProfileId()); // profileId 전달
             intent.putExtra("nickname", profile.getNickName());
             intent.putExtra("gender", profile.getGender());
             intent.putExtra("age", profile.getAge());
             intent.putExtra("image", profile.getImage());
             intent.putExtra("workoutYears", profile.getWorkoutYears() + "년");
-            intent.putExtra("workoutItems", "벤치프레스, 스쿼트"); // 운동 항목은 백엔드 데이터로 변경 가능
             startActivity(intent);
         });
         viewPager.setAdapter(adapter);

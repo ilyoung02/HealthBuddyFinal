@@ -39,14 +39,23 @@ public class ProfileDetailActivity extends AppCompatActivity {
         workoutInfo = findViewById(R.id.profile_workout_info); // 구력과 운동 정보 표시할 부분
         introText = findViewById(R.id.profile_intro_text); // 소개글 표시할 부분
 
-        // Intent로 전달된 profileId 받기
+        // Intent로 전달된 데이터를 받음
         Intent intent = getIntent();
-        int profileId = intent.getIntExtra("profileId", -1);
+        int profileId = intent.getIntExtra("profileId", -1); // profileId를 받음
+        String nickname = intent.getStringExtra("nickname"); // 기타 데이터도 받을 수 있음
+        String image = intent.getStringExtra("image");
 
+        // 받은 데이터를 UI에 표시할 수 있도록 설정
         if (profileId != -1) {
-            // 백엔드에서 프로필 데이터 불러오기
-            fetchProfileDetails(profileId);
+            fetchProfileDetails(profileId); // profileId를 사용하여 백엔드에서 데이터 가져오기
+        } else {
+            // 전달된 데이터가 없을 경우의 처리
+            Toast.makeText(this, "프로필 정보를 가져올 수 없습니다.", Toast.LENGTH_SHORT).show();
         }
+
+        // 추가적으로 받은 데이터로 UI 업데이트
+        name.setText(nickname);
+        Glide.with(this).load(image).into(profileImage);
 
         // 채팅 버튼 클릭 처리
         Button btnChat = findViewById(R.id.btn_chat);
