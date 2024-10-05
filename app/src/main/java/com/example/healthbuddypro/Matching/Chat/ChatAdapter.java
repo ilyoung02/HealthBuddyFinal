@@ -11,7 +11,9 @@ import com.example.healthbuddypro.R;
 
 import java.util.List;
 
-public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder> {
+// RecyclerView의 어댑터 => 채팅 메시지 표시
+// Message 객체 이용, 사용자가 보낸 메시지와 상대방이 보낸 메시지 구분
+public class ChatAdapter extends RecyclerView.Adapter<ChatViewHolder> {
 
     private List<Message> messageList;
 
@@ -22,31 +24,18 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
     @NonNull
     @Override
     public ChatViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(viewType == 0 ? R.layout.item_message_sent : R.layout.item_message_received, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_message, parent, false);
         return new ChatViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ChatViewHolder holder, int position) {
-        holder.messageTextView.setText(messageList.get(position).getText());
-    }
-
-    @Override
-    public int getItemViewType(int position) {
-        return messageList.get(position).isSentByUser() ? 0 : 1;
+        Message message = messageList.get(position);
+        holder.bind(message);
     }
 
     @Override
     public int getItemCount() {
         return messageList.size();
-    }
-
-    public static class ChatViewHolder extends RecyclerView.ViewHolder {
-        public TextView messageTextView;
-
-        public ChatViewHolder(@NonNull View itemView) {
-            super(itemView);
-            messageTextView = itemView.findViewById(R.id.textViewMessage);
-        }
     }
 }

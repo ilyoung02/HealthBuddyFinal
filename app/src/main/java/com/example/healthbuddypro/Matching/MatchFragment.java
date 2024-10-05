@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,9 +16,6 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.healthbuddypro.ApiService;
-import com.example.healthbuddypro.Login.LoginRequest;
-import com.example.healthbuddypro.Login.RetrofitClient;
-import com.example.healthbuddypro.ProfileDetailActivity;
 import com.example.healthbuddypro.R;
 import com.example.healthbuddypro.ShortTermMatching.ShortTermMatchFragment;
 import java.util.ArrayList;

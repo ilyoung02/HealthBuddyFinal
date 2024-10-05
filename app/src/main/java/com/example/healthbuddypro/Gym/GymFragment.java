@@ -94,7 +94,7 @@ public class GymFragment extends Fragment implements OnMapReadyCallback {
         mMap.addMarker(new MarkerOptions()
                 .position(gym3)
                 .title("짐 팩토")
-                .snippet("") // URL 추가
+                .snippet("https://blog.naver.com/gymfacto") // URL 추가
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
 
         LatLng gym5 = new LatLng(35.867862, 128.555915); // 추가 예시
@@ -111,11 +111,17 @@ public class GymFragment extends Fragment implements OnMapReadyCallback {
                 .snippet("https://blog.naver.com/mloveslove") // URL 추가
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
 
-        LatLng gym4 = new LatLng(35.870653, 128.558998); // 추가 예시
-        mMap.addMarker(new MarkerOptions().position(gym4).title("옐로우 짐").snippet("옐로우 짐 스포츠센터"));
-        
         // 지도에 추가한 마커들에 대해 카메라 위치 설정
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(gym1, 12));
+
+        // InfoWindow 클릭 리스너 설정
+        mMap.setOnInfoWindowClickListener(marker -> {
+            // 정보 창 클릭 시 웹 페이지로 이동
+            String url = marker.getSnippet(); // URL이 snippet에 포함되었다고 가정
+            if (url != null && !url.isEmpty()) {
+                openUrlInBrowser(url); // 웹 브라우저에서 열기
+            }
+        });
     }
 
     // URL을 브라우저에서 여는 메서드
@@ -168,21 +174,18 @@ public class GymFragment extends Fragment implements OnMapReadyCallback {
     private void searchNearbyGyms() {
         try {
             if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                List<Place.Field> placeFields = Arrays.asList(Place.Field.NAME, Place.Field.LAT_LNG, Place.Field.ADDRESS, Place.Field.TYPES);
+                List<Place.Field> placeFields = Arrays.asList(Place.Field.NAME, Place.Field.LAT_LNG, Place.Field.ADDRESS, Place.Field.BUSINESS_STATUS);
                 FindCurrentPlaceRequest request = FindCurrentPlaceRequest.newInstance(placeFields);
 
                 placesClient.findCurrentPlace(request).addOnSuccessListener(response -> {
                     for (PlaceLikelihood placeLikelihood : response.getPlaceLikelihoods()) {
                         Place place = placeLikelihood.getPlace();
 
-                        Log.d("PlacesAPI", "Place: " + place.getName() + ", Types: " + place.getTypes());
-                        // 각 장소의 타입을 로그로 출력하여 어떤 타입이 있는지 확인
+                        Log.d("PlacesAPI", "Place: " + place.getName() + ", Business Status: " + place.getBusinessStatus());
+                        // 각 장소의 비즈니스 상태를 로그로 출력하여 어떤 비즈니스 상태인지 확인
 
                         // 헬스장 필터링
-                        if (place.getTypes().contains(Place.Type.GYM) ||
-                                place.getTypes().contains(Place.Type.HEALTH) || // 건강 관련 장소
-                                place.getTypes().contains(Place.Type.SPA)) {
-                            // 헬스장인 경우 마커 추가
+                        if (place.getBusinessStatus() != null && place.getBusinessStatus().equals(Place.BusinessStatus.OPERATIONAL)) {
                             LatLng gymLatLng = place.getLatLng();
                             if (gymLatLng != null) {
                                 mMap.addMarker(new MarkerOptions()
@@ -192,29 +195,6 @@ public class GymFragment extends Fragment implements OnMapReadyCallback {
                             }
                         }
                     }
-
-                    // 마커 클릭 리스너 설정
-                    mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-                        @Override
-                        public boolean onMarkerClick(Marker marker) {
-                            // 마커 클릭 시 정보 창을 표시
-                            marker.showInfoWindow();
-                            return true; // 기본 동작 방지 (자동으로 지도 중심으로 이동하지 않게)
-                        }
-                    });
-
-                    // InfoWindow 클릭 리스너 설정
-                    mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-                        @Override
-                        public void onInfoWindowClick(Marker marker) {
-                            // 정보 창 클릭 시 웹 페이지로 이동
-                            String url = marker.getSnippet(); // URL이 snippet에 포함되었다고 가정
-                            if (url != null && !url.isEmpty()) {
-                                openUrlInBrowser(url); // 웹 브라우저에서 열기
-                            }
-                        }
-                    });
-
                 }).addOnFailureListener(exception -> Log.e("PlacesAPI", "Place not found: " + exception.getMessage()));
             } else {
                 requestLocationPermission();

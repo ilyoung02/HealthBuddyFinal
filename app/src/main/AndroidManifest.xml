@@ -18,6 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HealthBuddyPro"
         android:usesCleartextTraffic="true"
+        android:enableOnBackInvokedCallback="true"
         tools:targetApi="31" >
 
         <meta-data
@@ -37,8 +38,9 @@
         <activity android:name=".SignUp.SignupActivity"/>
         <activity android:name=".Login.LoginActivity"/>
         <activity android:name=".Matching.Chat.ChatActivity" />
-        <activity android:name=".ProfileDetailActivity" />
         <activity android:name=".MainActivity" />
+        <activity android:name=".Matching.Chat.ChatActivity"/>
+        <activity android:name=".Matching.ProfileDetailActivity"/>
     </application>
 
 </manifest>
