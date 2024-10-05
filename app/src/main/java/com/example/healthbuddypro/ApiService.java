@@ -2,6 +2,7 @@ package com.example.healthbuddypro;
 
 import com.example.healthbuddypro.Login.LoginRequest;
 import com.example.healthbuddypro.Login.LoginResponse;
+import com.example.healthbuddypro.Matching.Chat.MessageRequest;
 import com.example.healthbuddypro.Matching.MatchRequestListResponse;
 import com.example.healthbuddypro.Matching.MatchRequestResponse;
 import com.example.healthbuddypro.Matching.ProfileListResponse;
@@ -37,4 +38,8 @@ public interface ApiService {
     // 매칭 신청 내역 조회
     @GET("/api/match/request/user/{userId}")
     Call<MatchRequestListResponse> getMatchRequests(@Path("userId") int userId);
+
+    // 메시지 전송
+    @POST("/sendMessage") // 서버의 엔드포인트에 맞게 수정
+    Call<Void> sendMessage(@Body MessageRequest messageRequest);
 }

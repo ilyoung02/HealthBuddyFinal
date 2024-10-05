@@ -32,9 +32,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MatchFragment extends Fragment {
     private ViewPager2 viewPager;
     private ProfilePagerAdapter adapter;
-    
-    // Retrofit API 인터페이스에서 받아올 정보
-    private List<UserProfile> profiles = new ArrayList<>();
 
     @Nullable
     @Override

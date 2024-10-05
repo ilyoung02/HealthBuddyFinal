@@ -1,18 +1,29 @@
 package com.example.healthbuddypro.Matching.Chat;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.healthbuddypro.ApiService;
 import com.example.healthbuddypro.R;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 // 1:1 매칭 프로필 상세보기에서 채팅 신청 시
 public class ChatActivity extends AppCompatActivity {
@@ -22,6 +33,8 @@ public class ChatActivity extends AppCompatActivity {
     private List<Message> messageList;
     private EditText editTextMessage;
     private Button buttonSend;
+    private ApiService apiService;
+    private int profileId; // 채팅 상대 프로필 ID
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +43,10 @@ public class ChatActivity extends AppCompatActivity {
 
         // ProfileDetailActivity에서 넘겨준 profileId 받기
         Intent intent = getIntent();
-        int profileId = intent.getIntExtra("profileId", -1);
+        profileId = intent.getIntExtra("profileId", -1);
 
-        // profileId를 사용하여 채팅 상대를 표시하거나 로드
+        // profileId 사용하여 채팅 상대 표시하거나 로드
         if (profileId != -1) {
-            // 예: 채팅 상대 이름을 상단에 표시
             setTitle("채팅 - 상대방 프로필 ID: " + profileId);
         }
 
@@ -52,6 +64,9 @@ public class ChatActivity extends AppCompatActivity {
         editTextMessage = findViewById(R.id.editTextMessage);
         buttonSend = findViewById(R.id.buttonSend);
 
+        // Retrofit 설정
+        setupRetrofit();
+
         buttonSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,16 +78,53 @@ public class ChatActivity extends AppCompatActivity {
                     recyclerView.scrollToPosition(messageList.size() - 1);  // 스크롤 맨 아래로 이동
                     editTextMessage.setText("");
 
-                    // 서버로 메시지 전송 로직 추가 가능
+                    // 서버로 메시지 전송
+                    sendMessageToServer(profileId, messageText);
                 }
             }
         });
 
         // 예시 메시지 추가
-        messageList.add(new Message("안녕하세요!", true));
-        messageList.add(new Message("안녕하세요. 만나서 반갑습니다!", false));
-
-        // 데이터가 변경되었음을 어댑터에 알림
+        messageList.add(new Message("안녕하세요!", false));
         chatAdapter.notifyDataSetChanged();
+    }
+
+    // Retrofit 설정
+    private void setupRetrofit() {
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(loggingInterceptor)
+                .build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://165.229.89.154:8080/") // 백엔드 URL 설정
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
+                .build();
+
+        apiService = retrofit.create(ApiService.class);
+    }
+
+    // 서버로 메시지 전송
+    private void sendMessageToServer(int profileId, String messageText) {
+        MessageRequest messageRequest = new MessageRequest(profileId, messageText);
+        Call<Void> call = apiService.sendMessage(messageRequest);
+
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(ChatActivity.this, "메시지 전송 성공", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(ChatActivity.this, "메시지 전송 실패", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(ChatActivity.this, "메시지 전송 오류: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
