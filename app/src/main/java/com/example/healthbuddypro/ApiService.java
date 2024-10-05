@@ -15,7 +15,7 @@ import retrofit2.http.Path;
 //Restrofit API 인터페이스
 public interface ApiService {
     // 프로필 목록 받아오기 => MatchFragment
-    @GET("/api/match/profile") //실제 백엔드 엔드포인트 경로 넣기
+    @GET("/api/workouts") //실제 백엔드 엔드포인트 경로 넣기
     Call<ProfileListResponse> getProfiles();
 
     // 프로필 세부 정보 받아오기 => ProfileDetailActivity, id는 프로필 고유 ID

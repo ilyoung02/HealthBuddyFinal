@@ -1,12 +1,18 @@
 package com.example.healthbuddypro.Gym;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.healthbuddypro.R;
@@ -14,19 +20,35 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.model.PlaceLikelihood;
+import com.google.android.libraries.places.api.net.FindCurrentPlaceRequest;
+import com.google.android.libraries.places.api.net.PlacesClient;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class GymFragment extends Fragment implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private PlacesClient placesClient;
+    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1001;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_gym, container, false);
 
+        // Places API 초기화
+        Places.initialize(requireContext(), getString(R.string.google_maps_key));
+        placesClient = Places.createClient(requireContext());
+
+        // Google Maps 초기화
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         if (mapFragment != null) {
             mapFragment.getMapAsync(this);
@@ -39,31 +61,166 @@ public class GymFragment extends Fragment implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // 마커 추가
-        // 샘플 헬스장 위치 추가 (나중에 실제 데이터를 이용하여 위치 추가)
-        LatLng gymLocation1 = new LatLng(35.870539, 128.5589858); // Example location
-        mMap.addMarker(new MarkerOptions().position(gymLocation1).title("블랙짐").snippet("헬스장 세부 정보"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(gymLocation1, 12));
+        // 위치 권한 확인 및 요청
+        if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            enableUserLocation();
+            searchNearbyGyms();
+        } else {
+            requestLocationPermission();
+        }
 
-        LatLng gymLocation2 = new LatLng(35.869886, 128.549080); // Example location
-        mMap.addMarker(new MarkerOptions().position(gymLocation2).title("디짐").snippet("헬스장 세부 정보"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(gymLocation2, 12));
+        // 강제로 헬스장 마커 추가
+        addManualGymMarkers();
+    }
 
-        LatLng gymLocation3 = new LatLng(35.869856, 128.551606); // Example location
-        mMap.addMarker(new MarkerOptions().position(gymLocation3).title("열정핏").snippet("헬스장 세부 정보"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(gymLocation3, 12));
+    // 강제로 헬스장 마커를 추가하는 메서드
+    private void addManualGymMarkers() {
+        // 대구 서구에 있는 헬스장 예시 좌표
+        LatLng gym1 = new LatLng(35.870563, 128.558995); // 대구 서구의 예시 좌표
+        mMap.addMarker(new MarkerOptions()
+                .position(gym1)
+                .title("블랙짐")
+                .snippet("https://blog.naver.com/alsgh9226") // URL을 snippet에 추가
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
 
-        LatLng gymLocation4 = new LatLng(35.871842, 128.562846); // Example location
-        mMap.addMarker(new MarkerOptions().position(gymLocation4).title("짐팩토리").snippet("헬스장 세부 정보"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(gymLocation4, 12));
+        LatLng gym2 = new LatLng(35.870309, 128.548584); // 또 다른 헬스장 좌표
+        mMap.addMarker(new MarkerOptions()
+                .position(gym2)
+                .title("디짐")
+                .snippet("https://blog.naver.com/deegym") // URL 추가
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
 
+        LatLng gym3 = new LatLng(35.872467, 128.563219); // 추가 예시
+        mMap.addMarker(new MarkerOptions()
+                .position(gym3)
+                .title("짐 팩토")
+                .snippet("") // URL 추가
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
 
-        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-            @Override
-            public boolean onMarkerClick(Marker marker) {
-                // 여기서 팝업 또는 추가 세부정보를 표시할 수 있습니다.
-                return false; // false를 반환하면 기본 동작으로 인해 정보 창이 표시됩니다.
+        LatLng gym5 = new LatLng(35.867862, 128.555915); // 추가 예시
+        mMap.addMarker(new MarkerOptions()
+                .position(gym5)
+                .title("누난 피트니스")
+                .snippet("https://www.nunangirl.com/") // URL 추가
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+
+        LatLng gym6 = new LatLng(35.866182, 128.556178); // 추가 예시
+        mMap.addMarker(new MarkerOptions()
+                .position(gym6)
+                .title("다힘 휘트니스")
+                .snippet("https://blog.naver.com/mloveslove") // URL 추가
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+
+        LatLng gym4 = new LatLng(35.870653, 128.558998); // 추가 예시
+        mMap.addMarker(new MarkerOptions().position(gym4).title("옐로우 짐").snippet("옐로우 짐 스포츠센터"));
+        
+        // 지도에 추가한 마커들에 대해 카메라 위치 설정
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(gym1, 12));
+    }
+
+    // URL을 브라우저에서 여는 메서드
+    private void openUrlInBrowser(String url) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
+    }
+
+    // 위치 권한 확인 및 사용자 위치 활성화
+    private void enableUserLocation() {
+        try {
+            if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                mMap.setMyLocationEnabled(true);
+            } else {
+                requestLocationPermission();
             }
-        });
+        } catch (SecurityException e) {
+            Log.e("GymFragment", "SecurityException: " + e.getMessage());
+        }
+    }
+
+    // 위치 권한 요청 메서드
+    private void requestLocationPermission() {
+        // 권한 요청 이유를 보여줄 필요가 있으면 설명
+        if (ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.ACCESS_FINE_LOCATION)) {
+            Log.d("GymFragment", "위치 권한이 필요합니다.");
+            // 사용자가 거부한 적이 있는 경우 다시 설명하고 요청
+        }
+
+        // 권한 요청
+        requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_PERMISSION_REQUEST_CODE);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                enableUserLocation();
+                searchNearbyGyms();
+            } else {
+                // 권한이 거부된 경우
+                Log.e("GymFragment", "위치 권한이 거부되었습니다.");
+            }
+        }
+    }
+
+    // 주변 헬스장 검색 메서드
+    private void searchNearbyGyms() {
+        try {
+            if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                List<Place.Field> placeFields = Arrays.asList(Place.Field.NAME, Place.Field.LAT_LNG, Place.Field.ADDRESS, Place.Field.TYPES);
+                FindCurrentPlaceRequest request = FindCurrentPlaceRequest.newInstance(placeFields);
+
+                placesClient.findCurrentPlace(request).addOnSuccessListener(response -> {
+                    for (PlaceLikelihood placeLikelihood : response.getPlaceLikelihoods()) {
+                        Place place = placeLikelihood.getPlace();
+
+                        Log.d("PlacesAPI", "Place: " + place.getName() + ", Types: " + place.getTypes());
+                        // 각 장소의 타입을 로그로 출력하여 어떤 타입이 있는지 확인
+
+                        // 헬스장 필터링
+                        if (place.getTypes().contains(Place.Type.GYM) ||
+                                place.getTypes().contains(Place.Type.HEALTH) || // 건강 관련 장소
+                                place.getTypes().contains(Place.Type.SPA)) {
+                            // 헬스장인 경우 마커 추가
+                            LatLng gymLatLng = place.getLatLng();
+                            if (gymLatLng != null) {
+                                mMap.addMarker(new MarkerOptions()
+                                        .position(gymLatLng)
+                                        .title(place.getName())
+                                        .snippet(place.getAddress()));
+                            }
+                        }
+                    }
+
+                    // 마커 클릭 리스너 설정
+                    mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                        @Override
+                        public boolean onMarkerClick(Marker marker) {
+                            // 마커 클릭 시 정보 창을 표시
+                            marker.showInfoWindow();
+                            return true; // 기본 동작 방지 (자동으로 지도 중심으로 이동하지 않게)
+                        }
+                    });
+
+                    // InfoWindow 클릭 리스너 설정
+                    mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                        @Override
+                        public void onInfoWindowClick(Marker marker) {
+                            // 정보 창 클릭 시 웹 페이지로 이동
+                            String url = marker.getSnippet(); // URL이 snippet에 포함되었다고 가정
+                            if (url != null && !url.isEmpty()) {
+                                openUrlInBrowser(url); // 웹 브라우저에서 열기
+                            }
+                        }
+                    });
+
+                }).addOnFailureListener(exception -> Log.e("PlacesAPI", "Place not found: " + exception.getMessage()));
+            } else {
+                requestLocationPermission();
+            }
+        } catch (SecurityException e) {
+            Log.e("GymFragment", "SecurityException during search: " + e.getMessage());
+        }
     }
 }

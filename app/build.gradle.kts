@@ -37,7 +37,8 @@ android {
 
 dependencies {
     implementation("com.google.android.gms:play-services-maps:19.0.0")
-    implementation("com.google.android.gms:play-services-location:21.3.0")
+    implementation("com.google.android.gms:play-services-location:21.0.1")
+    implementation ("com.google.android.libraries.places:places:3.5.0")
 
     //Retrofit 의존성 설정
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
