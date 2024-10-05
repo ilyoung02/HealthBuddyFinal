@@ -22,4 +22,8 @@
         <item>남성전용</item>
         <item>여성전용</item>
     </string-array>
+    <string name="title_activity_maps">MapsActivity</string>
+
+    <!-- Google Maps API Key -->
+    <string name="google_maps_key">AIzaSyCTS66zRXrKJeeZIjwbKAX4YuzYPHfhdBA</string>
 </resources>

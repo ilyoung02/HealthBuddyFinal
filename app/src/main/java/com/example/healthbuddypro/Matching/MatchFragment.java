@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -15,12 +16,17 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.healthbuddypro.ApiService;
+import com.example.healthbuddypro.Login.LoginRequest;
+import com.example.healthbuddypro.Login.RetrofitClient;
 import com.example.healthbuddypro.ProfileDetailActivity;
 import com.example.healthbuddypro.R;
 import com.example.healthbuddypro.ShortTermMatching.ShortTermMatchFragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -28,7 +34,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MatchFragment extends Fragment {
-
     private ViewPager2 viewPager;
     private ProfilePagerAdapter adapter;
     
@@ -39,6 +44,7 @@ public class MatchFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_match, container, false);
+
         viewPager = view.findViewById(R.id.viewPager);
 
         Button btn1To1Matching = view.findViewById(R.id.btn_1to1_matching);
@@ -73,20 +79,6 @@ public class MatchFragment extends Fragment {
             transaction.commit();
         });
 
-        // 샘플 데이터 추가
-//        List<UserProfile> profiles = new ArrayList<>();
-//        profiles.add(new UserProfile("홍길동", "구력 6년, 벤치프레스", R.drawable.user1));
-//        profiles.add(new UserProfile("이순신", "구력 2년, 스쿼트", R.drawable.default_image));
-//        profiles.add(new UserProfile("유관순", "구력 4년, 데드리프트", R.drawable.default_image));
-
-//        adapter = new ProfilePagerAdapter(profiles, profile -> {
-//            Intent intent = new Intent(getContext(), ProfileDetailActivity.class);
-//            intent.putExtra("name", profile.getName());
-//            intent.putExtra("details", profile.getDetails());
-//            intent.putExtra("imageResId", profile.getImageResId());
-//            startActivity(intent);
-//        });
-
         //Retrofit으로 백엔드에서 프로필 데이터 가져오기
         fetchProfilesFromBackend();
 
@@ -94,43 +86,73 @@ public class MatchFragment extends Fragment {
     }
 
     private void fetchProfilesFromBackend() {
+        // Retrofit 설정 시 OkHttpClient와 로그 추가
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY); // 로그 레벨 설정
+
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(loggingInterceptor) // 로그 인터셉터 추가
+                .build();
+
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://165.229.89.156:8080/") // 실제 백엔드 URL 넣기
+                .baseUrl("http://165.229.89.154:8080/") // 실제 백엔드 URL 넣기
                 .addConverterFactory(GsonConverterFactory.create())
+                .client(client) // OkHttpClient 추가
                 .build();
 
         ApiService apiService = retrofit.create(ApiService.class);
 
-        // API 호출
-        Call<ProfileResponse> call = apiService.getProfiles();
-        call.enqueue(new Callback<ProfileResponse>() {
+        Call<ProfileListResponse> call = apiService.getProfiles();
+        call.enqueue(new Callback<ProfileListResponse>() {
             @Override
-            public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
+            public void onResponse(Call<ProfileListResponse> call, Response<ProfileListResponse> response) {
                 if (response.isSuccessful() && response.body() != null && response.body().getCode() == 200) {
-                    profiles = response.body().getData(); // 프로필 데이터를 불러옴
-                    setupViewPager(profiles); // 데이터를 받아온 후 뷰페이저 설정
+                    // 프로필 데이터를 불러와 뷰페이저에 설정
+                    List<UserProfile> profiles = response.body().getData();
+//                    for (UserProfile profileData : profiles) {
+//                        // 각 데이터를 이용해 UserProfile 객체를 생성
+//                        UserProfile userProfile = new UserProfile(
+//                                profileData.getProfileId(),
+//                                profileData.getNickName(),
+//                                profileData.getGender(),
+//                                profileData.getImage(),
+//                                profileData.getAge(),
+//                                profileData.getWorkoutYears(),
+//                                profileData.getLikeCount()
+//                        );
+//                        // 이후 userProfile 사용하여 화면에 표시하거나 다른 처리 진행
+//                    }
+                    setupViewPager(profiles); // 데이터를 ViewPager에 설정
                 } else {
-                    Toast.makeText(getContext(), "데이터를 불러오지 못했습니다.", Toast.LENGTH_SHORT).show();
+                    String errorMessage = "데이터를 불러오지 못했습니다. 오류 코드: " + response.code();
+                    Toast.makeText(getContext(), errorMessage, Toast.LENGTH_SHORT).show();
+                    Log.e("MatchFragment", errorMessage); // Logcat에 오류 메시지 출력
                 }
             }
 
             @Override
-            public void onFailure(Call<ProfileResponse> call, Throwable t) {
-                Toast.makeText(getContext(), "데이터 로드 실패: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<ProfileListResponse> call, Throwable t) {
+                String errorMessage = "데이터 로드 실패: " + t.getMessage();
+                Toast.makeText(getContext(), errorMessage, Toast.LENGTH_SHORT).show();
+                Log.e("MatchFragment", errorMessage); // Logcat에 오류 메시지 출력
             } // 오류 처리
         });
     }
 
+    // ProfileDetailActivity로 정보 넘겨줌 (ProfileId로 구분 -> 단일 프로필 정보 불러오기)
     private void setupViewPager(List<UserProfile> profiles) {
-            // 받아온 profile 데이터를 사용하여 ProfilePagerAdapter 설정
-            adapter = new ProfilePagerAdapter(profiles, profile -> {
-                Intent intent = new Intent(getContext(), ProfileDetailActivity.class);
-                intent.putExtra("nickname", profile.getNickName());
-                intent.putExtra("gender", profile.getGender());
-                intent.putExtra("age", profile.getAge());
-                intent.putExtra("image", profile.getImage());
-                startActivity(intent);
-            });
-            viewPager.setAdapter(adapter);
+        // 받아온 profile 데이터를 ProfilePagerAdapter로 설정
+        adapter = new ProfilePagerAdapter(profiles, profile -> {
+            Intent intent = new Intent(getContext(), ProfileDetailActivity.class);
+            intent.putExtra("profileId", profile.getProfileId());
+            intent.putExtra("nickname", profile.getNickName());
+            intent.putExtra("gender", profile.getGender());
+            intent.putExtra("age", profile.getAge());
+            intent.putExtra("image", profile.getImage());
+            intent.putExtra("workoutYears", profile.getWorkoutYears() + "년");
+            intent.putExtra("workoutItems", "벤치프레스, 스쿼트"); // 운동 항목은 백엔드 데이터로 변경 가능
+            startActivity(intent);
+        });
+        viewPager.setAdapter(adapter);
     }
 }

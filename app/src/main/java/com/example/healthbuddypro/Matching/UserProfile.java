@@ -2,19 +2,30 @@ package com.example.healthbuddypro.Matching;
 import java.io.Serializable;
 
 public class UserProfile implements Serializable {
+    private int profileId;
     private String nickname;
-//    private int imageResId;
     private String image;
     private String gender;
     private int age;
+    private int workoutYears;  // 구력(운동 경력)
+    private int likeCount;
 
-
-    public UserProfile(String nickname, String gender, int age, String image) {
+    public UserProfile(int profileId, String nickname, String image, String gender, int age, int workoutYears, int likeCount) {
+        this.profileId = profileId;
         this.nickname = nickname;
         this.image = image;
         this.gender = gender;
         this.age = age;
-//        this.imageResId = imageResId;
+        this.workoutYears = workoutYears;
+        this.likeCount = likeCount;
+    }
+
+    // 프로필 ID
+    public int getProfileId() {
+        return profileId;
+    }
+    public void setProfileId(int profileId) {
+        this.profileId = profileId;
     }
 
     // 닉네임
@@ -47,6 +58,21 @@ public class UserProfile implements Serializable {
     }
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public int getWorkoutYears() {
+        return workoutYears;  // 구력(운동 경력) 반환 메서드
+    }
+    public void setWorkoutYears(int workoutYears) {
+        this.workoutYears = workoutYears;
+    }
+
+    // 좋아요 수
+    public int getLikeCount() {
+        return likeCount;
+    }
+    public void setLikeCount(int likeCount) {
+        this.likeCount = likeCount;
     }
 }
 

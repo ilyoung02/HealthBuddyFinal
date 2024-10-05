@@ -34,9 +34,12 @@ public class ProfilePagerAdapter extends RecyclerView.Adapter<ProfilePagerAdapte
         UserProfile profile = profiles.get(position);
 
         // 닉네임과 성별을 텍스트뷰에 설정
-        holder.name.setText(profile.getNickName());
-        holder.gender.setText(profile.getGender());
-        holder.age.setText(profile.getGender());
+//        holder.nickname.setText(profile.getNickName());
+//        holder.gender.setText(profile.getGender());
+//        holder.age.setText(profile.getGender());
+        holder.nicknameTextView.setText(profile.getNickName());
+        holder.genderTextView.setText(profile.getGender());
+        holder.ageTextView.setText(String.valueOf(profile.getAge()));
 
         // 이미지 로딩 (Glide 사용)
         Glide.with(holder.itemView.getContext())
@@ -56,17 +59,23 @@ public class ProfilePagerAdapter extends RecyclerView.Adapter<ProfilePagerAdapte
     // ViewHolder 클래스
     static class ProfileViewHolder extends RecyclerView.ViewHolder {
         ImageView profileImageView;
-        TextView name;
-        TextView gender;
-        TextView age;
+//        TextView nickname;
+//        TextView gender;
+//        TextView age;
+
+        TextView nicknameTextView, genderTextView, ageTextView;
 
         public ProfileViewHolder(@NonNull View itemView) {
             super(itemView);
             // item_profile.xml 파일 참고
             profileImageView = itemView.findViewById(R.id.profile_image);
-            name = itemView.findViewById(R.id.profile_name);
-            gender = itemView.findViewById(R.id.profile_gender);
-            age = itemView.findViewById(R.id.profile_age);
+//            nickname = itemView.findViewById(R.id.profile_name);
+//            gender = itemView.findViewById(R.id.profile_gender);
+//            age = itemView.findViewById(R.id.profile_age);
+
+            nicknameTextView = itemView.findViewById(R.id.profile_name);
+            genderTextView = itemView.findViewById(R.id.profile_gender);
+            ageTextView = itemView.findViewById(R.id.profile_age);
         }
     }
 

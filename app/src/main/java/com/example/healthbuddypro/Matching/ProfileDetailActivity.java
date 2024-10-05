@@ -7,31 +7,48 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
+import com.example.healthbuddypro.ApiService;
 import com.example.healthbuddypro.Matching.Chat.ChatActivity;
 import com.example.healthbuddypro.R;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class ProfileDetailActivity extends AppCompatActivity {
+
+    private ImageView profileImage;
+    private TextView name;
+    private TextView workoutInfo; // 추가 정보 텍스트뷰
+    private TextView introText; // 소개글 텍스트뷰
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_detail);
 
-        ImageView profileImage = findViewById(R.id.profile_image);
-        TextView name = findViewById(R.id.profile_name);
-        TextView details = findViewById(R.id.profile_intro);
+        profileImage = findViewById(R.id.profile_image);
+        name = findViewById(R.id.profile_name);
+        workoutInfo = findViewById(R.id.profile_workout_info); // 구력과 운동 정보 표시할 부분
+        introText = findViewById(R.id.profile_intro_text); // 소개글 표시할 부분
 
+        // Intent로 전달된 profileId 받기
         Intent intent = getIntent();
+        int profileId = intent.getIntExtra("profileId", -1);
 
-        if (intent != null) {
-            name.setText(intent.getStringExtra("name"));
-            details.setText(intent.getStringExtra("details"));
-            profileImage.setImageResource(intent.getIntExtra("imageResId", R.drawable.default_image));
+        if (profileId != -1) {
+            // 백엔드에서 프로필 데이터 불러오기
+            fetchProfileDetails(profileId);
         }
 
-        // 채팅 버튼 클릭 시 넘어가지 않음 => 오류? 왜지
+        // 채팅 버튼 클릭 처리
         Button btnChat = findViewById(R.id.btn_chat);
         btnChat.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,5 +57,51 @@ public class ProfileDetailActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void fetchProfileDetails(int profileId) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://165.229.89.154:8080/") // 백엔드 URL
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        ApiService apiService = retrofit.create(ApiService.class);
+
+        // 단일 프로필 데이터를 가져오도록 함
+        Call<ProfileResponse> call = apiService.getProfileDetails(profileId);
+
+        call.enqueue(new Callback<ProfileResponse>() {
+            @Override
+            public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    // 프로필 데이터 설정
+                    UserProfile profile = response.body().getData();
+                    updateUI(profile);
+                } else {
+                    String errorMessage = "프로필 정보를 불러오지 못했습니다. 오류 코드: " + response.code();
+                    introText.setText(errorMessage);
+                    Toast.makeText(ProfileDetailActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
+                    Log.e("ProfileDetailActivity", errorMessage);  // Logcat에 오류 메시지 출력
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProfileResponse> call, Throwable t) {
+                String errorMessage = "데이터 로드 실패: " + t.getMessage();
+                introText.setText(errorMessage);
+                Toast.makeText(ProfileDetailActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
+                Log.e("ProfileDetailActivity", errorMessage);  // Logcat에 오류 메시지 출력
+            }
+        });
+    }
+
+    private void updateUI(UserProfile profile) {
+        name.setText(profile.getNickName() + " " + profile.getAge() + "세");
+        workoutInfo.setText("구력 " + profile.getWorkoutYears() + "년, 좋아요 " + profile.getLikeCount());
+
+        // 이미지 로딩 (Glide 사용)
+        Glide.with(this)
+                .load(profile.getImage())
+                .into(profileImage);
     }
 }
