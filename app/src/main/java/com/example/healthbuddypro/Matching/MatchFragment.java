@@ -105,19 +105,6 @@ public class MatchFragment extends Fragment {
                 if (response.isSuccessful() && response.body() != null && response.body().getCode() == 200) {
                     // 프로필 데이터를 불러와 뷰페이저에 설정
                     List<UserProfile> profiles = response.body().getData();
-//                    for (UserProfile profileData : profiles) {
-//                        // 각 데이터를 이용해 UserProfile 객체를 생성
-//                        UserProfile userProfile = new UserProfile(
-//                                profileData.getProfileId(),
-//                                profileData.getNickName(),
-//                                profileData.getGender(),
-//                                profileData.getImage(),
-//                                profileData.getAge(),
-//                                profileData.getWorkoutYears(),
-//                                profileData.getLikeCount()
-//                        );
-//                        // 이후 userProfile 사용하여 화면에 표시하거나 다른 처리 진행
-//                    }
                     setupViewPager(profiles); // 데이터를 ViewPager에 설정
                 } else {
                     String errorMessage = "데이터를 불러오지 못했습니다. 오류 코드: " + response.code();
