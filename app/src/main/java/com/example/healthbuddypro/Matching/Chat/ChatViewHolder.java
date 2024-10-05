@@ -15,7 +15,7 @@ public class ChatViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind(Message message) {
-        messageTextView.setText(message.getMessageText());
+        messageTextView.setText(message.getText());
         // 송신자/수신자에 따라 스타일 변경 가능
     }
 }

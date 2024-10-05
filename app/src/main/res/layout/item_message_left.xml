@@ -3,16 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="8dp">
+    android:padding="8dp"
+    android:gravity="start">
 
-    <!-- 상대방이 보낸 메시지 왼쪽 정렬 -->
     <TextView
-        android:id="@+id/textViewMessage"
+        android:id="@+id/textMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/message_background"
-        android:text="Hello"
-        android:padding="10dp"
+        android:background="@drawable/rounded_message_left"
+        android:padding="12dp"
         android:textColor="@android:color/black"
         android:textSize="16sp" />
 </LinearLayout>
+
