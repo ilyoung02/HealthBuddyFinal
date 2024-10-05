@@ -39,7 +39,6 @@
         <activity android:name=".Login.LoginActivity"/>
         <activity android:name=".Matching.Chat.ChatActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".Matching.Chat.ChatActivity"/>
         <activity android:name=".Matching.ProfileDetailActivity"/>
     </application>
 

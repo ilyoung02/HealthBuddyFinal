@@ -44,11 +44,13 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation ("com.google.code.gson:gson:2.8.6")
-    implementation ("com.squareup.okhttp3:logging-interceptor:3.11.0")
+    implementation ("com.squareup.okhttp3:logging-interceptor:4.9.1")
 
     //이미지 업로드 glide 설정
     implementation("com.github.bumptech.glide:glide:4.12.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
+
+    implementation ("com.squareup.okhttp3:okhttp-urlconnection:4.9.1")
 
     implementation(libs.appcompat)
     implementation(libs.material)

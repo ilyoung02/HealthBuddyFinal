@@ -3,6 +3,7 @@ package com.example.healthbuddypro.Login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -12,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.healthbuddypro.ApiService;
 import com.example.healthbuddypro.MainActivity;
 import com.example.healthbuddypro.R;
+import com.example.healthbuddypro.RetrofitClient;
 import com.example.healthbuddypro.SignUp.SignupActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText editTextUsername, editTextPassword;
     private final String BASE_URL = "http://165.229.89.154:8080/"; // 실제 AWS API URL로 변경
+    private static final String TAG = "LoginActivity";  // 로그 태그
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +72,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
+                    // 로그인 성공 로그 출력
+                    Log.d(TAG, "로그인 성공: " + response.body().toString());
+
                     Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
                     // 로그인 성공 후 메인 화면으로 이동
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -81,6 +87,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
+                Log.e(TAG, "네트워크 오류: " + t.getMessage());
                 Toast.makeText(LoginActivity.this, "네트워크 오류", Toast.LENGTH_SHORT).show();
             }
         });

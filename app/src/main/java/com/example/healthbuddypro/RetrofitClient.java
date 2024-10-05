@@ -1,7 +1,8 @@
-package com.example.healthbuddypro.Login;
+package com.example.healthbuddypro;
 
-import com.example.healthbuddypro.ApiService;
+import java.net.CookieManager;
 
+import okhttp3.JavaNetCookieJar;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -18,12 +19,17 @@ public class RetrofitClient {
             // 네트워크 로깅을 위해 OkHttp 클라이언트 설정
             HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
             logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+            // OkHttp 클라이언트에 쿠키 매니저와 로깅 연결
             OkHttpClient client = new OkHttpClient.Builder()
                     .addInterceptor(logging)
+                    .cookieJar(new JavaNetCookieJar(new CookieManager()))
                     .build();
 
+            // Retrofit 빌드
             retrofit = new Retrofit.Builder()
-                    .baseUrl(RetrofitClient.BASE_URL)
+                    .baseUrl(BASE_URL)
+                    .client(client)  // OkHttp 클라이언트 적용
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
