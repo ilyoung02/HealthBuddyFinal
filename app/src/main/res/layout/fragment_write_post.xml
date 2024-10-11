@@ -13,38 +13,74 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:hint="제목: 제목을 입력하세요"
-        android:background="@android:color/transparent"
+        android:background="@drawable/box_background"
         android:padding="8dp"
         android:textColor="@android:color/black"
-        android:textSize="16sp"/>
+        android:textSize="16sp"
+        android:layout_marginBottom="10dp"/>
 
-    <!-- 주제 선택 스피너 -->
-    <Spinner
-        android:id="@+id/spinner_topic"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:padding="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"/>
+        android:orientation="horizontal">
+        <!-- 운동 아이콘 -->
+        <ImageView
+            android:id="@+id/icon_exercise"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/fitness" />
+        <!-- 주제 선택 스피너 -->
+        <Spinner
+            android:id="@+id/spinner_topic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:padding="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"/>
+    </LinearLayout>
 
-    <!-- 위치 선택 스피너 -->
-    <Spinner
-        android:id="@+id/spinner_location"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:padding="8dp"
-        android:layout_marginBottom="8dp"/>
+        android:orientation="horizontal">
+        <!-- 지역 아이콘 -->
+        <ImageView
+            android:id="@+id/icon_location"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/gps" />
+        <!-- 위치 선택 스피너 -->
+        <Spinner
+            android:id="@+id/spinner_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:padding="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="8dp"/>
+    </LinearLayout>
 
-    <!-- 카테고리 선택 스피너 -->
-    <Spinner
-        android:id="@+id/spinner_category"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:padding="8dp"
-        android:layout_marginBottom="8dp"/>
+        android:orientation="horizontal">
+        <!-- 성별 카테고리 아이콘 -->
+        <ImageView
+            android:id="@+id/icon_category"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/matching" />
+        <!-- 성별 카테고리 선택 스피너 -->
+        <Spinner
+            android:id="@+id/spinner_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:padding="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="8dp"/>
+    </LinearLayout>
 
     <!-- 내용 입력 -->
     <EditText
@@ -52,7 +88,7 @@
         android:layout_width="match_parent"
         android:layout_height="400dp"
         android:hint="내용을 입력하세요"
-        android:background="@android:color/transparent"
+        android:background="@drawable/box_background"
         android:padding="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
@@ -60,7 +96,7 @@
         android:textSize="16sp"
         android:minHeight="150dp"
         android:gravity="top"
-        android:inputType="textMultiLine"/>
+        android:inputType="textMultiLine" />
 
     <!-- 게시하기 버튼 -->
     <Button

@@ -18,11 +18,14 @@ public class WritePostFragment extends Fragment {
 
     private EditText editTextTitle;
     private EditText editTextContent;
+    private Spinner spinnerTopic;
+    private Spinner spinnerLocation;
+    private Spinner spinnerCategory;
     private Button btnSubmit;
     private OnPostSubmitListener onPostSubmitListener;
 
     public interface OnPostSubmitListener {
-        void onPostSubmitted(String title, String content);
+        void onPostSubmitted(String title, String content, String topic, String location, String category);
     }
 
     @Nullable
@@ -32,36 +35,31 @@ public class WritePostFragment extends Fragment {
 
         editTextTitle = view.findViewById(R.id.editTextTitle);
         editTextContent = view.findViewById(R.id.editTextContent);
+        spinnerTopic = view.findViewById(R.id.spinner_topic);
+        spinnerLocation = view.findViewById(R.id.spinner_location);
+        spinnerCategory = view.findViewById(R.id.spinner_category);
         btnSubmit = view.findViewById(R.id.btn_submit);
 
-        Spinner spinnerTopic = view.findViewById(R.id.spinner_topic);
-        Spinner spinnerLocation = view.findViewById(R.id.spinner_location);
-        Spinner spinnerCategory = view.findViewById(R.id.spinner_category);
-
-        // 스피너 데이터 설정
         ArrayAdapter<CharSequence> adapterTopic = ArrayAdapter.createFromResource(getContext(), R.array.topic_array, android.R.layout.simple_spinner_item);
-        adapterTopic.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerTopic.setAdapter(adapterTopic);
 
         ArrayAdapter<CharSequence> adapterLocation = ArrayAdapter.createFromResource(getContext(), R.array.location_array, android.R.layout.simple_spinner_item);
-        adapterLocation.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerLocation.setAdapter(adapterLocation);
 
         ArrayAdapter<CharSequence> adapterCategory = ArrayAdapter.createFromResource(getContext(), R.array.category_array, android.R.layout.simple_spinner_item);
-        adapterCategory.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCategory.setAdapter(adapterCategory);
 
-        // 글 작성 완료 버튼 클릭 리스너
         btnSubmit.setOnClickListener(v -> {
             String title = editTextTitle.getText().toString();
             String content = editTextContent.getText().toString();
+            String topic = spinnerTopic.getSelectedItem().toString();
+            String location = spinnerLocation.getSelectedItem().toString();
+            String category = spinnerCategory.getSelectedItem().toString();
 
             if (!title.isEmpty() && !content.isEmpty()) {
-                // 글 작성 완료 후 부모 프래그먼트로 데이터 전달
                 if (onPostSubmitListener != null) {
-                    onPostSubmitListener.onPostSubmitted(title, content);
+                    onPostSubmitListener.onPostSubmitted(title, content, topic, location, category);
                 }
-                // 이전 프래그먼트로 돌아가기
                 getParentFragmentManager().popBackStack();
             } else {
                 Toast.makeText(getContext(), "제목과 내용을 입력하세요", Toast.LENGTH_SHORT).show();
