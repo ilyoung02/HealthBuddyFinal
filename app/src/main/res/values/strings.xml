@@ -1,6 +1,19 @@
 <resources>
     <string name="app_name">HealthBuddyPro</string>
 
+    <!-- 운동 목표 예시 -->
+    <string-array name="workout_goals_array">
+        <item>체중 감량</item>
+        <item>근육 증가</item>
+        <item>지구력 향상</item>
+        <item>근력 향상</item>
+        <item>유연성 향상</item>
+        <item>건강 유지</item>
+        <item>심폐 능력 향상</item>
+        <item>부상 회복</item>
+        <item>균형 향상</item>
+    </string-array>
+
     <!-- 주제 선택 예시 -->
     <string-array name="topic_array">
         <item>가슴</item>

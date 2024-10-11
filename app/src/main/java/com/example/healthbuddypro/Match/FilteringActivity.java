@@ -11,7 +11,6 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.healthbuddypro.R;
 
 public class FilteringActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

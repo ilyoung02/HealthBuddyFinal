@@ -1,4 +1,4 @@
-<!-- res/drawable/sent_message_background.xml -->
+    <!-- res/drawable/sent_message_background.xml -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <solid android:color="@color/white" /> <!-- 메시지 배경 색상 -->
     <corners android:radius="16dp" /> <!-- 모서리의 곡률 -->

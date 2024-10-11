@@ -21,8 +21,8 @@ import com.example.healthbuddypro.R;
 
 public class ProfileFragment extends Fragment {
 
-    private Button login_btn;
     private Button buttonLogout;
+    private Button btnEdit;
 
     @Nullable
     @Override
@@ -31,19 +31,8 @@ public class ProfileFragment extends Fragment {
         // 프래그먼트 레이아웃을 inflate
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        // 로그인 버튼 초기화
-        login_btn = view.findViewById(R.id.login_btn);
         buttonLogout = view.findViewById(R.id.buttonLogout);
-
-        // 로그인 버튼 클릭 리스너 설정
-        login_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // LoginActivity로 이동하는 Intent 생성
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
-                startActivity(intent);
-            }
-        });
+        btnEdit = view.findViewById(R.id.btn_edit); // btnEdit 초기화
 
         // 로그아웃 버튼 클릭 리스너 설정
         buttonLogout.setOnClickListener(new View.OnClickListener() {
@@ -51,6 +40,16 @@ public class ProfileFragment extends Fragment {
             public void onClick(View view) {
                 // 로그아웃 확인 팝업 표시
                 showLogoutConfirmationDialog();
+            }
+        });
+
+        // 수정 버튼 클릭 리스너 설정
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // EditProfileActivity로 이동
+                Intent intent = new Intent(getActivity(), EditProfileActivity.class);
+                startActivity(intent);
             }
         });
 
