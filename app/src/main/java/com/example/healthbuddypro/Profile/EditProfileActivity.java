@@ -48,14 +48,11 @@ public class EditProfileActivity extends AppCompatActivity {
             }
         });
 
-
-        // Setup Spinner for Workout Goals
         ArrayAdapter<CharSequence> goalAdapter = ArrayAdapter.createFromResource(this,
                 R.array.workout_goals_array, android.R.layout.simple_spinner_item);
         goalAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         workoutGoalSpinner.setAdapter(goalAdapter);
 
-        // Spinner item selection listener for Workout Goals
         workoutGoalSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -65,7 +62,6 @@ public class EditProfileActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                // Do nothing
             }
         });
 
