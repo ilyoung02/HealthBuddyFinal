@@ -1,0 +1,8 @@
+
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(æ½½‡üÿÿÿÿ
+d
+java:S3824š"HReplace this "Map.containsKey()" with a call to "Map.computeIfAbsent()".(Ô˜“¦ùÿÿÿÿ
+M
+java:S1144x"2Remove this unused private "onDaySelected" method.(©šá—þÿÿÿÿ
+H
+java:S1068""-Remove this unused "matchList" private field.(±Î‚µøÿÿÿÿ

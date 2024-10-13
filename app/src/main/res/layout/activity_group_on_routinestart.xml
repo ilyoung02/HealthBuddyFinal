@@ -1,0 +1,80 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="40dp">
+
+    <!-- 상단 팀 이름과 목록 버튼 -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/header_section"
+        android:layout_marginBottom="50dp"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/teamName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="헬스버디팀 이름"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:textColor="#000000"
+            android:layout_centerInParent="true"/>
+
+        <ImageButton
+            android:id="@+id/btn_routineList"
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:src="@drawable/icon_list"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="10dp"
+            android:scaleType="centerCrop"
+            android:background="#ffffff"/>
+
+    </RelativeLayout>
+
+    <!-- 오늘의 운동 제목 -->
+    <TextView
+        android:id="@+id/todayDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header_section"
+        android:layout_marginBottom="15dp"
+        android:text="오늘날짜요일"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black" />
+
+    <!-- 동적추가되는 오늘의 루틴 나오는 레이아웃 -->
+    
+    <LinearLayout
+        android:id="@+id/todayRoutineList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/todayDate"
+        android:orientation="vertical"
+        android:background="@drawable/box_background"
+        android:padding="16dp">
+    </LinearLayout>
+
+    <!-- 운동 시작하기 버튼 하단 고정 -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_startRoutine"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/rounded_button"
+        android:paddingLeft="24dp"
+        android:paddingTop="12dp"
+        android:paddingRight="24dp"
+        android:paddingBottom="12dp"
+        android:text="운동 시작하기"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:textSize="20dp"
+        android:layout_marginBottom="50dp" />
+
+</RelativeLayout>

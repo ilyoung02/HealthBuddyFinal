@@ -35,13 +35,13 @@
             android:id="@+id/tv_routine_title_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="루틴 제목"
+            android:text="제목 수정"
             android:textSize="16sp"
             android:textColor="@android:color/black"
             android:layout_marginBottom="8dp"/>
 
         <EditText
-            android:id="@+id/et_routine_title"
+            android:id="@+id/fix_routineTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="변경할 루틴 제목 입력"
@@ -50,50 +50,6 @@
             android:background="@android:drawable/edit_text"
             android:textSize="16sp"/>
 
-        <!-- 루틴 기간 선택 -->
-        <TextView
-            android:id="@+id/tv_routine_period_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="루틴 기간"
-            android:textSize="16sp"
-            android:textColor="@android:color/black"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-            <EditText
-                android:id="@+id/et_start_date"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="시작일 변경"
-                android:inputType="none"
-                android:padding="12dp"
-                android:background="@android:drawable/edit_text"
-                android:textSize="16sp"
-                android:focusable="false"
-                android:clickable="true"/>
-
-            <EditText
-                android:id="@+id/et_end_date"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="종료일 변경"
-                android:inputType="none"
-                android:padding="12dp"
-                android:background="@android:drawable/edit_text"
-                android:textSize="16sp"
-                android:layout_marginStart="8dp"
-                android:focusable="false"
-                android:clickable="true"/>
-        </LinearLayout>
 
 
         <!-- 수행 요일 선택 -->
@@ -101,7 +57,7 @@
             android:id="@+id/tv_routine_days_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="수행 요일"
+            android:text="수행 요일 수정"
             android:textSize="16sp"
             android:textColor="@android:color/black"
             android:layout_marginTop="16dp"
@@ -160,31 +116,24 @@
             android:id="@+id/tv_routine_exercise_type_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="루틴 운동 수정"
+            android:text="운동 정보 수정"
             android:textSize="16sp"
             android:textColor="@android:color/black"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"/>
 
+<!--        여기 레이아웃에 동적으로 수정할 운동 정보가 오도록 해야함-->
         <LinearLayout
             android:id="@+id/exercise_fixList_container"
             android:layout_width="match_parent"
             android:layout_height="400dp"
             android:orientation="vertical"
-            android:padding="16dp">
-
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:divider="@android:color/darker_gray"
-                android:dividerHeight="3dp" />
-
+            android:padding="16dp"
+            android:layout_marginBottom="14dp">
         </LinearLayout>
 
-        <!-- 저장 버튼 -->
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_save_routine"
+            android:id="@+id/btn_save_fixed_routine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="수정 완료"

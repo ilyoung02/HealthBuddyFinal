@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" >
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -10,6 +10,7 @@
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
+        android:enableOnBackInvokedCallback="true"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -18,8 +19,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HealthBuddyPro"
         android:usesCleartextTraffic="true"
-        android:enableOnBackInvokedCallback="true"
-        tools:targetApi="31" >
+        tools:targetApi="31">
+        <activity
+            android:name=".testtest"
+            android:exported="false" />
+        <activity
+            android:name=".fragmentMoveTest"
+            android:exported="false" />
+        <activity
+            android:name=".FitnessTab.Routine.check_location"
+            android:exported="false" />
+        <activity
+            android:name=".FitnessTab.Routine.make_routine04"
+            android:exported="false" />
+        <activity
+            android:name=".FitnessTab.Routine.add_workout_item"
+            android:exported="false" />
+        <activity
+            android:name=".FitnessTab.Routine.group_on_routinestart"
+            android:exported="false" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -28,17 +46,24 @@
         <activity
             android:name=".SplashActivity"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignUp.SignupActivity"/>
-        <activity android:name=".Login.LoginActivity"/>
+        <activity android:name=".SignUp.SignupActivity" />
+        <activity android:name=".Login.LoginActivity" />
         <activity android:name=".Matching.Chat.ChatActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".Matching.ProfileDetailActivity"/>
+        <activity android:name=".Matching.ProfileDetailActivity" />
+        <activity android:name=".FitnessTab.Routine.routine_list" />
+        <activity android:name=".FitnessTab.Routine.make_routine01" />
+        <activity android:name=".FitnessTab.Routine.make_routine03" />
+        <activity android:name=".FitnessTab.Routine.set_routine_exercise" />
+        <activity android:name=".FitnessTab.Routine.AddExerciseActivity" />
+        <activity android:name=".FitnessTab.Routine.RoutineFragment" />
     </application>
 
 </manifest>

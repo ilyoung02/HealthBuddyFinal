@@ -11,11 +11,20 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="루틴 제목"
+        android:text="헬스버디팀이름"
         android:textSize="25dp"
         android:textStyle="bold"
         android:gravity="center"
         android:padding="16dp" />
+
+    <TextView
+        android:id="@+id/matchDday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="매칭 32일째"
+        android:textStyle="bold"
+        android:textSize="17dp"
+        android:gravity="center"/>
 
     <LinearLayout
         android:id="@+id/exercise_list_container"

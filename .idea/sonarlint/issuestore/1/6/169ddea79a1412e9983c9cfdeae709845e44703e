@@ -1,0 +1,24 @@
+
+k
+java:S1604A"(Make this anonymous inner class a lambda(Öºªƒ8ØßÎù§2J$979df589-a815-4fdf-96a6-b64d33a8145b
+j
+java:S1604K"(Make this anonymous inner class a lambda(²¶ù18ØßÎù§2J$572d1ba8-7a57-4627-8647-b91b90854f90
+p
+java:S1604S"(Make this anonymous inner class a lambda(ğ«øÿÿÿÿ8ØßÎù§2J$2dcddea0-6f9d-475a-b7bb-135878298c02
+j
+java:S1604]"(Make this anonymous inner class a lambda(ÍäÿC8ØßÎù§2J$b79fcfd0-68e1-4c0c-9ed8-eb7e6f8f99cc
+k
+java:S1604z"(Make this anonymous inner class a lambda(±€çë8ØßÎù§2J$2bce364c-dc4c-4db1-8399-0aa645b55a82
+l
+java:S1604Š"(Make this anonymous inner class a lambda(Æ­Ü8ØßÎù§2J$ee12a3fb-80e6-4137-a79a-5d607de7695e
+œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(èé™8ØßÎù§2J$c8a24dc9-3edd-4ac9-807a-d3d3ea7a4531
+v
+java:S1659".Declare "exerciseListView" on a separate line.(íñ‘«şÿÿÿÿ8ÜßÎù§2J$b9188cf8-8589-447a-b670-4b860a97cef2
+l
+java:S1659!")Declare "closeButton" on a separate line.(Şâ8ÜßÎù§2J$3ff57517-5e0a-40c5-873b-7923d51149fc
+§
+java:S1450"_Remove the "categoryListView" field and declare it as a local variable in the relevant methods.(íñ‘«şÿÿÿÿ8İßÎù§2J$b257bdcc-8f71-4b03-9d67-25474599ee05
+
+java:S1450!"ZRemove the "closeButton" field and declare it as a local variable in the relevant methods.(Şâ8İßÎù§2J$6327bb56-8bd9-47c7-9317-db3164e6ab7d
+ 
+java:S1450!"]Remove the "completeButton" field and declare it as a local variable in the relevant methods.(Şâ8İßÎù§2J$ec7e1868-99f9-4c31-8cdd-db43c40a7e39

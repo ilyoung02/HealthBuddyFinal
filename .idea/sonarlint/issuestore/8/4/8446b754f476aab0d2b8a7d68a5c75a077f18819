@@ -1,0 +1,27 @@
+
+k
+java:S1604#"(Make this anonymous inner class a lambda(µŞïõ8š±á´§2J$470556a2-34fc-4bdb-aa20-817c286a01d1
+k
+java:S1604."(Make this anonymous inner class a lambda(ÿÎ¶®8š±á´§2J$294ed2c7-7642-401f-b8d9-245e4c24864a
+j
+java:S16049"(Make this anonymous inner class a lambda(¦œ˜Z8š±á´§2J$9866b73c-8384-49f3-aeb8-7a1fd9c0c85b
+k
+java:S1604D"(Make this anonymous inner class a lambda(¾‡µà8›±á´§2J$c19670db-4b9d-4c94-a5ac-4f69be2e96e4
+	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(®¤Ü÷8îââ´§2J$dc2a9f7f-6a25-4f13-a3e0-28079e0c3065
+•	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(èé™J$78b7f983-1758-4e63-ac65-d658835e7296
+l
+java:S1659")Declare "endDateText" on a separate line.(êĞÿÖ8§±á´§2J$2378e5b2-9b2a-451f-b165-f93c67b105a0
+Œ
+java:S1659"JDeclare "endDateButton" and all following declarations on a separate line.(ŠË÷J8¨±á´§2J$aeb41e13-666a-4f06-9207-0fc547571ba0
+p
+java:S1659"-Declare "selectedEndDate" on a separate line.(ÛõšÈ8¨±á´§2J$2a86f2d9-5f2b-4f49-93f5-87cdf876dd6c
+›
+java:S1450"YRemove the "backButton" field and declare it as a local variable in the relevant methods.(ŠË÷J8¨±á´§2J$8b164694-dcf1-4f60-a15b-1d0134c651ae
+
+java:S1450"\Remove the "endDateButton" field and declare it as a local variable in the relevant methods.(ŠË÷J8¨±á´§2J$38250ac9-96b1-4a78-825e-29a942ca823a
+ 
+java:S1450"^Remove the "startDateButton" field and declare it as a local variable in the relevant methods.(ŠË÷J8¨±á´§2J$5ad92fac-e0d5-4e2e-885b-af0fa3f8d106
+o
+java:S1602S",Remove useless curly braces around statement(Ğåü²8À±á´§2J$502db223-e95b-4de8-9b32-e4006fd42edd
+ˆ
+java:S1612S"EReplace this lambda with method reference 'callback::onDateSelected'.(Ğåü²8Ã±á´§2J$a8d15b62-c564-4553-9dc3-8131820a6e59

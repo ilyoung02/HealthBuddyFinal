@@ -1,0 +1,8 @@
+
+ï	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÇﬂÂ›J$3500600b-bee6-474e-9568-54a2affc0db8
+b
+java:S2637"EThis method's return value is marked "@NonNull" but null is returned.(•πÔç8Ñù´Ø¶2
+x
+java:S1874"<Remove this use of "FragmentPagerAdapter"; it is deprecated.(úÉ£ J$e4fdf917-4d85-4d07-a68f-da157faeaa90
+x
+java:S1874"<Remove this use of "FragmentPagerAdapter"; it is deprecated.(Ú¬ﬂ–J$61212c59-57bf-40a6-a643-caa86d4a2529

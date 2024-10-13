@@ -1,0 +1,18 @@
+
+	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(Æ¶ğû8õü­…¨2J$57263add-7234-4260-babc-54d3082e5be9
+œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(èé™8õü­…¨2J$5c5a1216-16a5-47eb-bf3f-bf367a04641d
+¢	java:S116#"[Rename this field "RADIUS_IN_METERS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(éï˜úúÿÿÿÿ8øü­…¨2J$c83d2d59-bf48-4f78-87a9-b49e25ad3608
+i
+java:S1170#"!Make this final field static too.(éï˜úúÿÿÿÿ8üü­…¨2J$a9042769-3073-4e3a-a342-15366daf9649
+u
+java:S1135."2Complete the task associated to this TODO comment.(Ã‘ªŸ8ƒı­…¨2J$636971bf-e700-4ca0-873d-3d213e2b6df4
+Ÿ
+java:S3252G"WUse static access with "androidx.core.content.ContextCompat" for "checkSelfPermission".(»¤è«ıÿÿÿÿ8‡ı­…¨2J$d31de718-96d6-44bb-8967-6b04b86281a7
+š
+java:S3252H"WUse static access with "androidx.core.content.ContextCompat" for "checkSelfPermission".(§Ú¶8ˆı­…¨2J$a2366855-1d06-4c54-83dc-ce53982b88f1
+Ÿ
+java:S3252_"WUse static access with "androidx.core.content.ContextCompat" for "checkSelfPermission".(îÄ¤¸üÿÿÿÿ8Šı­…¨2J$a7b59d90-09ed-41fe-951b-6ad1bcb3ffa3
+Ÿ
+java:S3252m"WUse static access with "androidx.core.content.ContextCompat" for "checkSelfPermission".(îÄ¤¸üÿÿÿÿ8‹ı­…¨2J$8a2d9912-7fe4-4e64-b779-7b106b74dc52
+“
+java:S1874Š"JDon't override a deprecated method or explicitly mark it as "@Deprecated".(Ó»×¶şÿÿÿÿ8ı­…¨2J$48bb7d24-fecb-4d66-ad57-ad7aff704b6a

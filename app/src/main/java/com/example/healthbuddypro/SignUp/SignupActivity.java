@@ -102,7 +102,6 @@ public class SignupActivity extends AppCompatActivity {
         String day = editTextDay.getText().toString().trim();
         String location = spinnerLocation.getSelectedItem().toString();
 
-        // 월과 일을 두 자리 수로 변경 (예: 3 -> 03)
         if (month.length() == 1) {
             month = "0" + month;
         }

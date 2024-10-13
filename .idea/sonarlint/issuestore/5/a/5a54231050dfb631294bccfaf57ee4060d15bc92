@@ -1,0 +1,23 @@
+
+J
+java:S1604)"(Make this anonymous inner class a lambda(¨ñüùùÿÿÿÿ8½É£¨2
+E
+java:S1604;"(Make this anonymous inner class a lambda(ÿá„å8½É£¨2
+i	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(¬ïÈ‚8¾É£¨2
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(èé™8¾É£¨2
+}	java:S116"\Rename this field "btn_createRoutine" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Î»ËËıÿÿÿÿ8ÃÉ£¨2
+w	java:S116"VRename this field "RoutineHome" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(­ìÑúÿÿÿÿ8ÃÉ£¨2
+|
+java:S1450"ZRemove the "RoutineHome" field and declare it as a local variable in the relevant methods.(­ìÑúÿÿÿÿ8ÛÉ£¨2
+x
+java:S1450"VRemove the "adapter" field and declare it as a local variable in the relevant methods.(ş­áÜùÿÿÿÿ8ÛÉ£¨2
+‚
+java:S1450"`Remove the "btn_createRoutine" field and declare it as a local variable in the relevant methods.(Î»ËËıÿÿÿÿ8ÜÉ£¨2
+y
+java:S1450"WRemove the "listView" field and declare it as a local variable in the relevant methods.(¯¤½ñûÿÿÿÿ8ÜÉ£¨2
+w
+java:S1450"ZRemove the "routineList" field and declare it as a local variable in the relevant methods.(¸¥Î—8ÜÉ£¨2
+T
+java:S1135("2Complete the task associated to this TODO comment.(‰•Úğúÿÿÿÿ8êÉ£¨2
+O
+java:S1135C"2Complete the task associated to this TODO comment.(’¹û†8öÉ£¨2

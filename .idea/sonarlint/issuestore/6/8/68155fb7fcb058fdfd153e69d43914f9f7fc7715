@@ -1,0 +1,13 @@
+
+k
+java:S1604"(Make this anonymous inner class a lambda(¾‡µà8ŒË­‰¨2J$218e9d00-0657-4d8b-84a1-84b62f8dfb87
+p
+java:S1604)"(Make this anonymous inner class a lambda(òÔ£şûÿÿÿÿ8Ë­‰¨2J$7770652a-6080-43e8-a574-6127e2fdbeec
+”	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(Ã‰ü¯ùÿÿÿÿ8Ë­‰¨2J$0925cdc8-47d9-4810-91bd-94387b590a37
+œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(èé™8Ë­‰¨2J$2732912a-7356-4626-b2a3-c7207f221806
+¡
+java:S1450"YRemove the "backButton" field and declare it as a local variable in the relevant methods.(‡Å›„ûÿÿÿÿ8›Ë­‰¨2J$3927f78b-6fde-43a7-8c48-e50dd760cd06
+ª
+java:S1450"bRemove the "completeMakeRoutine" field and declare it as a local variable in the relevant methods.(ˆı±Êıÿÿÿÿ8›Ë­‰¨2J$eca90266-201f-4f38-8b49-6eed754d3e96
+u
+java:S1135("2Complete the task associated to this TODO comment.(–¸8¤Ë­‰¨2J$11bdad46-8db1-423a-b93a-0c89e625e77d

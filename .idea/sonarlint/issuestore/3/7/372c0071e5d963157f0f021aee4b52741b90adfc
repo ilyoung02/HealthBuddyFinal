@@ -1,0 +1,30 @@
+
+p
+java:S1604."(Make this anonymous inner class a lambda(çûõ‚şÿÿÿÿ8‹ºìˆ¨2J$2194d016-849c-4c18-b89f-7f41e91c87de
+k
+java:S1604>"(Make this anonymous inner class a lambda(£Šå•8‹ºìˆ¨2J$774ce64b-201a-451e-9d5d-f1c0abdb8b82
+”	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(®Ÿ¯ıÿÿÿÿ8€ã¥ÿ§2J$a1981e36-7ae0-46d7-b4c9-bbcbc32ec5e3
+œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(èé™8ã¥ÿ§2J$99a97343-dbd7-4fc5-9d8c-53a8a698f829
+£	java:S116"bRename this field "btn_makeRoutineComplete" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¬üÜq8„ã¥ÿ§2J$596d93c7-8696-4deb-95de-911b0bb80717
+¨
+java:S1450"fRemove the "btn_makeRoutineComplete" field and declare it as a local variable in the relevant methods.(¬üÜq8ºìˆ¨2J$020d68dd-e56a-42db-8a3c-c18d65e2319a
+
+java:S1450"[Remove the "routineTitle" field and declare it as a local variable in the relevant methods.(˜¬†Ö8ˆã¥ÿ§2J$c12c4063-304e-4684-9bc1-d936e97d57a8
+†
+java:S1874B">Remove this use of "startActivityForResult"; it is deprecated.(˜”³¬ıÿÿÿÿ8›ºìˆ¨2J$e4fcedc1-4524-4552-b451-8f9519c21b2c
+˜
+java:S3252H"PUse static access with "android.view.ViewGroup$LayoutParams" for "MATCH_PARENT".(„¸ğÂşÿÿÿÿ8›ºìˆ¨2J$b4b32bdc-a627-4f5e-9e96-2baacaf66660
+“
+java:S3252I"PUse static access with "android.view.ViewGroup$LayoutParams" for "WRAP_CONTENT".(ûë‰8›ºìˆ¨2J$ec5cab73-a9bb-41e9-a899-e7b442a6da2d
+Œ
+java:S1874T"JDon't override a deprecated method or explicitly mark it as "@Deprecated".(¹Î¾8›ºìˆ¨2J$fe1bc2db-3d45-42ff-b348-a112393a16cc
+‹
+java:S1874W"CRemove this use of "getParcelableArrayListExtra"; it is deprecated.(à”Ø“ùÿÿÿÿ8œºìˆ¨2J$520df13e-a0f4-47eb-b34a-decb3df299bf
+“
+java:S3252k"PUse static access with "android.view.ViewGroup$LayoutParams" for "WRAP_CONTENT".(œšÌ¾8¢ºìˆ¨2J$b9d29115-d55c-434c-bc6b-121e07a7d742
+“
+java:S3252l"PUse static access with "android.view.ViewGroup$LayoutParams" for "WRAP_CONTENT".(ûë‰8¢ºìˆ¨2J$e061f360-8f9f-47a6-a1d3-ab8f305eefce
+s
+java:S1068"0Remove this unused "routineTitle" private field.(˜¬†Ö8Ÿã¥ÿ§2J$c41b8feb-d5ac-442d-b1ee-f9f1fecbc7ce
+s
+java:S1068"0Remove this unused "exerciseList" private field.(Ñº¼š8Ÿã¥ÿ§2J$6c3af710-6ea4-4a12-9803-1551962170b8
