@@ -40,7 +40,7 @@ public class ProfilePagerAdapter extends RecyclerView.Adapter<ProfilePagerAdapte
         // 이미지 로딩 (Glide 사용) 및 기본 이미지 설정
         Glide.with(holder.itemView.getContext())
                 .load(profile.getImage())
-                .placeholder(R.drawable.user1) // 기본 이미지
+                .placeholder(R.drawable.default_user_img) // 기본 이미지
                 .into(holder.profileImageView);
 
         // 프로필 항목 클릭 리스너
