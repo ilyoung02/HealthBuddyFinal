@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         android:contentDescription="Profile Image"
-        android:src="@drawable/user1"/> <!-- 샘플 이미지 -->
+        android:src="@drawable/default_user_img"/> <!-- 샘플 이미지 -->
 
     <!-- 이름과 소개글을 포함한 텍스트 레이아웃 -->
     <LinearLayout
@@ -71,13 +71,12 @@
             android:layout_marginLeft="240dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/click" />
-
         <Button
-            android:id="@+id/btn_like"
+            android:id="@+id/btnLike"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="bottom"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/ic_like" />
     </LinearLayout>

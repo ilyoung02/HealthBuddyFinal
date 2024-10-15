@@ -21,8 +21,12 @@ import retrofit2.http.PUT;
 //Restrofit API 인터페이스
 public interface ApiService {
     // 프로필 목록 받아오기 => MatchFragment
-    @GET("/api/workouts") //실제 백엔드 엔드포인트 경로 넣기
+    @GET("/api/match/profiles") //실제 백엔드 엔드포인트 경로 넣기
     Call<ProfileListResponse> getProfiles();
+
+    // 1:1 매칭 좋아요 기능
+    @PUT("/api/match/profiles/{profileId}/likes")
+    Call<com.example.healthbuddypro.Matching.Chat.LikeResponse> likeProfile(@Path("profileId") int profileId);
 
     // 프로필 세부 정보 받아오기 => ProfileDetailActivity, id는 프로필 고유 ID
     @GET("/api/match/profiles/{profileId}")
