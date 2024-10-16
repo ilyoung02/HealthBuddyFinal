@@ -46,6 +46,7 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".Matching.ProfileDetailActivity"/>
         <activity android:name=".Profile.EditProfileActivity" />
+        <activity android:name=".Profile.WorkoutListActivity" />
         <activity android:name=".Profile.set_location"/>
 
     </application>

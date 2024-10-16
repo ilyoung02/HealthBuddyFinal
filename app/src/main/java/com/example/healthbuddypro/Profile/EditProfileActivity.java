@@ -33,6 +33,7 @@ import com.example.healthbuddypro.RetrofitClient;
 import com.google.gson.Gson;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -46,6 +47,7 @@ import retrofit2.Response;
 public class EditProfileActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE_SET_LOCATION = 1;
+    private static final int REQUEST_CODE_WORKOUT_LIST = 2;
     private static final String LOCATION_PREFS = "LocationData";
     private static final String KEY_LATITUDE = "latitude";
     private static final String KEY_LONGITUDE = "longitude";
@@ -53,11 +55,11 @@ public class EditProfileActivity extends AppCompatActivity {
 
     private Uri uri;
     private ImageView imageView;
-    private TextView gymLocation, changePhotoButton;;
+    private TextView gymLocation, changePhotoButton, favWorkouts;
     private Spinner workoutGoalSpinner, regionSpinner;
-    private EditText workoutExperienceInput, introductionInput, favWorkoutsInput;
+    private EditText workoutExperienceInput, introductionInput;
     private RadioGroup profileVisibleRadioGroup;
-    private Button confirmButton, cancelButton, gymLocationBtn;
+    private Button confirmButton, cancelButton, gymLocationBtn, workoutsBtn;
 
     // 갤러리에서 이미지 선택 결과를 처리할 ActivityResultLauncher
     private final ActivityResultLauncher<Intent> imagePickerLauncher = registerForActivityResult(
@@ -86,6 +88,9 @@ public class EditProfileActivity extends AppCompatActivity {
 
         // 갤러리에서 이미지 선택하는 버튼 리스너 추가
         changePhotoButton.setOnClickListener(v -> openGallery());
+
+        // workoutsBtn 클릭 리스너 추가
+        workoutsBtn.setOnClickListener(v -> openWorkoutList());
     }
 
     // 화면에 나타나는 것들 선택
@@ -99,7 +104,9 @@ public class EditProfileActivity extends AppCompatActivity {
         gymLocation = findViewById(R.id.gym_location);
         workoutExperienceInput = findViewById(R.id.workout_experience_input);
         introductionInput = findViewById(R.id.introduction_input);
-        favWorkoutsInput = findViewById(R.id.favWorkouts_input);
+        favWorkouts = findViewById(R.id.fav_Workouts); // Initialize favWorkouts TextView
+        workoutsBtn = findViewById(R.id.fav_Workouts_button);
+
         profileVisibleRadioGroup = findViewById(R.id.radioGroupProfileVisible);
         changePhotoButton = findViewById(R.id.change_photo);  // 사진 변경 버튼
 
@@ -112,6 +119,11 @@ public class EditProfileActivity extends AppCompatActivity {
                 R.array.regions_array, android.R.layout.simple_spinner_item);
         regionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         regionSpinner.setAdapter(regionAdapter);
+    }
+
+    private void openWorkoutList() {
+        Intent intent = new Intent(this, WorkoutListActivity.class);
+        startActivityForResult(intent, REQUEST_CODE_WORKOUT_LIST); // Start WorkoutListActivity for result
     }
 
     private void openLocationPicker() {
@@ -128,10 +140,11 @@ public class EditProfileActivity extends AppCompatActivity {
             gymLocation.setText(String.format("위도: %s, 경도: %s", latitude, longitude));
         }
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        // Handle location selection
         if (requestCode == REQUEST_CODE_SET_LOCATION && resultCode == RESULT_OK) {
             if (data != null) {
                 double latitude = data.getDoubleExtra("latitude", 0);
@@ -142,7 +155,24 @@ public class EditProfileActivity extends AppCompatActivity {
                 showToast("위치가 설정되었습니다: \n" + gymLocation.getText());
             }
         }
+
+        // Handle workout selection
+        if (requestCode == REQUEST_CODE_WORKOUT_LIST && resultCode == RESULT_OK && data != null) {
+            ArrayList<String> selectedExercises = data.getStringArrayListExtra("selectedExercises");
+            if (selectedExercises != null) {
+                StringBuilder sb = new StringBuilder();
+                for (String exercise : selectedExercises) {
+                    sb.append(exercise).append(", "); // Append each exercise with a comma
+                }
+                // Remove the last comma and space
+                if (sb.length() > 0) {
+                    sb.setLength(sb.length() - 2);
+                }
+                favWorkouts.setText(sb.toString()); // Update favWorkouts TextView
+            }
+        }
     }
+
 
     private void saveGymLocation(double latitude, double longitude) {
         SharedPreferences sharedPreferences = getSharedPreferences(LOCATION_PREFS, Context.MODE_PRIVATE);
@@ -164,7 +194,7 @@ public class EditProfileActivity extends AppCompatActivity {
         String introduction = introductionInput.getText().toString();
 
         // favWorkoutsInput에서 입력받은 문자열을 쉼표로 나눠서 List로 변환
-        String favWorkoutsInputString = favWorkoutsInput.getText().toString();
+        String favWorkoutsInputString = favWorkouts.getText().toString();
         List<String> favWorkouts = Arrays.asList(favWorkoutsInputString.split("\\s*,\\s*"));
 
         int selectedRadioButtonId = profileVisibleRadioGroup.getCheckedRadioButtonId();
