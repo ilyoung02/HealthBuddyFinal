@@ -3,18 +3,21 @@ package com.example.healthbuddypro;
 import com.example.healthbuddypro.Login.LoginRequest;
 import com.example.healthbuddypro.Login.LoginResponse;
 import com.example.healthbuddypro.Matching.Chat.MessageRequest;
-import com.example.healthbuddypro.Matching.MatchRequestListResponse;
-import com.example.healthbuddypro.Matching.MatchRequestResponse;
 import com.example.healthbuddypro.Matching.ProfileListResponse;
 import com.example.healthbuddypro.Matching.ProfileResponse;
+import com.example.healthbuddypro.Profile.EditProfileResponse;
 import com.example.healthbuddypro.ShortTermMatching.MatchRequest;
 import com.example.healthbuddypro.ShortTermMatching.MatchRequestStatus;
 import com.example.healthbuddypro.ShortTermMatching.MatchResponse;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.PUT;
 
@@ -59,5 +62,13 @@ public interface ApiService {
     Call<MatchResponse> respondMatchRequest(
             @Path("matchRequestId") int matchRequestId,
             @Body MatchRequestStatus requestStatus
+    );
+
+    @Multipart
+    @PUT("/api/match/profiles/{profileId}")
+    Call<EditProfileResponse> updateProfile(
+            @Path("profileId") int profileId,
+            @Part MultipartBody.Part file, // 이미지 파일
+            @Part("profileRequest") RequestBody profileRequest // JSON 데이터
     );
 }

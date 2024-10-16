@@ -1,6 +1,21 @@
 <resources>
     <string name="app_name">HealthBuddyPro</string>
 
+        <!-- 지역 목록 -->
+    <string-array name="regions_array">
+        <item>대구 북구</item>
+        <item>대구 서구</item>
+        <item>대구 동구</item>
+        <item>대구 중구</item>
+        <item>대구 달서구</item>
+        <item>대구 수성구</item>
+        <item>대구 남구</item>
+        <item>대구 달성군</item>
+        <item>대구 군위군</item>
+    </string-array>
+
+
+
     <!-- 운동 목표 예시 -->
     <string-array name="workout_goals_array">
         <item>체중 감량</item>
@@ -13,7 +28,7 @@
         <item>부상 회복</item>
         <item>균형 향상</item>
     </string-array>
-
+d
     <!-- 주제 선택 예시 -->
     <string-array name="topic_array">
         <item>가슴</item>

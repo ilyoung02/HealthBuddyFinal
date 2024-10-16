@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:paddingBottom="45dp"
+            android:paddingBottom="20dp"
             android:text="내 프로필"
             android:textColor="#000000"
             android:textSize="24sp"
@@ -30,7 +30,7 @@
         android:layout_height="130dp"
         android:layout_gravity="center"
         android:scaleType="centerCrop"
-        android:background="@drawable/profile_background"
+        android:background="@drawable/box_background"
         android:layout_marginBottom="10dp"/>
 
     <TextView
@@ -40,11 +40,11 @@
         android:text="사진 변경"
         android:textColor="#6795ED"
         android:layout_gravity="center"
-        android:paddingBottom="24dp"
+        android:paddingBottom="15dp"
         android:clickable="true"
         android:focusable="true"/>
 
-    <TextView
+   <TextView
         android:id="@+id/workoutGoal_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        android:paddingBottom="25dp"/>
+        android:paddingBottom="20dp"/>
 
     <TextView
         android:id="@+id/workout_experience_label"
@@ -74,8 +74,8 @@
         android:hint="운동 경력을 입력하세요"
         android:textColor="#000000"
         android:background="@android:color/transparent"
-        android:paddingBottom="25dp"/>
-
+        android:paddingStart="10dp"
+        android:paddingBottom="20dp"/>
 
     <TextView
         android:id="@+id/introduction_label"
@@ -92,7 +92,9 @@
         android:hint="자기소개를 입력하세요"
         android:textColor="#000000"
         android:background="@android:color/transparent"
-        android:paddingBottom="25dp"/>
+        android:paddingStart="10dp"
+        android:paddingBottom="20dp"/>
+
 
     <TextView
         android:id="@+id/gym_location_label"
@@ -102,14 +104,38 @@
         android:textColor="#000000"
         android:paddingBottom="5dp"/>
 
-    <EditText
-    android:id="@+id/gym_location"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="헬스장 위치를 입력하세요"
-    android:textColor="#000000"
-    android:background="@android:color/transparent"
-    android:paddingBottom="25dp"/>
+    <Spinner
+        android:id="@+id/region_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:paddingBottom="15dp"/>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:id="@+id/gym_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textSize="12dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="11dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/gym_location_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="위치 등록"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#6795ED"
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="8dp"/>
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/profileVisible_label"
@@ -123,7 +149,8 @@
         android:id="@+id/radioGroupProfileVisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp">
 
         <RadioButton
             android:id="@+id/radioYes"
@@ -139,11 +166,28 @@
             android:layout_marginStart="20dp" />
     </RadioGroup>
 
+    <TextView
+        android:id="@+id/favWorkouts_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="선호 운동"
+        android:textColor="#000000"
+        android:paddingBottom="5dp"/>
+
+    <EditText
+        android:id="@+id/favWorkouts_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="선호 운동을 입력하세요"
+        android:textColor="#000000"
+        android:background="@android:color/transparent"
+        android:paddingStart="10dp"
+        android:paddingBottom="20dp"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp">
+        android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/confirm_button"
