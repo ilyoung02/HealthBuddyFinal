@@ -35,6 +35,7 @@ import com.google.gson.Gson;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import okhttp3.MediaType;
@@ -52,6 +53,99 @@ public class EditProfileActivity extends AppCompatActivity {
     private static final String KEY_LATITUDE = "latitude";
     private static final String KEY_LONGITUDE = "longitude";
     private final String BASE_URL = "http://165.229.89.154:8080/";
+    private final String[] locationMappings = {"BUKGU", "SEOGU", "DONGGU", "JUNGGU", "DALSEOGU", "SUSEONGGU", "NAMGU", "DALSEONGGUN", "GUNWIGUN"};
+    private final HashMap<String, String> goalMapping = new HashMap<String, String>() {{
+        put("체중 감량", "LOSE_WEIGHT");
+        put("근육 증가", "GAIN_MUSCLE");
+        put("지구력 향상", "IMPROVE_ENDURANCE");
+        put("근력 향상", "INCREASE_STRENGTH");
+        put("유연성 향상", "IMPROVE_FLEXIBILITY");
+        put("건강 유지", "MAINTAIN_HEALTH");
+        put("심폐 능력 향상", "IMPROVE_CARDIO");
+        put("부상 회복", "RECOVER_FROM_INJURY");
+        put("균형 향상", "IMPROVE_BALANCE");
+    }};
+    private final HashMap<String, String> exerciseMapping = new HashMap<String, String>() {{
+        // 등
+        put("랫 풀 다운", "LAT_PULLDOWN");
+        put("바벨 로우", "BARBELL_ROW");
+        put("덤벨 로우", "DUMBBELL_ROW");
+        put("데드리프트", "DEADLIFT");
+        put("시티드 로우", "SEATED_ROW");
+        put("풀업", "PULL_UP");
+        put("케이블 로우", "CABLE_ROW");
+        put("티 바 로우", "T_BAR_ROW");
+
+        // 가슴
+        put("벤치 프레스", "BENCH_PRESS");
+        put("인클라인 벤치 프레스", "INCLINE_BENCH_PRESS");
+        put("디클라인 벤치 프레스", "DECLINE_BENCH_PRESS");
+        put("덤벨 플라이", "DUMBBELL_FLY");
+        put("체스트 프레스", "CHEST_PRESS");
+        put("펙덱 플라이", "PEC_DECK_FLY");
+        put("푸쉬업", "PUSH_UP");
+        put("케이블 크로스오버", "CABLE_CROSSOVER");
+
+        // 하체
+        put("스쿼트", "SQUAT");
+        put("레그 프레스", "LEG_PRESS");
+        put("런지", "LUNGE");
+        put("레그 컬", "LEG_CURL");
+        put("레그 익스텐션", "LEG_EXTENSION");
+        put("카프 레이즈", "CALF_RAISE");
+        put("힙 쓰러스트", "HIP_THRUST");
+        put("스티프 레그 데드리프트", "STIFF_LEG_DEADLIFT");
+
+        // 유산소
+        put("러닝머신", "TREADMILL");
+        put("자전거", "BICYCLE");
+        put("스텝퍼", "STEPPER");
+        put("로잉머신", "ROWING_MACHINE");
+        put("점핑잭", "JUMPING_JACK");
+        put("버피", "BURPEE");
+        put("마운틴 클라이머", "MOUNTAIN_CLIMBER");
+        put("사이클", "CYCLE");
+
+        // 어깨
+        put("숄더 프레스", "SHOULDER_PRESS");
+        put("사이드 레터럴 레이즈", "SIDE_LATERAL_RAISE");
+        put("프론트 레이즈", "FRONT_RAISE");
+        put("리어 델트 플라이", "REAR_DELT_FLY");
+        put("업라이트 로우", "UPRIGHT_ROW");
+        put("덤벨 숄더 프레스", "DUMBBELL_SHOULDER_PRESS");
+        put("케이블 레이즈", "CABLE_RAISE");
+        put("아놀드 프레스", "ARNOLD_PRESS");
+
+        // 이두
+        put("바벨 컬", "BARBELL_CURL");
+        put("덤벨 컬", "DUMBBELL_CURL");
+        put("해머 컬", "HAMMER_CURL");
+        put("프리처 컬", "PREACHER_CURL");
+        put("컨센트레이션 컬", "CONCENTRATION_CURL");
+        put("케이블 컬", "CABLE_CURL");
+        put("머신 컬", "MACHINE_CURL");
+        put("크로스 바디 해머 컬", "CROSS_BODY_HAMMER_CURL");
+
+        // 삼두
+        put("트라이셉스 익스텐션", "TRICEPS_EXTENSION");
+        put("덤벨 킥백", "DUMBBELL_KICKBACK");
+        put("케이블 푸쉬다운", "CABLE_PUSH_DOWN");
+        put("프렌치 프레스", "FRENCH_PRESS");
+        put("스컬 크러셔", "SKULL_CRUSHER");
+        put("오버헤드 익스텐션", "OVERHEAD_EXTENSION");
+        put("딥스", "DIPS");
+        put("트라이앵글 푸쉬업", "TRIANGLE_PUSH_UP");
+
+        // 복근
+        put("크런치", "CRUNCH");
+        put("레그레이즈", "LEG_RAISE");
+        put("플랭크", "PLANK");
+        put("싯업", "SIT_UP");
+        put("러시안 트위스트", "RUSSIAN_TWIST");
+        put("바이시클 크런치", "BICYCLE_CRUNCH");
+        put("힐터치", "HEEL_TOUCH");
+        put("하이 플랭크", "HIGH_PLANK");
+    }};
 
     private Uri uri;
     private ImageView imageView;
@@ -123,7 +217,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
     private void openWorkoutList() {
         Intent intent = new Intent(this, WorkoutListActivity.class);
-        startActivityForResult(intent, REQUEST_CODE_WORKOUT_LIST); // Start WorkoutListActivity for result
+        startActivityForResult(intent, REQUEST_CODE_WORKOUT_LIST);
     }
 
     private void openLocationPicker() {
@@ -156,18 +250,24 @@ public class EditProfileActivity extends AppCompatActivity {
             }
         }
 
-        // Handle workout selection
         if (requestCode == REQUEST_CODE_WORKOUT_LIST && resultCode == RESULT_OK && data != null) {
             ArrayList<String> selectedExercises = data.getStringArrayListExtra("selectedExercises");
             if (selectedExercises != null) {
-                StringBuilder sb = new StringBuilder();
+                // Get existing text and append new selections
+                String existingExercises = favWorkouts.getText().toString();
+                StringBuilder sb = new StringBuilder(existingExercises);
+
                 for (String exercise : selectedExercises) {
-                    sb.append(exercise).append(", "); // Append each exercise with a comma
+                    if (!existingExercises.contains(exercise)) {
+                        sb.append(exercise).append(", "); // Append only if not already present
+                    }
                 }
+
                 // Remove the last comma and space
                 if (sb.length() > 0) {
                     sb.setLength(sb.length() - 2);
                 }
+
                 favWorkouts.setText(sb.toString()); // Update favWorkouts TextView
             }
         }
@@ -189,17 +289,28 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     private void updateProfile() {
-        String selectedGoal = workoutGoalSpinner.getSelectedItem().toString();
+        String selectedGoalKorean = workoutGoalSpinner.getSelectedItem().toString();
+        String selectedGoal = goalMapping.get(selectedGoalKorean);
+
         String workoutExperience = workoutExperienceInput.getText().toString();
         String introduction = introductionInput.getText().toString();
 
         // favWorkoutsInput에서 입력받은 문자열을 쉼표로 나눠서 List로 변환
         String favWorkoutsInputString = favWorkouts.getText().toString();
-        List<String> favWorkouts = Arrays.asList(favWorkoutsInputString.split("\\s*,\\s*"));
+        List<String> selectedExercises = Arrays.asList(favWorkoutsInputString.split("\\s*,\\s*"));
+
+        // Map selected exercises to their corresponding enum values
+        List<String> mappedExercises = new ArrayList<>();
+        for (String exercise : selectedExercises) {
+            String mappedExercise = exerciseMapping.get(exercise);
+            if (mappedExercise != null) {
+                mappedExercises.add(mappedExercise);
+            }
+        }
 
         int selectedRadioButtonId = profileVisibleRadioGroup.getCheckedRadioButtonId();
-
-        String selectedRegion = regionSpinner.getSelectedItem().toString();
+        int selectedRegionIndex = regionSpinner.getSelectedItemPosition();
+        String selectedRegion = locationMappings[selectedRegionIndex];
         boolean isProfileVisible = profileVisibleRadioGroup.getCheckedRadioButtonId() == R.id.radioYes;
 
         SharedPreferences sharedPreferences = getSharedPreferences(LOCATION_PREFS, Context.MODE_PRIVATE);
@@ -208,16 +319,16 @@ public class EditProfileActivity extends AppCompatActivity {
 
         // 필수 값 검증
         if (selectedGoal.isEmpty() || workoutExperience.isEmpty() || introduction.isEmpty() ||
-                favWorkoutsInputString.isEmpty() || latitude == 0 || longitude == 0 || selectedRegion.isEmpty()) {
+                mappedExercises.isEmpty() || latitude == 0 || longitude == 0 || selectedRegion.isEmpty()) {
             showToast("모든 필수 정보를 입력하세요.");
-            return;  // 필수 값이 없으면 API 호출하지 않음
+            return;
         }
+
         if (selectedRadioButtonId == -1) {
             showToast("프로필 공개 여부를 선택하세요.");
             return;
         }
 
-        // 지역 및 기타 프로필 정보를 EditUserProfile 객체에 담기
         GymLocation gymLocation = new GymLocation(latitude, longitude, selectedRegion);
         EditUserProfile profile = new EditUserProfile(
                 selectedGoal,
@@ -225,7 +336,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 introduction,
                 gymLocation,
                 isProfileVisible,
-                favWorkouts
+                mappedExercises  // Use the mapped exercises
         );
 
         MultipartBody.Part imagePart = createImagePart();
@@ -234,12 +345,16 @@ public class EditProfileActivity extends AppCompatActivity {
         updateProfileApiCall(profileRequest, imagePart);
     }
 
+    //이미지 파일 가져오기
     private MultipartBody.Part createImagePart() {
         if (uri != null) {
             String path = getRealPathFromURI(uri);
+            Log.d("ImagePart", "Image URI: " + uri.toString()); // 로그 추가
             if (path != null) {
+                Log.d("ImagePart", "Real Path: " + path); // 로그 추가
                 File file = new File(path);
                 if (file.exists()) {
+                    Log.d("ImagePart", "File exists: " + file.getName()); // 로그 추가
                     RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), file);
                     return MultipartBody.Part.createFormData("file", file.getName(), requestFile);
                 } else {
@@ -250,9 +365,12 @@ public class EditProfileActivity extends AppCompatActivity {
                 Log.e("FileError", "Unable to get path from URI: " + uri);
                 showToast("이미지 경로를 가져올 수 없습니다.");
             }
+        } else {
+            Log.d("ImagePart", "Image URI is null"); // URI가 null일 때 로그 추가
         }
         return null;
     }
+
 
 
     private RequestBody createProfileRequest(EditUserProfile profile) {
@@ -264,23 +382,34 @@ public class EditProfileActivity extends AppCompatActivity {
     private void updateProfileApiCall(RequestBody profileRequest, MultipartBody.Part imagePart) {
         ApiService profileService = RetrofitClient.getApiService(BASE_URL);
 
+        Log.d("ProfileUpdate", "Profile Request: " + profileRequest.toString()); // 프로필 요청 로그 추가
+        if (imagePart != null) {
+            Log.d("ProfileUpdate", "Image Part: " + imagePart.toString()); // 이미지 파일 로그 추가
+        } else {
+            Log.d("ProfileUpdate", "Image Part is null"); // 이미지 파일이 없을 때 로그 추가
+        }
+
         Call<EditProfileResponse> call = profileService.updateProfile(1, imagePart, profileRequest);
         call.enqueue(new Callback<EditProfileResponse>() {
             @Override
             public void onResponse(Call<EditProfileResponse> call, Response<EditProfileResponse> response) {
                 if (response.isSuccessful()) {
+                    Log.d("ProfileUpdate", "Profile update success: " + response.body()); // 성공 로그 추가
                     showToast("프로필이 업데이트되었습니다.");
                 } else {
+                    Log.e("ProfileUpdate", "Profile update failed: " + response.message()); // 실패 로그 추가
                     showToast("업데이트 실패: " + response.message());
                 }
             }
 
             @Override
             public void onFailure(Call<EditProfileResponse> call, Throwable t) {
+                Log.e("ProfileUpdate", "Network error: " + t.getMessage()); // 네트워크 오류 로그 추가
                 showToast("네트워크 오류: " + t.getMessage());
             }
         });
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);

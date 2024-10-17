@@ -9,7 +9,6 @@ public class SignUpResponse {
         private int userId;
         private int profileId;
 
-        // Getters and Setters
         public int getUserId() {
             return userId;
         }
@@ -27,7 +26,6 @@ public class SignUpResponse {
         }
     }
 
-    // Getters and Setters for SignUpResponse
     public int getCode() {
         return code;
     }
