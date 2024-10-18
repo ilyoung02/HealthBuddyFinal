@@ -353,6 +353,11 @@ public class EditProfileActivity extends AppCompatActivity {
             if (path != null) {
                 Log.d("ImagePart", "Real Path: " + path); // 로그 추가
                 File file = new File(path);
+
+                Log.d("ImagePart", "Image Path: " + path);
+                Log.d("ImagePart", "File Exists: " + file.exists());
+                Log.d("ImagePart", "File Length: " + file.length());
+
                 if (file.exists()) {
                     Log.d("ImagePart", "File exists: " + file.getName()); // 로그 추가
                     RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), file);
@@ -372,7 +377,6 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
 
-
     private RequestBody createProfileRequest(EditUserProfile profile) {
         Gson gson = new Gson();
         String json = gson.toJson(profile);
@@ -380,6 +384,16 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     private void updateProfileApiCall(RequestBody profileRequest, MultipartBody.Part imagePart) {
+        // SharedPreferences에서 profileId 가져오기
+        SharedPreferences sharedPreferences = getSharedPreferences("HealthBuddyProPrefs", MODE_PRIVATE);
+        int profileId = sharedPreferences.getInt("profileId", -1);  // 기본값으로 -1 설정
+
+        if (profileId == -1) {
+            Log.e("ProfileUpdate", "Profile ID not found in SharedPreferences."); // profileId가 없을 경우 로그 추가
+            showToast("프로필 ID를 찾을 수 없습니다.");
+            return; // profileId가 없으면 메서드 종료
+        }
+
         ApiService profileService = RetrofitClient.getApiService(BASE_URL);
 
         Log.d("ProfileUpdate", "Profile Request: " + profileRequest.toString()); // 프로필 요청 로그 추가
@@ -389,7 +403,7 @@ public class EditProfileActivity extends AppCompatActivity {
             Log.d("ProfileUpdate", "Image Part is null"); // 이미지 파일이 없을 때 로그 추가
         }
 
-        Call<EditProfileResponse> call = profileService.updateProfile(1, imagePart, profileRequest);
+        Call<EditProfileResponse> call = profileService.updateProfile(profileId, imagePart, profileRequest);
         call.enqueue(new Callback<EditProfileResponse>() {
             @Override
             public void onResponse(Call<EditProfileResponse> call, Response<EditProfileResponse> response) {
@@ -410,6 +424,7 @@ public class EditProfileActivity extends AppCompatActivity {
         });
     }
 
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -422,17 +437,17 @@ public class EditProfileActivity extends AppCompatActivity {
         }
     }
 
-
     /*
     private String getRealPathFromURI(Uri uri) {
-        String[] projection = {MediaStore.Images.Media.DATA};
+        String[] projection = {MediaStore.Images.Media._ID};
         Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
         if (cursor != null) {
-            int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
             cursor.moveToFirst();
-            String path = cursor.getString(columnIndex);
+            int idIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID);
+            long imageId = cursor.getLong(idIndex);
+            Uri imageUri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, imageId);
             cursor.close();
-            return path;
+            return imageUri.toString(); // This returns a Uri, you may need to adjust your file handling.
         }
         return null;
     }
@@ -441,6 +456,7 @@ public class EditProfileActivity extends AppCompatActivity {
     private String getRealPathFromURI(Uri uri) {
         String path = null;
 
+        // Content Scheme URI (갤러리 이미지 같은 경우)
         if ("content".equalsIgnoreCase(uri.getScheme())) {
             String[] projection = {MediaStore.Images.Media.DATA};
             Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
@@ -450,12 +466,15 @@ public class EditProfileActivity extends AppCompatActivity {
                 path = cursor.getString(columnIndex);
                 cursor.close();
             }
-        } else if ("file".equalsIgnoreCase(uri.getScheme())) {
+        }
+        // File Scheme URI (파일 경로 같은 경우)
+        else if ("file".equalsIgnoreCase(uri.getScheme())) {
             path = uri.getPath();
         }
 
         return path;
     }
+
 
     private void requestPermissions() {
         if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
