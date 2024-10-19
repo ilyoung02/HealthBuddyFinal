@@ -12,6 +12,8 @@ public class EditUserProfile {
     private boolean profileVisible; // 매칭 탭에 프로필 노출 여부 (boolean 타입)
     private List<String> favWorkouts; // 선호하는 운동 리스트 (List<String> 타입)
 
+    public EditUserProfile() {
+    }
     // Constructor
     public EditUserProfile(String workoutGoal, int workoutYears, String bio,
                            GymLocation gymLocation, boolean profileVisible,
@@ -78,6 +80,10 @@ public class EditUserProfile {
         private double latitude; // 위도 (double 타입)
         private double longitude; // 경도 (double 타입)
         private String region; // 지역 (String 타입)
+
+
+        public GymLocation() {
+        }
 
         // Constructor
         public GymLocation(double latitude, double longitude, String region) {

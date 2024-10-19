@@ -345,7 +345,6 @@ public class EditProfileActivity extends AppCompatActivity {
         updateProfileApiCall(profileRequest, imagePart);
     }
 
-
     //이미지 파일 가져오기
     private MultipartBody.Part createImagePart() {
         if (uri != null) {
@@ -405,6 +404,9 @@ public class EditProfileActivity extends AppCompatActivity {
         }
 
         Call<EditProfileResponse> call = profileService.updateProfile(profileId, imagePart, profileRequest);
+
+        Log.d("ProfileUpdate", "Profile Request URL: " + call.request().url());
+        Log.d("ProfileUpdate", "Profile Request Body: " + profileRequest.toString());
 
         call.enqueue(new Callback<EditProfileResponse>() {
             @Override
