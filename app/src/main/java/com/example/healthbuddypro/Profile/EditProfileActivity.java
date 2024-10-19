@@ -345,6 +345,7 @@ public class EditProfileActivity extends AppCompatActivity {
         updateProfileApiCall(profileRequest, imagePart);
     }
 
+
     //이미지 파일 가져오기
     private MultipartBody.Part createImagePart() {
         if (uri != null) {
@@ -404,6 +405,7 @@ public class EditProfileActivity extends AppCompatActivity {
         }
 
         Call<EditProfileResponse> call = profileService.updateProfile(profileId, imagePart, profileRequest);
+
         call.enqueue(new Callback<EditProfileResponse>() {
             @Override
             public void onResponse(Call<EditProfileResponse> call, Response<EditProfileResponse> response) {
@@ -411,8 +413,8 @@ public class EditProfileActivity extends AppCompatActivity {
                     Log.d("ProfileUpdate", "Profile update success: " + response.body()); // 성공 로그 추가
                     showToast("프로필이 업데이트되었습니다.");
                 } else {
-                    Log.e("ProfileUpdate", "Profile update failed: " + response.message()); // 실패 로그 추가
-                    showToast("업데이트 실패: " + response.message());
+                    Log.e("ProfileUpdate", "Profile update failed: " + response.code()); // 실패 로그 추가
+                    showToast("업데이트 실패: " + response.code());
                 }
             }
 
