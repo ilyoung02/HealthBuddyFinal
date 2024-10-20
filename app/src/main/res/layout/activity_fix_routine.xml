@@ -4,6 +4,8 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
+<!--    activity_fix_routine.xml 파일-->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,9 +18,9 @@
             android:layout_height="wrap_content"
             android:text="루틴 정보 수정"
             android:textSize="24sp"
+            android:textColor="#000000"
             android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginBottom="20dp"/>
+            android:layout_marginBottom="10dp"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -26,7 +28,6 @@
             android:text="#수정하고자 하는 입력란에 입력 한 뒤 저장을 눌러주세요"
             android:textSize="13sp"
             android:textStyle="bold"
-            android:gravity="center"
             android:layout_marginBottom="20dp"/>
 
 
@@ -54,7 +55,7 @@
 
         <!-- 수행 요일 선택 -->
         <TextView
-            android:id="@+id/tv_routine_days_label"
+            android:id="@+id/routine_days_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="수행 요일 수정"
@@ -123,14 +124,27 @@
             android:layout_marginBottom="8dp"/>
 
 <!--        여기 레이아웃에 동적으로 수정할 운동 정보가 오도록 해야함-->
-        <LinearLayout
-            android:id="@+id/exercise_fixList_container"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="300dp"
             android:orientation="vertical"
             android:padding="16dp"
             android:layout_marginBottom="14dp">
-        </LinearLayout>
+
+
+<!--            linearlayout이 커스텀목록과 같은 영역의 역할-->
+            <LinearLayout
+                android:id="@+id/exercise_fixList_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp"
+                android:layout_marginBottom="14dp">
+            </LinearLayout>
+
+
+
+        </ScrollView>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_save_fixed_routine"

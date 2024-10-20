@@ -16,6 +16,7 @@ import java.util.Calendar;
 
 public class make_routine02 extends AppCompatActivity {
 
+    //todo : 이건 안쓰는 페이지임 혹시 몰라 남겨둠
     private TextView startDateText, endDateText;
     private ImageButton startDateButton, endDateButton, backButton;
     private String selectedStartDate, selectedEndDate;

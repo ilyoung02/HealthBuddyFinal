@@ -1,3 +1,17 @@
 
-	java:S101	"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(õš•ûÿÿÿÿJ$087ab54f-6c4e-4c11-bbfb-3b2da909425f
-•	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(èé™J$f2778e73-4edc-4369-aa12-668ba4f61fa2
+p
+java:S1604"(Make this anonymous inner class a lambda(“íœÜıÿÿÿÿ8ò°Şó©2J$dd879433-3f02-4ac6-aa89-1992c7d6307e
+k
+java:S1604#"(Make this anonymous inner class a lambda(‡âµ¡8Ğ€ßó©2J$7d01411f-2d42-4716-883a-a2d1aa478084
+”	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(õš•ûÿÿÿÿ8ò°Şó©2J$abcec9af-2a2f-4cbc-b856-bec939f2fe4a
+œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(èé™8ò°Şó©2J$676a8777-2f4b-4068-a097-c3e3cc8b0c89
+œ	java:S116"[Rename this field "edit_routinelist" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÚÙÈ+8ó°Şó©2J$afee5a82-2c67-4279-baf9-173254a541db
+	java:S116"]Rename this field "delete_routinelist" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÚÙÈ+8ó°Şó©2J$47904987-49f4-42b4-bf13-7918da95f5bd
+r
+java:S1659"0Declare "delete_routinelist" on a separate line.(ÚÙÈ+8ÿ°Şó©2J$3f87638a-56eb-42ac-aebd-0bde1520e46a
+£
+java:S1450"aRemove the "delete_routinelist" field and declare it as a local variable in the relevant methods.(ÚÙÈ+8ÿ°Şó©2J$0e4b3f5d-04e8-4185-8886-354f0c29e523
+¡
+java:S1450"_Remove the "edit_routinelist" field and declare it as a local variable in the relevant methods.(ÚÙÈ+8ÿ°Şó©2J$3d862f22-6e90-4223-b27d-3754a50aeaea
+z
+java:S1135""2Complete the task associated to this TODO comment.(«±ıÿÿÿÿ8€¿àó©2J$2792b785-0d51-4eee-8023-40d6c6f6a41b

@@ -5,6 +5,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -22,6 +23,7 @@ public class set_routine_exercise extends AppCompatActivity {
     private ArrayList<String> selectedDays;
     private ArrayList<Exercise> exerciseList = new ArrayList<>();
     private Button btn_makeRoutineComplete;
+    private ImageButton backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +31,10 @@ public class set_routine_exercise extends AppCompatActivity {
         setContentView(R.layout.activity_set_routine_exercise);
 
         exerciseContainer = findViewById(R.id.exerciseContainer);
+        backButton = findViewById(R.id.backButton);
         btn_makeRoutineComplete = findViewById(R.id.btn_makeRoutineComplete); // 버튼 연결
 
+        // 앞에서 루틴 제목, 요일 intent 로 가져오는거 -> 이걸 서버 형식에 맞춰서 전송해줘야함
         Intent intent = getIntent();
         routineTitle = intent.getStringExtra("routineTitle");
         selectedDays = intent.getStringArrayListExtra("selectedDays");
@@ -42,7 +46,16 @@ public class set_routine_exercise extends AppCompatActivity {
             }
         }
 
+        // 뒤로가기
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         // 생성완료 버튼
+        // todo : 생성완료 눌렀을때 앞에서 설정한 루틴 제목, 요일, 설정한 운동들 정보 서버로 전송하는거 구현해야함
         btn_makeRoutineComplete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

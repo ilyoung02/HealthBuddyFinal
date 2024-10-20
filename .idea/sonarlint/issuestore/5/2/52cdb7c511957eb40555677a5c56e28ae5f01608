@@ -1,0 +1,9 @@
+
+p
+java:S1604"(Make this anonymous inner class a lambda(ğ«øÿÿÿÿ8ëÊüó©2J$b53352a4-c12c-4b37-96e1-15c90284cef1
+”	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(€—ïùÿÿÿÿ8ìÊüó©2J$19cc4d3c-833f-4e6f-941a-d4935f594ad6
+œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(èé™8ìÊüó©2J$bff04a98-99d8-41e6-b032-d6ae3d2a3f8f
+ 
+java:S1450"]Remove the "completeButton" field and declare it as a local variable in the relevant methods.(Êèş™8öÊüó©2J$73e16491-44bf-48a0-bd0f-3efc000c5589
+z
+java:S1135"2Complete the task associated to this TODO comment.(·­å¶úÿÿÿÿ8øÊüó©2J$6f396055-d7e6-449e-adf8-bd91b1a15af2

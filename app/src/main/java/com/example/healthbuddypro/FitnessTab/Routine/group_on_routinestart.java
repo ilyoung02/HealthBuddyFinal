@@ -14,24 +14,12 @@ import com.example.healthbuddypro.R;
 
 public class group_on_routinestart extends AppCompatActivity {
 
-    private Button btn_startRoutine;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_group_on_routinestart);
 
-        btn_startRoutine = findViewById(R.id.btn_startRoutine);
-
-        // 루틴 시작 버튼
-        btn_startRoutine.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(group_on_routinestart.this, check_location.class);
-                startActivity(intent);
-            }
-        });
-
+        // 껍데기 액티비티 -> 동작 구현은 RoutineFragment 에서 하면됨
     }
 }

@@ -1,0 +1,15 @@
+
+k
+java:S1604Z"(Make this anonymous inner class a lambda(Îµ¥8Û÷Áø¨2J$40ac881a-aea1-4f9e-9ac9-79913ca48260
+”	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ÍÙ¹ôúÿÿÿÿ8ê„‹ø¨2J$616e8df9-c8b0-40ce-b78e-d889cfedf12e
+˜	java:S117T"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Áæùÿÿÿÿÿ8Û÷Áø¨2J$3ca0e738-4ebb-4a39-b4f3-c3488bc36974
+•	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(èé™J$31bba1f1-bb85-4f17-a09c-8f9756b2cf0e
+z
+java:S1135"2Complete the task associated to this TODO comment.(ãÕù”şÿÿÿÿ8Ì²Æú¨2J$339337ad-7ae4-4f50-9b41-f25c080d0fa6
+ƒ	java:S125*"<This block of commented-out lines of code should be removed.(¿”½Úıÿÿÿÿ8¥¶¨©2J$29730b5c-4a9b-4ddd-9c7a-538a5f945966
+~	java:S1252"<This block of commented-out lines of code should be removed.(ééÚì8¥š¨©2J$614bc24e-c071-42a4-9863-3831869f35d0
+€
+java:S1874^">Remove this use of "startActivityForResult"; it is deprecated.(Ö­Ìa8ğ÷Áø¨2J$dc59e1f2-2c02-4098-9612-cddda89f47ff
+ƒ	java:S125f"<This block of commented-out lines of code should be removed.(äÖË€øÿÿÿÿ8õ¯§©2J$c44bf523-7a0d-4b37-970f-88e8bcfa02bc
+o
+java:S1068",Remove this unused "BASE_URL" private field.(÷ÂÔ8¨š¨©2J$885f5ce3-5730-4878-a23b-e87133fa4c54

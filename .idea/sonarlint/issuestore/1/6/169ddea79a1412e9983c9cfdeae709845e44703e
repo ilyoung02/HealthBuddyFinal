@@ -1,24 +1,28 @@
 
-k
-java:S1604A"(Make this anonymous inner class a lambda(Öºªƒ8ØßÎù§2J$979df589-a815-4fdf-96a6-b64d33a8145b
-j
-java:S1604K"(Make this anonymous inner class a lambda(²¶ù18ØßÎù§2J$572d1ba8-7a57-4627-8647-b91b90854f90
 p
-java:S1604S"(Make this anonymous inner class a lambda(ğ«øÿÿÿÿ8ØßÎù§2J$2dcddea0-6f9d-475a-b7bb-135878298c02
+java:S1604>"(Make this anonymous inner class a lambda(ğ«øÿÿÿÿ8ë³ŸÔ¨2J$0d0c2b67-0112-4618-ac87-e40365b1e952
 j
-java:S1604]"(Make this anonymous inner class a lambda(ÍäÿC8ØßÎù§2J$b79fcfd0-68e1-4c0c-9ed8-eb7e6f8f99cc
+java:S1604H"(Make this anonymous inner class a lambda(ÍäÿC8ë³ŸÔ¨2J$e40b5f12-537a-4430-89a5-8b2b0018ec15
+l
+java:S1604‚"(Make this anonymous inner class a lambda(Öºªƒ8ë³ŸÔ¨2J$02a84af9-67b8-45d8-ab8c-a3d3f2354f49
 k
-java:S1604z"(Make this anonymous inner class a lambda(±€çë8ØßÎù§2J$2bce364c-dc4c-4db1-8399-0aa645b55a82
+java:S1604Œ"(Make this anonymous inner class a lambda(²¶ù18ë³ŸÔ¨2J$62577fed-a10e-4814-9fff-26dd408cd8f9
 l
-java:S1604Š"(Make this anonymous inner class a lambda(Æ­Ü8ØßÎù§2J$ee12a3fb-80e6-4137-a79a-5d607de7695e
-œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(èé™8ØßÎù§2J$c8a24dc9-3edd-4ac9-807a-d3d3ea7a4531
+java:S1604«"(Make this anonymous inner class a lambda(±€çë8ë³ŸÔ¨2J$2a23779f-eaa5-4fbf-a59e-b1af5ebdb052
+l
+java:S1604»"(Make this anonymous inner class a lambda(Æ­Ü8ë³ŸÔ¨2J$4d8fb708-2646-4ac3-9d51-b892176413a6
+œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(èé™8¦á˜Ô¨2J$c8334eeb-c9e6-4a1a-92a6-8a419098cb2d
 v
-java:S1659".Declare "exerciseListView" on a separate line.(íñ‘«şÿÿÿÿ8ÜßÎù§2J$b9188cf8-8589-447a-b670-4b860a97cef2
+java:S1659'".Declare "exerciseListView" on a separate line.(íñ‘«şÿÿÿÿ8ñ³ŸÔ¨2J$008c41fb-ab4f-48bb-9ef9-5f3c7d4c6a11
 l
-java:S1659!")Declare "closeButton" on a separate line.(Şâ8ÜßÎù§2J$3ff57517-5e0a-40c5-873b-7923d51149fc
-§
-java:S1450"_Remove the "categoryListView" field and declare it as a local variable in the relevant methods.(íñ‘«şÿÿÿÿ8İßÎù§2J$b257bdcc-8f71-4b03-9d67-25474599ee05
+java:S1659)")Declare "closeButton" on a separate line.(Şâ8ò³ŸÔ¨2J$ba1b618d-1a68-438b-a862-cb3ef3734847
 
-java:S1450!"ZRemove the "closeButton" field and declare it as a local variable in the relevant methods.(Şâ8İßÎù§2J$6327bb56-8bd9-47c7-9317-db3164e6ab7d
+java:S1450)"ZRemove the "closeButton" field and declare it as a local variable in the relevant methods.(Şâ8ò³ŸÔ¨2J$82a74ab8-20f6-45e8-8fbb-32d07ded2254
  
-java:S1450!"]Remove the "completeButton" field and declare it as a local variable in the relevant methods.(Şâ8İßÎù§2J$ec7e1868-99f9-4c31-8cdd-db43c40a7e39
+java:S1450)"]Remove the "completeButton" field and declare it as a local variable in the relevant methods.(Şâ8ò³ŸÔ¨2J$786d8f4c-e771-4f63-808f-f8ebd796c7c6
+t
+java:S3599h",Use another way to initialize this instance.(é²×şÿÿÿÿ8Á²È¥©2J$bdda1498-f0f8-452d-9e5f-d2bf1635dfc8
+¡
+java:S1171h"YMove the contents of this initializer to a standard constructor or to field initializers.(é²×şÿÿÿÿ8Å²È¥©2J$bf478946-1bda-42fc-9910-7b80e4595f75
+{
+java:S1135•"2Complete the task associated to this TODO comment.(ñ¸šÀúÿÿÿÿ8Öª™¥©2J$e051bb1a-fa8f-450b-8e81-ce937856107a

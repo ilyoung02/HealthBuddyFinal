@@ -1,3 +1,22 @@
 
-‡	java:S101	"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ŞËÅ2J$e9db78a9-9746-4ca4-9abd-7383332caaa8
-•	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(èé™J$8b52dbc6-bca8-46ec-a031-d3c7f7a11e8b
+	java:S101!"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ŞËÅ28»”Õ©2J$ce7a2311-69aa-4f89-9495-29b620ee05d3
+œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(èé™8Ú¨•ü¨2J$c20956ac-4448-4804-a98a-2423cacbd558
+”	java:S116#"SRename this field "DdayView" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ò»¼s8Â”Õ©2J$424212bf-cf41-4613-99f4-3a14095276bf
+§	java:S116$"`Rename this field "workoutTimer_startBtn" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ÿù³Äøÿÿÿÿ8Â”Õ©2J$b2deea8d-45fe-4083-bbad-11b3e5ecc245
+ª	java:S116%"cRename this field "btn_completeTodayWorkout" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÊşÂĞøÿÿÿÿ8Â”Õ©2J$a86740a9-915e-4026-8425-366bd3f6430a
+ˆ
+java:S1659#"FDeclare "todayDate" and all following declarations on a separate line.(Ò»¼s8É”Õ©2J$7a480742-33d8-4c90-94f7-d3861864b09e
+™
+java:S1450#"WRemove the "DdayView" field and declare it as a local variable in the relevant methods.(Ò»¼s8§£Ö©2J$abde9d55-4b54-4112-ad5a-3281317e5391
+¯
+java:S1450%"gRemove the "btn_completeTodayWorkout" field and declare it as a local variable in the relevant methods.(ÊşÂĞøÿÿÿÿ8É”Õ©2J$813c3dc2-2d18-43bc-b886-f5e5e2425184
+­
+java:S1450'"eRemove the "routineCheckScrollview" field and declare it as a local variable in the relevant methods.(ôé¾íşÿÿÿÿ8É”Õ©2J$3802f824-e861-41e0-851d-d634d258868c
+¬
+java:S1450$"dRemove the "workoutTimer_startBtn" field and declare it as a local variable in the relevant methods.(Ÿù³Äøÿÿÿÿ8Ê”Õ©2J$0bdff4d3-ee29-419a-ba5c-c4bedf44f730
+r
+java:S1874)"/Remove this use of "Handler"; it is deprecated.(èïå»8È•Õ©2J$b2f3b62f-c37c-4378-a8d6-a79e61f11f94
+O
+java:S1135,"2Complete the task associated to this TODO comment.(ëĞÅî8ö€×©2
+‚
+java:S1068'":Remove this unused "routineCheckScrollview" private field.(ôé¾íşÿÿÿÿ8Ü•Õ©2J$4906aa76-9c2c-41d0-8f15-7d3e3d28d401

@@ -6,9 +6,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,14 +16,23 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.example.healthbuddypro.ApiService;
 import com.example.healthbuddypro.R;
+import com.example.healthbuddypro.RetrofitClient;
+import com.example.healthbuddypro.FitnessTab.Routine.WorkoutResponse;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AddExerciseActivity extends Activity {
 
@@ -33,7 +41,8 @@ public class AddExerciseActivity extends Activity {
     private Button completeButton, closeButton;
     private ArrayList<Exercise> selectedExercises;
     private String selectedExerciseName;
-    private Map<String, String[]> exerciseMap;
+    private Map<String, List<String>> exerciseMap;
+    private static final String BASE_URL = "http://165.229.89.154:8080/";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,26 +56,82 @@ public class AddExerciseActivity extends Activity {
         closeButton = findViewById(R.id.closeButton);
         selectedExercises = new ArrayList<>();
 
-        // 운동 카테고리와 해당 운동 데이터
-        String[] categories = {"가슴", "등", "하체", "유산소", "어깨", "이두", "삼두", "복근"};
-        exerciseMap = new HashMap<>();
-        exerciseMap.put("가슴", new String[]{"벤치프레스", "인클라인 벤치프레스", "디클라인 벤치프레스", "덤벨 플라이", "체스트 프레스", "펙덱 플라이", "푸쉬업", "케이블 크로스오버"});
-        exerciseMap.put("등", new String[]{"랫풀다운", "바벨로우", "덤벨로우", "데드리프트", "시티드로우", "풀업", "케이블 로우", "티바로우"});
-        exerciseMap.put("하체", new String[]{"스쿼트", "레그프레스", "런지", "레그컬", "레그익스텐션", "카프레이즈", "힙 쓰러스트", "스티프 레그 데드리프트"});
-        exerciseMap.put("유산소", new String[]{"러닝머신", "자전거", "스텝퍼", "로잉머신", "점핑잭", "버피", "마운틴 클라이머", "사이클"});
-        exerciseMap.put("어깨", new String[]{"숄더프레스", "사이드 레터럴 레이즈", "프론트 레이즈", "리어 델트 플라이", "업라이트 로우", "덤벨 숄더 프레스", "케이블 레이즈", "아놀드 프레스"});
-        exerciseMap.put("이두", new String[]{"바벨 컬", "덤벨 컬", "해머 컬", "프리처 컬", "컨센트레이션 컬", "케이블 컬", "머신 컬", "크로스 바디 해머 컬"});
-        exerciseMap.put("삼두", new String[]{"트라이셉스 익스텐션", "덤벨 킥백", "케이블 푸쉬다운", "프렌치 프레스", "스컬 크러셔", "오버헤드 익스텐션", "딥스", "트라이앵글 푸쉬업"});
-        exerciseMap.put("복근", new String[]{"크런치", "레그레이즈", "플랭크", "싯업", "러시안 트위스트", "바이시클 크런치", "힐터치", "하이 플랭크"});
+        // 서버에서 운동 데이터를 가져옴
+        fetchWorkoutsFromServer();
 
-        ArrayAdapter<String> categoryAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, categories);
+        completeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent resultIntent = new Intent();
+                resultIntent.putParcelableArrayListExtra("selectedExercises", selectedExercises);
+                setResult(RESULT_OK, resultIntent);
+                finish();
+            }
+        });
+
+        closeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
+
+    // 서버에서 운동 카테고리와 운동 목록을 가져오는 함수
+    private void fetchWorkoutsFromServer() {
+        ApiService service = RetrofitClient.getApiService(BASE_URL);
+        Call<WorkoutResponse> call = service.getWorkouts();
+
+        call.enqueue(new Callback<WorkoutResponse>() {
+            @Override
+            public void onResponse(Call<WorkoutResponse> call, Response<WorkoutResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    setupWorkouts(response.body().getData());
+                } else {
+                    Toast.makeText(AddExerciseActivity.this, "운동 목록을 불러오는데 실패했습니다.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<WorkoutResponse> call, Throwable t) {
+                Toast.makeText(AddExerciseActivity.this, "서버 통신 오류: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.e("AddExerciseActivity", t.getMessage());
+            }
+        });
+    }
+
+    // 운동 부위 매핑
+    private Map<String, String> bodyPartMap = new HashMap<String, String>() {{
+        put("CHEST", "가슴");
+        put("CORE", "복근");
+        put("LOWER_BODY", "하체");
+        put("SHOULDERS", "어깨");
+        put("CARDIO", "유산소");
+        put("BICEPS", "이두");
+        put("BACK", "등");
+        put("TRICEPS", "삼두");
+    }};
+
+    // 운동 목록을 화면에 설정하는 함수
+    private void setupWorkouts(List<WorkoutResponse.BodyPart> bodyParts) {
+        exerciseMap = new HashMap<>();
+
+        // 서버에서 받은 운동 데이터를 저장
+        for (WorkoutResponse.BodyPart bodyPart : bodyParts) {
+            // 영어 카테고리를 한글로 매핑
+            String translatedBodyPart = bodyPartMap.get(bodyPart.getBodyPart());
+            exerciseMap.put(translatedBodyPart, bodyPart.getWorkouts());
+        }
+
+        // 카테고리 목록을 설정
+        ArrayAdapter<String> categoryAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, new ArrayList<>(exerciseMap.keySet()));
         categoryListView.setAdapter(categoryAdapter);
 
         categoryListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String selectedCategory = (String) parent.getItemAtPosition(position);
-                String[] exercises = exerciseMap.get(selectedCategory);
+                List<String> exercises = exerciseMap.get(selectedCategory);
                 ArrayAdapter<String> exerciseAdapter = new ArrayAdapter<>(AddExerciseActivity.this, android.R.layout.simple_list_item_1, exercises);
                 exerciseListView.setAdapter(exerciseAdapter);
             }
@@ -79,26 +144,10 @@ public class AddExerciseActivity extends Activity {
                 showInputDialog();
             }
         });
-
-        completeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent resultIntent = new Intent();
-                resultIntent.putParcelableArrayListExtra("selectedExercises", selectedExercises);
-                setResult(RESULT_OK, resultIntent); // 데이터를 담아서 결과로 전달
-                finish(); // 액티비티 종료하고 이전 액티비티로 돌아가기
-            }
-        });
-
-        closeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
     }
 
-    // 세트수, 횟수 정하는 팝업
+    //todo : 유산소 운동 시 나오는 팝업은 다르게 해야하는데 이건 옵션으로 두자  or 유산소를 빼던지
+    // 운동 횟수와 세트 수를 설정하는 팝업
     private void showInputDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(selectedExerciseName + " 설정");
@@ -145,17 +194,15 @@ public class AddExerciseActivity extends Activity {
         builder.show();
     }
 
-
+    // 선택된 운동을 화면에 표시하는 함수
     private void displaySelectedExercise(Exercise exercise) {
         TextView textView = new TextView(this);
         textView.setText(exercise.getName() + " - " + exercise.getSetCount() + "세트 x " + exercise.getReps() + "회");
 
         // 텍스트 크기와 스타일 설정
-        textView.setTextSize(14); // 글자 크기 10dp
-        textView.setTypeface(null, Typeface.BOLD); // bold 스타일 설정
+        textView.setTextSize(14);
+        textView.setTypeface(null, Typeface.BOLD);
 
         selectedItemsLayout.addView(textView);
     }
-
-
 }

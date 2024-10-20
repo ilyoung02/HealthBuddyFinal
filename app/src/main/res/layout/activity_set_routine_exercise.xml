@@ -4,6 +4,7 @@
     android:orientation="vertical"
     android:background="#ffffff">
 
+    <!-- 상단 제목과 설명 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -39,14 +40,20 @@
         android:layout_marginBottom="16dp"
         android:layout_marginLeft="18dp"/>
 
-    <!-- 운동 항목을 동적으로 추가할 LinearLayout -->
-    <LinearLayout
-        android:id="@+id/exerciseContainer"
+    <!-- 스크롤 가능한 영역 -->
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:padding="16dp"/>
+        android:layout_weight="1">
+
+        <!-- 운동 항목을 동적으로 추가할 LinearLayout -->
+        <LinearLayout
+            android:id="@+id/exerciseContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"/>
+    </ScrollView>
 
     <Button
         android:id="@+id/btn_makeRoutineComplete"

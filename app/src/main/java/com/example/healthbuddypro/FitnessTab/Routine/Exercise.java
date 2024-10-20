@@ -4,9 +4,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Exercise implements Parcelable {
-    private String name;
-    private int setCount;
-    private int reps;
+    private String name; // 운동종목명
+    private int setCount; // 갯수
+    private int reps; // 세트수
 
     // 생성자
     public Exercise(String name, int setCount, int reps) {

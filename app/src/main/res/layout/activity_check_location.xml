@@ -30,7 +30,7 @@
         android:drawablePadding="8dp" />
 
     <fragment
-        android:id="@+id/checkLocation"
+        android:id="@+id/currentLocation"
         android:layout_width="match_parent"
         android:layout_height="500dp"
         android:layout_marginBottom="10dp"

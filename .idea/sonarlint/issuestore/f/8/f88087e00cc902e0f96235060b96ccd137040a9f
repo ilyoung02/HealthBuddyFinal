@@ -1,4 +1,4 @@
 
-•	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(èé™J$8466754c-58dd-45fb-a794-07c2e8ebfe5a
-…
-java:S1319"hThe type of "routines" should be an interface such as "List" rather than the implementation "ArrayList".(ğ ³³8Ä‚Õ÷§2
+•	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(èé™J$dc3eeae5-1816-4269-a865-3435c952ceb5
+«
+java:S1319"hThe type of "routines" should be an interface such as "List" rather than the implementation "ArrayList".(ğ ³³8Ä‚Õ÷§2J$42014052-b305-4486-9c02-2786dae15b1b

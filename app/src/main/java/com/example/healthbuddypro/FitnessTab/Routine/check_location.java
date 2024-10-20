@@ -43,7 +43,8 @@ public class check_location extends AppCompatActivity implements OnMapReadyCallb
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
         // SharedPreferences 쓰면 되네 -> 내부 저장소 느낌으로 하는거 Intent로 안되노
-        //@TODO 헬스장 위치를 프로필 수정에서 등록한 위치 좌표로 서버로 부터 받아오도록 수정해야함 -> 경도 위도를 서버에서 받아오는걸로만 바꾸면됨
+        //TODO 헬스장 위치를 프로필 수정에서 등록한 위치 좌표로 서버로 부터 받아오도록 수정해야함 -> 경도 위도를 서버에서 받아오는걸로만 바꾸면됨
+        // 헬스장 위도 경도 따올때는 /api/gymLocation/users/{userId} 에서 userID 로컬에 저장된거 가져와서 GET 해서 위도경도 지역 정보 가져오면 됨
         SharedPreferences sharedPreferences = getSharedPreferences("LocationData", Context.MODE_PRIVATE);
         double latitude = sharedPreferences.getFloat("latitude", 0);
         double longitude = sharedPreferences.getFloat("longitude", 0);

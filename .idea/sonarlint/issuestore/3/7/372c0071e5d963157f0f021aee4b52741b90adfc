@@ -1,30 +1,36 @@
 
-p
-java:S1604."(Make this anonymous inner class a lambda(çûõ‚şÿÿÿÿ8‹ºìˆ¨2J$2194d016-849c-4c18-b89f-7f41e91c87de
 k
-java:S1604>"(Make this anonymous inner class a lambda(£Šå•8‹ºìˆ¨2J$774ce64b-201a-451e-9d5d-f1c0abdb8b82
-”	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(®Ÿ¯ıÿÿÿÿ8€ã¥ÿ§2J$a1981e36-7ae0-46d7-b4c9-bbcbc32ec5e3
-œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(èé™8ã¥ÿ§2J$99a97343-dbd7-4fc5-9d8c-53a8a698f829
-£	java:S116"bRename this field "btn_makeRoutineComplete" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¬üÜq8„ã¥ÿ§2J$596d93c7-8696-4deb-95de-911b0bb80717
+java:S16042"(Make this anonymous inner class a lambda(¾‡µà8‹ºìˆ¨2J$583db69e-0fbb-453c-9b04-e0ab99cf5f13
+p
+java:S1604;"(Make this anonymous inner class a lambda(çûõ‚şÿÿÿÿ8‹ºìˆ¨2J$7a9f6fea-e0b4-4dd5-b44e-5acb1069bd98
+k
+java:S1604K"(Make this anonymous inner class a lambda(£Šå•8¬—Æ×©2J$b6785956-9ec7-49d5-89a8-ae263c12bd06
+”	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(®Ÿ¯ıÿÿÿÿ8€ã¥ÿ§2J$041e1cd1-1585-465d-b166-a704c40d2c86
+œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(èé™8ã¥ÿ§2J$ade29a89-371b-4e6a-805e-4d11c04a265c
+£	java:S116"bRename this field "btn_makeRoutineComplete" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¬üÜq8„ã¥ÿ§2J$14035c6e-3c49-4479-960d-be5d70c01dbf
+¡
+java:S1450"YRemove the "backButton" field and declare it as a local variable in the relevant methods.(‡Å›„ûÿÿÿÿ8­‡Å×©2J$48e3b2a1-adb1-459c-8c2c-75a180294638
 ¨
-java:S1450"fRemove the "btn_makeRoutineComplete" field and declare it as a local variable in the relevant methods.(¬üÜq8ºìˆ¨2J$020d68dd-e56a-42db-8a3c-c18d65e2319a
+java:S1450"fRemove the "btn_makeRoutineComplete" field and declare it as a local variable in the relevant methods.(¬üÜq8ºìˆ¨2J$4c6891ca-e2bf-43c3-8457-4a39cf64e5b3
 
-java:S1450"[Remove the "routineTitle" field and declare it as a local variable in the relevant methods.(˜¬†Ö8ˆã¥ÿ§2J$c12c4063-304e-4684-9bc1-d936e97d57a8
+java:S1450"[Remove the "routineTitle" field and declare it as a local variable in the relevant methods.(˜¬†Ö8ˆã¥ÿ§2J$bf22d7f2-af6e-4e96-934f-3a7ec232eb2e
+u
+java:S1135:"2Complete the task associated to this TODO comment.(ö·ÛË8ÎØó©2J$81e061bd-6a38-416e-9579-a3d35945da79
 †
-java:S1874B">Remove this use of "startActivityForResult"; it is deprecated.(˜”³¬ıÿÿÿÿ8›ºìˆ¨2J$e4fcedc1-4524-4552-b451-8f9519c21b2c
+java:S1874O">Remove this use of "startActivityForResult"; it is deprecated.(˜”³¬ıÿÿÿÿ8›ºìˆ¨2J$b56d5df8-adac-4e61-bdb1-1c90bb3017ab
 ˜
-java:S3252H"PUse static access with "android.view.ViewGroup$LayoutParams" for "MATCH_PARENT".(„¸ğÂşÿÿÿÿ8›ºìˆ¨2J$b4b32bdc-a627-4f5e-9e96-2baacaf66660
+java:S3252U"PUse static access with "android.view.ViewGroup$LayoutParams" for "MATCH_PARENT".(„¸ğÂşÿÿÿÿ8›ºìˆ¨2J$69a32995-1d98-4203-a0e5-0d3ce3b0054b
 “
-java:S3252I"PUse static access with "android.view.ViewGroup$LayoutParams" for "WRAP_CONTENT".(ûë‰8›ºìˆ¨2J$ec5cab73-a9bb-41e9-a899-e7b442a6da2d
+java:S3252V"PUse static access with "android.view.ViewGroup$LayoutParams" for "WRAP_CONTENT".(ûë‰8›ºìˆ¨2J$73b822c6-9124-48a4-896b-de3658a0cb3d
 Œ
-java:S1874T"JDon't override a deprecated method or explicitly mark it as "@Deprecated".(¹Î¾8›ºìˆ¨2J$fe1bc2db-3d45-42ff-b348-a112393a16cc
+java:S1874a"JDon't override a deprecated method or explicitly mark it as "@Deprecated".(¹Î¾8›ºìˆ¨2J$e2fc6ab3-b133-44df-a5bd-681d39152891
 ‹
-java:S1874W"CRemove this use of "getParcelableArrayListExtra"; it is deprecated.(à”Ø“ùÿÿÿÿ8œºìˆ¨2J$520df13e-a0f4-47eb-b34a-decb3df299bf
+java:S1874d"CRemove this use of "getParcelableArrayListExtra"; it is deprecated.(à”Ø“ùÿÿÿÿ8œºìˆ¨2J$b64cf1cd-735d-40d1-9334-f27fcf8af7b2
 “
-java:S3252k"PUse static access with "android.view.ViewGroup$LayoutParams" for "WRAP_CONTENT".(œšÌ¾8¢ºìˆ¨2J$b9d29115-d55c-434c-bc6b-121e07a7d742
+java:S3252x"PUse static access with "android.view.ViewGroup$LayoutParams" for "WRAP_CONTENT".(œšÌ¾8¢ºìˆ¨2J$20c434e3-d786-4314-8dad-4b83fcb86bc0
 “
-java:S3252l"PUse static access with "android.view.ViewGroup$LayoutParams" for "WRAP_CONTENT".(ûë‰8¢ºìˆ¨2J$e061f360-8f9f-47a6-a1d3-ab8f305eefce
+java:S3252y"PUse static access with "android.view.ViewGroup$LayoutParams" for "WRAP_CONTENT".(ûë‰8¢ºìˆ¨2J$d2838217-c015-4cdb-8933-cf2a503416da
 s
-java:S1068"0Remove this unused "routineTitle" private field.(˜¬†Ö8Ÿã¥ÿ§2J$c41b8feb-d5ac-442d-b1ee-f9f1fecbc7ce
+java:S1068"0Remove this unused "routineTitle" private field.(˜¬†Ö8Ÿã¥ÿ§2J$5784f7db-63d3-4070-b858-742ba2fd8ade
 s
-java:S1068"0Remove this unused "exerciseList" private field.(Ñº¼š8Ÿã¥ÿ§2J$6c3af710-6ea4-4a12-9803-1551962170b8
+java:S1068"0Remove this unused "exerciseList" private field.(Ñº¼š8Ÿã¥ÿ§2J$a9c772b8-96a2-4fb8-b3c1-652673a603ec

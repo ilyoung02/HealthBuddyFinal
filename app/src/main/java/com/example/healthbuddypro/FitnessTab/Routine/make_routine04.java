@@ -8,8 +8,6 @@ import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.example.healthbuddypro.R;
 
@@ -36,19 +34,15 @@ public class make_routine04 extends AppCompatActivity {
         });
 
 
-        // 시작하기 버튼
-        //todo : 시작하기 버튼 누르면 RoutineFragment 로 이동이 안됨 -> 액티비티가 튕김
+        // 시작하기 버튼 -> 구조가 엑티비티를 넘기고 moved_routineFragment 여기서 framelayout에 프래그먼트가 덧씌워지는 방식
         completeMakeRoutine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(make_routine04.this, routine_list.class);
+                Intent intent = new Intent(make_routine04.this, moved_routineFragment.class);  // CurrentActivity를 현재 액티비티 이름으로 변경
                 startActivity(intent);
                 finish();
             }
         });
-
-
-
 
 
     }

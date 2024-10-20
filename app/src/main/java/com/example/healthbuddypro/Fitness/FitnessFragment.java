@@ -5,6 +5,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
+
+import com.example.healthbuddypro.FitnessTab.Routine.RoutineFragment;
 import com.google.android.material.tabs.TabLayout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,11 +22,10 @@ public class FitnessFragment extends Fragment {
         // fragment_fitness 레이아웃을 inflate
         View view = inflater.inflate(R.layout.fragment_fitness, container, false);
 
-        // TabLayout과 ViewPager 설정
         TabLayout tabLayout = view.findViewById(R.id.tabLayout);
         ViewPager viewPager = view.findViewById(R.id.viewPager);
 
-        // GroupViewPagerAdapter 설정
+
         GroupViewPagerAdapter adapter = new GroupViewPagerAdapter(getChildFragmentManager());
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);

@@ -20,6 +20,8 @@ public class make_routine03 extends AppCompatActivity {
     private ImageButton backButton;
     private String routineTitle;
 
+    //todo : 루틴 제목, 선택한 요일, 요일에 들어간 각 운동정보들 서버로 넘겨주는 작업 해야함
+
     // 선택한 요일을 저장할 배열
     private boolean[] selectedDays = new boolean[7]; // 0: 월, 1: 화, 2: 수, 3: 목, 4: 금, 5: 토, 6: 일
 

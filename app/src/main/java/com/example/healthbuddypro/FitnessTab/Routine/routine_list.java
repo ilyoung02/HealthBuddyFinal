@@ -23,8 +23,11 @@ public class routine_list extends AppCompatActivity {
     private ArrayList<Routine> routineList;
 
     private Button btn_createRoutine;
-    private ImageButton RoutineHome;
+    private ImageButton backbtn;
 
+    // todo : 루틴 수정 버튼 + 삭제버튼 동작 구현하기
+    //  헬스버디가 끝나서 진행종료 된 루틴은 수정 못하게 하기
+    //  진행중인 목록은 색상 바꿔서 표시하기
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,25 +37,17 @@ public class routine_list extends AppCompatActivity {
 
         listView = findViewById(R.id.routineListView);
         btn_createRoutine = findViewById(R.id.btn_createRoutine);
-        RoutineHome = findViewById(R.id.RoutineHome);
+        backbtn = findViewById(R.id.backbtn);
 
-        //루틴 프래그먼트 홈으로 가는 버튼
-        //todo : 액티비티에서 프래그먼트 이동하는거 해야됨
-        RoutineHome.setOnClickListener(new View.OnClickListener() {
+        // 뒤로가기
+        backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // FragmentManager를 통해 FragmentTransaction 시작
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-                // RoutineFragment로 교체
-                RoutineFragment routineFragment = new RoutineFragment();
-                fragmentTransaction.replace(R.id.fragment_container, routineFragment); // fragment_container는 대상 레이아웃 ID입니다.
-                fragmentTransaction.addToBackStack(null); // 뒤로 가기 시 이전 화면으로 돌아갈 수 있도록 설정
-                fragmentTransaction.setReorderingAllowed(true);
-                fragmentTransaction.commit(); // 변경사항 적용
+                finish();
             }
         });
+
+        //todo : 루틴 수정, 삭제 버튼 연결하기
 
 
         //루틴 생성 버튼
@@ -64,9 +59,10 @@ public class routine_list extends AppCompatActivity {
             }
         });
 
-        //todo 서버에서 헬스버디 이름 + 루틴 제목을 가져오는걸로 변경해야함
+        //TODO : 서버에서 헬스버디 이름 + 루틴 제목 + 진행상황 정보 가져와서 반영하는거 해야함
+        // 루틴 생성이 완료되고 돌아왔을때 갱신되는지도 확인
         routineList = new ArrayList<>();
-        routineList.add(new Routine("홍길동 헬스버디", "다이어트 운동"));
+        routineList.add(new Routine("홍길동 헬스버디", "다이어트 운동")); // 임의로 박아둔거임
 
         adapter = new RoutineListAdapter(this, R.layout.activity_routine_list_item, routineList);
         listView.setAdapter(adapter);

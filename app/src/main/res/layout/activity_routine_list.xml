@@ -8,11 +8,11 @@
 <!--    activity_routine_list.xml 파일-->
 
     <ImageButton
-        android:id="@+id/RoutineHome"
+        android:id="@+id/backbtn"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:background="?attr/selectableItemBackgroundBorderless"
-        android:src="@drawable/icon_home"
+        android:src="@drawable/icon_back"
         android:scaleType="centerCrop"
         android:layout_margin="30dp"/>
 

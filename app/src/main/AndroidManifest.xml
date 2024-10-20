@@ -21,10 +21,19 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".testtest"
+            android:name=".FitnessTab.Routine.routine_check_exercise_item"
             android:exported="false" />
         <activity
-            android:name=".fragmentMoveTest"
+            android:name=".FitnessTab.Routine.timer"
+            android:exported="false" />
+        <activity
+            android:name=".FitnessTab.Routine.fixing_routineExercise"
+            android:exported="false" />
+        <activity
+            android:name=".FitnessTab.Routine.exercise_item"
+            android:exported="false" />
+        <activity
+            android:name=".FitnessTab.Routine.moved_routineFragment"
             android:exported="false" />
         <activity
             android:name=".FitnessTab.Routine.check_location"
