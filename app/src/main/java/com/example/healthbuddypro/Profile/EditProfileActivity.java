@@ -27,6 +27,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.healthbuddypro.ApiService;
+import com.example.healthbuddypro.Login.LoginActivity;
+import com.example.healthbuddypro.MainActivity;
 import com.example.healthbuddypro.Profile.EditUserProfile.GymLocation;
 import com.example.healthbuddypro.R;
 import com.example.healthbuddypro.RetrofitClient;
@@ -259,7 +261,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
                 for (String exercise : selectedExercises) {
                     if (!existingExercises.contains(exercise)) {
-                        sb.append(exercise).append(", "); // Append only if not already present
+                        sb.append(exercise).append(", ");
                     }
                 }
 
@@ -268,7 +270,7 @@ public class EditProfileActivity extends AppCompatActivity {
                     sb.setLength(sb.length() - 2);
                 }
 
-                favWorkouts.setText(sb.toString()); // Update favWorkouts TextView
+                favWorkouts.setText(sb.toString());
             }
         }
     }
@@ -414,6 +416,9 @@ public class EditProfileActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     Log.d("ProfileUpdate", "Profile update success: " + response.body()); // 성공 로그 추가
                     showToast("프로필이 업데이트되었습니다.");
+                    Intent intent = new Intent(EditProfileActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
                 } else {
                     Log.e("ProfileUpdate", "Profile update failed: " + response.code()); // 실패 로그 추가
                     showToast("업데이트 실패: " + response.code());
