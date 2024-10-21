@@ -6,6 +6,7 @@ import com.example.healthbuddypro.Matching.Chat.MessageRequest;
 import com.example.healthbuddypro.Matching.ProfileListResponse;
 import com.example.healthbuddypro.Matching.ProfileResponse;
 import com.example.healthbuddypro.Profile.EditProfileResponse;
+import com.example.healthbuddypro.Profile.MyProfileResponse;
 import com.example.healthbuddypro.ShortTermMatching.MatchRequest;
 import com.example.healthbuddypro.ShortTermMatching.MatchRequestStatus;
 import com.example.healthbuddypro.ShortTermMatching.MatchResponse;
@@ -64,6 +65,7 @@ public interface ApiService {
             @Body MatchRequestStatus requestStatus
     );
 
+    // 프로필 수정
     @Multipart
     @PUT("/api/match/profiles/{profileId}")
     Call<EditProfileResponse> updateProfile(
@@ -71,4 +73,10 @@ public interface ApiService {
             @Part MultipartBody.Part file, // 이미지 파일
             @Part("profileRequest") RequestBody profileRequest // JSON 데이터
     );
+
+    // 프로필 가져오기
+    @GET("/api/match/profiles/{profileId}") 
+    Call<MyProfileResponse> getProfileData(
+            @Path("profileId") int profileId
+    );    
 }

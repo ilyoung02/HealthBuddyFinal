@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -13,7 +14,6 @@
         android:layout_marginBottom="20dp"
         android:gravity="center_vertical">
 
-        <!-- Profile Title -->
         <TextView
             android:id="@+id/profile_title"
             android:layout_width="0dp"
@@ -26,13 +26,12 @@
             android:textSize="24sp"
             android:textStyle="bold" />
 
-        <!-- Logout Button -->
         <Button
             android:id="@+id/buttonLogout"
             android:layout_width="70dp"
             android:layout_height="40dp"
             android:text="로그아웃"
-            android:textSize="10sp"
+            android:textSize="12sp"
             android:layout_gravity="center"
             android:textColor="@android:color/black"
             android:layout_marginLeft="16dp"/>
@@ -119,10 +118,24 @@
 
                 <!-- 구력 -->
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="구력 "
+                    android:textSize="16sp"
+                    android:textColor="@android:color/black"
+                    />
+                <TextView
                     android:id="@+id/profile_experience"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="구력 6년"
+                    android:text="6"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/black"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="년"
                     android:textSize="16sp"
                     android:textColor="@android:color/black"
                     />
@@ -132,7 +145,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="120dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="17dp"
             android:orientation="vertical">
             <!-- 수정 버튼 -->
             <Button
@@ -144,7 +157,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:text="수정"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 android:textColor="#FFFFFF" />
 
             <!-- 좋아요 섹션 -->
@@ -211,14 +224,29 @@
         android:padding="16dp"
         android:layout_marginBottom="16dp">
         <!-- 운동 목표 -->
-        <TextView
-            android:id="@+id/exercise_goal_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="근육량 증가"
-            android:textSize="16sp"
-            android:textColor="@android:color/black"
-            android:layout_marginBottom="8dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="운동 목표: "
+                android:textSize="16sp"
+                android:textColor="@android:color/black"
+                />
+            <TextView
+                android:id="@+id/exercise_goal_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="근육량 증가"
+                android:textSize="16sp"
+                android:textColor="@android:color/black"
+                android:layout_marginBottom="8dp"/>
+
+
+        </LinearLayout>
 
         <!-- 상태 메시지 -->
         <TextView
