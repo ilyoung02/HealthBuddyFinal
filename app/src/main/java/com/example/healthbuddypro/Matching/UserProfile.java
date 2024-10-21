@@ -1,22 +1,24 @@
 package com.example.healthbuddypro.Matching;
+import com.google.firebase.firestore.auth.User;
+
 import java.io.Serializable;
 import java.util.List;
 
 public class UserProfile implements Serializable {
     private int profileId;
+    private int UserId;
     private String nickname;
     private String image;
     private String gender;
     private int age;
     private int workoutYears;  // 구력(운동 경력)
     private int likeCount;
-
     private List<String> favWorkouts;
     private String workoutGoal;
     private String region;
     private String bio;
 
-    public UserProfile(int profileId, String nickname, String image, String gender, int age, int workoutYears, int likeCount) {
+    public UserProfile(String workoutGoal, String region, String bio, int profileId, int UserId, String nickname, String image, String gender, int age, int workoutYears, int likeCount, List<String> favWorkouts) {
         this.profileId = profileId;
         this.nickname = nickname;
         this.image = image;
@@ -24,6 +26,18 @@ public class UserProfile implements Serializable {
         this.age = age;
         this.workoutYears = workoutYears;
         this.likeCount = likeCount;
+        this.UserId = UserId;
+        this.workoutGoal = workoutGoal;
+        this.region = region;
+        this.bio = bio;
+        this.favWorkouts = favWorkouts;
+    }
+
+    public int getUserId() {
+        return UserId;
+    }
+    public void setUserId(int UserId) {
+        this.UserId = UserId;
     }
 
     // 프로필 ID

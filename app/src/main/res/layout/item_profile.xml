@@ -13,7 +13,9 @@
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         android:contentDescription="Profile Image"
-        android:src="@drawable/default_user_img"/> <!-- 샘플 이미지 -->
+        android:src="@drawable/default_user_img"
+        android:background="@drawable/profile_background"
+        android:clipToOutline="true"/> <!-- 샘플 이미지 -->
 
     <!-- 이름과 소개글을 포함한 텍스트 레이아웃 -->
     <LinearLayout

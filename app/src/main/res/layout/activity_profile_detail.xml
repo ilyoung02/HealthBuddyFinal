@@ -6,128 +6,108 @@
     android:background="@android:color/white"
     tools:context=".Matching.ProfileDetailActivity">
 
-    <!-- 프로필 이미지 -->
-    <ImageView
-        android:id="@+id/profile_image"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:scaleType="centerCrop"
-        android:background="@drawable/box_background"
-        android:elevation="1dp"/>
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_height="264dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <!-- 프로필 이미지 -->
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="195dp"
+            android:layout_height="250dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_post_item"
+            android:elevation="1dp"
+            android:scaleType="centerCrop"/>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_width="150dp"
+            android:layout_height="250dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:orientation="vertical">
             <!-- 이름과 성별, 나이 -->
             <TextView
                 android:id="@+id/profile_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="5dp"
                 android:text="이름"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="@android:color/black"/>
+                android:textColor="@android:color/black"
+                android:textSize="34sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/profile_gender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="성별"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/profile_age"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="나이"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/profile_gender"
+                android:id="@+id/like_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="성별"
+                android:padding="5dp"
+                android:text="좋아요 수"
+                android:textColor="@android:color/black"
                 android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="@android:color/black"/>
-
-            <TextView
-                android:id="@+id/profile_age"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="나이"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="@android:color/black"/>
+                android:textStyle="bold" />
+            <!-- 채팅 버튼 -->
+            <Button
+                android:id="@+id/btn_chat"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/rounded_button"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="채팅하기"
+                android:textColor="@color/white" />
         </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        android:padding="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:orientation="horizontal"
-            android:layout_marginTop="13dp"
-            android:background="@drawable/profile_intro_background">
+            android:layout_height="200dp"
+            android:orientation="vertical">
 
-            <!-- 운동 구력 -->
-            <TextView
-                android:id="@+id/profile_workout_years"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="운동 구력"
-                android:textSize="14sp"
-                android:textColor="@color/white"
-                android:background="@drawable/profile_tag"
-                android:padding="4dp"
-                android:layout_marginEnd="8dp" />
-
-            <!-- 선호 운동 예시 -->
-            <TextView
-                android:id="@+id/profile_fav_workouts"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="선호 운동"
-                android:textSize="14sp"
-                android:textColor="@color/white"
-                android:background="@drawable/profile_tag"
-                android:padding="4dp"
-                android:layout_marginEnd="8dp"/>
-
-            <!-- 운동 목표 예시 -->
-            <TextView
-                android:id="@+id/profile_workout_goal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="운동 목표"
-                android:textSize="14sp"
-                android:textColor="@color/white"
-                android:background="@drawable/profile_tag"
-                android:padding="4dp"
-                android:layout_marginEnd="8dp"/>
-
-            <!-- 지역 예시 -->
-            <TextView
-                android:id="@+id/profile_region"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="지역"
-                android:textSize="14sp"
-                android:textColor="@color/white"
-                android:background="@drawable/profile_tag"
-                android:padding="4dp"
-                android:layout_marginEnd="8dp"/>
-        </LinearLayout>
-
-        <!-- 소개글 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginTop="13dp">
-
+            <!-- 소개글 -->
             <TextView
                 android:id="@+id/profile_bio"
-                android:layout_width="0dp"
-                android:layout_height="115dp"
+                android:layout_width="match_parent"
+                android:layout_height="85dp"
                 android:layout_weight="1"
                 android:textSize="16sp"
                 android:text="소개글"
@@ -135,16 +115,71 @@
                 android:background="@drawable/profile_intro_background"
                 android:padding="8dp" />
 
-            <!-- 채팅 버튼 -->
-            <Button
-                android:id="@+id/btn_chat"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
-                android:text="채팅"
+            <!-- 후기 -->
+            <TextView
+                android:id="@+id/profile_review"
+                android:layout_width="match_parent"
+                android:layout_height="85dp"
+                android:layout_weight="1"
+                android:textSize="16sp"
+                android:layout_marginTop="13dp"
+                android:text="후기"
                 android:textColor="@android:color/black"
-                android:clickable="true"
-                android:focusable="true"/>
+                android:background="@drawable/profile_intro_background"
+                android:padding="8dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:background="@drawable/profile_intro_background"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <!-- 선호 운동 예시 -->
+            <TextView
+                android:id="@+id/profile_fav_workouts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginEnd="8dp"
+                android:text="선호 운동"
+                android:textColor="@color/black"
+                android:textSize="17sp"/>
+
+            <!-- 운동 구력 -->
+            <TextView
+                android:id="@+id/profile_workout_years"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginEnd="8dp"
+                android:text="운동 구력"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+            <!-- 운동 목표 예시 -->
+            <TextView
+                android:id="@+id/profile_workout_goal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginEnd="8dp"
+                android:text="운동 목표"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+            <!-- 지역 예시 -->
+            <TextView
+                android:id="@+id/profile_region"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginEnd="8dp"
+                android:text="지역"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

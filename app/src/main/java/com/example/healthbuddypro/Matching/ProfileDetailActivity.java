@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.example.healthbuddypro.ApiService;
 import com.example.healthbuddypro.Matching.Chat.ChatActivity;
 import com.example.healthbuddypro.R;
+import com.example.healthbuddypro.RetrofitClient;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,6 +33,7 @@ public class ProfileDetailActivity extends AppCompatActivity {
     private TextView workoutGoal;
     private TextView region;
     private TextView bio;
+    private TextView workoutYears;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +49,11 @@ public class ProfileDetailActivity extends AppCompatActivity {
         workoutGoal = findViewById(R.id.profile_workout_goal);
         region = findViewById(R.id.profile_region);
         bio = findViewById(R.id.profile_bio);
+        workoutYears = findViewById(R.id.profile_workout_years);
 
         // Intent로 전달된 데이터를 받음
         Intent intent = getIntent();
         int profileId = intent.getIntExtra("profileId", -1); // profileId를 받음
-        String nickname = intent.getStringExtra("nickname"); // 기타 데이터도 받을 수 있음
-        String image = intent.getStringExtra("image");
 
         // 받은 데이터를 UI에 표시할 수 있도록 설정
         if (profileId != -1) {
@@ -61,10 +62,6 @@ public class ProfileDetailActivity extends AppCompatActivity {
             // 전달된 데이터가 없을 경우의 처리
             Toast.makeText(this, "프로필 정보를 가져올 수 없습니다.", Toast.LENGTH_SHORT).show();
         }
-
-        // 추가적으로 받은 데이터로 UI 업데이트
-        name.setText(nickname);
-        Glide.with(this).load(image).into(profileImage);
 
         // 채팅 버튼 클릭 처리
         Button btnChat = findViewById(R.id.btn_chat);
@@ -78,16 +75,10 @@ public class ProfileDetailActivity extends AppCompatActivity {
     }
 
     private void fetchProfileDetails(int profileId) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://165.229.89.154:8080/") // 백엔드 URL
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        ApiService apiService = retrofit.create(ApiService.class);
+        ApiService apiService = RetrofitClient.getApiService();
 
         // 단일 프로필 데이터를 가져오도록 함
         Call<ProfileResponse> call = apiService.getProfileDetails(profileId);
-
         call.enqueue(new Callback<ProfileResponse>() {
             @Override
             public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
@@ -114,17 +105,18 @@ public class ProfileDetailActivity extends AppCompatActivity {
     }
 
     private void updateUI(UserProfile profile) {
-        name.setText(profile.getNickName());
-        gender.setText(profile.getGender());
-        age.setText(profile.getAge() + "세");
-
-        favWorkouts.setText("즐겨하는 운동: " + String.join(", ", profile.getFavWorkouts()));
-        workoutGoal.setText(profile.getWorkoutGoal());
-        region.setText(profile.getRegion());
-        bio.setText(profile.getBio());
+        // 추가적으로 받은 데이터로 UI 업데이트
+        name.setText(profile.getNickName());  // 닉네임 설정
+        bio.setText(profile.getBio());  // 소개글 설정
+        gender.setText(profile.getGender());  // 성별 설정
+        age.setText(profile.getAge() + "세");  // 나이 설정
+        favWorkouts.setText("선호 운동 : " + String.join(", ", profile.getFavWorkouts()));  // 선호 운동 설정 (리스트를 문자열로 변환)
+        workoutGoal.setText(profile.getWorkoutGoal());  // 운동 목표 설정
+        region.setText(profile.getRegion());  // 지역 설정
+        workoutYears.setText("구력 : " + profile.getWorkoutYears() + "년");  // 운동 경력 설정
 
         // 이미지 로딩 (Glide 사용)
-        String imageUrl = profile.getImage();
+        String imageUrl = profile.getImage(); // UserProfile 객체에서 이미지 URL을 가져옴
         if (imageUrl != null && !imageUrl.isEmpty()) {
             Glide.with(this)
                     .load(imageUrl)

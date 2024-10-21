@@ -9,7 +9,6 @@ public class ProfileResponse {
     public int getCode() {
         return code;
     }
-
     public void setCode(int code) {
         this.code = code;
     }
@@ -17,7 +16,6 @@ public class ProfileResponse {
     public String getMessage() {
         return message;
     }
-
     public void setMessage(String message) {
         this.message = message;
     }
@@ -25,7 +23,6 @@ public class ProfileResponse {
     public UserProfile getData() {
         return data;
     }
-
     public void setData(UserProfile data) {
         this.data = data;
     }

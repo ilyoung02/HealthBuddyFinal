@@ -7,6 +7,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.healthbuddypro.R;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class FavWorkoutsAdapter extends RecyclerView.Adapter<FavWorkoutsAdapter.ViewHolder> {
@@ -14,13 +16,7 @@ public class FavWorkoutsAdapter extends RecyclerView.Adapter<FavWorkoutsAdapter.
     private List<String> favWorkouts;
 
     public FavWorkoutsAdapter(List<String> favWorkouts) {
-        this.favWorkouts = favWorkouts;
-    }
-
-    public void setData(List<String> newFavWorkouts) {
-        this.favWorkouts.clear(); // 기존 데이터 삭제
-        this.favWorkouts.addAll(newFavWorkouts); // 새로운 데이터 추가
-        notifyDataSetChanged(); // RecyclerView 업데이트
+        this.favWorkouts = favWorkouts != null ? favWorkouts : new ArrayList<>();
     }
 
     @NonNull
@@ -32,14 +28,20 @@ public class FavWorkoutsAdapter extends RecyclerView.Adapter<FavWorkoutsAdapter.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        // Get the workout name from the list and set it to the TextView
-        holder.workoutName.setText(favWorkouts.get(position));
+    public int getItemCount() {
+        return favWorkouts != null ? favWorkouts.size() : 0;
     }
 
     @Override
-    public int getItemCount() {
-        return favWorkouts.size();
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        String workoutName = favWorkouts.get(position);
+        holder.workoutName.setText(workoutName);
+    }
+
+    public void setData(List<String> newFavWorkouts) {
+        this.favWorkouts.clear(); // 기존 데이터 삭제
+        this.favWorkouts.addAll(newFavWorkouts); // 새로운 데이터 추가
+        notifyDataSetChanged(); // RecyclerView 업데이트
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

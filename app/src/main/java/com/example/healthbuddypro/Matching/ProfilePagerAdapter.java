@@ -106,6 +106,7 @@ public class ProfilePagerAdapter extends RecyclerView.Adapter<ProfilePagerAdapte
             nicknameTextView = itemView.findViewById(R.id.profile_name);
             genderTextView = itemView.findViewById(R.id.profile_gender);
             ageTextView = itemView.findViewById(R.id.profile_age);
+
             btnLike = itemView.findViewById(R.id.btnLike);  // 좋아요 버튼 추가
         }
     }

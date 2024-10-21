@@ -121,6 +121,10 @@ public class MatchFragment extends Fragment {
             intent.putExtra("age", profile.getAge());
             intent.putExtra("image", profile.getImage() != null ? profile.getImage() : "");
             intent.putExtra("workoutYears", profile.getWorkoutYears() + "년");
+            intent.putExtra("workoutGoal", profile.getWorkoutGoal());
+            intent.putExtra("bio", profile.getBio());
+            intent.putExtra("region", profile.getRegion());
+            intent.putExtra("likeCount", profile.getLikeCount());
             startActivity(intent);
         });
         viewPager.setAdapter(adapter);
