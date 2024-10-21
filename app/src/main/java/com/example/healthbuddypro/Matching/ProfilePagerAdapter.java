@@ -13,7 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.healthbuddypro.ApiService;
-import com.example.healthbuddypro.Matching.Chat.LikeResponse;
 import com.example.healthbuddypro.R;
 import com.example.healthbuddypro.RetrofitClient;
 

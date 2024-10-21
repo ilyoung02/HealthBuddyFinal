@@ -1,4 +1,4 @@
-package com.example.healthbuddypro.Matching.Chat;
+package com.example.healthbuddypro.Matching;
 
 public class LikeResponse {
     private int code;

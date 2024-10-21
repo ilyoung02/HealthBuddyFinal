@@ -26,18 +26,27 @@ public class ProfileDetailActivity extends AppCompatActivity {
 
     private ImageView profileImage;
     private TextView name;
-    private TextView workoutInfo; // 추가 정보 텍스트뷰
-    private TextView introText; // 소개글 텍스트뷰
+    private TextView age;
+    private TextView gender;
+    private TextView favWorkouts;
+    private TextView workoutGoal;
+    private TextView region;
+    private TextView bio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_detail);
 
+        // View 초기화
         profileImage = findViewById(R.id.profile_image);
         name = findViewById(R.id.profile_name);
-        workoutInfo = findViewById(R.id.profile_workout_info); // 구력과 운동 정보 표시할 부분
-        introText = findViewById(R.id.profile_intro_text); // 소개글 표시할 부분
+        age = findViewById(R.id.profile_age);
+        gender = findViewById(R.id.profile_gender);
+        favWorkouts = findViewById(R.id.profile_fav_workouts);
+        workoutGoal = findViewById(R.id.profile_workout_goal);
+        region = findViewById(R.id.profile_region);
+        bio = findViewById(R.id.profile_bio);
 
         // Intent로 전달된 데이터를 받음
         Intent intent = getIntent();
@@ -88,7 +97,7 @@ public class ProfileDetailActivity extends AppCompatActivity {
                     updateUI(profile);
                 } else {
                     String errorMessage = "프로필 정보를 불러오지 못했습니다. 오류 코드: " + response.code();
-                    introText.setText(errorMessage);
+                    bio.setText(errorMessage);  // bio로 오류 메시지 표시
                     Toast.makeText(ProfileDetailActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
                     Log.e("ProfileDetailActivity", errorMessage);  // Logcat에 오류 메시지 출력
                 }
@@ -97,7 +106,7 @@ public class ProfileDetailActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ProfileResponse> call, Throwable t) {
                 String errorMessage = "데이터 로드 실패: " + t.getMessage();
-                introText.setText(errorMessage);
+                bio.setText(errorMessage);  // bio로 오류 메시지 표시
                 Toast.makeText(ProfileDetailActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
                 Log.e("ProfileDetailActivity", errorMessage);  // Logcat에 오류 메시지 출력
             }
@@ -105,12 +114,26 @@ public class ProfileDetailActivity extends AppCompatActivity {
     }
 
     private void updateUI(UserProfile profile) {
-        name.setText(profile.getNickName() + " " + profile.getAge() + "세");
-        workoutInfo.setText("구력 " + profile.getWorkoutYears() + "년, 좋아요 " + profile.getLikeCount());
+        name.setText(profile.getNickName());
+        gender.setText(profile.getGender());
+        age.setText(profile.getAge() + "세");
+
+        favWorkouts.setText("즐겨하는 운동: " + String.join(", ", profile.getFavWorkouts()));
+        workoutGoal.setText(profile.getWorkoutGoal());
+        region.setText(profile.getRegion());
+        bio.setText(profile.getBio());
 
         // 이미지 로딩 (Glide 사용)
-        Glide.with(this)
-                .load(profile.getImage())
-                .into(profileImage);
+        String imageUrl = profile.getImage();
+        if (imageUrl != null && !imageUrl.isEmpty()) {
+            Glide.with(this)
+                    .load(imageUrl)
+                    .error(R.drawable.default_user_img)  // 이미지 로드 실패 시 기본 이미지 설정
+                    .into(profileImage);
+        } else {
+            Glide.with(this)
+                    .load(R.drawable.default_user_img)  // 기본 이미지 로드
+                    .into(profileImage);
+        }
     }
 }

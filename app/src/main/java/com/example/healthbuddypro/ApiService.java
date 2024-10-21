@@ -5,6 +5,7 @@ import com.example.healthbuddypro.Login.LoginResponse;
 import com.example.healthbuddypro.Matching.Chat.MatchRequest;
 import com.example.healthbuddypro.Matching.Chat.MatchResponse;
 import com.example.healthbuddypro.Matching.Chat.MessageRequest;
+import com.example.healthbuddypro.Matching.LikeResponse;
 import com.example.healthbuddypro.Matching.ProfileListResponse;
 import com.example.healthbuddypro.Matching.ProfileResponse;
 import com.example.healthbuddypro.ShortTermMatching.ShortMatchRequest;
@@ -32,7 +33,7 @@ public interface ApiService {
 
     // 1:1 매칭 좋아요 기능
     @PUT("/api/match/profiles/{profileId}/likes")
-    Call<com.example.healthbuddypro.Matching.Chat.LikeResponse> likeProfile(@Path("profileId") int profileId);
+    Call<LikeResponse> likeProfile(@Path("profileId") int profileId);
 
     // 프로필 세부 정보 받아오기 => ProfileDetailActivity, id는 프로필 고유 ID
     @GET("/api/match/profiles/{profileId}")

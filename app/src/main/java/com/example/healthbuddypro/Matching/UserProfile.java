@@ -1,5 +1,6 @@
 package com.example.healthbuddypro.Matching;
 import java.io.Serializable;
+import java.util.List;
 
 public class UserProfile implements Serializable {
     private int profileId;
@@ -9,6 +10,11 @@ public class UserProfile implements Serializable {
     private int age;
     private int workoutYears;  // 구력(운동 경력)
     private int likeCount;
+
+    private List<String> favWorkouts;
+    private String workoutGoal;
+    private String region;
+    private String bio;
 
     public UserProfile(int profileId, String nickname, String image, String gender, int age, int workoutYears, int likeCount) {
         this.profileId = profileId;
@@ -75,7 +81,37 @@ public class UserProfile implements Serializable {
         this.likeCount = likeCount;
     }
 
+    public List<String> getFavWorkouts() {
+        return favWorkouts;
+    }
 
+    public void setFavWorkouts(List<String> favWorkouts) {
+        this.favWorkouts = favWorkouts;
+    }
+
+    public String getWorkoutGoal() {
+        return workoutGoal;
+    }
+
+    public void setWorkoutGoal(String workoutGoal) {
+        this.workoutGoal = workoutGoal;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
 
     // quals 및 hashCode 메서드를 추가하여 객체 비교 및 해시 기반 컬렉션에서 사용
     @Override
