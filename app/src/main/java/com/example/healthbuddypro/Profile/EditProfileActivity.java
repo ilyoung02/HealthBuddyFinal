@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -35,6 +37,7 @@ import com.example.healthbuddypro.RetrofitClient;
 import com.google.gson.Gson;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -347,21 +350,46 @@ public class EditProfileActivity extends AppCompatActivity {
         updateProfileApiCall(profileRequest, imagePart);
     }
 
-    //이미지 파일 가져오기
+//    //이미지 파일 가져오기
+//    private MultipartBody.Part createImagePart() {
+//        if (uri != null) {
+//            String path = getRealPathFromURI(uri);
+//            Log.d("ImagePart", "Image URI: " + uri.toString()); // 로그 추가
+//            if (path != null) {
+//                Log.d("ImagePart", "Real Path: " + path); // 로그 추가
+//                File file = new File(path);
+//
+//                Log.d("ImagePart", "Image Path: " + path);
+//                Log.d("ImagePart", "File Exists: " + file.exists());
+//                Log.d("ImagePart", "File Length: " + file.length());
+//
+//                if (file.exists()) {
+//                    Log.d("ImagePart", "File exists: " + file.getName()); // 로그 추가
+//                    RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), file);
+//                    return MultipartBody.Part.createFormData("file", file.getName(), requestFile);
+//                } else {
+//                    Log.e("FileError", "File not found: " + path);
+//                    showToast("이미지 파일을 찾을 수 없습니다.");
+//                }
+//            } else {
+//                Log.e("FileError", "Unable to get path from URI: " + uri);
+//                showToast("이미지 경로를 가져올 수 없습니다.");
+//            }
+//        } else {
+//            Log.d("ImagePart", "Image URI is null"); // URI가 null일 때 로그 추가
+//        }
+//        return null;
+//    }
+
     private MultipartBody.Part createImagePart() {
         if (uri != null) {
             String path = getRealPathFromURI(uri);
-            Log.d("ImagePart", "Image URI: " + uri.toString()); // 로그 추가
+            Log.d("ImagePart", "Image URI: " + uri.toString());
             if (path != null) {
-                Log.d("ImagePart", "Real Path: " + path); // 로그 추가
                 File file = new File(path);
 
                 Log.d("ImagePart", "Image Path: " + path);
-                Log.d("ImagePart", "File Exists: " + file.exists());
-                Log.d("ImagePart", "File Length: " + file.length());
-
                 if (file.exists()) {
-                    Log.d("ImagePart", "File exists: " + file.getName()); // 로그 추가
                     RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), file);
                     return MultipartBody.Part.createFormData("file", file.getName(), requestFile);
                 } else {
@@ -372,10 +400,33 @@ public class EditProfileActivity extends AppCompatActivity {
                 Log.e("FileError", "Unable to get path from URI: " + uri);
                 showToast("이미지 경로를 가져올 수 없습니다.");
             }
-        } else {
-            Log.d("ImagePart", "Image URI is null"); // URI가 null일 때 로그 추가
         }
-        return null;
+
+        // 이미지가 없을 경우 기본 이미지 사용
+        Log.d("ImagePart", "Image URI is null, using default image.");
+        return createDefaultImagePart();
+    }
+
+    // 기본 이미지를 사용하여 MultipartBody.Part 생성
+    private MultipartBody.Part createDefaultImagePart() {
+        // 기본 이미지인 default_profile_image를 불러옴
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.default_profile_image);
+        if (bitmap != null) {
+            // 비트맵을 JPEG 파일로 변환
+            File defaultImageFile = new File(getCacheDir(), "default_profile_image.jpg");
+            try (FileOutputStream fos = new FileOutputStream(defaultImageFile)) {
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+            } catch (Exception e) {
+                Log.e("FileError", "Error creating default image file: " + e.getMessage());
+                return null;
+            }
+
+            RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), defaultImageFile);
+            return MultipartBody.Part.createFormData("file", defaultImageFile.getName(), requestFile);
+        } else {
+            Log.e("ImageError", "Default image not found.");
+            return null;
+        }
     }
 
 
@@ -396,7 +447,7 @@ public class EditProfileActivity extends AppCompatActivity {
             return; // profileId가 없으면 메서드 종료
         }
 
-        ApiService profileService = RetrofitClient.getApiService(BASE_URL);
+        ApiService profileService = RetrofitClient.getApiService();
 
         Log.d("ProfileUpdate", "Profile Request: " + profileRequest.toString()); // 프로필 요청 로그 추가
         if (imagePart != null) {
@@ -442,6 +493,8 @@ public class EditProfileActivity extends AppCompatActivity {
                 showToast("권한이 승인되었습니다.");
             } else {
                 showToast("권한이 거부되었습니다. 이 기능을 사용하려면 권한이 필요합니다.");
+                // 로그캣에 오류 메시지 출력
+                Log.e("PermissionError", "권한이 거부되었습니다. 권한이 없으면 이 기능을 사용할 수 없습니다.");
             }
         }
     }
@@ -465,7 +518,6 @@ public class EditProfileActivity extends AppCompatActivity {
     private String getRealPathFromURI(Uri uri) {
         String path = null;
 
-        // Content Scheme URI (갤러리 이미지 같은 경우)
         if ("content".equalsIgnoreCase(uri.getScheme())) {
             String[] projection = {MediaStore.Images.Media.DATA};
             Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
@@ -475,9 +527,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 path = cursor.getString(columnIndex);
                 cursor.close();
             }
-        }
-        // File Scheme URI (파일 경로 같은 경우)
-        else if ("file".equalsIgnoreCase(uri.getScheme())) {
+        } else if ("file".equalsIgnoreCase(uri.getScheme())) {
             path = uri.getPath();
         }
 
@@ -486,11 +536,17 @@ public class EditProfileActivity extends AppCompatActivity {
 
 
     private void requestPermissions() {
-        if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
-        }
-        if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+        if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
+                checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+
+            // 필요한 권한 요청
+            requestPermissions(new String[]{
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+            }, 1);
+        } else {
+            // 이미 권한이 있는 경우
+            showToast("이미 권한이 승인되었습니다.");
         }
     }
 

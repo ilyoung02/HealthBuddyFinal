@@ -104,7 +104,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void fetchProfileData(int profileId) {
-        ApiService profileService = RetrofitClient.getApiService(BASE_URL);
+        ApiService profileService = RetrofitClient.getApiService();
 
         Call<MyProfileResponse> call = profileService.getProfileData(profileId);  // Pass the valid profileId
         call.enqueue(new Callback<MyProfileResponse>() {

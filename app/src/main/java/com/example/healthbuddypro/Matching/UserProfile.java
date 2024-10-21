@@ -41,7 +41,7 @@ public class UserProfile implements Serializable {
         return image;
     }
     public void setImage(String image) {
-        this.image = this.image;
+        this.image = image;
     }
 
     // 성별
@@ -73,6 +73,24 @@ public class UserProfile implements Serializable {
     }
     public void setLikeCount(int likeCount) {
         this.likeCount = likeCount;
+    }
+
+
+
+    // quals 및 hashCode 메서드를 추가하여 객체 비교 및 해시 기반 컬렉션에서 사용
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        UserProfile that = (UserProfile) o;
+
+        return profileId == that.profileId;
+    }
+
+    @Override
+    public int hashCode() {
+        return profileId;
     }
 }
 

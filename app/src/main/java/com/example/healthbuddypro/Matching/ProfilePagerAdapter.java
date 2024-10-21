@@ -66,7 +66,7 @@ public class ProfilePagerAdapter extends RecyclerView.Adapter<ProfilePagerAdapte
 
     // 좋아요 요청 메서드
     private void sendLikeRequest(int profileId, Context context) {
-        ApiService apiService = RetrofitClient.getApiService("http://165.229.89.154:8080/");
+        ApiService apiService = RetrofitClient.getApiService();
 
         // Retrofit으로 백엔드 요청
         Call<LikeResponse> call = apiService.likeProfile(profileId);

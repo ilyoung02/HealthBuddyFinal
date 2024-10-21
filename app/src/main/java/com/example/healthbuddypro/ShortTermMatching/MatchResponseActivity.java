@@ -24,7 +24,7 @@ public class MatchResponseActivity extends AppCompatActivity {
         // 예를 들어, 사용자가 수락 버튼을 눌렀다고 가정
         ShortMatchRequestStatus requestStatus = new ShortMatchRequestStatus("ACCEPTED");
 
-        ApiService apiService = RetrofitClient.getApiService("http://165.229.89.154:8080/");
+        ApiService apiService = RetrofitClient.getApiService();
         apiService.respondMatchRequest(matchRequestId, requestStatus).enqueue(new Callback<ShortMatchResponse>() {
             @Override
             public void onResponse(Call<ShortMatchResponse> call, Response<ShortMatchResponse> response) {

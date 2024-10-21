@@ -74,7 +74,7 @@ public class MatchListAdapter extends RecyclerView.Adapter<MatchListAdapter.View
     }
 
     private void sendMatchRequest(Context context, int senderId, int receiverId) {
-        ApiService apiService = RetrofitClient.getApiService("http://165.229.89.154:8080/");
+        ApiService apiService = RetrofitClient.getApiService();
         ShortMatchRequest request = new ShortMatchRequest(senderId, receiverId);
 
         apiService.sendShortMatchRequest(request).enqueue(new Callback<ShortMatchResponse>() {

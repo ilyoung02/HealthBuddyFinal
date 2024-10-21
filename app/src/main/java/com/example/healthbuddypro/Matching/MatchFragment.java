@@ -17,6 +17,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.healthbuddypro.ApiService;
 import com.example.healthbuddypro.R;
+import com.example.healthbuddypro.RetrofitClient;
 import com.example.healthbuddypro.ShortTermMatching.ShortTermMatchFragment;
 import java.util.ArrayList;
 import java.util.List;
@@ -79,21 +80,7 @@ public class MatchFragment extends Fragment {
     }
 
     private void fetchProfilesFromBackend() {
-        // Retrofit 설정 시 OkHttpClient와 로그 추가
-        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
-        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY); // 로그 레벨 설정
-
-        OkHttpClient client = new OkHttpClient.Builder()
-                .addInterceptor(loggingInterceptor) // 로그 인터셉터 추가
-                .build();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://165.229.89.154:8080/") // 실제 백엔드 URL 넣기
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(client) // OkHttpClient 추가
-                .build();
-
-        ApiService apiService = retrofit.create(ApiService.class);
+        ApiService apiService = RetrofitClient.getApiService();
 
         // 백엔드에서 모든 사용자의 프로필 데이터 가져오는 부분
         Call<ProfileListResponse> call = apiService.getProfiles();
@@ -102,7 +89,6 @@ public class MatchFragment extends Fragment {
             public void onResponse(Call<ProfileListResponse> call, Response<ProfileListResponse> response) {
                 if (response.isSuccessful() && response.body() != null && response.body().getCode() == 200) {
                     List<UserProfile> profiles = response.body().getData();
-
                     if (profiles != null && !profiles.isEmpty()) {
                         setupViewPager(profiles); // 데이터를 ViewPager에 설정
                     } else {

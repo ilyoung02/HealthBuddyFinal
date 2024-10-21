@@ -1,6 +1,7 @@
 package com.example.healthbuddypro.Login;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -66,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
         LoginRequest loginRequest = new LoginRequest(username, password);
 
         // Retrofit을 통해 로그인 요청 보내기
-        ApiService apiService = RetrofitClient.getApiService(BASE_URL);
+        ApiService apiService = RetrofitClient.getApiService();  // context 추가
         Call<LoginResponse> call = apiService.login(loginRequest);
         call.enqueue(new Callback<LoginResponse>() {
             @Override
@@ -74,6 +75,12 @@ public class LoginActivity extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null) {
                     // 로그인 성공 로그 출력
                     Log.d(TAG, "로그인 성공: " + response.body().toString());
+
+                    // SharedPreferences에 로그인 상태 저장
+                    SharedPreferences sharedPreferences = getSharedPreferences("HealthBuddyProPrefs", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putBoolean("isLoggedIn", true);  // 로그인 상태 저장
+                    editor.apply();
 
                     Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
                     // 로그인 성공 후 메인 화면으로 이동

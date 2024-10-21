@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.healthbuddypro.ApiService;
+import com.example.healthbuddypro.Login.LoginActivity;
 import com.example.healthbuddypro.MainActivity;
 import com.example.healthbuddypro.R;
 import com.example.healthbuddypro.RetrofitClient;
@@ -112,7 +113,7 @@ public class SignupActivity extends AppCompatActivity {
         String birthDate = year + "." + month + "." + day + " 12:00";
         SignUpRequest signUpRequest = new SignUpRequest(username, password, confirmPassword, nickname, birthDate, gender, selectedLocation);
 
-        ApiService apiService = RetrofitClient.getApiService("http://165.229.89.154:8080/");
+        ApiService apiService = RetrofitClient.getApiService();
         Call<SignUpResponse> call = apiService.signUp(signUpRequest);
 
         call.enqueue(new Callback<SignUpResponse>() {
@@ -125,7 +126,7 @@ public class SignupActivity extends AppCompatActivity {
                     saveProfileAndUserIdToSharedPreferences(profileId, userId);
 
                     Toast.makeText(SignupActivity.this, "회원가입 성공", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+                    Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
                     startActivity(intent);
                     finish();
                 } else {
