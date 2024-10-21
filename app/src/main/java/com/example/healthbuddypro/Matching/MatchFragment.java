@@ -95,18 +95,23 @@ public class MatchFragment extends Fragment {
 
         ApiService apiService = retrofit.create(ApiService.class);
 
+        // 백엔드에서 모든 사용자의 프로필 데이터 가져오는 부분
         Call<ProfileListResponse> call = apiService.getProfiles();
         call.enqueue(new Callback<ProfileListResponse>() {
             @Override
             public void onResponse(Call<ProfileListResponse> call, Response<ProfileListResponse> response) {
                 if (response.isSuccessful() && response.body() != null && response.body().getCode() == 200) {
-                    // 프로필 데이터를 불러와 뷰페이저에 설정
                     List<UserProfile> profiles = response.body().getData();
-                    setupViewPager(profiles); // 데이터를 ViewPager에 설정
+
+                    if (profiles != null && !profiles.isEmpty()) {
+                        setupViewPager(profiles); // 데이터를 ViewPager에 설정
+                    } else {
+                        Toast.makeText(getContext(), "프로필 목록이 비어 있습니다.", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     String errorMessage = "데이터를 불러오지 못했습니다. 오류 코드: " + response.code();
                     Toast.makeText(getContext(), errorMessage, Toast.LENGTH_SHORT).show();
-                    Log.e("MatchFragment", errorMessage); // Logcat에 오류 메시지 출력
+                    Log.e("MatchFragment", errorMessage);
                 }
             }
 
@@ -119,16 +124,16 @@ public class MatchFragment extends Fragment {
         });
     }
 
+    // 데이터를 item_profile로 보여주는 부분
     // ProfileDetailActivity로 정보 넘겨줌 (ProfileId로 구분 -> 단일 프로필 정보 불러오기)
     private void setupViewPager(List<UserProfile> profiles) {
-        // 받아온 profile 데이터를 ProfilePagerAdapter로 설정
         adapter = new ProfilePagerAdapter(profiles, profile -> {
             Intent intent = new Intent(getContext(), ProfileDetailActivity.class);
-            intent.putExtra("profileId", profile.getProfileId()); // profileId 전달
-            intent.putExtra("nickname", profile.getNickName());
-            intent.putExtra("gender", profile.getGender());
+            intent.putExtra("profileId", profile.getProfileId());
+            intent.putExtra("nickname", profile.getNickName() != null ? profile.getNickName() : "Unknown");
+            intent.putExtra("gender", profile.getGender() != null ? profile.getGender() : "Not specified");
             intent.putExtra("age", profile.getAge());
-            intent.putExtra("image", profile.getImage());
+            intent.putExtra("image", profile.getImage() != null ? profile.getImage() : "");
             intent.putExtra("workoutYears", profile.getWorkoutYears() + "년");
             startActivity(intent);
         });

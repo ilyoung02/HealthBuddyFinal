@@ -1,6 +1,6 @@
 package com.example.healthbuddypro.ShortTermMatching;
 
-public class MatchResponse {
+public class ShortMatchResponse {
     private int code;
     private String message;
     private Data data;

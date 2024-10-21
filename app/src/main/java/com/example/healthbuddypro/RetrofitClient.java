@@ -22,7 +22,7 @@ public class RetrofitClient {
 
             // OkHttp 클라이언트에 쿠키 매니저와 로깅 연결
             OkHttpClient client = new OkHttpClient.Builder()
-                    .addInterceptor(logging)
+                    .addInterceptor(logging) // 로그 인터셉터
                     .cookieJar(new JavaNetCookieJar(new CookieManager()))
                     .build();
 

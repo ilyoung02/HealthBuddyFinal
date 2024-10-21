@@ -1,21 +1,34 @@
 package com.example.healthbuddypro.Matching.Chat;
 
-// 채팅 메시지의 내용과 송신자/수신자 여부 저장
 public class Message {
-    private String text;
-    private boolean isMine; // 메시지가 내 것인지 여부
 
-    public Message(String text, boolean isMine) {
-        this.text = text;
-        this.isMine = isMine;
+    private String content;
+    private boolean isSender;
+
+    // 기본 생성자 (Firestore에서 역직렬화 시 필요)
+    public Message() {
     }
 
-    public String getText() {
-        return text;
+    // 필드를 초기화하는 생성자
+    public Message(String content, boolean isSender) {
+        this.content = content;
+        this.isSender = isSender;
     }
 
-    public boolean isMine() {
-        return isMine;
+    // getter와 setter 추가
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public boolean isSender() {
+        return isSender;
+    }
+
+    public void setSender(boolean sender) {
+        isSender = sender;
     }
 }
-

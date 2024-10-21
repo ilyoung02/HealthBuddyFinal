@@ -99,6 +99,7 @@ public class ProfilePagerAdapter extends RecyclerView.Adapter<ProfilePagerAdapte
         TextView nicknameTextView, genderTextView, ageTextView;
         Button btnLike;
 
+        // 데이터 바인딩
         public ProfileViewHolder(@NonNull View itemView) {
             super(itemView);
             // item_profile.xml 파일 참고

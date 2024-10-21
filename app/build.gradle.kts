@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.google.android.libraries.mapsplatform.secrets.gradle.plugin)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -46,9 +47,14 @@ dependencies {
     implementation ("com.google.code.gson:gson:2.8.6")
     implementation ("com.squareup.okhttp3:logging-interceptor:4.9.1")
 
-    //이미지 업로드 glide 설정
+    // 이미지 업로드 glide 설정
     implementation("com.github.bumptech.glide:glide:4.12.0")
+    implementation(libs.firebase.firestore)
     annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
+
+    // 파이어베이스 의존성 추가
+    implementation(platform("com.google.firebase:firebase-bom:33.4.0"))
+    implementation("com.google.firebase:firebase-analytics")
 
     implementation ("com.squareup.okhttp3:okhttp-urlconnection:4.9.1")
 

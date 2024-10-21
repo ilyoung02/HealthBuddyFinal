@@ -16,8 +16,6 @@ import com.example.healthbuddypro.ApiService;
 import com.example.healthbuddypro.R;
 import com.example.healthbuddypro.RetrofitClient;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 import retrofit2.Call;
@@ -26,9 +24,9 @@ import retrofit2.Response;
 
 public class MatchListAdapter extends RecyclerView.Adapter<MatchListAdapter.ViewHolder> {
 
-    private List<MatchPost> matchList;
+    private List<ShortMatchPost> matchList;
 
-    public MatchListAdapter(List<MatchPost> matchList) {
+    public MatchListAdapter(List<ShortMatchPost> matchList) {
         this.matchList = matchList;
     }
 
@@ -41,7 +39,7 @@ public class MatchListAdapter extends RecyclerView.Adapter<MatchListAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        MatchPost currentPost = matchList.get(position);
+        ShortMatchPost currentPost = matchList.get(position);
 
         // 제목 설정
         holder.textViewMatchInfo.setText(currentPost.getTitle());
@@ -64,7 +62,7 @@ public class MatchListAdapter extends RecyclerView.Adapter<MatchListAdapter.View
         return matchList.size();
     }
 
-    private void showApplyDialog(Context context, MatchPost post) {
+    private void showApplyDialog(Context context, ShortMatchPost post) {
         new AlertDialog.Builder(context)
                 .setTitle("매칭 신청")
                 .setMessage(post.getTitle() + "에 매칭 신청하시겠습니까?")
@@ -77,11 +75,11 @@ public class MatchListAdapter extends RecyclerView.Adapter<MatchListAdapter.View
 
     private void sendMatchRequest(Context context, int senderId, int receiverId) {
         ApiService apiService = RetrofitClient.getApiService("http://165.229.89.154:8080/");
-        MatchRequest request = new MatchRequest(senderId, receiverId);
+        ShortMatchRequest request = new ShortMatchRequest(senderId, receiverId);
 
-        apiService.sendMatchRequest(request).enqueue(new Callback<MatchResponse>() {
+        apiService.sendShortMatchRequest(request).enqueue(new Callback<ShortMatchResponse>() {
             @Override
-            public void onResponse(Call<MatchResponse> call, Response<MatchResponse> response) {
+            public void onResponse(Call<ShortMatchResponse> call, Response<ShortMatchResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     Toast.makeText(context, "매칭 신청 완료!", Toast.LENGTH_SHORT).show();
                 } else {
@@ -90,13 +88,13 @@ public class MatchListAdapter extends RecyclerView.Adapter<MatchListAdapter.View
             }
 
             @Override
-            public void onFailure(Call<MatchResponse> call, Throwable t) {
+            public void onFailure(Call<ShortMatchResponse> call, Throwable t) {
                 Toast.makeText(context, "오류 발생: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    public void updateList(List<MatchPost> newMatchList) {
+    public void updateList(List<ShortMatchPost> newMatchList) {
         matchList = newMatchList;
         notifyDataSetChanged();
     }

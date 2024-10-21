@@ -2,14 +2,16 @@ package com.example.healthbuddypro;
 
 import com.example.healthbuddypro.Login.LoginRequest;
 import com.example.healthbuddypro.Login.LoginResponse;
+import com.example.healthbuddypro.Matching.Chat.MatchRequest;
+import com.example.healthbuddypro.Matching.Chat.MatchResponse;
 import com.example.healthbuddypro.Matching.Chat.MessageRequest;
 import com.example.healthbuddypro.Matching.ProfileListResponse;
 import com.example.healthbuddypro.Matching.ProfileResponse;
+import com.example.healthbuddypro.ShortTermMatching.ShortMatchRequest;
+import com.example.healthbuddypro.ShortTermMatching.ShortMatchRequestStatus;
+import com.example.healthbuddypro.ShortTermMatching.ShortMatchResponse;
 import com.example.healthbuddypro.Profile.EditProfileResponse;
 import com.example.healthbuddypro.Profile.MyProfileResponse;
-import com.example.healthbuddypro.ShortTermMatching.MatchRequest;
-import com.example.healthbuddypro.ShortTermMatching.MatchRequestStatus;
-import com.example.healthbuddypro.ShortTermMatching.MatchResponse;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -57,12 +59,16 @@ public interface ApiService {
 
     // 단기 매칭 요청
     @POST("/api/match/request")
+    Call<ShortMatchResponse> sendShortMatchRequest(@Body ShortMatchRequest request);
+
+    // 매칭 요청
+    @POST("/api/match/request")
     Call<MatchResponse> sendMatchRequest(@Body MatchRequest request);
 
     @PUT("/api/match/request/{matchRequestId}")
-    Call<MatchResponse> respondMatchRequest(
+    Call<ShortMatchResponse> respondMatchRequest(
             @Path("matchRequestId") int matchRequestId,
-            @Body MatchRequestStatus requestStatus
+            @Body ShortMatchRequestStatus requestStatus
     );
 
     // 프로필 수정
@@ -75,8 +81,8 @@ public interface ApiService {
     );
 
     // 프로필 가져오기
-    @GET("/api/match/profiles/{profileId}") 
+    @GET("/api/match/profiles/{profileId}")
     Call<MyProfileResponse> getProfileData(
             @Path("profileId") int profileId
-    );    
+    );
 }

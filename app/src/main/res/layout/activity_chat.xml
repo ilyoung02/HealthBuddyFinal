@@ -50,4 +50,13 @@
             android:layout_marginStart="8dp" />
     </LinearLayout>
 
+    <Button
+        android:id="@+id/match_send"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="매칭 신청"
+        android:background="@drawable/rounded_button"
+        android:textColor="@android:color/white"
+        android:padding="12dp"
+        android:layout_marginStart="8dp"/>
 </LinearLayout>

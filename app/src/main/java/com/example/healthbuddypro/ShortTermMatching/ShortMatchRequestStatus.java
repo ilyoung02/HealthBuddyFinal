@@ -1,10 +1,10 @@
 package com.example.healthbuddypro.ShortTermMatching;
 
-public class MatchRequestStatus {
+public class ShortMatchRequestStatus {
 
     private String requestStatus;
 
-    public MatchRequestStatus(String requestStatus) {
+    public ShortMatchRequestStatus(String requestStatus) {
         this.requestStatus = requestStatus;
     }
 

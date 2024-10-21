@@ -1,11 +1,11 @@
 package com.example.healthbuddypro.ShortTermMatching;
 
-public class MatchRequest {
+public class ShortMatchRequest {
 
     private int senderId;
     private int receiverId;
 
-    public MatchRequest(int senderId, int receiverId) {
+    public ShortMatchRequest(int senderId, int receiverId) {
         this.senderId = senderId;
         this.receiverId = receiverId;
     }

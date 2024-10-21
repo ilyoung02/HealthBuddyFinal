@@ -22,12 +22,12 @@ public class MatchResponseActivity extends AppCompatActivity {
         int matchRequestId = getIntent().getIntExtra("matchRequestId", -1);
 
         // 예를 들어, 사용자가 수락 버튼을 눌렀다고 가정
-        MatchRequestStatus requestStatus = new MatchRequestStatus("ACCEPTED");
+        ShortMatchRequestStatus requestStatus = new ShortMatchRequestStatus("ACCEPTED");
 
         ApiService apiService = RetrofitClient.getApiService("http://165.229.89.154:8080/");
-        apiService.respondMatchRequest(matchRequestId, requestStatus).enqueue(new Callback<MatchResponse>() {
+        apiService.respondMatchRequest(matchRequestId, requestStatus).enqueue(new Callback<ShortMatchResponse>() {
             @Override
-            public void onResponse(Call<MatchResponse> call, Response<MatchResponse> response) {
+            public void onResponse(Call<ShortMatchResponse> call, Response<ShortMatchResponse> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(MatchResponseActivity.this, "매칭 신청 수락 성공", Toast.LENGTH_SHORT).show();
                     // 채팅화면으로 이동 등 추가 작업 가능
@@ -37,7 +37,7 @@ public class MatchResponseActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<MatchResponse> call, Throwable t) {
+            public void onFailure(Call<ShortMatchResponse> call, Throwable t) {
                 Toast.makeText(MatchResponseActivity.this, "오류 발생: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

@@ -26,7 +26,7 @@ public class ShortTermMatchFragment extends Fragment implements WritePostFragmen
     private RecyclerView shortTermMatchList;
     private MatchListAdapter matchListAdapter;
     private DayOfWeekAdapter dayAdapter;
-    private Map<String, List<MatchPost>> matchData;  // 날짜별 매칭 데이터를 저장하기 위한 맵
+    private Map<String, List<ShortMatchPost>> matchData;  // 날짜별 매칭 데이터를 저장하기 위한 맵
 
     @Nullable
     @Override
@@ -97,8 +97,8 @@ public class ShortTermMatchFragment extends Fragment implements WritePostFragmen
         matchData = new HashMap<>();
 
         // 예시 데이터 삽입 (MatchPost 객체 사용)
-        addMatchData("월", new MatchPost(1, 2, "홍길동", "열심히 할 사람!!🔥", "어깨", "중리동", "성별무관"));
-        addMatchData("화", new MatchPost(3, 4, "방일영", "잘 부탁드려요!", "가슴", "서구", "남성전용"));
+        addMatchData("월", new ShortMatchPost(1, 2, "홍길동", "열심히 할 사람!!🔥", "어깨", "중리동", "성별무관"));
+        addMatchData("화", new ShortMatchPost(3, 4, "방일영", "잘 부탁드려요!", "가슴", "서구", "남성전용"));
 
         // 기본 데이터를 리스트에 설정
         matchListAdapter = new MatchListAdapter(new ArrayList<>());
@@ -108,7 +108,7 @@ public class ShortTermMatchFragment extends Fragment implements WritePostFragmen
         filterMatchList("월");
     }
 
-    private void addMatchData(String day, MatchPost match) {
+    private void addMatchData(String day, ShortMatchPost match) {
         if (!matchData.containsKey(day)) {
             matchData.put(day, new ArrayList<>());
         }
@@ -116,7 +116,7 @@ public class ShortTermMatchFragment extends Fragment implements WritePostFragmen
     }
 
     private void filterMatchList(String day) {
-        List<MatchPost> filteredList = matchData.getOrDefault(day, new ArrayList<>());
+        List<ShortMatchPost> filteredList = matchData.getOrDefault(day, new ArrayList<>());
         matchListAdapter.updateList(filteredList);
     }
 
@@ -131,7 +131,7 @@ public class ShortTermMatchFragment extends Fragment implements WritePostFragmen
         int receiverId = 2; // 임시로 매칭 대상자 ID 설정
 
         // 새로운 매칭 데이터를 현재 선택된 요일에 추가
-        addMatchData("월", new MatchPost(senderId, receiverId, title, health, content, location, category));
+        addMatchData("월", new ShortMatchPost(senderId, receiverId, title, health, content, location, category));
 
         // 매칭 목록을 갱신
         filterMatchList("월"); // 여기서 "월"을 선택된 요일로 대체할 수 있음
