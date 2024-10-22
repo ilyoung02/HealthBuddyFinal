@@ -48,12 +48,14 @@
                 android:orientation="vertical" >
 
                 <ImageButton
+                    android:id="@+id/myPicture"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/icon_runningman"
                     android:background="#ffffff"/>
 
                 <TextView
+                    android:id="@+id/myname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -79,12 +81,14 @@
                 android:layout_marginLeft="40dp">
 
                 <ImageButton
+                    android:id="@+id/buddyPicture"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/icon_flag"
                     android:background="#ffffff"/>
 
                 <TextView
+                    android:id="@+id/buddyName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -98,6 +102,7 @@
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_startTodayRoutine"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_button"

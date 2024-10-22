@@ -1,0 +1,11 @@
+
+k
+java:S1604"(Make this anonymous inner class a lambda(¾‡µà8ŒË­‰¨2J$a403b697-431a-469d-9082-425aa68a2419
+p
+java:S1604&"(Make this anonymous inner class a lambda(òÔ£şûÿÿÿÿ8Í¨áö¨2J$5ca0b295-cdd1-46ac-baa6-79424ffced15
+”	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(Ã‰ü¯ùÿÿÿÿ8Ë­‰¨2J$33c5e351-6a90-4119-bab9-d14124a7269e
+œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(èé™8Ë­‰¨2J$f0c24a39-e119-4f85-b05b-594def471dac
+¡
+java:S1450"YRemove the "backButton" field and declare it as a local variable in the relevant methods.(‡Å›„ûÿÿÿÿ8›Ë­‰¨2J$987adf6d-e355-42bc-a05f-2e9632039749
+ª
+java:S1450"bRemove the "completeMakeRoutine" field and declare it as a local variable in the relevant methods.(ˆı±Êıÿÿÿÿ8›Ë­‰¨2J$f0d98b33-82fb-4d42-bb74-5e347d01edfc

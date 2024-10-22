@@ -1,0 +1,6 @@
+
+C
+java:S1604F"(Make this anonymous inner class a lambda(é•ÄŒýÿÿÿÿ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‚Ö½Òÿÿÿÿÿ
+t
+java:S1450#"YRemove the "buttonSend" field and declare it as a local variable in the relevant methods.(æ¢ø¬ÿÿÿÿÿ

@@ -48,12 +48,15 @@
                 android:orientation="vertical" >
 
                 <ImageButton
+                    android:id="@+id/setRoutine_startDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/icon_runningman"
-                    android:background="#ffffff"/>
+                    android:background="#ffffff"
+                    android:contentDescription="루틴 시작날짜"/>
 
                 <TextView
+                    android:id="@+id/routine_startDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -72,12 +75,15 @@
                 android:orientation="vertical" >
 
                 <ImageButton
+                    android:id="@+id/setRoutine_endDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/icon_flag"
-                    android:background="#ffffff"/>
+                    android:background="#ffffff"
+                    android:contentDescription="루틴 종료날짜"/>
 
                 <TextView
+                    android:id="@+id/routine_endDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -91,6 +97,7 @@
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/nextBtn02"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_button"

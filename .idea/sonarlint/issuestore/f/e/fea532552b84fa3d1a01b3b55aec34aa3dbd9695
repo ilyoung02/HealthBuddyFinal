@@ -1,0 +1,7 @@
+
+k
+java:S1604"(Make this anonymous inner class a lambda(ηλΑ8όο†·§2J$8f658758-edde-4d62-abc0-4dc8a4738078
+”	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ΐθ£€ωÿÿÿÿ8ύο†·§2J$f2988937-6464-47d4-8e1c-9d1feb8642a0
+	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(θι™8ύο†·§2J$ab220ed5-32df-41e8-b571-cce6dbb77dab
+
+java:S1450"YRemove the "addWorkout" field and declare it as a local variable in the relevant methods.(κΙμ8π†·§2J$0627bedc-9317-4b09-9b06-42a7dfeb6f9f

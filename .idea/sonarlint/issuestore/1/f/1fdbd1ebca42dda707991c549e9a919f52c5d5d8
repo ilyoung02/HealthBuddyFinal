@@ -1,0 +1,17 @@
+
+k
+java:S1604-"(Make this anonymous inner class a lambda(ÀµÃ™8ş›ÿÙ§2J$fcd3125c-62ac-4433-94c7-8b45479ca553
+k
+java:S16045"(Make this anonymous inner class a lambda(¾‡µà8ş›ÿÙ§2J$1a6630ba-d638-42ea-b2d9-fa2331cfeab0
+p
+java:S1604H"(Make this anonymous inner class a lambda(Şûªùúÿÿÿÿ8ÿ›ÿÙ§2J$8a99fbee-31a9-48d2-9373-f162841df12f
+”	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(©›¯òÿÿÿÿÿ8ÿ›ÿÙ§2J$ed22b187-d0f6-4dfb-8227-419f3ed150d1
+œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(èé™8ÁÌàµ§2J$d007c28d-3edd-4098-b14a-3ae98bc9c5dd
+¡
+java:S1450"YRemove the "backButton" field and declare it as a local variable in the relevant methods.(‡Å›„ûÿÿÿÿ8†œÿÙ§2J$c70fcc5c-d3ce-4409-9247-a4a8040a5860
+ 
+java:S1450"]Remove the "nextStepButton" field and declare it as a local variable in the relevant methods.(ÇÓâÀ8†œÿÙ§2J$23b9ffb1-bf45-4f5d-829a-5ce288c28b4a
+T
+java:S1135"2Complete the task associated to this TODO comment.(Àóêûùÿÿÿÿ8Ò–¬ÿ¨2
+s
+java:S1874W"0Remove this use of "getColor"; it is deprecated.(Ş³ğŸ8‘œÿÙ§2J$8bf0f5b4-84ce-4515-82db-f91bf937d1df

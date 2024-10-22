@@ -1,0 +1,11 @@
+
+J
+java:S1604'"(Make this anonymous inner class a lambda(ùÜÎóûÿÿÿÿ8›ÏâÔ¨2
+E
+java:S1604/"(Make this anonymous inner class a lambda(…ˆ‘İ8›ÏâÔ¨2
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(×Õğøÿÿÿÿ8›ÏâÔ¨2
+t	java:S116"SRename this field "BASE_URL" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õÕĞ”şÿÿÿÿ8ÏâÔ¨2
+C
+java:S1170"!Make this final field static too.(õÕĞ”şÿÿÿÿ8¡ÏâÔ¨2
+J
+java:S1659".Declare "editTextPassword" on a separate line.(äÁï}8¡ÏâÔ¨2

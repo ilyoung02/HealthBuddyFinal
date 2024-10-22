@@ -1,0 +1,9 @@
+
+•	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ø‹—ÏJ$563bef8e-690f-4d39-ad63-03298c9a25d0
+
+java:S1488"\Immediately return this expression instead of assigning it to the temporary variable "view".(Ã†ÒÿùÿÿÿÿJ$c9a74120-aee2-405a-b8b1-d03127370fc3
+|	java:S125"<This block of commented-out lines of code should be removed.(§§ÂîùÿÿÿÿJ$4b26c7fc-7633-4f40-ba79-0c79bd1a1bb7
+n
+java:S1135"2Complete the task associated to this TODO comment.(Ê•ŞøJ$645516e3-e98c-4565-a73d-44efb47fc54c
+s
+java:S1068"2Remove this unused "btnRoutineList" private field.(Ù‘©†üÿÿÿÿJ$a5f71b0d-7df3-48c0-8d66-cf761130ff3a

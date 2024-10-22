@@ -1,7 +1,6 @@
 package com.example.healthbuddypro.SignUp;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -15,7 +14,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.healthbuddypro.ApiService;
-import com.example.healthbuddypro.Login.LoginActivity;
 import com.example.healthbuddypro.MainActivity;
 import com.example.healthbuddypro.R;
 import com.example.healthbuddypro.RetrofitClient;
@@ -79,7 +77,6 @@ public class SignupActivity extends AppCompatActivity {
         });
     }
 
-
     private void performSignup() {
         String nickname = editTextNickname.getText().toString().trim();
         String username = editTextUsername.getText().toString().trim();
@@ -118,15 +115,11 @@ public class SignupActivity extends AppCompatActivity {
 
         call.enqueue(new Callback<SignUpResponse>() {
             @Override
-            public void onResponse(Call<SignUpResponse> call, Response<SignUpResponse> response) {
+            public void onResponse(Call<com.example.healthbuddypro.SignUp.SignUpResponse> call, Response<SignUpResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    // 성공적으로 회원가입이 된 경우 profileId와 userId 저장
-                    int profileId = response.body().getData().getProfileId(); // SignUpResponse에서 profileId 가져오기
-                    int userId = response.body().getData().getUserId(); // SignUpResponse에서 userId 가져오기
-                    saveProfileAndUserIdToSharedPreferences(profileId, userId);
-
                     Toast.makeText(SignupActivity.this, "회원가입 성공", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+                    // 회원가입 성공 후 추가 로직 구현
+                    Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
                 } else {
@@ -141,6 +134,7 @@ public class SignupActivity extends AppCompatActivity {
                 }
             }
 
+
             @Override
             public void onFailure(Call<SignUpResponse> call, Throwable t) {
                 Log.e("SignUpFailure", "네트워크 오류: " + t.getMessage());
@@ -148,14 +142,4 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
     }
-
-    private void saveProfileAndUserIdToSharedPreferences(int profileId, int userId) {
-        // SharedPreferences에 profileId와 userId 저장
-        SharedPreferences sharedPreferences = getSharedPreferences("HealthBuddyProPrefs", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt("profileId", profileId);  // profileId 저장
-        editor.putInt("userId", userId);        // userId 저장
-        editor.apply();  // 변경사항 저장
-    }
-
 }

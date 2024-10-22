@@ -11,7 +11,9 @@ import com.example.healthbuddypro.Fitness.FitnessFragment;
 import com.example.healthbuddypro.Gym.GymFragment;
 import com.example.healthbuddypro.Matching.MatchFragment;
 import com.example.healthbuddypro.Profile.ProfileFragment;
+import com.example.healthbuddypro.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 
 public class MainActivity extends AppCompatActivity {
 

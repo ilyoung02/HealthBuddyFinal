@@ -34,17 +34,21 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:contentDescription="요일 이미지 묶음">
 
             <ImageButton
+                android:id="@+id/mon"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:scaleType="centerCrop"
                 android:layout_marginRight="5dp"
                 android:src="@drawable/icon_mon"
-                android:background="#ffffff" />
+                android:background="#ffffff"
+                android:contentDescription="요일"/>
 
             <ImageButton
+                android:id="@+id/tue"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:scaleType="centerCrop"
@@ -53,6 +57,7 @@
                 android:background="#ffffff" />
 
             <ImageButton
+                android:id="@+id/wed"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:scaleType="centerCrop"
@@ -61,6 +66,7 @@
                 android:background="#ffffff" />
 
             <ImageButton
+                android:id="@+id/thu"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:scaleType="centerCrop"
@@ -69,6 +75,7 @@
                 android:background="#ffffff" />
 
             <ImageButton
+                android:id="@+id/fri"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:scaleType="centerCrop"
@@ -77,6 +84,7 @@
                 android:background="#ffffff" />
 
             <ImageButton
+                android:id="@+id/sat"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:scaleType="centerCrop"
@@ -85,6 +93,7 @@
                 android:background="#ffffff" />
 
             <ImageButton
+                android:id="@+id/sun"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:scaleType="centerCrop"
@@ -99,7 +108,7 @@
 
     <!-- Next Step Button -->
     <Button
-        android:id="@+id/nextStepButton"
+        android:id="@+id/nextBtn03"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="다음 단계"

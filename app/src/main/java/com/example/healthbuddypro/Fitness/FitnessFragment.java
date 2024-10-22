@@ -5,10 +5,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
+import com.example.healthbuddypro.FitnessTab.Routine.RoutineFragment;
 import com.google.android.material.tabs.TabLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import com.example.healthbuddypro.FitnessTab.GroupViewPagerAdapter;
 import com.example.healthbuddypro.R;
 
 public class FitnessFragment extends Fragment {

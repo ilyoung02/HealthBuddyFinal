@@ -16,6 +16,7 @@ import com.example.healthbuddypro.MainActivity;
 import com.example.healthbuddypro.R;
 import com.example.healthbuddypro.RetrofitClient;
 import com.example.healthbuddypro.SignUp.SignupActivity;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -23,7 +24,7 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText editTextUsername, editTextPassword;
-    private final String BASE_URL = "http://165.229.89.154:8080/"; // 실제 AWS API URL로 변경
+    private final String BASE_URL = "http://165.229.89.154:8080/";
     private static final String TAG = "LoginActivity";  // 로그 태그
 
     @Override

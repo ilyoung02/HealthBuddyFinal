@@ -1,123 +1,67 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
-    android:gravity="center_horizontal">
+    android:background="#ffffff">
 
+    <!-- 상단 제목과 설명 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
 
-<!--    이 페이지도 임시 페이지 -> 동적 추가되도록 해야됨 -> 운동 종류, 세트 수, 선택 가능 요일을 정해야 만들수있음-->
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/icon_back"
+            android:scaleType="centerCrop"
+            android:layout_margin="10dp"/>
+    </LinearLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="left"
-        android:text="루틴 운동 설정"
-        android:textStyle="bold"
+        android:text="루틴 운동설정"
         android:textSize="24sp"
-        android:layout_marginBottom="30dp"
-        android:layout_marginTop="16dp"/>
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_gravity="center"
+        android:layout_marginLeft="12dp"/>
 
-    <!-- 월요일 루틴 -->
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@drawable/box_background"
-        android:padding="16dp"
-        android:gravity="center"
+        android:text="# 헬스버디와 함께 루틴을 설정해주세요"
+        android:textColor="#000000"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"
-        android:layout_marginTop="24dp">
+        android:layout_marginLeft="18dp"/>
 
-        <TextView
-            android:id="@+id/tv_monday"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:layout_gravity="left"
-            android:text="월요일"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black" />
-
-        <!-- 월요일 루틴 내용 -->
-        <TextView
-            android:id="@+id/tv_monday_details"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="펙덱 플라이 10회 x 4set\n레그 프레스 15회 x 5set\n로잉 30분"
-            android:textSize="16dp"
-            android:background="#E0E0E0"
-            android:padding="8dp"
-            android:textColor="@android:color/black" />
-    </LinearLayout>
-    <LinearLayout
+    <!-- 스크롤 가능한 영역 -->
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@drawable/box_background"
-        android:padding="16dp"
-        android:gravity="center"
-        android:layout_marginBottom="16dp">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-        <TextView
-            android:id="@+id/tv_tuesday"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:layout_gravity="left"
-            android:text="수요일"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black" />
-
-
-        <TextView
-            android:id="@+id/tv_tuesday_details"
+        <!-- 운동 항목을 동적으로 추가할 LinearLayout -->
+        <LinearLayout
+            android:id="@+id/exerciseContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="벤치프레스 10회 x 4set\n스쿼트 15회 x 5set\n케이블 푸쉬다운 10회 x 5set\n러닝 40분"
-            android:textSize="16dp"
-            android:background="#E0E0E0"
-            android:padding="8dp"
-            android:textColor="@android:color/black" />
-    </LinearLayout>
+            android:orientation="vertical"
+            android:padding="16dp"/>
+    </ScrollView>
 
-    <!-- 금요일 루틴 -->
-    <LinearLayout
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/btn_makeRoutineComplete"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@drawable/box_background"
-        android:padding="16dp"
-        android:gravity="center"
-        android:layout_marginBottom="16dp">
-
-        <TextView
-            android:id="@+id/tv_friday"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:text="금요일"
-            android:layout_gravity="left"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black" />
-
-        <!-- 금요일 루틴 내용 -->
-        <TextView
-            android:id="@+id/tv_friday_details"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="랫풀다운 20회 x 4set\n덤벨 킥백 10회 x 5set\n싸이클 30분"
-            android:textSize="16dp"
-            android:background="#E0E0E0"
-            android:padding="8dp"
-            android:textColor="@android:color/black" />
-    </LinearLayout>
-
-
+        android:text="생성 완료"
+        android:textColor="#ffffff"
+        android:background="@drawable/solid_button"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"/>
 </LinearLayout>

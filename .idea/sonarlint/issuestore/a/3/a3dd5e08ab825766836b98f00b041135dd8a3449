@@ -1,0 +1,13 @@
+
+p
+java:S1604%"(Make this anonymous inner class a lambda(’»‡Ôûÿÿÿÿ8õí‘´§2J$ae3fcb34-bc4a-4fcd-9d76-542c15ec0488
+p
+java:S1604."(Make this anonymous inner class a lambda(ÌÕëÄùÿÿÿÿ8°‡¶ó©2J$1a13aa71-c01a-4ca1-a450-b01165586271
+œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(èé™8õí‘´§2J$83668d9e-c1f3-4503-9379-5116aea6d283
+	java:S116"[Rename this field "btn_startRoutine" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ğşü¤8íı¶ó©2J$44fcc44a-bae7-4244-9ea2-a9486d8675a4
+¥
+java:S1450"]Remove the "btnRoutineList" field and declare it as a local variable in the relevant methods.(Ù‘©†üÿÿÿÿ8ƒî‘´§2J$44794489-7178-4ea5-ae51-4a549c22d0a4
+¢
+java:S1450"_Remove the "btn_startRoutine" field and declare it as a local variable in the relevant methods.(Ğşü¤8øı¶ó©2J$cb2eb264-2b16-4d3d-9307-feb2dc959b40
+u
+java:S1135"2Complete the task associated to this TODO comment.(Ê•Şø8ùÑıö¨2J$c198155f-615d-4e42-971e-9f59ce8a9b93
