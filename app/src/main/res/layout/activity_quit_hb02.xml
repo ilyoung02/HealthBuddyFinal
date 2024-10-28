@@ -68,15 +68,15 @@
     </LinearLayout>
 
     <!-- Next Step Button -->
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/nextStepButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="다음 단계"
-        android:textColor="#FFFFFF"
         android:textStyle="bold"
         android:textSize="18sp"
-        android:backgroundTint="#5C87F2"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#6795ED"
         android:paddingHorizontal="32dp"
         android:paddingVertical="12dp"
         android:layout_gravity="center"

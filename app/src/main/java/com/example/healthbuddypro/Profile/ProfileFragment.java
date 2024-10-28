@@ -103,17 +103,19 @@ public class ProfileFragment extends Fragment {
         return view;
     }
 
+    // 서버에서 프로필 데이터를 가져오는 메소드
     private void fetchProfileData(int profileId) {
         ApiService profileService = RetrofitClient.getApiService();
 
-        Call<MyProfileResponse> call = profileService.getProfileData(profileId);  // Pass the valid profileId
+        Call<MyProfileResponse> call = profileService.getProfileData(profileId);  // profileId를 전달하여 서버에서 데이터 호출
         call.enqueue(new Callback<MyProfileResponse>() {
             @Override
             public void onResponse(Call<MyProfileResponse> call, Response<MyProfileResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    // Populate the UI with the received data
+                    // 서버에서 받은 프로필 데이터를 UI에 적용
                     MyProfileResponse.ProfileData profileData = response.body().getData();
 
+                    // 프로필 데이터 UI 설정
                     profileNickname.setText(profileData.getNickname());
                     profileGender.setText(profileData.getGender());
                     profileAge.setText(String.valueOf(profileData.getAge()));
@@ -123,26 +125,31 @@ public class ProfileFragment extends Fragment {
                     profileBio.setText(profileData.getBio());
                     likeCount.setText(String.valueOf(profileData.getLikeCount()));
 
+
                     String imageUrl = profileData.getImage();
 
-                    // Check if imageUrl is null or empty
-                    if (imageUrl != null && !imageUrl.isEmpty()) {
-                        if (!imageUrl.startsWith("http")) {
-                            imageUrl = BASE_URL + imageUrl;
-                        }
+                    Log.d("ProfileFragment", "Image URL: " + imageUrl);
 
+                    // 이미지 URL이 유효한지 확인 후 처리
+                    if (imageUrl != null && !imageUrl.isEmpty()) {
+                        // Glide를 사용해 ImageView에 이미지 로드
                         Glide.with(ProfileFragment.this)
                                 .load(imageUrl)
+                                .error(R.drawable.default_profile_image)  // 오류 시 기본 이미지 표시
                                 .into(profileImage);
                     } else {
-                        // Handle the case where the imageUrl is null or empty
+                        // 이미지 URL이 없을 경우 기본 이미지 사용
                         Log.e("ProfileFragment", "Image URL is null or empty.");
-                        profileImage.setImageResource(R.drawable.default_profile_image); // Use a default image
+                        profileImage.setImageResource(R.drawable.default_profile_image);
                     }
 
+                    // 즐겨찾기한 운동 목록 설정
                     List<String> favWorkouts = profileData.getFavWorkouts();
                     favWorkoutsAdapter = new FavWorkoutsAdapter(favWorkouts);
                     favWorkoutsRecyclerView.setAdapter(favWorkoutsAdapter);
+
+                } else {
+                    Log.e("ProfileFragment", "Failed to fetch profile data.");
                 }
             }
 
@@ -152,7 +159,6 @@ public class ProfileFragment extends Fragment {
             }
         });
     }
-
 
     // Logout confirmation dialog
     private void showLogoutConfirmationDialog() {

@@ -7,10 +7,6 @@ public class MyProfileResponse {
     private String message;
     private ProfileData data;
 
-    public ProfileData getData() {
-        return data;
-    }
-
     public class ProfileData {
         private int userId;
         private String image;
@@ -51,6 +47,14 @@ public class MyProfileResponse {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public ProfileData getData() {
+        return data;
+    }
+
+    public void setData(ProfileData data) {
+        this.data = data;
     }
 
 }

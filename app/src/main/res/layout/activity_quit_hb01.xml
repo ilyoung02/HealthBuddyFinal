@@ -19,8 +19,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="150dp"
-        android:layout_marginBottom="250dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginBottom="200dp"
         android:padding="20dp">
 
         <LinearLayout
@@ -63,39 +63,28 @@
             android:orientation="horizontal"
             android:gravity="center">
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Yes"
                 android:textStyle="bold"
                 android:textSize="20sp"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#6795ED"
                 android:layout_marginRight="20dp"/>
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="No"
                 android:textStyle="bold"
                 android:textSize="20sp"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#6795ED"
                 android:layout_marginLeft="20dp"/>
 
 
         </LinearLayout>
 
     </LinearLayout>
-
-    <!-- Next Step Button -->
-    <Button
-        android:id="@+id/nextStepButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="다음 단계"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        android:backgroundTint="#5C87F2"
-        android:paddingHorizontal="32dp"
-        android:paddingVertical="12dp"
-        android:layout_gravity="center" />
-
 </LinearLayout>

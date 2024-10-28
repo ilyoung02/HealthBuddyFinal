@@ -77,7 +77,6 @@
         <activity android:name=".Profile.EditProfileActivity" />
         <activity android:name=".Profile.WorkoutListActivity" />
         <activity android:name=".Profile.set_location"/>
-        <activity android:name=".Matching.ProfileDetailActivity" />
         <activity android:name=".FitnessTab.Routine.routine_list" />
         <activity android:name=".FitnessTab.Routine.make_routine01" />
         <activity android:name=".FitnessTab.Routine.make_routine03" />
