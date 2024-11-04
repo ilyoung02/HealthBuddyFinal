@@ -69,6 +69,7 @@ public class ProfileDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ProfileDetailActivity.this, ChatActivity.class);
+                intent.putExtra("profileId", profileId);  // profileId 전달
                 startActivity(intent);
             }
         });

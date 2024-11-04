@@ -66,6 +66,7 @@ public class ChatActivity extends AppCompatActivity {
 
         // Firebase Firestore 초기화
         firebaseFirestore = FirebaseFirestore.getInstance();
+        // 특정 profileId의 채팅 컬렉션을 사용하여 다른 유저와 개별 채팅방 생성
         chatRef = firebaseFirestore.collection("chats").document(String.valueOf(profileId)).collection("messages");
 
         // 메시지 전송 버튼 클릭 리스너
