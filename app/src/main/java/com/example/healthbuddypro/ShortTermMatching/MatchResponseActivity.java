@@ -25,21 +25,21 @@ public class MatchResponseActivity extends AppCompatActivity {
         ShortMatchRequestStatus requestStatus = new ShortMatchRequestStatus("ACCEPTED");
 
         ApiService apiService = RetrofitClient.getApiService();
-        apiService.respondMatchRequest(matchRequestId, requestStatus).enqueue(new Callback<ShortMatchResponse>() {
-            @Override
-            public void onResponse(Call<ShortMatchResponse> call, Response<ShortMatchResponse> response) {
-                if (response.isSuccessful()) {
-                    Toast.makeText(MatchResponseActivity.this, "매칭 신청 수락 성공", Toast.LENGTH_SHORT).show();
-                    // 채팅화면으로 이동 등 추가 작업 가능
-                } else {
-                    Toast.makeText(MatchResponseActivity.this, "매칭 신청 수락 실패", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ShortMatchResponse> call, Throwable t) {
-                Toast.makeText(MatchResponseActivity.this, "오류 발생: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+//        apiService.respondMatchRequest(matchRequestId, requestStatus).enqueue(new Callback<ShortMatchResponse>() {
+//            @Override
+//            public void onResponse(Call<ShortMatchResponse> call, Response<ShortMatchResponse> response) {
+//                if (response.isSuccessful()) {
+//                    Toast.makeText(MatchResponseActivity.this, "매칭 신청 수락 성공", Toast.LENGTH_SHORT).show();
+//                    // 채팅화면으로 이동 등 추가 작업 가능
+//                } else {
+//                    Toast.makeText(MatchResponseActivity.this, "매칭 신청 수락 실패", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ShortMatchResponse> call, Throwable t) {
+//                Toast.makeText(MatchResponseActivity.this, "오류 발생: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 }

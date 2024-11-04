@@ -2,17 +2,17 @@ package com.example.healthbuddypro.ShortTermMatching;
 
 public class ShortMatchRequestStatus {
 
-    private String requestStatus;
+    private String shortrequestStatus;
 
     public ShortMatchRequestStatus(String requestStatus) {
-        this.requestStatus = requestStatus;
+        this.shortrequestStatus = requestStatus;
     }
 
     public String getRequestStatus() {
-        return requestStatus;
+        return shortrequestStatus;
     }
 
     public void setRequestStatus(String requestStatus) {
-        this.requestStatus = requestStatus;
+        this.shortrequestStatus = requestStatus;
     }
 }

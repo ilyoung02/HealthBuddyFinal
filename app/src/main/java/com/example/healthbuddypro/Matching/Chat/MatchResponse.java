@@ -9,20 +9,23 @@ public class MatchResponse {
         return code;
     }
 
+    public void setCode(int code) {
+        this.code = code;
+    }
+
     public String getMessage() {
         return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public MatchData getData() {
         return data;
     }
 
-    public class MatchData {
-        private int teamId;
-
-        public int getTeamId() {
-            return teamId;
-        }
+    public void setData(MatchData data) {
+        this.data = data;
     }
 }
-

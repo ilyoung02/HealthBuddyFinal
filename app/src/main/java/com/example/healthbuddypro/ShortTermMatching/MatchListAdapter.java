@@ -67,32 +67,18 @@ public class MatchListAdapter extends RecyclerView.Adapter<MatchListAdapter.View
                 .setTitle("매칭 신청")
                 .setMessage(post.getTitle() + "에 매칭 신청하시겠습니까?")
                 .setPositiveButton("네", (dialog, which) -> {
-                    sendMatchRequest(context, post.getSenderId(), post.getReceiverId());
+//                    sendMatchRequest(context, post.getSenderId(), post.getReceiverId());
                 })
                 .setNegativeButton("아니오", null)
                 .show();
     }
 
-    private void sendMatchRequest(Context context, int senderId, int receiverId) {
-        ApiService apiService = RetrofitClient.getApiService();
-        ShortMatchRequest request = new ShortMatchRequest(senderId, receiverId);
-
-        apiService.sendShortMatchRequest(request).enqueue(new Callback<ShortMatchResponse>() {
-            @Override
-            public void onResponse(Call<ShortMatchResponse> call, Response<ShortMatchResponse> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    Toast.makeText(context, "매칭 신청 완료!", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(context, "매칭 신청 실패: " + response.message(), Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ShortMatchResponse> call, Throwable t) {
-                Toast.makeText(context, "오류 발생: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+//    private void sendMatchRequest(Context context, int senderId, int receiverId) {
+//        ApiService apiService = RetrofitClient.getApiService();
+//        ShortMatchRequest request = new ShortMatchRequest(senderId, receiverId);
+//
+//
+//    }
 
     public void updateList(List<ShortMatchPost> newMatchList) {
         matchList = newMatchList;

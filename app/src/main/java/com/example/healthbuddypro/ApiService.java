@@ -7,6 +7,7 @@ import com.example.healthbuddypro.FitnessTab.Routine.WorkoutResponse;
 import com.example.healthbuddypro.Login.LoginRequest;
 import com.example.healthbuddypro.Login.LoginResponse;
 import com.example.healthbuddypro.Matching.Chat.MatchRequest;
+import com.example.healthbuddypro.Matching.Chat.MatchRequestStatus;
 import com.example.healthbuddypro.Matching.Chat.MatchResponse;
 import com.example.healthbuddypro.Matching.Chat.MessageRequest;
 import com.example.healthbuddypro.Matching.LikeResponse;
@@ -57,30 +58,18 @@ public interface ApiService {
     @POST("/api/join")
     Call<com.example.healthbuddypro.SignUp.SignUpResponse> signUp(@Body com.example.healthbuddypro.SignUp.SignUpRequest signUpRequest);
 
-    // 매칭 신청 보내기
-//    @POST("/api/match/request")
-//    Call<MatchRequestResponse> sendMatchRequest(@Body MatchRequestListResponse.Data.MatchRequest request);
-
-    // 매칭 신청 내역 조회
-//    @GET("/api/match/request/user/{userId}")
-//    Call<MatchRequestListResponse> getMatchRequests(@Path("userId") int userId);
-
     // 메시지 전송
     @POST("/sendMessage") // 서버의 엔드포인트에 맞게 수정
     Call<Void> sendMessage(@Body MessageRequest messageRequest);
 
-    // 단기 매칭 요청
-    @POST("/api/match/request")
-    Call<ShortMatchResponse> sendShortMatchRequest(@Body ShortMatchRequest request);
-
     // 매칭 요청
     @POST("/api/match/request")
     Call<MatchResponse> sendMatchRequest(@Body MatchRequest request);
-
+    // 매칭 요청 수락/거절 메서드
     @PUT("/api/match/request/{matchRequestId}")
-    Call<ShortMatchResponse> respondMatchRequest(
+    Call<MatchResponse> respondMatchRequest(
             @Path("matchRequestId") int matchRequestId,
-            @Body ShortMatchRequestStatus requestStatus
+            @Body MatchRequestStatus requestStatus
     );
 
     // 프로필 수정

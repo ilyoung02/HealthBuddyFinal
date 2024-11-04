@@ -26,18 +26,10 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         this.messageList = messageList;
     }
 
-    // 메시지의 소유자가 본인인 경우와 상대방인 경우를 구분
-    // 오른쪽 또는 왼쪽에 메시지가 출력되도록 ViewHolder 선택
     @Override
     public int getItemViewType(int position) {
         Message message = messageList.get(position);
-        // 메시지가 본인의 것인지 여부를 확인하여 뷰타입 반환
-        // isSender() 메서드를 사용해 메시지의 발신자가 본인인지 구분, 이를 바탕으로 뷰타입 결정
-        if (message.isSender()) {
-            return VIEW_TYPE_MY_MESSAGE;
-        } else {
-            return VIEW_TYPE_OTHER_MESSAGE;
-        }
+        return message.isSender() ? VIEW_TYPE_MY_MESSAGE : VIEW_TYPE_OTHER_MESSAGE;
     }
 
     @NonNull
@@ -67,33 +59,38 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return messageList.size();
     }
 
-    // 내 메시지 ViewHolder (bind 메서드를 통해 메시지의 내용을 설정)
+    // 내 메시지 ViewHolder
     static class MyMessageViewHolder extends RecyclerView.ViewHolder {
         TextView textMessage;
+        TextView textSenderName;  // 보낸 사람 이름을 위한 TextView
 
         MyMessageViewHolder(View itemView) {
             super(itemView);
             textMessage = itemView.findViewById(R.id.textMessage);
+            textSenderName = itemView.findViewById(R.id.textSenderName);  // 추가
         }
 
-        // message.getContent()를 통해 Message 객체의 내용을 TextView에 적용
         void bind(Message message) {
-            textMessage.setText(message.getContent());  // 메시지 내용 설정
+            textMessage.setText(message.getContent());
+            textSenderName.setText(message.getSenderName());  // 이름 표시
         }
     }
 
-    // 상대방 메시지 ViewHolder (bind 메서드를 통해 메시지의 내용을 설정)
+    // 상대방 메시지 ViewHolder
     static class OtherMessageViewHolder extends RecyclerView.ViewHolder {
         TextView textMessage;
+        TextView textSenderName;  // 보낸 사람 이름을 위한 TextView
 
         OtherMessageViewHolder(View itemView) {
             super(itemView);
             textMessage = itemView.findViewById(R.id.textMessage);
+            textSenderName = itemView.findViewById(R.id.textSenderName);  // 추가
         }
 
-        // message.getContent()를 통해 Message 객체의 내용을 TextView에 적용
         void bind(Message message) {
-            textMessage.setText(message.getContent());  // 메시지 내용 설정
+            textMessage.setText(message.getContent());
+            textSenderName.setText(message.getSenderName());  // 이름 표시
         }
     }
 }
+
