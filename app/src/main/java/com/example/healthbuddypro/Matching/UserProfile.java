@@ -8,7 +8,7 @@ public class UserProfile implements Serializable {
     private int profileId;
     private int UserId;
     private String nickname;
-    private String image;
+    private String imageUrl;
     private String gender;
     private int age;
     private int workoutYears;  // 구력(운동 경력)
@@ -18,10 +18,10 @@ public class UserProfile implements Serializable {
     private String region;
     private String bio;
 
-    public UserProfile(String workoutGoal, String region, String bio, int profileId, int UserId, String nickname, String image, String gender, int age, int workoutYears, int likeCount, List<String> favWorkouts) {
+    public UserProfile(String workoutGoal, String region, String bio, int profileId, int UserId, String nickname, String imageUrl, String gender, int age, int workoutYears, int likeCount, List<String> favWorkouts) {
         this.profileId = profileId;
         this.nickname = nickname;
-        this.image = image;
+        this.imageUrl = imageUrl;
         this.gender = gender;
         this.age = age;
         this.workoutYears = workoutYears;
@@ -57,11 +57,11 @@ public class UserProfile implements Serializable {
     }
 
     // 이미지
-    public String getImage() {
-        return image;
+    public String getImageUrl() {
+        return imageUrl;
     }
-    public void setImage(String image) {
-        this.image = image;
+    public void setImage(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     // 성별

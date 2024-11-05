@@ -126,7 +126,7 @@ public class ProfileFragment extends Fragment {
                     likeCount.setText(String.valueOf(profileData.getLikeCount()));
 
 
-                    String imageUrl = profileData.getImage();
+                    String imageUrl = profileData.getImageUrl();
 
                     Log.d("ProfileFragment", "Image URL: " + imageUrl);
 

@@ -119,7 +119,7 @@ public class MatchFragment extends Fragment {
             intent.putExtra("nickname", profile.getNickName() != null ? profile.getNickName() : "Unknown");
             intent.putExtra("gender", profile.getGender() != null ? profile.getGender() : "Not specified");
             intent.putExtra("age", profile.getAge());
-            intent.putExtra("image", profile.getImage() != null ? profile.getImage() : "");
+            intent.putExtra("image", profile.getImageUrl() != null ? profile.getImageUrl() : "");
             intent.putExtra("workoutYears", profile.getWorkoutYears() + "년");
             intent.putExtra("workoutGoal", profile.getWorkoutGoal());
             intent.putExtra("bio", profile.getBio());

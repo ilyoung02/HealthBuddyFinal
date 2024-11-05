@@ -117,7 +117,7 @@ public class ProfileDetailActivity extends AppCompatActivity {
         workoutYears.setText("구력 : " + profile.getWorkoutYears() + "년");  // 운동 경력 설정
 
         // 이미지 로딩 (Glide 사용)
-        String imageUrl = profile.getImage(); // UserProfile 객체에서 이미지 URL을 가져옴
+        String imageUrl = profile.getImageUrl(); // UserProfile 객체에서 이미지 URL을 가져옴
         if (imageUrl != null && !imageUrl.isEmpty()) {
             Glide.with(this)
                     .load(imageUrl)

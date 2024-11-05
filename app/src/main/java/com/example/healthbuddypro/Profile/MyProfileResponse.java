@@ -9,7 +9,7 @@ public class MyProfileResponse {
 
     public class ProfileData {
         private int userId;
-        private String image;
+        private String imageUrl;
         private String nickname;
         private String gender;
         private int age;
@@ -20,7 +20,7 @@ public class MyProfileResponse {
         private String bio;
         private int likeCount;
 
-        public String getImage() { return image; }
+        public String getImageUrl() { return imageUrl; }
         public String getNickname() { return nickname; }
         public String getGender() { return gender; }
         public int getAge() { return age; }
