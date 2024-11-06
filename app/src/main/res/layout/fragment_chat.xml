@@ -2,7 +2,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    android:padding="16dp">
 
     <!-- 메시지를 표시할 RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
@@ -19,7 +20,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="8dp"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:layout_marginBottom="25dp">
 
         <!-- 메시지 입력 EditText -->
         <EditText

@@ -66,7 +66,7 @@
                 android:id="@+id/profile_nickname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="홍길동"
+                android:text="이름"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@android:color/black" />
@@ -82,7 +82,7 @@
                     android:id="@+id/profile_gender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="남자"
+                    android:text="성별"
                     android:textSize="16sp"
                     android:textColor="@android:color/black"
                     android:layout_marginTop="6dp"
@@ -93,7 +93,7 @@
                     android:id="@+id/profile_age"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="22"
+                    android:text="나이"
                     android:textSize="16sp"
                     android:textColor="@android:color/black"
                     android:layout_marginTop="6dp" />
@@ -111,7 +111,7 @@
                     android:id="@+id/profile_location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="대구 북구"
+                    android:text="지역"
                     android:textSize="16sp"
                     android:textColor="@android:color/black"
                     android:layout_marginEnd="20dp"/>
@@ -128,7 +128,7 @@
                     android:id="@+id/profile_experience"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="6"
+                    android:text="0"
                     android:textSize="16sp"
                     android:textColor="@android:color/black"
                     />
@@ -182,7 +182,7 @@
                     android:id="@+id/like_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="100"
+                    android:text="0"
                     android:textColor="@android:color/black"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -212,7 +212,7 @@
             android:id="@+id/health_buddy_switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="true" />
+            android:checked="false" />
     </LinearLayout>
 
     <!-- 상태 메시지와 운동 목표 박스 -->
@@ -240,7 +240,6 @@
                 android:id="@+id/exercise_goal_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="근육량 증가"
                 android:textSize="16sp"
                 android:textColor="@android:color/black"
                 android:layout_marginBottom="8dp"/>
@@ -253,7 +252,6 @@
             android:id="@+id/profile_bio_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="운동 같이 하실분?"
             android:textSize="16sp"
             android:textColor="@android:color/black"/>
 

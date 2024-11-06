@@ -190,6 +190,8 @@ public class EditProfileActivity extends AppCompatActivity {
 
         // workoutsBtn 클릭 리스너 추가
         workoutsBtn.setOnClickListener(v -> openWorkoutList());
+
+
     }
 
     // 화면에 나타나는 것들 선택
@@ -350,37 +352,6 @@ public class EditProfileActivity extends AppCompatActivity {
         updateProfileApiCall(profileRequest, imagePart);
     }
 
-//    //이미지 파일 가져오기
-//    private MultipartBody.Part createImagePart() {
-//        if (uri != null) {
-//            String path = getRealPathFromURI(uri);
-//            Log.d("ImagePart", "Image URI: " + uri.toString()); // 로그 추가
-//            if (path != null) {
-//                Log.d("ImagePart", "Real Path: " + path); // 로그 추가
-//                File file = new File(path);
-//
-//                Log.d("ImagePart", "Image Path: " + path);
-//                Log.d("ImagePart", "File Exists: " + file.exists());
-//                Log.d("ImagePart", "File Length: " + file.length());
-//
-//                if (file.exists()) {
-//                    Log.d("ImagePart", "File exists: " + file.getName()); // 로그 추가
-//                    RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), file);
-//                    return MultipartBody.Part.createFormData("file", file.getName(), requestFile);
-//                } else {
-//                    Log.e("FileError", "File not found: " + path);
-//                    showToast("이미지 파일을 찾을 수 없습니다.");
-//                }
-//            } else {
-//                Log.e("FileError", "Unable to get path from URI: " + uri);
-//                showToast("이미지 경로를 가져올 수 없습니다.");
-//            }
-//        } else {
-//            Log.d("ImagePart", "Image URI is null"); // URI가 null일 때 로그 추가
-//        }
-//        return null;
-//    }
-
     private MultipartBody.Part createImagePart() {
         if (uri != null) {
             String path = getRealPathFromURI(uri);
@@ -428,7 +399,6 @@ public class EditProfileActivity extends AppCompatActivity {
             return null;
         }
     }
-
 
     private RequestBody createProfileRequest(EditUserProfile profile) {
         Gson gson = new Gson();
@@ -499,22 +469,6 @@ public class EditProfileActivity extends AppCompatActivity {
         }
     }
 
-    /*
-    private String getRealPathFromURI(Uri uri) {
-        String[] projection = {MediaStore.Images.Media._ID};
-        Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
-        if (cursor != null) {
-            cursor.moveToFirst();
-            int idIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID);
-            long imageId = cursor.getLong(idIndex);
-            Uri imageUri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, imageId);
-            cursor.close();
-            return imageUri.toString(); // This returns a Uri, you may need to adjust your file handling.
-        }
-        return null;
-    }
-     */
-
     private String getRealPathFromURI(Uri uri) {
         String path = null;
 
@@ -534,7 +488,6 @@ public class EditProfileActivity extends AppCompatActivity {
         return path;
     }
 
-
     private void requestPermissions() {
         if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
                 checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -549,7 +502,6 @@ public class EditProfileActivity extends AppCompatActivity {
             showToast("이미 권한이 승인되었습니다.");
         }
     }
-
 
     private void showToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
