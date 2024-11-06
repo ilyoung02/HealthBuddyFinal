@@ -27,9 +27,11 @@ public class fix_routine extends AppCompatActivity {
     private ArrayList<Exercise> exerciseList = new ArrayList<>(); // 수정할 운동 정보 리스트
     private static final String BASE_URL = "http://165.229.89.154:8080/";
 
-    //todo : 서버에서 등록한 운동 리스트 전부 받아와서 동적추가해서 띄우는거 + 수정버튼 누르면 put 해서 수정하는거 추가
-    // 아직 api 업데이트 안되서 못함 -> 등록한 루틴 전체가 정의된 테이블을 참조해야 하는데 그게 아직 없음
-    // 수정완료 버튼 누르면 다시 루틴목록으로 돌아가고 갱신되는지 확인
+    //todo
+    // 1. 서버에서 등록한 운동 리스트 전부 받아와서 동적추가해서 띄우는거
+    // 2. 수정완료 버튼 누르면 입력한 칸에 대한 정보만 서버 DB 수정되도록
+    // 3. 수정완료 버튼 누르면 다시 루틴목록으로 돌아가고 수정 정보가 잘 갱신되는지 확인
+    // # 아직 api 업데이트 안되서 못함 -> 등록한 루틴 전체가 정의된 테이블을 참조해야 하는데 그게 아직 없음
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

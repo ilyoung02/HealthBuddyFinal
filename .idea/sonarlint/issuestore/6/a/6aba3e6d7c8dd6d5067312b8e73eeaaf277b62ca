@@ -1,0 +1,59 @@
+
+š	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÌÇÌÑÿÿÿÿÿJ$3a210496-a47f-42c5-8466-5723b3aa2ef9
+l
+java:S1066ø"/Merge this if statement with the enclosing one.(ß¸éJ$5e7593b6-f322-4478-92b6-89b0508c3f60
+Œ
+java:S1192Œ"JDefine a constant instead of duplicating this literal "FileError" 3 times.(´…Ò§øÿÿÿÿJ$fd77f2fc-5746-4bad-9827-915b48829080
+”
+java:S1192ù"RUse already-defined constant 'KEY_LATITUDE' instead of duplicating its value here.(—ËğâşÿÿÿÿJ$bbedfd23-db07-4569-a881-630c335d410d
+‹
+java:S1192½"NDefine a constant instead of duplicating this literal "ProfileUpdate" 9 times.(Ó“ÑJ$612edaa5-6abd-4449-9f0c-b772102fa260
+•
+java:S1192ú"SUse already-defined constant 'KEY_LONGITUDE' instead of duplicating its value here.(ÀöšàÿÿÿÿÿJ$e068f1a3-7fae-4f57-807e-70b29c49360f
+‡
+java:S1192ƒ"JDefine a constant instead of duplicating this literal "ImagePart" 3 times.(ü¬ñ›J$faa6a3f8-8cfe-42fa-bfae-94f0b1483d51
+“	java:S116<"SRename this field "BASE_URL" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õÕĞ”şÿÿÿÿJ$127eff34-9259-4d6b-894e-3035e0e3281c
+b
+java:S1170<"!Make this final field static too.(õÕĞ”şÿÿÿÿJ$71036937-28bf-46f6-8456-b7a6b5bba23f
+
+java:S1659"NDeclare "changePhotoButton" and all following declarations on a separate line.(›ÎãöıÿÿÿÿJ$7d95ac95-33f1-485c-9359-df00bdc00e7b
+m
+java:S1659"+Declare "regionSpinner" on a separate line.(˜¦Ö€ÿÿÿÿÿJ$804afb30-3409-4b2e-976e-4726bc51f1b6
+l
+java:S1659Ÿ"/Declare "introductionInput" on a separate line.(Š¢ØşJ$f7996644-94c4-42ba-9c60-1ff14aa5f0f5
+‹
+java:S1659¡"IDeclare "cancelButton" and all following declarations on a separate line.(­Æ§¯şÿÿÿÿJ$f65e9663-6e6d-405a-9ea1-005eaa43241f
+m
+java:S3599>",Use another way to initialize this instance.(¨ùİıÿÿÿÿJ$0a835bda-0d18-4e83-9395-71d45a4788fc
+š
+java:S1171>"YMove the contents of this initializer to a standard constructor or to field initializers.(¨ùİıÿÿÿÿJ$f36c75d3-c2b4-4428-a522-e848b67cdfcd
+g
+java:S3599I",Use another way to initialize this instance.(É¥ØJ$37380f0d-12fe-4c67-a46c-60a00c370a59
+”
+java:S1171I"YMove the contents of this initializer to a standard constructor or to field initializers.(É¥ØJ$3c3e9b63-c937-4ab1-a028-f7f21b736332
+{
+java:S1874á">Remove this use of "startActivityForResult"; it is deprecated.(êçÔJ$a688da34-1b03-462a-84e3-54f6611355ad
+{
+java:S1874æ">Remove this use of "startActivityForResult"; it is deprecated.(ó½’ÅJ$3ca4ce11-19af-4fae-b327-e8c3c1d40a57
+‡
+java:S1874ó"JDon't override a deprecated method or explicitly mark it as "@Deprecated".(ŸŒ¹ÑJ$fc77256b-d69b-4c6f-881b-fa283d3eb635
+
+java:S3776ó"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(ŸŒ¹ÑJ$1124c825-c1a8-4583-b753-7a7bd76f664c
+‚
+java:S1117Ñ"@Rename "gymLocation" which hides the field declared at line 157.(éÆ¹¢üÿÿÿÿJ$46380ebb-b097-477e-ac08-fac084fd856a
+}	java:S125â"<This block of commented-out lines of code should be removed.(ääÊÒøÿÿÿÿJ$846d9aa2-7d30-4381-9f85-5905db16df24
+k
+java:S1874‰".Remove this use of "create"; it is deprecated.(Õı“J$36763209-917f-4456-a8b5-0f50ad7ee408
+p
+java:S1874¨".Remove this use of "create"; it is deprecated.(ƒ”şŠûÿÿÿÿJ$8ff3f9b6-9479-4d71-9515-2b0c487e245b
+p
+java:S1874´".Remove this use of "create"; it is deprecated.(û´ÒüÿÿÿÿJ$49932010-7430-4e60-ba14-94186d0bf12d
+Œ
+java:S1874é"JDon't override a deprecated method or explicitly mark it as "@Deprecated".(Ó»×¶şÿÿÿÿJ$6f027007-498d-4585-b941-69dc92ab2f60
+}	java:S125÷"<This block of commented-out lines of code should be removed.(ş÷»úÿÿÿÿJ$83e0234f-d3e8-45c9-9384-90a799085b50
+Š
+java:S3252Š"MUse static access with "android.provider.MediaStore$MediaColumns" for "DATA".(´Ë¡éJ$f52d5404-5248-412a-b1c9-4682598fb08f
+Š
+java:S3252"MUse static access with "android.provider.MediaStore$MediaColumns" for "DATA".(ŞÿŞµJ$288dec7d-ce98-4657-b616-fcd539b9163c
+m
+java:S1068<",Remove this unused "BASE_URL" private field.(õÕĞ”şÿÿÿÿJ$1811d52f-cb8e-4bd8-91eb-5f97587c3571

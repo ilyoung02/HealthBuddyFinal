@@ -69,6 +69,7 @@ public class AddExerciseActivity extends Activity {
             }
         });
 
+        // 닫기 버튼
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -146,8 +147,11 @@ public class AddExerciseActivity extends Activity {
         });
     }
 
-    //todo : 유산소 운동 시 나오는 팝업은 다르게 해야하는데 이건 옵션으로 두자  or 유산소를 빼던지
-    // 운동 횟수와 세트 수를 설정하는 팝업
+    //todo
+    // 1. 유산소 운동 시 나오는 팝업은 다르게 해야하는데 이건 옵션으로 두자  or 유산소를 빼던지
+
+
+    // 세트 횟수 선택 팝업
     private void showInputDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(selectedExerciseName + " 설정");

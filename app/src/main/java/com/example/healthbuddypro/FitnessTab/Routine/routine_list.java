@@ -60,8 +60,10 @@ public class routine_list extends AppCompatActivity {
             }
         });
 
-        //TODO : 서버에서 헬스버디 이름 + 루틴 제목 + 진행상황 정보 가져와서 반영하는거 해야함
-        // 루틴 생성이 완료되고 돌아왔을때 갱신되는지도 확인
+        //TODO
+        // 1. 서버에서 헬스버디 이름 + 루틴 제목 + 진행상황 정보 가져와서 반영하는거 해야함
+        // 2. 루틴 생성하고 목록에 생성된게 추가 잘되는지 확인
+
         routineList = new ArrayList<>();
         routineList.add(new Routine("홍길동 헬스버디", "다이어트 운동")); // 임의로 박아둔거임
 

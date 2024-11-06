@@ -19,6 +19,11 @@ public class routine_list_item extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_routine_list_item);
 
+        //todo
+        // 1. 삭제 버튼 누르면 해당 루틴 정보가 서버에서도 삭제되고 화면에서도 삭제되도록 해야함
+        // 2. 진행중인 item 의 색상은 #6495ED 으로 하고
+        // 3. 진행 완료 된 item 색상은 흰색에 검정 테두리로 하기
+
         edit_routinelist = findViewById(R.id.edit_routinelist);
         delete_routinelist = findViewById(R.id.delete_routinelist);
 

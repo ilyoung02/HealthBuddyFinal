@@ -1,17 +1,19 @@
 
 p
-java:S1604"(Make this anonymous inner class a lambda(“íœÜıÿÿÿÿ8ò°Şó©2J$dd879433-3f02-4ac6-aa89-1992c7d6307e
+java:S1604"(Make this anonymous inner class a lambda(“íœÜıÿÿÿÿ8ò°Şó©2J$03ff7757-4301-400b-8a51-6abfa06ebcee
 k
-java:S1604#"(Make this anonymous inner class a lambda(‡âµ¡8Ğ€ßó©2J$7d01411f-2d42-4716-883a-a2d1aa478084
-”	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(õš•ûÿÿÿÿ8ò°Şó©2J$abcec9af-2a2f-4cbc-b856-bec939f2fe4a
-œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(èé™8ò°Şó©2J$676a8777-2f4b-4068-a097-c3e3cc8b0c89
-œ	java:S116"[Rename this field "edit_routinelist" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÚÙÈ+8ó°Şó©2J$afee5a82-2c67-4279-baf9-173254a541db
-	java:S116"]Rename this field "delete_routinelist" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÚÙÈ+8ó°Şó©2J$47904987-49f4-42b4-bf13-7918da95f5bd
+java:S1604("(Make this anonymous inner class a lambda(‡âµ¡8Ğ€ßó©2J$854a5545-51e1-44d0-b6ee-18e8174f5f13
+”	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(õš•ûÿÿÿÿ8ò°Şó©2J$d918bc38-e89a-4845-9e76-513f77a3cc94
+œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(èé™8ò°Şó©2J$ec56a3bc-99a0-4a94-9abd-629c4421ba01
+œ	java:S116"[Rename this field "edit_routinelist" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÚÙÈ+8ó°Şó©2J$7d35b19b-f6c8-4d9e-8091-3f50a177dfd0
+	java:S116"]Rename this field "delete_routinelist" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÚÙÈ+8ó°Şó©2J$69371040-2572-4c8b-a74b-f5171992bea5
 r
-java:S1659"0Declare "delete_routinelist" on a separate line.(ÚÙÈ+8ÿ°Şó©2J$3f87638a-56eb-42ac-aebd-0bde1520e46a
+java:S1659"0Declare "delete_routinelist" on a separate line.(ÚÙÈ+8ÿ°Şó©2J$e1f0c307-78b9-4d28-a82d-2150ba9956a0
 £
-java:S1450"aRemove the "delete_routinelist" field and declare it as a local variable in the relevant methods.(ÚÙÈ+8ÿ°Şó©2J$0e4b3f5d-04e8-4185-8886-354f0c29e523
+java:S1450"aRemove the "delete_routinelist" field and declare it as a local variable in the relevant methods.(ÚÙÈ+8ÿ°Şó©2J$d66d28cd-fd40-45b1-b358-ce975df06060
 ¡
-java:S1450"_Remove the "edit_routinelist" field and declare it as a local variable in the relevant methods.(ÚÙÈ+8ÿ°Şó©2J$3d862f22-6e90-4223-b27d-3754a50aeaea
+java:S1450"_Remove the "edit_routinelist" field and declare it as a local variable in the relevant methods.(ÚÙÈ+8ÿ°Şó©2J$2cfeb801-6477-42fb-a265-afabb40d5bad
 z
-java:S1135""2Complete the task associated to this TODO comment.(«±ıÿÿÿÿ8€¿àó©2J$2792b785-0d51-4eee-8023-40d6c6f6a41b
+java:S1135"2Complete the task associated to this TODO comment.(ñ•Ôøÿÿÿÿ8ƒ¾»„°2J$77e5ec96-d723-4f44-be2b-0d1e7fb30129
+z
+java:S1135'"2Complete the task associated to this TODO comment.(«±ıÿÿÿÿ8€¿àó©2J$187c65c3-0c41-403e-b343-20f84713043d

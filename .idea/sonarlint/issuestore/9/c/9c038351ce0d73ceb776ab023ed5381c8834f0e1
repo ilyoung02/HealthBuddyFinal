@@ -1,24 +1,24 @@
 
-	java:S101!"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ŞËÅ28»”Õ©2J$ebd60176-1ff9-49ec-bad7-3cfc76235212
-œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(èé™8Ú¨•ü¨2J$7133d12f-3539-40c1-821f-860025f37bf8
-”	java:S116#"SRename this field "DdayView" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ò»¼s8Â”Õ©2J$10245459-7705-4a8a-802b-2a4f0583e281
-§	java:S116$"`Rename this field "workoutTimer_startBtn" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ÿù³Äøÿÿÿÿ8Â”Õ©2J$692f830e-8b00-4cef-8a1c-7820fed1b504
-ª	java:S116%"cRename this field "btn_completeTodayWorkout" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÊşÂĞøÿÿÿÿ8Â”Õ©2J$63738556-3849-4920-8f72-877545ff7cc5
+	java:S101!"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ŞËÅ28»”Õ©2J$f8b37b13-48fb-4924-a4bd-4a88d2654be4
+œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(èé™8Ú¨•ü¨2J$52b05741-18bc-4bfb-8bf3-f36084821af9
+”	java:S116#"SRename this field "DdayView" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ò»¼s8Â”Õ©2J$124716c5-278b-4821-b358-c2b53a9cc58e
+§	java:S116$"`Rename this field "workoutTimer_startBtn" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ÿù³Äøÿÿÿÿ8Â”Õ©2J$416c3c17-394c-4473-b7cf-d5242af26ccf
+ª	java:S116%"cRename this field "btn_completeTodayWorkout" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÊşÂĞøÿÿÿÿ8Â”Õ©2J$425a40f1-53bc-48e7-b70e-8d1d15a7fd32
 ˆ
-java:S1659#"FDeclare "todayDate" and all following declarations on a separate line.(Ò»¼s8É”Õ©2J$2d57c006-75a1-4c9d-b1a0-4f5e34535f5d
+java:S1659#"FDeclare "todayDate" and all following declarations on a separate line.(Ò»¼s8É”Õ©2J$4e6867c2-74e7-41cd-80de-b997acbd005a
 ™
-java:S1450#"WRemove the "DdayView" field and declare it as a local variable in the relevant methods.(Ò»¼s8§£Ö©2J$3390003c-e0ff-474a-8d19-cb17c8de9f6c
+java:S1450#"WRemove the "DdayView" field and declare it as a local variable in the relevant methods.(Ò»¼s8§£Ö©2J$a9983601-06a6-41e0-a48b-532d90cec8f0
 ¯
-java:S1450%"gRemove the "btn_completeTodayWorkout" field and declare it as a local variable in the relevant methods.(ÊşÂĞøÿÿÿÿ8É”Õ©2J$95c66008-0a63-4949-adeb-eae463b01673
+java:S1450%"gRemove the "btn_completeTodayWorkout" field and declare it as a local variable in the relevant methods.(ÊşÂĞøÿÿÿÿ8É”Õ©2J$c827a0f9-3f99-4bb8-9738-27ba1ea62109
 ­
-java:S1450'"eRemove the "routineCheckScrollview" field and declare it as a local variable in the relevant methods.(ôé¾íşÿÿÿÿ8É”Õ©2J$55a8b766-53ad-435f-a0d0-0049e947cee3
+java:S1450'"eRemove the "routineCheckScrollview" field and declare it as a local variable in the relevant methods.(ôé¾íşÿÿÿÿ8É”Õ©2J$7c93b450-5635-476c-aeda-1c3fbb0826ed
 ¬
-java:S1450$"dRemove the "workoutTimer_startBtn" field and declare it as a local variable in the relevant methods.(Ÿù³Äøÿÿÿÿ8Ê”Õ©2J$2b433389-dfc9-4a15-88ad-71dc1e964861
+java:S1450$"dRemove the "workoutTimer_startBtn" field and declare it as a local variable in the relevant methods.(Ÿù³Äøÿÿÿÿ8Ê”Õ©2J$a455f860-6dd5-452a-a314-051378695ee0
 r
-java:S1874)"/Remove this use of "Handler"; it is deprecated.(èïå»8È•Õ©2J$1862e985-9c57-4289-a869-4ec82dbd0ed3
+java:S1874)"/Remove this use of "Handler"; it is deprecated.(èïå»8È•Õ©2J$7628a6f1-c19f-44dc-ab89-02c3ea39f7cd
 u
-java:S1135,"2Complete the task associated to this TODO comment.(ëĞÅî8ö€×©2J$8e1d1d2a-5583-4187-8dc6-196fa21f9fdb
+java:S1135,"2Complete the task associated to this TODO comment.(…ïœ†8ö€×©2J$c3a35c87-18fb-44a8-a404-fac983fb70c5
 ‚
-java:S1068'":Remove this unused "routineCheckScrollview" private field.(ôé¾íşÿÿÿÿ8Ü•Õ©2J$f447300e-bfd1-4cb0-8f46-8a7b49a62760
-I
-java:S1068*",Remove this unused "BASE_URL" private field.(÷ÂÔ8ÅŸÂ™«2
+java:S1068'":Remove this unused "routineCheckScrollview" private field.(ôé¾íşÿÿÿÿ8Ü•Õ©2J$605e64a9-1582-4d97-b75e-41ed750805ab
+o
+java:S1068*",Remove this unused "BASE_URL" private field.(÷ÂÔ8ÅŸÂ™«2J$62950ef9-4491-4320-82f5-a69fac39c77e

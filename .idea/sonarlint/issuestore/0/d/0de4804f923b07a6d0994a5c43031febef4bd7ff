@@ -1,15 +1,15 @@
 
 k
-java:S1604Z"(Make this anonymous inner class a lambda(Îµ¥8Û÷Áø¨2J$40ac881a-aea1-4f9e-9ac9-79913ca48260
-”	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ÍÙ¹ôúÿÿÿÿ8ê„‹ø¨2J$616e8df9-c8b0-40ce-b78e-d889cfedf12e
-˜	java:S117T"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Áæùÿÿÿÿÿ8Û÷Áø¨2J$3ca0e738-4ebb-4a39-b4f3-c3488bc36974
-•	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(èé™J$31bba1f1-bb85-4f17-a09c-8f9756b2cf0e
+java:S1604\"(Make this anonymous inner class a lambda(Îµ¥8Û÷Áø¨2J$22356701-7bfb-4885-8fc6-67a411d4ef59
+”	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ÍÙ¹ôúÿÿÿÿ8ê„‹ø¨2J$81d412d8-33c4-4eee-8a0f-e8e9b4f07d0a
+˜	java:S117V"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Áæùÿÿÿÿÿ8Û÷Áø¨2J$a83f75a6-2f46-46e3-84ad-f55aa843d916
+•	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(èé™J$c615071f-dc4d-435a-bce8-7af7d9a1706b
 z
-java:S1135"2Complete the task associated to this TODO comment.(ãÕù”şÿÿÿÿ8Ì²Æú¨2J$339337ad-7ae4-4f50-9b41-f25c080d0fa6
-ƒ	java:S125*"<This block of commented-out lines of code should be removed.(¿”½Úıÿÿÿÿ8¥¶¨©2J$29730b5c-4a9b-4ddd-9c7a-538a5f945966
-~	java:S1252"<This block of commented-out lines of code should be removed.(ééÚì8¥š¨©2J$614bc24e-c071-42a4-9863-3831869f35d0
+java:S1135"2Complete the task associated to this TODO comment.(ñ•Ôøÿÿÿÿ8Ì²Æú¨2J$438ac171-2265-481a-b00e-1dfbf2d248ef
+ƒ	java:S125,"<This block of commented-out lines of code should be removed.(¿”½Úıÿÿÿÿ8¥¶¨©2J$2222ea20-f754-471f-8073-0fcb259bd0e7
+~	java:S1254"<This block of commented-out lines of code should be removed.(ééÚì8¥š¨©2J$6ed1d2f1-5523-4c83-9306-7613ff5e99f3
 €
-java:S1874^">Remove this use of "startActivityForResult"; it is deprecated.(Ö­Ìa8ğ÷Áø¨2J$dc59e1f2-2c02-4098-9612-cddda89f47ff
-ƒ	java:S125f"<This block of commented-out lines of code should be removed.(äÖË€øÿÿÿÿ8õ¯§©2J$c44bf523-7a0d-4b37-970f-88e8bcfa02bc
+java:S1874`">Remove this use of "startActivityForResult"; it is deprecated.(Ö­Ìa8ğ÷Áø¨2J$4cd32eb8-7b14-4026-91ca-077492d8f6d9
+ƒ	java:S125h"<This block of commented-out lines of code should be removed.(äÖË€øÿÿÿÿ8õ¯§©2J$ec1c2e81-7cc9-427d-b70e-9f3b4ec22ea6
 o
-java:S1068",Remove this unused "BASE_URL" private field.(÷ÂÔ8¨š¨©2J$885f5ce3-5730-4878-a23b-e87133fa4c54
+java:S1068",Remove this unused "BASE_URL" private field.(÷ÂÔ8¨š¨©2J$065bbe15-43b8-48e3-9e7f-2918d57db796

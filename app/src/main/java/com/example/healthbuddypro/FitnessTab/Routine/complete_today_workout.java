@@ -8,6 +8,7 @@ import android.widget.Button;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.healthbuddypro.MainActivity;
 import com.example.healthbuddypro.R;
 
 public class complete_today_workout extends AppCompatActivity {
@@ -24,11 +25,10 @@ public class complete_today_workout extends AppCompatActivity {
 
         completeButton = findViewById(R.id.completeButton);
 
-        // moved_routineFragment 가 홈을 가리키는 거임 사실상
         completeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(complete_today_workout.this, moved_routineFragment.class);
+                Intent intent = new Intent(complete_today_workout.this, MainActivity.class);
                 startActivity(intent);
                 finish(); // 여기서 액티비티 한번 정리
             }

@@ -1,27 +1,27 @@
 
 p
-java:S1604?"(Make this anonymous inner class a lambda(ğ«øÿÿÿÿ8êñÜ÷¨2J$33223fdb-8ac5-44c8-9c05-9d4fe9b1c0cc
+java:S1604@"(Make this anonymous inner class a lambda(ğ«øÿÿÿÿ8½Õ„°2J$c6f91101-0550-4f02-8104-3fb9d5284e32
 j
-java:S1604I"(Make this anonymous inner class a lambda(ÍäÿC8ëñÜ÷¨2J$c59456de-a685-47fe-b2e4-822934063961
+java:S1604J"(Make this anonymous inner class a lambda(ÍäÿC8¾Õ„°2J$18e19508-7646-4e21-809f-f87d6dc13b44
 k
-java:S1604u"(Make this anonymous inner class a lambda(Öºªƒ8ëñÜ÷¨2J$4a00e223-ab9b-419e-b4d5-273969b02d95
-j
-java:S1604"(Make this anonymous inner class a lambda(²¶ù18ëñÜ÷¨2J$868084f0-eaec-4852-b61f-61b30c349fea
+java:S1604v"(Make this anonymous inner class a lambda(Öºªƒ8¾Õ„°2J$bfc9a48e-c3a3-4e4c-a75e-a4180729a146
+k
+java:S1604€"(Make this anonymous inner class a lambda(²¶ù18¾Õ„°2J$3e5c2216-af41-4e93-8201-f70acba74974
 l
-java:S1604"(Make this anonymous inner class a lambda(±€çë8ëñÜ÷¨2J$4704928a-8f95-425a-9340-5a3debaad89c
+java:S1604"(Make this anonymous inner class a lambda(±€çë8¾Õ„°2J$d13ce898-fc61-4fdd-a8d1-84fb8a4f3ed3
 l
-java:S1604­"(Make this anonymous inner class a lambda(Æ­Ü8ëñÜ÷¨2J$93ce71be-9992-4822-a0b9-dc08b4da8725
-”	java:S101%"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(Ûºæ·şÿÿÿÿ8ëñÜ÷¨2J$46634338-13cf-41c7-b5ec-8e74e69134ae
-œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(èé™8÷¡ø¨2J$1f4d7f6d-4010-4044-9c1a-62ef1df45576
+java:S1604®"(Make this anonymous inner class a lambda(Æ­Ü8¾Õ„°2J$5d4aab7c-9071-4c9d-8e2a-067b3428de8a
+”	java:S101&"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(Ûºæ·şÿÿÿÿ8¾Õ„°2J$d92d9caa-b4f6-41ce-9c99-0ada1e0c0c3f
+œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(èé™8¾Õ„°2J$870acba3-cb4e-4825-a17f-04809bf0944e
 v
-java:S1659'".Declare "exerciseListView" on a separate line.(íñ‘«şÿÿÿÿ8ğñÜ÷¨2J$c8c3349b-1c7e-4589-a500-c790f32c01a5
+java:S1659(".Declare "exerciseListView" on a separate line.(íñ‘«şÿÿÿÿ8ÃÕ„°2J$728227a7-649d-4f6e-893c-55b917f9714d
 l
-java:S1659)")Declare "closeButton" on a separate line.(Şâ8ğñÜ÷¨2J$e697d654-9662-4736-b214-1595a1bf0a06
+java:S1659*")Declare "closeButton" on a separate line.(Şâ8ÃÕ„°2J$1f9514a6-4896-47f2-a579-6fe6c899343f
 
-java:S1450)"ZRemove the "closeButton" field and declare it as a local variable in the relevant methods.(Şâ8ğñÜ÷¨2J$476a99b6-32c0-4786-8515-18368f38cbe0
+java:S1450*"ZRemove the "closeButton" field and declare it as a local variable in the relevant methods.(Şâ8ÃÕ„°2J$b76fa265-aaa0-4e30-8b4a-9ca479ba094d
  
-java:S1450)"]Remove the "completeButton" field and declare it as a local variable in the relevant methods.(Şâ8ğñÜ÷¨2J$3417d87b-38a7-4000-93c6-82fc712ef1b3
+java:S1450*"]Remove the "completeButton" field and declare it as a local variable in the relevant methods.(Şâ8ÃÕ„°2J$34907761-cb15-4a5b-bd93-35585c151665
 z
-java:S1135<"2Complete the task associated to this TODO comment.(ŸœÆÄşÿÿÿÿ8ùñÜ÷¨2J$dfcfa243-9e68-4873-9387-a746354a67ca
-I
-java:S1068-",Remove this unused "BASE_URL" private field.(÷ÂÔ8ÈÑ»™«2
+java:S1135="2Complete the task associated to this TODO comment.(ŸœÆÄşÿÿÿÿ8ÌÕ„°2J$8b352456-af2d-49c9-bd95-59c73f0f19a8
+o
+java:S1068.",Remove this unused "BASE_URL" private field.(÷ÂÔ8ÙÕ„°2J$52c05ea2-9537-4459-bc45-6bc32a0fb5fa

@@ -1,8 +1,8 @@
 
-•	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ø‹—ÏJ$1364b362-ef0d-4060-a765-0388d699e3c2
-b
-java:S2637"EThis method's return value is marked "@NonNull" but null is returned.(¥¹ï8½ùÙ™«2
+•	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ø‹—ÏJ$01dad8ac-7307-4c89-ab91-28fc24220448
+ˆ
+java:S2637"EThis method's return value is marked "@NonNull" but null is returned.(¥¹ï8½ùÙ™«2J$321c4d3d-0778-4bb3-b0c1-de1f81f7de0a
 x
-java:S1874"<Remove this use of "FragmentPagerAdapter"; it is deprecated.(œƒ£ÊJ$cb8cc7e7-9493-462e-afa1-e74e8d48cf4e
+java:S1874"<Remove this use of "FragmentPagerAdapter"; it is deprecated.(œƒ£ÊJ$74129db3-392c-48e1-a4fd-cee6d06a8a91
 x
-java:S1874"<Remove this use of "FragmentPagerAdapter"; it is deprecated.(òÂßĞJ$a7a55494-2a85-4055-8894-9903f05c5a19
+java:S1874"<Remove this use of "FragmentPagerAdapter"; it is deprecated.(òÂßĞJ$f7090a95-2833-4adf-8961-e21ebb141070

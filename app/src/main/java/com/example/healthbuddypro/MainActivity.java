@@ -1,5 +1,6 @@
 package com.example.healthbuddypro;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,10 +15,9 @@ import com.example.healthbuddypro.Profile.ProfileFragment;
 import com.example.healthbuddypro.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-
 public class MainActivity extends AppCompatActivity {
 
-    private int currentTabIndex = 0; // 현재 선택된 탭의 인덱스
+    private int currentTabIndex = 2; // 기본 탭 인덱스는 2로 설정 (MatchFragment)
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,18 +26,33 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        // 기본 화면 설정 (매칭 화면)
+        // Intent로 전달된 newTabIndex 값 확인 (기본값은 2로 설정)
+        // routine04 에서 루틴 생성 완료하고 main 으로 넘어올때만 운동 index = 0 이 나옴
+        int initialTabIndex = getIntent().getIntExtra("newTabIndex", 2);
+
+        // 기본 화면 설정
         if (savedInstanceState == null) {
-            bottomNavigationView.setSelectedItemId(R.id.navigation_match); // 매칭 메뉴를 선택 상태로 설정
+            Fragment initialFragment;
+            if (initialTabIndex == 0) {
+                bottomNavigationView.setSelectedItemId(R.id.navigation_fitness);
+                initialFragment = new FitnessFragment();
+            } else {
+                bottomNavigationView.setSelectedItemId(R.id.navigation_match);
+                initialFragment = new MatchFragment();
+            }
+
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, new MatchFragment())
+                    .replace(R.id.fragment_container, initialFragment)
                     .commit();
+
+            // 초기 currentTabIndex 설정
+            currentTabIndex = initialTabIndex;
         }
 
         // 네비게이션 아이템 클릭 리스너 설정
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             Fragment selectedFragment = null;
-            int newTabIndex = 0; // 새로 선택된 탭의 인덱스
+            int newTabIndex = 0;
 
             int itemId = item.getItemId();
             if (itemId == R.id.navigation_match) {
@@ -62,10 +77,8 @@ public class MainActivity extends AppCompatActivity {
 
                 // 애니메이션 설정
                 if (newTabIndex > currentTabIndex) {
-                    // 오른쪽으로 이동 (오른쪽에서 왼쪽으로 슬라이드)
                     transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
                 } else if (newTabIndex < currentTabIndex) {
-                    // 왼쪽으로 이동 (왼쪽에서 오른쪽으로 슬라이드)
                     transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
                 }
 

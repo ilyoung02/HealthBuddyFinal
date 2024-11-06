@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.InputType;
@@ -140,7 +141,7 @@ public class fixing_routineExercise extends Activity {
 
         LinearLayout layout = new LinearLayout(this);
         layout.setOrientation(LinearLayout.VERTICAL);
-        layout.setPadding(15, 15, 15, 15);
+        layout.setPadding(30, 30, 30, 30);
 
         final EditText setCountInput = new EditText(this);
         setCountInput.setHint("세트 수");
@@ -188,6 +189,7 @@ public class fixing_routineExercise extends Activity {
         // 텍스트 크기와 스타일 설정
         textView.setTextSize(14);
         textView.setTypeface(null, Typeface.BOLD);
+        textView.setBackgroundColor(Color.parseColor("#BDDEFA"));
 
         selectedItemsLayout.addView(textView);
     }

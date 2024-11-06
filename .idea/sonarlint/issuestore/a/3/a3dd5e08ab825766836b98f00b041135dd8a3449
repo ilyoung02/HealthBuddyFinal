@@ -1,13 +1,22 @@
 
 p
-java:S1604%"(Make this anonymous inner class a lambda(’»‡Ôûÿÿÿÿ8õí‘´§2J$ae3fcb34-bc4a-4fcd-9d76-542c15ec0488
+java:S16048"(Make this anonymous inner class a lambda(’»‡Ôûÿÿÿÿ8ÜÍƒ°2J$03e922ae-49c8-42b1-a3ca-bb3869b54bf8
 p
-java:S1604."(Make this anonymous inner class a lambda(ÌÕëÄùÿÿÿÿ8°‡¶ó©2J$1a13aa71-c01a-4ca1-a450-b01165586271
-œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(èé™8õí‘´§2J$83668d9e-c1f3-4503-9379-5116aea6d283
-	java:S116"[Rename this field "btn_startRoutine" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ğşü¤8íı¶ó©2J$44fcc44a-bae7-4244-9ea2-a9486d8675a4
+java:S1604A"(Make this anonymous inner class a lambda(ÌÕëÄùÿÿÿÿ8ÜÍƒ°2J$b41e499a-ac6b-4c0a-8677-409f9150490a
+œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(èé™8ÜÍƒ°2J$d49d256d-21cd-4773-aadc-5483afe26ac9
+	java:S116"[Rename this field "btn_startRoutine" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ğşü¤8‘ÜÍƒ°2J$d50c871b-48d7-498f-b692-d06cfb651b62
+j
+java:S1659"'Declare "todaydate" on a separate line.(â¡ë¾8“ÜÍƒ°2J$e285c139-25ff-4e73-9d7a-a86951d09d68
 ¥
-java:S1450"]Remove the "btnRoutineList" field and declare it as a local variable in the relevant methods.(Ù‘©†üÿÿÿÿ8ƒî‘´§2J$44794489-7178-4ea5-ae51-4a549c22d0a4
+java:S1450"]Remove the "btnRoutineList" field and declare it as a local variable in the relevant methods.(°Œ¥¹øÿÿÿÿ8“ÜÍƒ°2J$41c6d823-1e58-4f1b-9f4f-94398020b25a
 ¢
-java:S1450"_Remove the "btn_startRoutine" field and declare it as a local variable in the relevant methods.(Ğşü¤8øı¶ó©2J$cb2eb264-2b16-4d3d-9307-feb2dc959b40
+java:S1450"_Remove the "btn_startRoutine" field and declare it as a local variable in the relevant methods.(Ğşü¤8“ÜÍƒ°2J$a56f21ce-bf9f-49ee-a446-4cfab9b29e08
+š
+java:S1450"WRemove the "teamName" field and declare it as a local variable in the relevant methods.(â¡ë¾8“ÜÍƒ°2J$e20147c6-1af3-4c6a-8c55-eb0c960b47d2
+›
+java:S1450"XRemove the "todaydate" field and declare it as a local variable in the relevant methods.(â¡ë¾8”ÜÍƒ°2J$4b197e0b-9c79-406b-8146-ee21ff793bbf
 u
-java:S1135"2Complete the task associated to this TODO comment.(Ê•Şø8ùÑıö¨2J$c198155f-615d-4e42-971e-9f59ce8a9b93
+java:S1135""2Complete the task associated to this TODO comment.(Ê•Şø8›ÜÍƒ°2J$d746671e-a188-49f6-a37d-f872f037c763
+ƒ	java:S1253"<This block of commented-out lines of code should be removed.(‹†‚şÿÿÿÿ8œÜÍƒ°2J$6348787b-00ed-41f7-bc03-c4b91bc97276
+z
+java:S11352"2Complete the task associated to this TODO comment.(ÅºÀÊøÿÿÿÿ8Ÿ¤Ğƒ°2J$325394ea-3eda-4e71-a96a-e19783d631ce

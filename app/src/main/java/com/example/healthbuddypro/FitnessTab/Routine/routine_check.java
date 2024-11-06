@@ -41,7 +41,12 @@ public class routine_check extends AppCompatActivity {
     private Handler timerHandler = new Handler();
     private static final String BASE_URL = "http://165.229.89.154:8080/";
     private int routineId = 1; // 예시 루틴 ID
-    //TODO : 루틴 아이디 로컬에서 가져와서 하도록 바꿔야함 -> api 수정해서 올려주면 수정해보기
+    //TODO
+    // 1. routineId 내부저장소에서 가져오도록 해야함
+    // 2. /api/routines/{routineId}/details?day= 에서 가져온 오늘 날짜에 대한 운동루틴 정보를 나타내고 세트별로 체크되도록 해야함
+    // 3. 전부 체크가 된 경우 운동 완료 누르면 랭크 포인트가 증가된 것을 서버로 보내줘야함
+    // 4. Dday, 오늘날짜, 운동 시간 타이머 동작 확인 -> 운동 타이머는 따로 저장은 x
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

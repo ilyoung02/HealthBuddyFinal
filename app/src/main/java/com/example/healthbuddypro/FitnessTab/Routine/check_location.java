@@ -12,9 +12,12 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.healthbuddypro.MainActivity;
 import com.example.healthbuddypro.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -29,6 +32,7 @@ import com.google.android.gms.tasks.Task;
 
 public class check_location extends AppCompatActivity implements OnMapReadyCallback {
 
+    private ImageButton backButton;
     private FusedLocationProviderClient fusedLocationClient;
     private GoogleMap mMap;
     private LatLng targetLatLng;
@@ -40,11 +44,22 @@ public class check_location extends AppCompatActivity implements OnMapReadyCallb
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_location);
 
+        backButton = findViewById(R.id.backButton);
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
+        //뒤로가기
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         // SharedPreferences 쓰면 되네 -> 내부 저장소 느낌으로 하는거 Intent로 안되노
-        //TODO 헬스장 위치를 프로필 수정에서 등록한 위치 좌표로 서버로 부터 받아오도록 수정해야함 -> 경도 위도를 서버에서 받아오는걸로만 바꾸면됨
-        // 헬스장 위도 경도 따올때는 /api/gymLocation/users/{userId} 에서 userID 로컬에 저장된거 가져와서 GET 해서 위도경도 지역 정보 가져오면 됨
+        //TODO
+        // 1. 헬스장 위치를 프로필 수정에서 등록한 위치 좌표로 서버로 부터 받아오도록 수정해야함 -> 경도 위도를 서버에서 받아오는걸로만 바꾸면됨
+        // 2. 헬스장 위도 경도 따올때는 /api/gymLocation/users/{userId} 에서 userID 로컬에 저장된거 가져와서 GET 해서 위도경도 지역 정보 가져오면 됨
+
         SharedPreferences sharedPreferences = getSharedPreferences("LocationData", Context.MODE_PRIVATE);
         double latitude = sharedPreferences.getFloat("latitude", 0);
         double longitude = sharedPreferences.getFloat("longitude", 0);
@@ -122,7 +137,7 @@ public class check_location extends AppCompatActivity implements OnMapReadyCallb
                         finish();
                     } else {
                         Toast.makeText(check_location.this, "⛔위치인증 실패: 지정한 헬스장으로 이동 후 다시 인증해주세요.", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getApplicationContext(), group_on_routinestart.class);
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(intent);
                         finish();
                     }

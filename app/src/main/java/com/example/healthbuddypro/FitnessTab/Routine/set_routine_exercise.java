@@ -55,7 +55,11 @@ public class set_routine_exercise extends AppCompatActivity {
         });
 
         // 생성완료 버튼
-        // todo : 생성완료 눌렀을때 앞에서 설정한 루틴 제목, 요일, 설정한 운동들 정보 서버로 전송하는거 구현해야함
+        // todo
+        //  1. 생성완료 눌렀을때 앞에서 설정한 루틴 제목, 요일, 설정한 운동들 정보 서버로 전송하는거 구현해야함
+        //  2. 서버로 보내고 routineId 가 생성되면 group_locked 에서 group_on_routinestart 화면으로 전환되고 화면에 설정 정보가 반영되어 나오는지 확인
+        //  3. 루틴 목록에 생성된 루틴이 목록 추가가 잘되는지 확인
+
         btn_makeRoutineComplete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
