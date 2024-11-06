@@ -19,6 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="350dp"
         android:orientation="vertical"
+        android:padding="10dp"
         android:layout_marginTop="150dp">
 
         <LinearLayout
@@ -58,7 +59,7 @@
             android:id="@+id/review_quitHB"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:hint="후기를 작성해주세요"
+            android:hint="간략한 후기를 작성해주세요"
             android:padding="8dp"
             android:textColorHint="#666666"
             android:layout_marginBottom="32dp"
@@ -76,7 +77,7 @@
         android:textStyle="bold"
         android:textSize="18sp"
         android:textColor="#FFFFFF"
-        android:backgroundTint="#6795ED"
+        android:background="@drawable/rounded_button"
         android:paddingHorizontal="32dp"
         android:paddingVertical="12dp"
         android:layout_gravity="center"

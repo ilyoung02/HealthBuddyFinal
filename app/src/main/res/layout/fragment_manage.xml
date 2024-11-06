@@ -9,7 +9,7 @@
 
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
@@ -22,7 +22,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="매칭"
-            android:textSize="18sp"
+            android:textSize="22sp"
+            android:textStyle="bold"
             android:textColor="#000000"
             android:layout_gravity="center"/>
 
@@ -32,7 +33,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
-            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textSize="22sp"
             android:textColor="#000000"
             android:layout_gravity="center"
             android:paddingLeft="8dp"/>
@@ -43,7 +45,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="일째"
-            android:textSize="18sp"
+            android:textSize="22sp"
+            android:textStyle="bold"
             android:textColor="#000000"
             android:layout_gravity="center"
             android:paddingLeft="4dp"/>
@@ -56,7 +59,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        android:paddingBottom="16dp">
+        android:paddingBottom="16dp"
+        android:layout_marginBottom="40dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -69,6 +73,7 @@
                 android:id="@+id/user1_icon"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
+                android:src="@drawable/icon_person"
                 android:contentDescription="User 1 Icon"
                 android:layout_gravity="center"/>
 
@@ -86,6 +91,7 @@
             android:id="@+id/group_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:src="@drawable/icon_connection"
             android:contentDescription="Group Icon"
             android:layout_gravity="center"/>
 
@@ -100,6 +106,7 @@
                 android:id="@+id/user2_icon"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
+                android:src="@drawable/icon_person"
                 android:contentDescription="User 2 Icon"
                 android:layout_gravity="center"/>
 
@@ -112,17 +119,34 @@
                 android:textColor="#4484FF"
                 android:gravity="center"/>
         </LinearLayout>
+
+
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/stop_matching_button"
+    <LinearLayout
         android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="헬스버디 그만두기"
-        android:background="#E0E0E0"
-        android:textColor="#000000"
-        android:layout_marginTop="100dp"
-        android:layout_gravity="center"/>
+        android:layout_height="170dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/note_background">
+
+        <ImageButton
+            android:id="@+id/btn_hbdQuit"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/icon_disconnect"
+            android:scaleType="centerCrop"
+            android:background="#ffffff" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="헬스버디 그만두기"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="#FF3333" />
+
+    </LinearLayout>
 
 
 
