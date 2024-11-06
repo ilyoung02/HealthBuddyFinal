@@ -127,3 +127,5 @@ y
 Iapp/src/main/java/com/example/healthbuddypro/Fitness/RoutineFragment.java,3\8\386eba9391e7d422441e60a6b4fe3ca272b84a14
 w
 Gapp/src/main/java/com/example/healthbuddypro/Community/PostAdapter.java,9\c\9c0980b28177e45675863a69c0ccf6d3df9b8947
+}
+Mapp/src/main/java/com/example/healthbuddypro/Profile/EditProfileActivity.java,6\a\6aba3e6d7c8dd6d5067312b8e73eeaaf277b62ca

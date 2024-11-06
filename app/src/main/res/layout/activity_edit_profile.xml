@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
+    android:padding="20dp"
     android:background="#FFFFFF">
 
     <LinearLayout
@@ -40,6 +40,7 @@
         android:layout_height="wrap_content"
         android:text="사진 변경"
         android:textColor="#6795ED"
+        android:textStyle="bold"
         android:layout_gravity="center"
         android:paddingBottom="15dp"
         android:clickable="true"
@@ -49,7 +50,7 @@
         android:id="@+id/workoutGoal_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="운동 목표"
+        android:text="# 운동 목표"
         android:textColor="#000000"
         android:paddingBottom="5dp"/>
 
@@ -64,7 +65,7 @@
         android:id="@+id/workout_experience_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="운동 경력"
+        android:text="# 운동 경력"
         android:textColor="#000000"
         android:paddingBottom="5dp"/>
 
@@ -82,7 +83,7 @@
         android:id="@+id/introduction_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="소개글"
+        android:text="# 소개글"
         android:textColor="#000000"
         android:paddingBottom="5dp"/>
 
@@ -101,16 +102,10 @@
         android:id="@+id/gym_location_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="헬스장 위치"
+        android:text="# 헬스장 위치"
         android:textColor="#000000"
         android:paddingBottom="5dp"/>
 
-    <Spinner
-        android:id="@+id/region_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:paddingBottom="15dp"/>
 
 
     <RelativeLayout
@@ -118,6 +113,17 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp">
 
+        <Spinner
+            android:id="@+id/region_spinner"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/profile_intro_background"
+            android:paddingBottom="15dp"
+            android:padding="5.5dp"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center"/>
+
+<!--        헬스장 위경도는 안보이게함-->
         <TextView
             android:id="@+id/gym_location"
             android:layout_width="match_parent"
@@ -127,24 +133,27 @@
             android:paddingTop="15dp"
             android:paddingBottom="11dp"
             android:layout_toStartOf="@id/gym_location_button"
-            android:layout_alignParentStart="true"/>
+            android:layout_alignParentStart="true"
+            android:visibility="invisible"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/gym_location_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="80dp"
+            android:layout_height="35dp"
             android:text="위치 등록"
             android:textColor="#FFFFFF"
-            android:backgroundTint="#6795ED"
+            android:background="@drawable/rounded_button"
+            android:gravity="center"
             android:layout_alignParentEnd="true"
-            android:layout_marginLeft="8dp"/>
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="4dp"/>
     </RelativeLayout>
 
     <TextView
         android:id="@+id/profileVisible_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="프로필 공개"
+        android:text="# 프로필 공개"
         android:textColor="#000000"
         android:paddingBottom="5dp"/>
 
@@ -173,7 +182,7 @@
         android:id="@+id/favWorkouts_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="선호 운동"
+        android:text="# 선호 운동"
         android:textColor="#000000"
         android:paddingBottom="5dp"/>
 
@@ -196,10 +205,10 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/fav_Workouts_button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="38dp"
             android:text="운동 선택"
             android:textColor="#FFFFFF"
-            android:backgroundTint="#6795ED"
+            android:background="@drawable/rounded_button"
             android:layout_alignParentEnd="true"
             android:layout_marginLeft="8dp"/>
     </RelativeLayout>

@@ -259,7 +259,7 @@
 
     </LinearLayout>
 
-    <!-- 댓글 섹션 박스 -->
+    <!-- 후기 작성된게 여기로 옴 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
