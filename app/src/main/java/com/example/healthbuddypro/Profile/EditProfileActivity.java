@@ -408,7 +408,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
     private void updateProfileApiCall(RequestBody profileRequest, MultipartBody.Part imagePart) {
         // SharedPreferences에서 profileId 가져오기
-        SharedPreferences sharedPreferences = getSharedPreferences("HealthBuddyProPrefs", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("localID", MODE_PRIVATE);
         int profileId = sharedPreferences.getInt("profileId", -1);  // 기본값으로 -1 설정
 
         if (profileId == -1) {
