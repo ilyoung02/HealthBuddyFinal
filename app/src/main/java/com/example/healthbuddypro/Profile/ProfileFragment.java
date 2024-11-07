@@ -88,7 +88,7 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        SharedPreferences preferences = requireActivity().getSharedPreferences("HealthBuddyProPrefs", MODE_PRIVATE);
+        SharedPreferences preferences = requireActivity().getSharedPreferences("localID", MODE_PRIVATE);
         profileId = preferences.getInt("profileId", -1);  // If profileId not found, default to -1
 
         // Check if profileId is valid, and then fetch profile data

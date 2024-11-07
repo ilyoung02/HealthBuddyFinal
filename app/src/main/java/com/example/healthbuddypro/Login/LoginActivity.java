@@ -15,6 +15,7 @@ import com.example.healthbuddypro.ApiService;
 import com.example.healthbuddypro.MainActivity;
 import com.example.healthbuddypro.R;
 import com.example.healthbuddypro.RetrofitClient;
+import com.example.healthbuddypro.SignUp.SignUpResponse;
 import com.example.healthbuddypro.SignUp.SignupActivity;
 
 import retrofit2.Call;
@@ -77,6 +78,13 @@ public class LoginActivity extends AppCompatActivity {
                     // 로그인 성공 로그 출력
                     Log.d(TAG, "로그인 성공: " + response.body().toString());
 
+                    LoginResponse.Data data = response.body().getData();
+
+                    int profileId = data.getProfileId(); // SignUpResponse에서 profileId 가져오기
+                    int userId = data.getUserId(); // SignUpResponse에서 userId 가져오기
+
+                    saveProfileDataToSharedPreferences(profileId, userId);
+
                     // SharedPreferences에 로그인 상태 저장
                     SharedPreferences sharedPreferences = getSharedPreferences("HealthBuddyProPrefs", MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -99,5 +107,14 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(LoginActivity.this, "네트워크 오류", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void saveProfileDataToSharedPreferences(int profileId, int userId) {
+        // SharedPreferences에 profileId와 userId 저장
+        SharedPreferences sharedPreferences = getSharedPreferences("localID", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("profileId", profileId);  // profileId 저장
+        editor.putInt("userId", userId);     // userId 저장
+        editor.apply();  // 변경사항을 저장
     }
 }
