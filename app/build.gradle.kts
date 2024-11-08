@@ -43,6 +43,8 @@ dependencies {
     implementation("com.google.android.gms:play-services-places:17.1.0")
     implementation ("com.google.android.libraries.places:places:3.5.0")
 
+    implementation("com.google.android.gms:play-services-auth:21.2.0")
+
     //Retrofit 의존성 설정
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")

@@ -19,6 +19,8 @@ import com.example.healthbuddypro.ApiService;
 import com.example.healthbuddypro.R;
 import com.example.healthbuddypro.RetrofitClient;
 import com.example.healthbuddypro.ShortTermMatching.ShortTermMatchFragment;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.ArrayList;
 import java.util.List;
 

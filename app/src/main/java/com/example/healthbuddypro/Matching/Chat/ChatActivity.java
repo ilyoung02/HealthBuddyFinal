@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.healthbuddypro.ApiService;
+import com.example.healthbuddypro.MainActivity;
 import com.example.healthbuddypro.R;
 import com.example.healthbuddypro.RetrofitClient;
 import com.google.firebase.firestore.CollectionReference;
@@ -179,10 +181,10 @@ public class ChatActivity extends AppCompatActivity {
                 .addOnFailureListener(e -> Log.e("ChatActivity", "매칭 요청 Firestore에 저장 실패: " + e.getMessage()));
     }
 
-    // 수락 대기 중인 매칭 요청 모니터링
+    // 수락 대기 중인 매칭 요청 모니터링 (수신자에게만 매칭 수락/거절 창을 띄우는 로직 추가)
     private void receiveMatchRequests() {
         firebaseFirestore.collection("match_requests")
-                .whereEqualTo("receiverId", userId) // 현재 사용자가 수신자일 때만 모니터링
+                .whereEqualTo("receiverId", userId) // 현재 로그인된 사용자가 수신자인 매칭 요청만 필터링
                 .whereEqualTo("status", "REQUESTED")
                 .addSnapshotListener((snapshots, e) -> {
                     if (e != null) {
@@ -192,6 +194,8 @@ public class ChatActivity extends AppCompatActivity {
                     if (snapshots != null && !snapshots.isEmpty()) {
                         for (DocumentSnapshot doc : snapshots.getDocuments()) {
                             MatchRequestData matchRequest = doc.toObject(MatchRequestData.class);
+
+                            // 수락/거절 창이 이미 표시된 요청이 아닌 경우에만 창을 띄웁니다.
                             showAcceptRejectDialog(matchRequest.getMatchRequestId());
                         }
                     }
@@ -215,6 +219,12 @@ public class ChatActivity extends AppCompatActivity {
 
     // 매칭 수락 요청
     private void acceptMatchRequest(int matchRequestId) {
+//        // 이미 팀이 있는지 확인
+//        if (sharedPreferences.getInt("teamId", -1) != -1) {
+//            Toast.makeText(ChatActivity.this, "이미 팀이 존재합니다. 다른 매칭 신청을 수락할 수 없습니다.", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+
         MatchRequestStatus requestStatus = new MatchRequestStatus("ACCEPTED");
         apiService.respondMatchRequest(matchRequestId, requestStatus).enqueue(new Callback<MatchResponse>() {
             @Override
@@ -246,7 +256,7 @@ public class ChatActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     Toast.makeText(ChatActivity.this, "매칭 거절 성공", Toast.LENGTH_SHORT).show();
 
-                    // Firestore에 거절 상태 업데이트
+                    // 거절된 경우 Firestore에 상태 업데이트
                     updateMatchRequestStatusInFirestore(matchRequestId, "REJECTED", -1);
                 } else {
                     Toast.makeText(ChatActivity.this, "매칭 거절 실패", Toast.LENGTH_SHORT).show();
@@ -259,6 +269,7 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
     }
+
 
     // Firestore에 매칭 요청 상태 업데이트
     private void updateMatchRequestStatusInFirestore(int matchRequestId, String status, int teamId) {
