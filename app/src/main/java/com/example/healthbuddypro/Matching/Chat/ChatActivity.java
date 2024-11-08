@@ -212,10 +212,9 @@ public class ChatActivity extends AppCompatActivity {
                     int teamId = response.body().getData().getTeamId();
                     Toast.makeText(ChatActivity.this, "매칭 수락 성공! 팀 ID: " + teamId, Toast.LENGTH_SHORT).show();
 
-                    // 수락한 사람과 상대방 모두에게 teamId 저장
-                    saveTeamIdToPreferences(teamId, userId, profileId);
-                    saveTeamIdToPreferences(teamId, userId, profileId);
-                    checkSavedTeamId(userId);
+                    // 두 사용자 각각의 SharedPreferences에 teamId 저장
+                    saveTeamIdToPreferences(teamId, userId); // 매칭을 수락한 사용자
+                    saveTeamIdToPreferences(teamId, profileId); // 매칭을 신청한 사용자
 
                     updateMatchRequestStatusInFirestore(matchRequestId, "ACCEPTED", teamId);
                 } else {
@@ -259,18 +258,17 @@ public class ChatActivity extends AppCompatActivity {
                 .addOnFailureListener(e -> Log.e("ChatActivity", "매칭 상태 업데이트 실패: " + e.getMessage()));
     }
 
-    // SharedPreferences에 teamId 저장
-    private void saveTeamIdToPreferences(int teamId, int userId, int profileId) {
+    // 두 사용자의 SharedPreferences에 teamId를 각각 저장
+    private void saveTeamIdToPreferences(int teamId, int userId) {
         Log.d("ChatActivity", "Saving teamId: " + teamId + " for userId: " + userId);
-        SharedPreferences Preferences = getSharedPreferences("user_" + userId + "_prefs", MODE_PRIVATE);
-        SharedPreferences.Editor editor = Preferences.edit();
+        SharedPreferences sharedPreferences = getSharedPreferences("user_" + userId + "_prefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt("teamId", teamId);
-        editor.putInt("userId", userId);
-        editor.putInt("profileId", profileId);
-        boolean isSuccess = editor.commit(); // commit()으로 즉시 저장 확인
-        Log.d("ChatActivity", "SharedPreferences save success: " + isSuccess);
+        editor.apply();
+        Log.d("ChatActivity", "Saved teamId " + teamId + " for userId: " + userId);
     }
 
+    // 저장된 teamId 확인
     private void checkSavedTeamId(int userId) {
         SharedPreferences prefs = getSharedPreferences("user_" + userId + "_prefs", MODE_PRIVATE);
         int savedTeamId = prefs.getInt("teamId", -1);
