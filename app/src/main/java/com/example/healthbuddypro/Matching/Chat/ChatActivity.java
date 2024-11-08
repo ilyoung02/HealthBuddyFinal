@@ -58,16 +58,16 @@ public class ChatActivity extends AppCompatActivity {
             return;
         }
 
+        // ProfileDetailActivity에서 넘겨준 profileId 받기
+        Intent intent = getIntent();
+        profileId = intent.getIntExtra("profileId", -1);
+
         Log.d("ChatActivity", "userId: " + userId);
 
         // userId에 따라 구분된 SharedPreferences 파일 설정
         sharedPreferences = getSharedPreferences("user_" + userId + "_prefs", MODE_PRIVATE);
 
         apiService = RetrofitClient.getApiService();
-
-        // ProfileDetailActivity에서 넘겨준 profileId 받기
-        Intent intent = getIntent();
-        profileId = intent.getIntExtra("profileId", -1);
 
         if (profileId != -1) {
             setTitle("채팅 - 상대방 프로필 ID: " + profileId);
@@ -214,7 +214,11 @@ public class ChatActivity extends AppCompatActivity {
 
                     // 두 사용자 각각의 SharedPreferences에 teamId 저장
                     saveTeamIdToPreferences(teamId, userId); // 매칭을 수락한 사용자
+                    checkSavedTeamId(userId); // 매칭을 수락한 사용자에 대한 확인
+
                     saveTeamIdToPreferences(teamId, profileId); // 매칭을 신청한 사용자
+                    checkSavedTeamId(profileId); // 매칭을 신청한 사용자에 대한 확인
+
 
                     updateMatchRequestStatusInFirestore(matchRequestId, "ACCEPTED", teamId);
                 } else {
