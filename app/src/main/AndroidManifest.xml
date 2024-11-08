@@ -83,6 +83,10 @@
         <activity android:name=".FitnessTab.Routine.set_routine_exercise" />
         <activity android:name=".FitnessTab.Routine.AddExerciseActivity" />
         <activity android:name=".FitnessTab.Routine.RoutineFragment" />
+        <activity android:name=".FitnessTab.quit_hb01" />
+        <activity android:name=".FitnessTab.quit_hb02" />
+        <activity android:name=".FitnessTab.quit_hb03" />
+
     </application>
 
 </manifest>

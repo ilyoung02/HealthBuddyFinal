@@ -20,8 +20,6 @@ import com.example.healthbuddypro.RetrofitClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ProfileDetailActivity extends AppCompatActivity {
 
@@ -34,6 +32,7 @@ public class ProfileDetailActivity extends AppCompatActivity {
     private TextView region;
     private TextView bio;
     private TextView workoutYears;
+    private TextView likeCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +49,7 @@ public class ProfileDetailActivity extends AppCompatActivity {
         region = findViewById(R.id.profile_region);
         bio = findViewById(R.id.profile_bio);
         workoutYears = findViewById(R.id.profile_workout_years);
+        likeCount = findViewById(R.id.like_count);
 
         // Intent로 전달된 데이터를 받음
         Intent intent = getIntent();
@@ -115,6 +115,7 @@ public class ProfileDetailActivity extends AppCompatActivity {
         workoutGoal.setText(profile.getWorkoutGoal());  // 운동 목표 설정
         region.setText(profile.getRegion());  // 지역 설정
         workoutYears.setText("구력 : " + profile.getWorkoutYears() + "년");  // 운동 경력 설정
+        likeCount.setText(String.valueOf(profile.getLikeCount())); // 좋아요 수를 문자열로 변환하여 설정
 
         // 이미지 로딩 (Glide 사용)
         String imageUrl = profile.getImageUrl(); // UserProfile 객체에서 이미지 URL을 가져옴

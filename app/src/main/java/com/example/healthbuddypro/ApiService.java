@@ -40,7 +40,7 @@ public interface ApiService {
     Call<ProfileListResponse> getProfiles();
 
     // 1:1 매칭 좋아요 기능
-    @PUT("/api/match/profiles/{profileId}/likes")
+    @POST("/api/match/profiles/{profileId}/likes")
     Call<LikeResponse> likeProfile(@Path("profileId") int profileId);
 
     // 프로필 세부 정보 받아오기 => ProfileDetailActivity, id는 프로필 고유 ID
