@@ -86,7 +86,7 @@ public class LoginActivity extends AppCompatActivity {
                     saveProfileDataToSharedPreferences(profileId, userId);
 
                     // SharedPreferences에 로그인 상태 저장
-                    SharedPreferences sharedPreferences = getSharedPreferences("HealthBuddyProPrefs", MODE_PRIVATE);
+                    SharedPreferences sharedPreferences = getSharedPreferences("HealthBuddyProPrefs",  MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putBoolean("isLoggedIn", true);  // 로그인 상태 저장
                     editor.apply();
