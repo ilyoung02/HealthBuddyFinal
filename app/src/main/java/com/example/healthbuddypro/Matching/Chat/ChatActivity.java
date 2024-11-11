@@ -20,10 +20,13 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,6 +45,9 @@ public class ChatActivity extends AppCompatActivity {
     private int profileId; // 채팅 상대 프로필 ID
     private int userId; // 로그인된 사용자의 ID
     private SharedPreferences sharedPreferences;
+    private ListenerRegistration matchRequestListener;
+
+    private Set<Integer> processedMatchRequests = new HashSet<>(); // 이미 처리된 매칭 요청 ID 저장
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +90,7 @@ public class ChatActivity extends AppCompatActivity {
         buttonSend = findViewById(R.id.buttonSend);
         buttonMatch = findViewById(R.id.match_send);
 
+        // FirebaseFirestore 초기화
         firebaseFirestore = FirebaseFirestore.getInstance();
         chatRef = firebaseFirestore.collection("chats").document(String.valueOf(profileId)).collection("messages");
 
@@ -97,7 +104,21 @@ public class ChatActivity extends AppCompatActivity {
         buttonMatch.setOnClickListener(v -> sendMatchRequest());
 
         receiveMessagesFromFirebase();
-        receiveMatchRequests();
+
+        // 초기화 코드
+        if (matchRequestListener == null) {
+            receiveMatchRequests();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // 리스너 등록 해제
+        if (matchRequestListener != null) {
+            matchRequestListener.remove();
+            matchRequestListener = null;
+        }
     }
 
     private void sendMessageToFirebase(int profileId, String messageText) {
@@ -172,21 +193,30 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     private void receiveMatchRequests() {
-        firebaseFirestore.collection("match_requests")
-                .whereEqualTo("receiverId", userId)
-                .whereEqualTo("status", "REQUESTED")
-                .addSnapshotListener((snapshots, e) -> {
-                    if (e != null) {
-                        Log.e("ChatActivity", "매칭 요청 수신 오류", e);
-                        return;
-                    }
-                    if (snapshots != null && !snapshots.isEmpty()) {
-                        for (DocumentSnapshot doc : snapshots.getDocuments()) {
-                            MatchRequestData matchRequest = doc.toObject(MatchRequestData.class);
-                            showAcceptRejectDialog(matchRequest.getMatchRequestId());
+        // 리스너가 이미 설정되어 있지 않은 경우에만 리스너를 등록
+        if (matchRequestListener == null) {
+            matchRequestListener = firebaseFirestore.collection("match_requests")
+                    .whereEqualTo("receiverId", userId)
+                    .whereEqualTo("status", "REQUESTED")
+                    .addSnapshotListener((snapshots, e) -> {
+                        if (e != null) {
+                            Log.e("ChatActivity", "매칭 요청 수신 오류", e);
+                            return;
                         }
-                    }
-                });
+                        if (snapshots != null && !snapshots.isEmpty()) {
+                            for (DocumentSnapshot doc : snapshots.getDocuments()) {
+                                MatchRequestData matchRequest = doc.toObject(MatchRequestData.class);
+                                int matchRequestId = matchRequest.getMatchRequestId();
+
+                                // 이미 처리된 요청이라면 다이얼로그를 표시하지 않음
+                                if (!processedMatchRequests.contains(matchRequestId)) {
+                                    processedMatchRequests.add(matchRequestId); // 처리된 요청으로 마크
+                                    showAcceptRejectDialog(matchRequestId);
+                                }
+                            }
+                        }
+                    });
+        }
     }
 
     private void showAcceptRejectDialog(int matchRequestId) {
@@ -219,8 +249,10 @@ public class ChatActivity extends AppCompatActivity {
                     saveTeamIdToPreferences(teamId, profileId); // 매칭을 신청한 사용자
                     checkSavedTeamId(profileId); // 매칭을 신청한 사용자에 대한 확인
 
-
                     updateMatchRequestStatusInFirestore(matchRequestId, "ACCEPTED", teamId);
+
+                    // 처리 완료된 요청으로 표시
+                    processedMatchRequests.add(matchRequestId);
                 } else {
                     Toast.makeText(ChatActivity.this, "매칭 수락 실패", Toast.LENGTH_SHORT).show();
                 }
@@ -241,7 +273,10 @@ public class ChatActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     Toast.makeText(ChatActivity.this, "매칭 거절 성공", Toast.LENGTH_SHORT).show();
 
-                            updateMatchRequestStatusInFirestore(matchRequestId, "REJECTED", -1);
+                    updateMatchRequestStatusInFirestore(matchRequestId, "REJECTED", -1);
+
+                    // 처리 완료된 요청으로 표시
+                    processedMatchRequests.add(matchRequestId);
                 } else {
                     Toast.makeText(ChatActivity.this, "매칭 거절 실패", Toast.LENGTH_SHORT).show();
                 }
@@ -263,13 +298,13 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     // 두 사용자의 SharedPreferences에 teamId를 각각 저장
-    private void saveTeamIdToPreferences(int teamId, int userId) {
-        Log.d("ChatActivity", "Saving teamId: " + teamId + " for userId: " + userId);
-        SharedPreferences sharedPreferences = getSharedPreferences("user_" + userId + "_prefs", MODE_PRIVATE);
+    private void saveTeamIdToPreferences(int teamId, int targetUserId) {
+        Log.d("ChatActivity", "Saving teamId: " + teamId + " for userId: " + targetUserId);
+        SharedPreferences sharedPreferences = getSharedPreferences("user_" + targetUserId + "_prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt("teamId", teamId);
         editor.apply();
-        Log.d("ChatActivity", "Saved teamId " + teamId + " for userId: " + userId);
+        Log.d("ChatActivity", "Saved teamId " + teamId + " for userId: " + targetUserId);
     }
 
     // 저장된 teamId 확인

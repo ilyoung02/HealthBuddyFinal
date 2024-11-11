@@ -1,6 +1,11 @@
 package com.example.healthbuddypro.Matching;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,38 +16,64 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.healthbuddypro.ApiService;
+import com.example.healthbuddypro.Matching.Chat.ChatActivity;
+import com.example.healthbuddypro.Matching.Chat.MatchRequestData;
 import com.example.healthbuddypro.R;
 import com.example.healthbuddypro.RetrofitClient;
 import com.example.healthbuddypro.ShortTermMatching.ShortTermMatchFragment;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 public class MatchFragment extends Fragment {
     private ViewPager2 viewPager;
     private ProfilePagerAdapter adapter;
+
+    private static final String CHANNEL_ID = "MATCH_REQUEST_CHANNEL";
+    private static final int NOTIFICATION_PERMISSION_REQUEST_CODE = 1001;
+    private FirebaseFirestore firebaseFirestore;
+    private int userId; // 로그인된 사용자의 ID
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_match, container, false);
 
-        viewPager = view.findViewById(R.id.viewPager);
+        // FirebaseFirestore 초기화
+        firebaseFirestore = FirebaseFirestore.getInstance();
 
+        // 예시로 SharedPreferences에서 userId를 가져오는 방법
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("localID", Context.MODE_PRIVATE);
+        userId = sharedPreferences.getInt("userId", -1);
+
+        // 알림 권한 요청
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            requestNotificationPermission();
+        } else {
+            createNotificationChannel();
+            checkPendingMatchRequests();
+        }
+
+        // 초기화 및 버튼 리스너 설정
+        viewPager = view.findViewById(R.id.viewPager);
         Button btn1To1Matching = view.findViewById(R.id.btn_1to1_matching);
         Button btnShortTermMatching = view.findViewById(R.id.btn_short_term_matching);
 
@@ -130,5 +161,61 @@ public class MatchFragment extends Fragment {
             startActivity(intent);
         });
         viewPager.setAdapter(adapter);
+    }
+
+    private void requestNotificationPermission() {
+        ActivityCompat.requestPermissions(requireActivity(), new String[]{Manifest.permission.POST_NOTIFICATIONS}, 101);
+    }
+
+    private void checkPendingMatchRequests() {
+        firebaseFirestore.collection("match_requests")
+                .whereEqualTo("receiverId", userId)
+                .whereEqualTo("status", "REQUESTED")
+                .addSnapshotListener((snapshots, e) -> {
+                    if (e != null) {
+                        Log.e("MatchFragment", "매칭 요청 수신 오류", e);
+                        return;
+                    }
+                    if (snapshots != null && !snapshots.isEmpty()) {
+                        for (DocumentSnapshot doc : snapshots.getDocuments()) {
+                            MatchRequestData matchRequest = doc.toObject(MatchRequestData.class);
+                            sendNotification(matchRequest.getMatchRequestId(), matchRequest.getSenderId());
+                        }
+                    }
+                });
+    }
+
+    private void sendNotification(int matchRequestId, int senderId) {
+        Intent intent = new Intent(getContext(), ChatActivity.class);
+        intent.putExtra("matchRequestId", matchRequestId);
+        intent.putExtra("profileId", senderId);
+
+        PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_notification)
+                .setContentTitle("새로운 매칭 요청")
+                .setContentText("채팅방으로 이동하여 매칭 요청을 확인하세요.")
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true);
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
+        notificationManager.notify(matchRequestId, builder.build());
+    }
+
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "매칭 요청 알림";
+            String description = "새로운 매칭 요청이 있을 때 알림을 보냅니다.";
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+
+            NotificationManager notificationManager = getContext().getSystemService(NotificationManager.class);
+            if (notificationManager != null) {
+                notificationManager.createNotificationChannel(channel);
+            }
+        }
     }
 }

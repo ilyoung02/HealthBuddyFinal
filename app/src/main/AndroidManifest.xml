@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
 
     <application
@@ -25,7 +26,8 @@
         android:theme="@style/Theme.HealthBuddyPro"
         android:usesCleartextTraffic="true"
         tools:targetApi="31"
-        android:requestLegacyExternalStorage="true">
+        android:requestLegacyExternalStorage="true"
+        android:name=".Matching.Chat.NotificationActivity">
 
         <activity
             android:name=".FitnessTab.Routine.routine_check_exercise_item"
