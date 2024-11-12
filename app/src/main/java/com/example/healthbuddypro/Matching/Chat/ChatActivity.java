@@ -46,6 +46,7 @@ public class ChatActivity extends AppCompatActivity {
     private int userId; // 로그인된 사용자의 ID
     private SharedPreferences sharedPreferences;
     private ListenerRegistration matchRequestListener;
+    private String chatRoomId; // 고유한 채팅방 ID
 
     private Set<Integer> processedMatchRequests = new HashSet<>(); // 이미 처리된 매칭 요청 ID 저장
 
@@ -70,6 +71,10 @@ public class ChatActivity extends AppCompatActivity {
 
         Log.d("ChatActivity", "userId: " + userId);
 
+        // userId와 profileId를 조합해 고유한 chatRoomId 생성
+        chatRoomId = "chat_" + Math.min(userId, profileId) + "_" + Math.max(userId, profileId);
+        Log.d("ChatActivity", "Generated chatRoomId: " + chatRoomId);
+
         // userId에 따라 구분된 SharedPreferences 파일 설정
         sharedPreferences = getSharedPreferences("user_" + userId + "_prefs", MODE_PRIVATE);
 
@@ -90,14 +95,14 @@ public class ChatActivity extends AppCompatActivity {
         buttonSend = findViewById(R.id.buttonSend);
         buttonMatch = findViewById(R.id.match_send);
 
-        // FirebaseFirestore 초기화
+        // FirebaseFirestore 초기화 및 채팅방 참조
         firebaseFirestore = FirebaseFirestore.getInstance();
-        chatRef = firebaseFirestore.collection("chats").document(String.valueOf(profileId)).collection("messages");
+        chatRef = firebaseFirestore.collection("chats").document(chatRoomId).collection("messages");
 
         buttonSend.setOnClickListener(v -> {
             String messageText = editTextMessage.getText().toString().trim();
             if (!messageText.isEmpty()) {
-                sendMessageToFirebase(profileId, messageText);
+                sendMessageToFirebase(messageText);
             }
         });
 
@@ -121,10 +126,13 @@ public class ChatActivity extends AppCompatActivity {
         }
     }
 
-    private void sendMessageToFirebase(int profileId, String messageText) {
+    private void sendMessageToFirebase(String messageText) {
         String senderName = sharedPreferences.getString("username", "알 수 없는 사용자");
 
+        // 메시지 객체 생성
         Message message = new Message(messageText, true, senderName);
+
+        // Firestore에 메시지를 추가하고 성공적으로 추가되었을 때만 로컬 리스트에 추가
         chatRef.add(message).addOnSuccessListener(documentReference -> {
             messageList.add(message);
             chatAdapter.notifyDataSetChanged();
@@ -193,7 +201,6 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     private void receiveMatchRequests() {
-        // 리스너가 이미 설정되어 있지 않은 경우에만 리스너를 등록
         if (matchRequestListener == null) {
             matchRequestListener = firebaseFirestore.collection("match_requests")
                     .whereEqualTo("receiverId", userId)
@@ -208,9 +215,8 @@ public class ChatActivity extends AppCompatActivity {
                                 MatchRequestData matchRequest = doc.toObject(MatchRequestData.class);
                                 int matchRequestId = matchRequest.getMatchRequestId();
 
-                                // 이미 처리된 요청이라면 다이얼로그를 표시하지 않음
                                 if (!processedMatchRequests.contains(matchRequestId)) {
-                                    processedMatchRequests.add(matchRequestId); // 처리된 요청으로 마크
+                                    processedMatchRequests.add(matchRequestId);
                                     showAcceptRejectDialog(matchRequestId);
                                 }
                             }
@@ -242,16 +248,9 @@ public class ChatActivity extends AppCompatActivity {
                     int teamId = response.body().getData().getTeamId();
                     Toast.makeText(ChatActivity.this, "매칭 수락 성공! 팀 ID: " + teamId, Toast.LENGTH_SHORT).show();
 
-                    // 두 사용자 각각의 SharedPreferences에 teamId 저장
-                    saveTeamIdToPreferences(teamId, userId); // 매칭을 수락한 사용자
-                    checkSavedTeamId(userId); // 매칭을 수락한 사용자에 대한 확인
-
-                    saveTeamIdToPreferences(teamId, profileId); // 매칭을 신청한 사용자
-                    checkSavedTeamId(profileId); // 매칭을 신청한 사용자에 대한 확인
-
+                    saveTeamIdToPreferences(teamId, userId);
+                    saveTeamIdToPreferences(teamId, profileId);
                     updateMatchRequestStatusInFirestore(matchRequestId, "ACCEPTED", teamId);
-
-                    // 처리 완료된 요청으로 표시
                     processedMatchRequests.add(matchRequestId);
                 } else {
                     Toast.makeText(ChatActivity.this, "매칭 수락 실패", Toast.LENGTH_SHORT).show();
@@ -272,10 +271,7 @@ public class ChatActivity extends AppCompatActivity {
             public void onResponse(Call<MatchResponse> call, Response<MatchResponse> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(ChatActivity.this, "매칭 거절 성공", Toast.LENGTH_SHORT).show();
-
                     updateMatchRequestStatusInFirestore(matchRequestId, "REJECTED", -1);
-
-                    // 처리 완료된 요청으로 표시
                     processedMatchRequests.add(matchRequestId);
                 } else {
                     Toast.makeText(ChatActivity.this, "매칭 거절 실패", Toast.LENGTH_SHORT).show();
@@ -289,7 +285,6 @@ public class ChatActivity extends AppCompatActivity {
         });
     }
 
-    // Firestore에 매칭 요청 상태 업데이트
     private void updateMatchRequestStatusInFirestore(int matchRequestId, String status, int teamId) {
         firebaseFirestore.collection("match_requests").document(String.valueOf(matchRequestId))
                 .update("status", status, "teamId", teamId)
@@ -297,17 +292,14 @@ public class ChatActivity extends AppCompatActivity {
                 .addOnFailureListener(e -> Log.e("ChatActivity", "매칭 상태 업데이트 실패: " + e.getMessage()));
     }
 
-    // 두 사용자의 SharedPreferences에 teamId를 각각 저장
     private void saveTeamIdToPreferences(int teamId, int targetUserId) {
         Log.d("ChatActivity", "Saving teamId: " + teamId + " for userId: " + targetUserId);
         SharedPreferences sharedPreferences = getSharedPreferences("user_" + targetUserId + "_prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt("teamId", teamId);
         editor.apply();
-        Log.d("ChatActivity", "Saved teamId " + teamId + " for userId: " + targetUserId);
     }
 
-    // 저장된 teamId 확인
     private void checkSavedTeamId(int userId) {
         SharedPreferences prefs = getSharedPreferences("user_" + userId + "_prefs", MODE_PRIVATE);
         int savedTeamId = prefs.getInt("teamId", -1);
