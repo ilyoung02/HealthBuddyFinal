@@ -67,28 +67,34 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     // ViewHolder for my messages
     public class MyMessageViewHolder extends RecyclerView.ViewHolder {
         TextView messageTextView;
+        TextView senderNameTextView;
 
         MyMessageViewHolder(View itemView) {
             super(itemView);
             messageTextView = itemView.findViewById(R.id.textMessage1);
+            senderNameTextView = itemView.findViewById(R.id.textSenderName1);
         }
 
         void bind(Message message) {
             messageTextView.setText(message.getContent());
+            senderNameTextView.setText(message.getSenderName());
         }
     }
 
     // ViewHolder for other messages
     public class OtherMessageViewHolder extends RecyclerView.ViewHolder {
         TextView messageTextView;
+        TextView senderNameTextView;
 
         OtherMessageViewHolder(View itemView) {
             super(itemView);
             messageTextView = itemView.findViewById(R.id.textMessage2);
+            senderNameTextView = itemView.findViewById(R.id.textSenderName2);
         }
 
         void bind(Message message) {
             messageTextView.setText(message.getContent());
+            senderNameTextView.setText(message.getSenderName());
         }
     }
 }

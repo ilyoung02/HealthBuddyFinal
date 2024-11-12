@@ -126,9 +126,11 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     private void sendMessageToFirebase(String messageText) {
+        // SharedPreferences에서 username 가져오기
         String senderName = sharedPreferences.getString("username", "알 수 없는 사용자");
+        Log.d("ChatActivity", "senderName: " + senderName); // 로그 추가
 
-        // 메시지 객체 생성
+        // 메시지 객체 생성 (senderName과 userId 추가)
         Message message = new Message(messageText, true, senderName, userId);
 
         // Firestore에 메시지를 추가하고 성공적으로 추가되었을 때만 로컬 리스트에 추가
@@ -152,7 +154,10 @@ public class ChatActivity extends AppCompatActivity {
                         messageList.clear();
                         for (DocumentSnapshot document : snapshots.getDocuments()) {
                             Message message = document.toObject(Message.class);
-                            messageList.add(message);
+                            if (message != null) {
+                                Log.d("ChatActivity", "Received message from: " + message.getSenderName()); // 로그 추가
+                                messageList.add(message);
+                            }
                         }
                         chatAdapter.notifyDataSetChanged();
                         recyclerView.scrollToPosition(messageList.size() - 1);
