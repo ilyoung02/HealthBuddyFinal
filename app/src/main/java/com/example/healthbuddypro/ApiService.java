@@ -1,9 +1,12 @@
 package com.example.healthbuddypro;
 
-import com.example.healthbuddypro.FitnessTab.Routine.Exercise;
+import com.example.healthbuddypro.FitnessTab.HealthBuddyEndResponse;
+import com.example.healthbuddypro.FitnessTab.MatchedUserResponse;
+import com.example.healthbuddypro.FitnessTab.ReviewRequest;
 import com.example.healthbuddypro.FitnessTab.Routine.RoutineDetailsResponse;
 import com.example.healthbuddypro.FitnessTab.Routine.RoutineResponse;
 import com.example.healthbuddypro.FitnessTab.Routine.WorkoutResponse;
+import com.example.healthbuddypro.FitnessTab.TeamStatusResponse;
 import com.example.healthbuddypro.Login.LoginRequest;
 import com.example.healthbuddypro.Login.LoginResponse;
 import com.example.healthbuddypro.Matching.Chat.MatchRequest;
@@ -13,9 +16,6 @@ import com.example.healthbuddypro.Matching.Chat.MessageRequest;
 import com.example.healthbuddypro.Matching.LikeResponse;
 import com.example.healthbuddypro.Matching.ProfileListResponse;
 import com.example.healthbuddypro.Matching.ProfileResponse;
-import com.example.healthbuddypro.ShortTermMatching.ShortMatchRequest;
-import com.example.healthbuddypro.ShortTermMatching.ShortMatchRequestStatus;
-import com.example.healthbuddypro.ShortTermMatching.ShortMatchResponse;
 import com.example.healthbuddypro.Profile.EditProfileResponse;
 import com.example.healthbuddypro.Profile.MyProfileResponse;
 
@@ -29,8 +29,6 @@ import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.PUT;
-import retrofit2.http.PUT;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 //Restrofit API 인터페이스
@@ -103,5 +101,25 @@ public interface ApiService {
             @Path("routineId") int routineId,
             @Query("day") String day
     );
+
+    // 매칭 상대 조회하기
+    @GET("/api/teams/{teamId}/users/{userId}/matched")
+    Call<MatchedUserResponse> getMatchedUser(
+            @Path("teamId") int teamId,
+            @Path("userId") int userId
+    );
+
+    // 팀 상태 조회
+    @GET("/api/teams/{teamId}/status")
+    Call<TeamStatusResponse> getTeamStatus(
+            @Path("teamId") int teamId
+    );
+
+    @POST("/api/teams/{teamId}/terminate")
+    Call<HealthBuddyEndResponse> sendReview(
+            @Path("teamId") int teamId,
+            @Body ReviewRequest reviewRequest
+    );
+
 
 }
