@@ -169,6 +169,12 @@ public class ManageFragment extends Fragment {
                     String status = response.body().getData().getTeamStatus();
                     matchingSuffix.setText(status);
                     Log.d("ManageFragment", "Team Status: " + status);
+
+                    // 팀 상태가 "종료"인 경우 user2의 정보를 숨김
+                    if ("종료".equals(status)) {
+                        user2NameTextView.setVisibility(View.GONE);
+                        user2Image.setVisibility(View.GONE);
+                    }
                 } else {
                     Log.e("ManageFragment", "Failed to fetch team status.");
                     Toast.makeText(getActivity(), "Failed to fetch team status", Toast.LENGTH_SHORT).show();

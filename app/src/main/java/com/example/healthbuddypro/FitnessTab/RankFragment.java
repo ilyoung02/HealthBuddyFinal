@@ -4,11 +4,13 @@ import static android.content.Context.MODE_PRIVATE;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,6 +31,7 @@ public class RankFragment extends Fragment {
     private int userId, teamId, teamUserId, profileId1, profileId2;
     private TextView user1NameTextView, user2NameTextView;
     private ImageView user1Image, user2Image;
+    private TextView groupPointsTextView, groupRankTextView; // 추가된 UI 요소
 
     @Nullable
     @Override
@@ -40,6 +43,8 @@ public class RankFragment extends Fragment {
         user2NameTextView = view.findViewById(R.id.user2_name);
         user1Image = view.findViewById(R.id.user1_icon);
         user2Image = view.findViewById(R.id.user2_icon);
+        groupPointsTextView = view.findViewById(R.id.group_points); // 추가된 TextView
+        groupRankTextView = view.findViewById(R.id.group_rank); // 추가된 TextView
 
         // SharedPreferences에서 userId 및 teamId 가져오기
         SharedPreferences preferences1 = requireActivity().getSharedPreferences("localID", MODE_PRIVATE);
@@ -52,6 +57,10 @@ public class RankFragment extends Fragment {
         // teamId와 userId를 사용하여 팀원 정보 가져오기
         fetchTeamUserIdAndName(teamId, userId);
         fetchProfileData(userId);  // user1의 프로필 데이터 불러오기
+        fetchTeamStatus(teamId);
+
+        // 그룹 포인트 및 랭킹 데이터를 가져옴
+        fetchTeamRankingData(teamId);
 
         return view;
     }
@@ -119,5 +128,68 @@ public class RankFragment extends Fragment {
         } else {
             imageView.setImageResource(R.drawable.default_profile_image);
         }
+    }
+
+    // 팀 상태를 가져오는 메서드
+    private void fetchTeamStatus(int teamId) {
+        ApiService apiService = RetrofitClient.getApiService();
+        Call<TeamStatusResponse> call = apiService.getTeamStatus(teamId);
+
+        call.enqueue(new Callback<TeamStatusResponse>() {
+            @Override
+            public void onResponse(Call<TeamStatusResponse> call, Response<TeamStatusResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    // 팀 상태를 받아와서 matchingSuffix에 설정
+                    String status = response.body().getData().getTeamStatus();
+                    Log.d("ManageFragment", "Team Status: " + status);
+
+                    // 팀 상태가 "종료"인 경우 user2의 정보를 숨김
+                    if ("종료".equals(status)) {
+                        user2NameTextView.setVisibility(View.GONE);
+                        user2Image.setVisibility(View.GONE);
+                    }
+                } else {
+                    Log.e("ManageFragment", "Failed to fetch team status.");
+                    Toast.makeText(getActivity(), "Failed to fetch team status", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TeamStatusResponse> call, Throwable t) {
+                Log.e("ManageFragment", "API call failed", t);
+                Toast.makeText(getActivity(), "Error fetching team status", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    // 팀 랭킹 데이터 가져오기
+    private void fetchTeamRankingData(int teamId) {
+        ApiService apiService = RetrofitClient.getApiService();
+        Call<TeamRankingResponse> call = apiService.getTeamRanking(teamId);
+
+        call.enqueue(new Callback<TeamRankingResponse>() {
+            @Override
+            public void onResponse(Call<TeamRankingResponse> call, Response<TeamRankingResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    TeamRankingResponse rankingResponse = response.body();
+
+                    int points = rankingResponse.getData().getPoints();
+                    int rank = rankingResponse.getData().getRanks();
+
+                    // 그룹 포인트 및 랭킹 값 설정
+                    groupPointsTextView.setText(String.valueOf(points));
+                    groupRankTextView.setText(String.valueOf(rank));
+                } else {
+                    Log.e("RankFragment", "Failed to fetch team ranking data.");
+                    Toast.makeText(getActivity(), "Failed to fetch team ranking data.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TeamRankingResponse> call, Throwable t) {
+                Log.e("RankFragment", "API call failed", t);
+                Toast.makeText(getActivity(), "Error fetching team ranking data", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
