@@ -6,6 +6,8 @@ import com.example.healthbuddypro.FitnessTab.ReviewRequest;
 import com.example.healthbuddypro.FitnessTab.Routine.RoutineDetailsResponse;
 import com.example.healthbuddypro.FitnessTab.Routine.RoutineResponse;
 import com.example.healthbuddypro.FitnessTab.Routine.WorkoutResponse;
+import com.example.healthbuddypro.FitnessTab.TeamRankingListResponse;
+import com.example.healthbuddypro.FitnessTab.TeamRankingResponse;
 import com.example.healthbuddypro.FitnessTab.TeamStatusResponse;
 import com.example.healthbuddypro.Login.LoginRequest;
 import com.example.healthbuddypro.Login.LoginResponse;
@@ -115,10 +117,21 @@ public interface ApiService {
             @Path("teamId") int teamId
     );
 
+    // 헬스버디 종료
     @POST("/api/teams/{teamId}/terminate")
     Call<HealthBuddyEndResponse> sendReview(
             @Path("teamId") int teamId,
             @Body ReviewRequest reviewRequest
+    );
+
+    // 팀 포인트 랭킹 목록
+    @GET("/api/teams/rankings")
+    Call<TeamRankingListResponse> getTeamRankingList();
+
+    // 특정 팀 포인트 및 랭킹 상세
+    @GET("/api/teams/{teamId}/rankings")
+    Call<TeamRankingResponse> getTeamRanking(
+            @Path("teamId") int teamId
     );
 
 
