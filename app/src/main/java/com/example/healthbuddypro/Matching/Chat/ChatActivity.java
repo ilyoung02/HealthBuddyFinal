@@ -21,6 +21,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.ListenerRegistration;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -80,15 +81,13 @@ public class ChatActivity extends AppCompatActivity {
 
         apiService = RetrofitClient.getApiService();
 
-        if (profileId != -1) {
-            setTitle("채팅 - 상대방 프로필 ID: " + profileId);
-        }
-
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         messageList = new ArrayList<>();
-        chatAdapter = new ChatAdapter(messageList);
+
+        //Adapter 초기화 시 사용자 ID 전달
+        chatAdapter = new ChatAdapter(messageList, userId);
         recyclerView.setAdapter(chatAdapter);
 
         editTextMessage = findViewById(R.id.editTextMessage);
@@ -130,13 +129,10 @@ public class ChatActivity extends AppCompatActivity {
         String senderName = sharedPreferences.getString("username", "알 수 없는 사용자");
 
         // 메시지 객체 생성
-        Message message = new Message(messageText, true, senderName);
+        Message message = new Message(messageText, true, senderName, userId);
 
         // Firestore에 메시지를 추가하고 성공적으로 추가되었을 때만 로컬 리스트에 추가
         chatRef.add(message).addOnSuccessListener(documentReference -> {
-            messageList.add(message);
-            chatAdapter.notifyDataSetChanged();
-            recyclerView.scrollToPosition(messageList.size() - 1);
             editTextMessage.setText("");
             Toast.makeText(ChatActivity.this, "메시지 전송 성공", Toast.LENGTH_SHORT).show();
         }).addOnFailureListener(e -> {
@@ -145,22 +141,23 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     private void receiveMessagesFromFirebase() {
-        chatRef.addSnapshotListener((EventListener<QuerySnapshot>) (snapshots, e) -> {
-            if (e != null) {
-                Toast.makeText(ChatActivity.this, "메시지 수신 오류", Toast.LENGTH_SHORT).show();
-                return;
-            }
+        chatRef.orderBy("timestamp", Query.Direction.ASCENDING)
+                .addSnapshotListener((snapshots, e) -> {
+                    if (e != null) {
+                        Toast.makeText(ChatActivity.this, "메시지 수신 오류", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
 
-            if (snapshots != null) {
-                messageList.clear();
-                for (DocumentSnapshot document : snapshots.getDocuments()) {
-                    Message message = document.toObject(Message.class);
-                    messageList.add(message);
-                }
-                chatAdapter.notifyDataSetChanged();
-                recyclerView.scrollToPosition(messageList.size() - 1);
-            }
-        });
+                    if (snapshots != null) {
+                        messageList.clear();
+                        for (DocumentSnapshot document : snapshots.getDocuments()) {
+                            Message message = document.toObject(Message.class);
+                            messageList.add(message);
+                        }
+                        chatAdapter.notifyDataSetChanged();
+                        recyclerView.scrollToPosition(messageList.size() - 1);
+                    }
+                });
     }
 
     private void sendMatchRequest() {

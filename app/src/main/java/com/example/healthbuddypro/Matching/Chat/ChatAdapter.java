@@ -12,34 +12,39 @@ import com.example.healthbuddypro.R;
 
 import java.util.List;
 
-// RecyclerView의 어댑터 => 채팅 메시지 표시
-// Message 객체 이용, 사용자가 보낸 메시지와 상대방이 보낸 메시지 구분
 public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<Message> messageList;
-
-    // ViewType 상수 정의
     private static final int VIEW_TYPE_MY_MESSAGE = 1;
     private static final int VIEW_TYPE_OTHER_MESSAGE = 2;
 
-    public ChatAdapter(List<Message> messageList) {
+    private List<Message> messageList;
+    private int currentUserId;; // 현재 로그인한 사용자 ID
+
+    public ChatAdapter(List<Message> messageList, int currentUserId) {
         this.messageList = messageList;
+        this.currentUserId = currentUserId;
     }
 
     @Override
     public int getItemViewType(int position) {
         Message message = messageList.get(position);
-        return message.isSender() ? VIEW_TYPE_MY_MESSAGE : VIEW_TYPE_OTHER_MESSAGE;
+        // 현재 사용자가 보낸 메시지이면 오른쪽에 표시
+        if (message.getSenderId() == currentUserId) {
+            return VIEW_TYPE_MY_MESSAGE; // 현재 사용자가 보낸 메시지
+        } else {
+            return VIEW_TYPE_OTHER_MESSAGE; // 상대방이 보낸 메시지
+        }
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         if (viewType == VIEW_TYPE_MY_MESSAGE) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_message_right, parent, false);
+            View view = inflater.inflate(R.layout.item_message_right, parent, false);
             return new MyMessageViewHolder(view);
         } else {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_message_left, parent, false);
+            View view = inflater.inflate(R.layout.item_message_left, parent, false);
             return new OtherMessageViewHolder(view);
         }
     }
@@ -59,38 +64,31 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return messageList.size();
     }
 
-    // 내 메시지 ViewHolder
-    static class MyMessageViewHolder extends RecyclerView.ViewHolder {
-        TextView textMessage;
-        TextView textSenderName;  // 보낸 사람 이름을 위한 TextView
+    // ViewHolder for my messages
+    public class MyMessageViewHolder extends RecyclerView.ViewHolder {
+        TextView messageTextView;
 
         MyMessageViewHolder(View itemView) {
             super(itemView);
-            textMessage = itemView.findViewById(R.id.textMessage);
-            textSenderName = itemView.findViewById(R.id.textSenderName);  // 추가
+            messageTextView = itemView.findViewById(R.id.textMessage1);
         }
 
         void bind(Message message) {
-            textMessage.setText(message.getContent());
-            textSenderName.setText(message.getSenderName());  // 이름 표시
+            messageTextView.setText(message.getContent());
         }
     }
 
-    // 상대방 메시지 ViewHolder
-    static class OtherMessageViewHolder extends RecyclerView.ViewHolder {
-        TextView textMessage;
-        TextView textSenderName;  // 보낸 사람 이름을 위한 TextView
+    // ViewHolder for other messages
+    public class OtherMessageViewHolder extends RecyclerView.ViewHolder {
+        TextView messageTextView;
 
         OtherMessageViewHolder(View itemView) {
             super(itemView);
-            textMessage = itemView.findViewById(R.id.textMessage);
-            textSenderName = itemView.findViewById(R.id.textSenderName);  // 추가
+            messageTextView = itemView.findViewById(R.id.textMessage2);
         }
 
         void bind(Message message) {
-            textMessage.setText(message.getContent());
-            textSenderName.setText(message.getSenderName());  // 이름 표시
+            messageTextView.setText(message.getContent());
         }
     }
 }
-
