@@ -106,4 +106,38 @@
 
     </LinearLayout>
 
+    <!-- 대댓글 영역 추가 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvComments"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:nestedScrollingEnabled="false" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/etCommentContent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="댓글을 입력하세요"
+            android:textSize="14sp"
+            android:background="@color/white"
+            android:padding="8dp" />
+
+        <Button
+            android:id="@+id/btnAddComment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="등록"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/blue" />
+    </LinearLayout>
+
 </LinearLayout>
