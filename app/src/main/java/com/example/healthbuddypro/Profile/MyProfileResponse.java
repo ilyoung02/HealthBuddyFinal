@@ -7,7 +7,7 @@ public class MyProfileResponse {
     private String message;
     private ProfileData data;
 
-    public class ProfileData {
+    public static class ProfileData {
         private int userId;
         private String imageUrl;
         private String nickname;
@@ -19,17 +19,28 @@ public class MyProfileResponse {
         private String region;
         private String bio;
         private int likeCount;
+        private List<Review> profileReviewResponses;
 
+        public int getUserId() { return userId; }
         public String getImageUrl() { return imageUrl; }
         public String getNickname() { return nickname; }
         public String getGender() { return gender; }
         public int getAge() { return age; }
         public int getWorkoutYears() { return workoutYears; }
-        public List<String> getFavWorkouts() { return favWorkouts; }  // Updated getter
+        public List<String> getFavWorkouts() { return favWorkouts; }
         public String getWorkoutGoal() { return workoutGoal; }
         public String getRegion() { return region; }
         public String getBio() { return bio; }
         public int getLikeCount() { return likeCount; }
+        public List<Review> getProfileReviewResponses() { return profileReviewResponses; }
+    }
+
+    public static class Review {
+        private String writer;
+        private String content;
+
+        public String getWriter() { return writer; }
+        public String getContent() { return content; }
     }
 
     public int getCode() {
@@ -40,7 +51,6 @@ public class MyProfileResponse {
         this.code = code;
     }
 
-    // Getter and Setter for message
     public String getMessage() {
         return message;
     }
@@ -56,5 +66,4 @@ public class MyProfileResponse {
     public void setData(ProfileData data) {
         this.data = data;
     }
-
 }

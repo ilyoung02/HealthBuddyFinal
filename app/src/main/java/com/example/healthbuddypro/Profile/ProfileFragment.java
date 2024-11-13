@@ -25,6 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.healthbuddypro.ApiService;
+import com.example.healthbuddypro.FitnessTab.TeamStatusResponse;
 import com.example.healthbuddypro.Login.LoginActivity;
 import com.example.healthbuddypro.R;
 import com.example.healthbuddypro.RetrofitClient;
@@ -39,14 +40,13 @@ public class ProfileFragment extends Fragment {
 
     private static final String BASE_URL = "http://165.229.89.154:8080/";
 
-    private Button buttonLogout;
-    private Button btnEdit;
+    private Button buttonLogout, btnEdit, btnStatus;
     private TextView profileNickname, profileGender, profileAge, profileExperience, profileLocation, profileGoal, profileBio, likeCount;
     private ImageView profileImage;
-    private RecyclerView favWorkoutsRecyclerView;
-    private Switch healthBuddySwitch;
+    private RecyclerView favWorkoutsRecyclerView, reviewRecyclerView;
     private FavWorkoutsAdapter favWorkoutsAdapter;
-    private int profileId;  // Profile ID
+    private ReviewAdapter reviewAdapter;
+    private int profileId, userId, teamId;
 
     @Nullable
     @Override
@@ -63,15 +63,17 @@ public class ProfileFragment extends Fragment {
         profileBio = view.findViewById(R.id.profile_bio_text);
         profileImage = view.findViewById(R.id.profile_image);
         likeCount = view.findViewById(R.id.like_count);
-        healthBuddySwitch = view.findViewById(R.id.health_buddy_switch);
+        btnStatus = view.findViewById(R.id.health_buddy_status);
         favWorkoutsRecyclerView = view.findViewById(R.id.workouts_recycler_view);
+        reviewRecyclerView = view.findViewById(R.id.review_recycler_view);
 
         favWorkoutsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        reviewRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         buttonLogout = view.findViewById(R.id.buttonLogout);
         btnEdit = view.findViewById(R.id.btn_edit);
+        btnStatus.setClickable(false);
 
-        // 로그아웃 버튼
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,7 +81,6 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        // 수정 버튼
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,33 +90,40 @@ public class ProfileFragment extends Fragment {
         });
 
         SharedPreferences preferences = requireActivity().getSharedPreferences("localID", MODE_PRIVATE);
-        profileId = preferences.getInt("profileId", -1);  // If profileId not found, default to -1
+        profileId = preferences.getInt("profileId", -1);
+        userId = preferences.getInt("userId", -1);
 
-        // Check if profileId is valid, and then fetch profile data
+
+        SharedPreferences preferences2 = requireActivity().getSharedPreferences("user_" + userId + "_prefs", MODE_PRIVATE);
+        teamId = preferences2.getInt("teamId", -1);
+
         if (profileId == -1) {
             Log.e("ProfileFragment", "Profile ID not found in SharedPreferences.");
-            showToast("프로필 ID를 찾을 수 없습니다.");  // You can replace this with your actual toast method
+            showToast("프로필 ID를 찾을 수 없습니다.");
         } else {
-            // Fetch profile data
             fetchProfileData(profileId);
+        }
+
+        if (teamId != -1) {
+            fetchTeamStatus(teamId);
+        } else {
+            Log.e("ProfileFragment", "Team ID not found in SharedPreferences.");
+            showToast("팀 ID를 찾을 수 없습니다.");
         }
 
         return view;
     }
 
-    // 서버에서 프로필 데이터를 가져오는 메소드
     private void fetchProfileData(int profileId) {
         ApiService profileService = RetrofitClient.getApiService();
 
-        Call<MyProfileResponse> call = profileService.getProfileData(profileId);  // profileId를 전달하여 서버에서 데이터 호출
+        Call<MyProfileResponse> call = profileService.getProfileData(profileId);
         call.enqueue(new Callback<MyProfileResponse>() {
             @Override
             public void onResponse(Call<MyProfileResponse> call, Response<MyProfileResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    // 서버에서 받은 프로필 데이터를 UI에 적용
                     MyProfileResponse.ProfileData profileData = response.body().getData();
 
-                    // 프로필 데이터 UI 설정
                     profileNickname.setText(profileData.getNickname());
                     profileGender.setText(profileData.getGender());
                     profileAge.setText(String.valueOf(profileData.getAge()));
@@ -125,28 +133,27 @@ public class ProfileFragment extends Fragment {
                     profileBio.setText(profileData.getBio());
                     likeCount.setText(String.valueOf(profileData.getLikeCount()));
 
-
                     String imageUrl = profileData.getImageUrl();
-
-                    Log.d("ProfileFragment", "Image URL: " + imageUrl);
-
-                    // 이미지 URL이 유효한지 확인 후 처리
                     if (imageUrl != null && !imageUrl.isEmpty()) {
-                        // Glide를 사용해 ImageView에 이미지 로드
                         Glide.with(ProfileFragment.this)
                                 .load(imageUrl)
-                                .error(R.drawable.default_profile_image)  // 오류 시 기본 이미지 표시
+                                .error(R.drawable.default_profile_image)
                                 .into(profileImage);
                     } else {
-                        // 이미지 URL이 없을 경우 기본 이미지 사용
-                        Log.e("ProfileFragment", "Image URL is null or empty.");
                         profileImage.setImageResource(R.drawable.default_profile_image);
                     }
 
-                    // 즐겨찾기한 운동 목록 설정
                     List<String> favWorkouts = profileData.getFavWorkouts();
                     favWorkoutsAdapter = new FavWorkoutsAdapter(favWorkouts);
                     favWorkoutsRecyclerView.setAdapter(favWorkoutsAdapter);
+
+                    List<MyProfileResponse.Review> reviews = profileData.getProfileReviewResponses();
+                    if (reviews != null && !reviews.isEmpty()) {
+                        reviewAdapter = new ReviewAdapter(reviews);
+                        reviewRecyclerView.setAdapter(reviewAdapter);
+                    } else {
+                        Log.d("ProfileFragment", "No reviews found for this profile.");
+                    }
 
                 } else {
                     Log.e("ProfileFragment", "Failed to fetch profile data.");
@@ -160,7 +167,34 @@ public class ProfileFragment extends Fragment {
         });
     }
 
-    // Logout confirmation dialog
+    private void fetchTeamStatus(int teamId) {
+        ApiService apiService = RetrofitClient.getApiService();
+
+        Call<TeamStatusResponse> call = apiService.getTeamStatus(teamId);
+        call.enqueue(new Callback<TeamStatusResponse>() {
+            @Override
+            public void onResponse(Call<TeamStatusResponse> call, Response<TeamStatusResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    String status = response.body().getData().getTeamStatus();
+
+                    // Update the button text based on status
+                    if ("진행".equals(status)) {
+                        btnStatus.setText("헬스버디 ON");
+                    } else if ("종료".equals(status)) {
+                        btnStatus.setText("헬스버디 OFF");
+                    }
+                } else {
+                    Log.e("ProfileFragment", "Failed to fetch team status.");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TeamStatusResponse> call, Throwable t) {
+                Log.e("ProfileFragment", "Error fetching team status", t);
+            }
+        });
+    }
+
     private void showLogoutConfirmationDialog() {
         new AlertDialog.Builder(requireContext())
                 .setTitle("로그아웃")
@@ -175,18 +209,15 @@ public class ProfileFragment extends Fragment {
                 .show();
     }
 
-    // Logout user method
     private void logoutUser() {
         SharedPreferences preferences = requireActivity().getSharedPreferences("user_session", MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-
         editor.clear();
         editor.apply();
 
         Intent intent = new Intent(getActivity(), LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
-
         requireActivity().finish();
     }
 

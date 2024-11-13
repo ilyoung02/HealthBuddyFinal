@@ -197,22 +197,17 @@
         android:gravity="right"
         android:layout_marginBottom="10dp">
 
-        <!-- 헬스버디 상태 텍스트 -->
-        <TextView
-            android:id="@+id/health_buddy_status_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="헬스버디"
-            android:textSize="16sp"
-            android:textColor="@android:color/black"
-            android:layout_marginEnd="8dp" />
+        <Button
+            android:id="@+id/health_buddy_status"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:backgroundTint="#6795ED"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="헬스버디 상태"
+            android:textSize="12sp"
+            android:textColor="#FFFFFF" />
 
-        <!-- 헬스버디 스위치 -->
-        <Switch
-            android:id="@+id/health_buddy_switch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="false" />
     </LinearLayout>
 
     <!-- 상태 메시지와 운동 목표 박스 -->
@@ -267,7 +262,7 @@
         android:layout_marginBottom="16dp">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/reviews_recycler_view"
+            android:id="@+id/review_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"/>
