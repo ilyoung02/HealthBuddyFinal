@@ -8,23 +8,13 @@
     android:layout_margin="20dp"
     android:background="@color/white">
 
-
-    <!--<TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="커뮤니티"
-        android:textSize="25dp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:layout_marginBottom="15dp"/>-->
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
         android:background="@color/white"
-        app:title="커뮤니티"
+        app:title="QNA 익명 게시판"
         android:titleTextColor="@android:color/black"/>
 
     <LinearLayout
