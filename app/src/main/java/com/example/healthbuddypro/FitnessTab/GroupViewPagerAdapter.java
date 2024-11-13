@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.healthbuddypro.FitnessTab.Routine.RoutineFragment;
+import com.example.healthbuddypro.FitnessTab.TeamChat.TeamChatFragment;
 
 public class GroupViewPagerAdapter extends FragmentPagerAdapter {
 
@@ -19,7 +20,7 @@ public class GroupViewPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return new RoutineFragment();
             case 1:
-                return new ChatFragment();
+                return new TeamChatFragment();
             case 2:
                 return new ManageFragment();
             case 3:

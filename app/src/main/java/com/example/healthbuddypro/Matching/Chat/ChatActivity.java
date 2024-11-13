@@ -126,9 +126,7 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     private void sendMessageToFirebase(String messageText) {
-        // SharedPreferences에서 username 가져오기
-        String senderName = sharedPreferences.getString("username", "알 수 없는 사용자");
-        Log.d("ChatActivity", "senderName: " + senderName); // 로그 추가
+        String senderName = "User" + userId;
 
         // 메시지 객체 생성 (senderName과 userId 추가)
         Message message = new Message(messageText, true, senderName, userId);

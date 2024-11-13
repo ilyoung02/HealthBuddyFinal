@@ -1,18 +1,19 @@
-package com.example.healthbuddypro.Matching.Chat;
+package com.example.healthbuddypro.FitnessTab.TeamChat;
 
 import com.google.firebase.firestore.FieldValue;
 
 public class Message {
+
     private String content;
     private boolean isSender;
     private String senderName;  // 메시지 보낸 사람의 이름
     private int senderId; // 메시지 보낸 사람의 ID
     private Object timestamp;  // 타임스탬프 필드로 서버 타임스탬프를 저장
 
-    public Message() {
-    }
+    // Firestore에서 객체를 역직렬화할 때 기본 생성자가 필요합니다.
+    public Message() {}
 
-    // 필드 초기화
+    // 기존 생성자
     public Message(String content, boolean isSender, String senderName, int senderId) {
         this.content = content;
         this.isSender = isSender;
