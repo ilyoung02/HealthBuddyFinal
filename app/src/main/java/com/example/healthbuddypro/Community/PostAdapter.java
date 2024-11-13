@@ -54,7 +54,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
             String commentContent = holder.etCommentContent.getText().toString().trim();
             if (!TextUtils.isEmpty(commentContent)) {
                 // 새로운 댓글 생성 (익명 + 번호)
-                Comment newComment = new Comment("익명" + (holder.commentAdapter.getItemCount() + 1), commentContent);
+//                Comment newComment = new Comment("익명" + (holder.commentAdapter.getItemCount() + 1), commentContent);
+                Comment newComment = new Comment("익명", commentContent);
                 post.getComments().add(newComment); // 댓글 리스트에 추가
                 holder.commentAdapter.notifyDataSetChanged(); // 어댑터에 변경 사항 알림
                 holder.etCommentContent.setText(""); // 댓글 입력 필드 초기화
