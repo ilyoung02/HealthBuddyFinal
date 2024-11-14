@@ -136,10 +136,10 @@ public class ProfileFragment extends Fragment {
                     if (imageUrl != null && !imageUrl.isEmpty()) {
                         Glide.with(ProfileFragment.this)
                                 .load(imageUrl)
-                                .error(R.drawable.default_profile_image)
+                                .error(R.drawable.default_image)
                                 .into(profileImage);
                     } else {
-                        profileImage.setImageResource(R.drawable.default_profile_image);
+                        profileImage.setImageResource(R.drawable.default_image);
                     }
 
                     List<String> favWorkouts = profileData.getFavWorkouts();

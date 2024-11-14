@@ -378,7 +378,7 @@ public class EditProfileActivity extends AppCompatActivity {
     // 기본 이미지를 사용하여 MultipartBody.Part 생성
     private MultipartBody.Part createDefaultImagePart() {
         // 기본 이미지인 default_profile_image를 불러옴
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.default_profile_image);
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.default_image);
         if (bitmap != null) {
             // 비트맵을 JPEG 파일로 변환
             File defaultImageFile = new File(getCacheDir(), "default_profile_image.jpg");

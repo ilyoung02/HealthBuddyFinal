@@ -136,10 +136,10 @@ public class RankFragment extends Fragment {
         if (imageUrl != null && !imageUrl.isEmpty()) {
             Glide.with(RankFragment.this)
                     .load(imageUrl)
-                    .error(R.drawable.default_profile_image)  // 오류 시 기본 이미지 표시
+                    .error(R.drawable.default_image)  // 오류 시 기본 이미지 표시
                     .into(imageView);
         } else {
-            imageView.setImageResource(R.drawable.default_profile_image);
+            imageView.setImageResource(R.drawable.default_image);
         }
     }
 
@@ -160,7 +160,7 @@ public class RankFragment extends Fragment {
                     if ("종료".equals(status)) {
                         isTeamEnded = true;
                         user2NameTextView.setText("없음");
-                        user2Image.setImageResource(R.drawable.default_profile_image);
+                        user2Image.setImageResource(R.drawable.icon_person);
                         groupPointsTextView.setText("0");
                         groupRankTextView.setText("0");
                     }

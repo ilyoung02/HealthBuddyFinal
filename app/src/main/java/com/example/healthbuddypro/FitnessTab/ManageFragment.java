@@ -150,10 +150,10 @@ public class ManageFragment extends Fragment {
         if (imageUrl != null && !imageUrl.isEmpty()) {
             Glide.with(ManageFragment.this)
                     .load(imageUrl)
-                    .error(R.drawable.default_profile_image)
+                    .error(R.drawable.default_image)
                     .into(imageView);
         } else {
-            imageView.setImageResource(R.drawable.default_profile_image);
+            imageView.setImageResource(R.drawable.default_image);
         }
     }
 
@@ -175,7 +175,7 @@ public class ManageFragment extends Fragment {
                     if ("종료".equals(status)) {
                         isTeamEnded = true;
                         user2NameTextView.setText("없음");
-                        user2Image.setImageResource(R.drawable.default_profile_image);
+                        user2Image.setImageResource(R.drawable.icon_person);
                     }
                 } else {
                     Log.e("ManageFragment", "Failed to fetch team status.");
