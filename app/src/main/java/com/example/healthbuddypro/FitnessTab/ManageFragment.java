@@ -23,7 +23,6 @@ import com.example.healthbuddypro.ApiService;
 import com.example.healthbuddypro.Profile.MyProfileResponse;
 import com.example.healthbuddypro.R;
 import com.example.healthbuddypro.RetrofitClient;
-import com.example.healthbuddypro.FitnessTab.quit_hb01;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,6 +33,7 @@ public class ManageFragment extends Fragment {
     private int userId, teamId, teamUserId, profileId1, profileId2;
     private TextView user1NameTextView, user2NameTextView, matchingSuffix;
     private ImageView user1Image, user2Image;
+    private boolean isTeamEnded = false;
 
     @Nullable
     @Override
@@ -70,12 +70,14 @@ public class ManageFragment extends Fragment {
         teamId = preferences2.getInt("teamId", -1);
         Log.d("ManageFragment", "Retrieved teamId from SharedPreferences: " + teamId);
 
+        // 팀 상태를 가져오는 API 호출
+        fetchTeamStatus(teamId);
+
         // teamId와 userId를 사용하여 팀원 정보 가져오기
         fetchTeamUserIdAndName(teamId, userId);
         fetchProfileData(userId);  // user1의 프로필 데이터 불러오기
 
-        // 팀 상태를 가져오는 API 호출
-        fetchTeamStatus(teamId);
+
 
         return view;
     }
@@ -91,14 +93,14 @@ public class ManageFragment extends Fragment {
             public void onResponse(Call<MatchedUserResponse> call, Response<MatchedUserResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     teamUserId = response.body().getData().getUserId();
-                    String user2Name = response.body().getData().getNickname();
-
                     profileId2 = teamUserId;
-                    user2NameTextView.setText(user2Name);
 
-                    fetchProfileData(profileId2);  // user2의 프로필 데이터 불러오기
+                    if (!isTeamEnded) {
+                        user2NameTextView.setText(response.body().getData().getNickname());
+                        fetchProfileData(profileId2);  // user2의 프로필 데이터 불러오기
+                    }
 
-                    Log.d("ManageFragment", "Fetched teamUserId: " + teamUserId + ", user2Name: " + user2Name);
+                    Log.d("ManageFragment", "Fetched teamUserId: " + teamUserId);
                 } else {
                     Log.e("ManageFragment", "Failed to fetch data: Response unsuccessful or body is null");
                     Toast.makeText(getActivity(), "Failed to fetch data", Toast.LENGTH_SHORT).show();
@@ -127,11 +129,10 @@ public class ManageFragment extends Fragment {
                     if (profileId == profileId1) {
                         user1NameTextView.setText(profileData.getNickname());
                         loadProfileImage(profileData.getImageUrl(), user1Image);
-                    } else if (profileId == profileId2) {
+                    } else if (profileId == profileId2 && !isTeamEnded) {
                         user2NameTextView.setText(profileData.getNickname());
                         loadProfileImage(profileData.getImageUrl(), user2Image);
                     }
-
                     Log.d("ManageFragment", "Fetched profile data for profileId: " + profileId);
                 } else {
                     Log.e("ManageFragment", "Failed to fetch profile data.");
@@ -172,8 +173,9 @@ public class ManageFragment extends Fragment {
 
                     // 팀 상태가 "종료"인 경우 user2의 정보를 숨김
                     if ("종료".equals(status)) {
-                        user2NameTextView.setVisibility(View.GONE);
-                        user2Image.setVisibility(View.GONE);
+                        isTeamEnded = true;
+                        user2NameTextView.setText("없음");
+                        user2Image.setImageResource(R.drawable.default_profile_image);
                     }
                 } else {
                     Log.e("ManageFragment", "Failed to fetch team status.");

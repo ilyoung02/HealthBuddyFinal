@@ -101,7 +101,7 @@
                 android:id="@+id/user2_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="김현우"
+                android:text="이름"
                 android:textSize="16sp"
                 android:textColor="#4484FF"
                 android:gravity="center"/>

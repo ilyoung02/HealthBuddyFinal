@@ -32,6 +32,7 @@ public class RankFragment extends Fragment {
     private TextView user1NameTextView, user2NameTextView;
     private ImageView user1Image, user2Image;
     private TextView groupPointsTextView, groupRankTextView; // 추가된 UI 요소
+    private boolean isTeamEnded = false;
 
     @Nullable
     @Override
@@ -53,11 +54,15 @@ public class RankFragment extends Fragment {
 
         SharedPreferences preferences2 = requireActivity().getSharedPreferences("user_" + userId + "_prefs", MODE_PRIVATE);
         teamId = preferences2.getInt("teamId", -1);
-
+        
+        // team 상태 가져오기
+        fetchTeamStatus(teamId);
+        
         // teamId와 userId를 사용하여 팀원 정보 가져오기
         fetchTeamUserIdAndName(teamId, userId);
-        fetchProfileData(userId);  // user1의 프로필 데이터 불러오기
-        fetchTeamStatus(teamId);
+
+        // user1의 프로필 데이터 불러오기
+        fetchProfileData(userId);  
 
         // 그룹 포인트 및 랭킹 데이터를 가져옴
         fetchTeamRankingData(teamId);
@@ -77,15 +82,19 @@ public class RankFragment extends Fragment {
                     String user2Name = response.body().getData().getNickname();
 
                     profileId2 = teamUserId;
-                    user2NameTextView.setText(user2Name);
 
-                    fetchProfileData(profileId2);  // user2의 프로필 데이터 불러오기
+                    if (!isTeamEnded) {
+                        user2NameTextView.setText(user2Name);
+                        fetchProfileData(profileId2);  // user2의 프로필 데이터 불러오기
+                    }
                 }
             }
 
             @Override
             public void onFailure(Call<MatchedUserResponse> call, Throwable t) {
                 // API 호출 실패 처리
+                Log.e("RankFragment", "API call failed", t);
+                Toast.makeText(getActivity(), "Error fetching data", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -104,16 +113,20 @@ public class RankFragment extends Fragment {
                     if (profileId == profileId1) {
                         user1NameTextView.setText(profileData.getNickname());
                         loadProfileImage(profileData.getImageUrl(), user1Image);
-                    } else if (profileId == profileId2) {
+                    } else if (profileId == profileId2 && !isTeamEnded) {
                         user2NameTextView.setText(profileData.getNickname());
                         loadProfileImage(profileData.getImageUrl(), user2Image);
                     }
+                    Log.d("RankFragment", "Fetched profile data for profileId: " + profileId);
+                } else {
+                    Log.e("RankFragment", "Failed to fetch profile data.");
                 }
             }
 
             @Override
             public void onFailure(Call<MyProfileResponse> call, Throwable t) {
                 // API 호출 실패 처리
+                Log.e("RankFragment", "Error fetching profile data", t);
             }
         });
     }
@@ -141,22 +154,25 @@ public class RankFragment extends Fragment {
                 if (response.isSuccessful() && response.body() != null) {
                     // 팀 상태를 받아와서 matchingSuffix에 설정
                     String status = response.body().getData().getTeamStatus();
-                    Log.d("ManageFragment", "Team Status: " + status);
+                    Log.d("RankFragment", "Team Status: " + status);
 
                     // 팀 상태가 "종료"인 경우 user2의 정보를 숨김
                     if ("종료".equals(status)) {
-                        user2NameTextView.setVisibility(View.GONE);
-                        user2Image.setVisibility(View.GONE);
+                        isTeamEnded = true;
+                        user2NameTextView.setText("없음");
+                        user2Image.setImageResource(R.drawable.default_profile_image);
+                        groupPointsTextView.setText("0");
+                        groupRankTextView.setText("0");
                     }
                 } else {
-                    Log.e("ManageFragment", "Failed to fetch team status.");
+                    Log.e("RankFragment", "Failed to fetch team status.");
                     Toast.makeText(getActivity(), "Failed to fetch team status", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<TeamStatusResponse> call, Throwable t) {
-                Log.e("ManageFragment", "API call failed", t);
+                Log.e("RankFragment", "API call failed", t);
                 Toast.makeText(getActivity(), "Error fetching team status", Toast.LENGTH_SHORT).show();
             }
         });
@@ -176,9 +192,11 @@ public class RankFragment extends Fragment {
                     int points = rankingResponse.getData().getPoints();
                     int rank = rankingResponse.getData().getRanks();
 
-                    // 그룹 포인트 및 랭킹 값 설정
-                    groupPointsTextView.setText(String.valueOf(points));
-                    groupRankTextView.setText(String.valueOf(rank));
+                    if (!isTeamEnded) {
+                        // 그룹 포인트 및 랭킹 값 설정
+                        groupPointsTextView.setText(String.valueOf(points));
+                        groupRankTextView.setText(String.valueOf(rank));
+                    }
                 } else {
                     Log.e("RankFragment", "Failed to fetch team ranking data.");
                     Toast.makeText(getActivity(), "Failed to fetch team ranking data.", Toast.LENGTH_SHORT).show();

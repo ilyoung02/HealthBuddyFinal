@@ -1,7 +1,6 @@
 package com.example.healthbuddypro.Profile;
 
 import android.Manifest;
-import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,7 +12,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,7 +27,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.healthbuddypro.ApiService;
-import com.example.healthbuddypro.Login.LoginActivity;
 import com.example.healthbuddypro.MainActivity;
 import com.example.healthbuddypro.Profile.EditUserProfile.GymLocation;
 import com.example.healthbuddypro.R;

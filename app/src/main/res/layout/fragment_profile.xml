@@ -201,12 +201,12 @@
             android:id="@+id/health_buddy_status"
             android:layout_width="100dp"
             android:layout_height="40dp"
-            android:backgroundTint="#6795ED"
+            android:backgroundTint="#AEDEFA"
             android:clickable="true"
             android:focusable="true"
             android:text="헬스버디 상태"
             android:textSize="12sp"
-            android:textColor="#FFFFFF" />
+            android:textColor="#000000" />
 
     </LinearLayout>
 
