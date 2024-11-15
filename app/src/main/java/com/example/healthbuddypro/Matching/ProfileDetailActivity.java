@@ -10,12 +10,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.healthbuddypro.ApiService;
 import com.example.healthbuddypro.Matching.Chat.ChatActivity;
 import com.example.healthbuddypro.R;
 import com.example.healthbuddypro.RetrofitClient;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,6 +37,8 @@ public class ProfileDetailActivity extends AppCompatActivity {
     private TextView bio;
     private TextView workoutYears;
     private TextView likeCount;
+    private RecyclerView reviewRecyclerView; // RecyclerView 추가
+    private MatchingReviewAdapter matchingReviewAdapter; // 어댑터 추가
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +56,10 @@ public class ProfileDetailActivity extends AppCompatActivity {
         bio = findViewById(R.id.profile_bio);
         workoutYears = findViewById(R.id.profile_workout_years);
         likeCount = findViewById(R.id.like_count);
+
+        // 리뷰 RecyclerView 초기화
+        reviewRecyclerView = findViewById(R.id.review_recycler_view);
+        reviewRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // Intent로 전달된 데이터를 받음
         Intent intent = getIntent();
@@ -87,6 +97,15 @@ public class ProfileDetailActivity extends AppCompatActivity {
                     // 프로필 데이터 설정
                     UserProfile profile = response.body().getData();
                     updateUI(profile);
+
+                    // 리뷰 데이터 설정
+                    List<UserProfile.Review> reviews = profile.getProfileReviewResponses();
+                    if (reviews != null && !reviews.isEmpty()) {
+                        matchingReviewAdapter = new MatchingReviewAdapter(reviews);
+                        reviewRecyclerView.setAdapter(matchingReviewAdapter);
+                    } else {
+                        Toast.makeText(ProfileDetailActivity.this, "리뷰가 없습니다.", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     String errorMessage = "프로필 정보를 불러오지 못했습니다. 오류 코드: " + response.code();
                     bio.setText(errorMessage);  // bio로 오류 메시지 표시
@@ -106,27 +125,27 @@ public class ProfileDetailActivity extends AppCompatActivity {
     }
 
     private void updateUI(UserProfile profile) {
-        // 추가적으로 받은 데이터로 UI 업데이트
-        name.setText(profile.getNickName());  // 닉네임 설정
-        bio.setText(profile.getBio());  // 소개글 설정
-        gender.setText(profile.getGender());  // 성별 설정
-        age.setText(profile.getAge() + "세");  // 나이 설정
-        favWorkouts.setText("선호 운동 : " + String.join(", ", profile.getFavWorkouts()));  // 선호 운동 설정 (리스트를 문자열로 변환)
-        workoutGoal.setText(profile.getWorkoutGoal());  // 운동 목표 설정
-        region.setText(profile.getRegion());  // 지역 설정
-        workoutYears.setText("구력 : " + profile.getWorkoutYears() + "년");  // 운동 경력 설정
-        likeCount.setText(String.valueOf(profile.getLikeCount())); // 좋아요 수를 문자열로 변환하여 설정
+        // 기존의 프로필 데이터 UI 업데이트
+        name.setText(profile.getNickName());
+        bio.setText(profile.getBio());
+        gender.setText(profile.getGender());
+        age.setText(profile.getAge() + "세");
+        favWorkouts.setText("선호 운동 : " + String.join(", ", profile.getFavWorkouts()));
+        workoutGoal.setText(profile.getWorkoutGoal());
+        region.setText(profile.getRegion());
+        workoutYears.setText("구력 : " + profile.getWorkoutYears() + "년");
+        likeCount.setText(String.valueOf(profile.getLikeCount()));
 
-        // 이미지 로딩 (Glide 사용)
-        String imageUrl = profile.getImageUrl(); // UserProfile 객체에서 이미지 URL을 가져옴
+        // 이미지 로딩
+        String imageUrl = profile.getImageUrl();
         if (imageUrl != null && !imageUrl.isEmpty()) {
             Glide.with(this)
                     .load(imageUrl)
-                    .error(R.drawable.default_user_img)  // 이미지 로드 실패 시 기본 이미지 설정
+                    .error(R.drawable.default_user_img)
                     .into(profileImage);
         } else {
             Glide.with(this)
-                    .load(R.drawable.default_user_img)  // 기본 이미지 로드
+                    .load(R.drawable.default_user_img)
                     .into(profileImage);
         }
     }

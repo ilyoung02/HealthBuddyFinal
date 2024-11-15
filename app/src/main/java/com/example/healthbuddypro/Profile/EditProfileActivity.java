@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -26,6 +27,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.example.healthbuddypro.ApiService;
 import com.example.healthbuddypro.MainActivity;
 import com.example.healthbuddypro.Profile.EditUserProfile.GymLocation;
@@ -177,6 +179,10 @@ public class EditProfileActivity extends AppCompatActivity {
         initializeViews();
         loadGymLocation();
         requestPermissions();
+
+        SharedPreferences sharedPreferences = getSharedPreferences("localID", MODE_PRIVATE);
+        int profileId = sharedPreferences.getInt("profileId", -1);  // 기본값으로 -1 설정
+        fetchProfileData(profileId);
 
         gymLocationBtn.setOnClickListener(v -> openLocationPicker());
         cancelButton.setOnClickListener(v -> finish());
@@ -397,6 +403,7 @@ public class EditProfileActivity extends AppCompatActivity {
         }
     }
 
+
     private RequestBody createProfileRequest(EditUserProfile profile) {
         Gson gson = new Gson();
         String json = gson.toJson(profile);
@@ -498,6 +505,56 @@ public class EditProfileActivity extends AppCompatActivity {
             // 이미 권한이 있는 경우
             showToast("이미 권한이 승인되었습니다.");
         }
+    }
+
+    private void fetchProfileData(int profileId) {
+        ApiService profileService = RetrofitClient.getApiService();
+
+        Call<MyProfileResponse> call = profileService.getProfileData(profileId);
+        call.enqueue(new Callback<MyProfileResponse>() {
+            @Override
+            public void onResponse(Call<MyProfileResponse> call, Response<MyProfileResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    MyProfileResponse.ProfileData profileData = response.body().getData();
+
+                    gymLocation.setText(profileData.getRegion());
+
+                    ArrayAdapter<String> goalAdapter = (ArrayAdapter<String>) workoutGoalSpinner.getAdapter();
+                    int goalPosition = goalAdapter.getPosition(profileData.getWorkoutGoal());
+                    if (goalPosition >= 0) workoutGoalSpinner.setSelection(goalPosition);
+
+                    ArrayAdapter<String> regionAdapter = (ArrayAdapter<String>) regionSpinner.getAdapter();
+                    int regionPosition = regionAdapter.getPosition(profileData.getRegion());
+                    if (regionPosition >= 0) regionSpinner.setSelection(regionPosition);
+
+                    workoutExperienceInput.setText(String.valueOf(profileData.getWorkoutYears()));
+
+                    introductionInput.setText(profileData.getBio());
+
+
+                    String imageUrl = profileData.getImageUrl();
+                    if (imageUrl != null && !imageUrl.isEmpty()) {
+                        Glide.with(EditProfileActivity.this)
+                                .load(imageUrl)
+                                .error(R.drawable.default_image)
+                                .into(imageView);
+                    } else {
+                        imageView.setImageResource(R.drawable.default_image);
+                    }
+
+                    // Handle favorite workouts (assuming a separate dialog handles adding them)
+                    favWorkouts.setText(String.join(", ", profileData.getFavWorkouts()));
+
+                } else {
+                    Log.e("EditProfileActivity", "Failed to fetch profile data.");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MyProfileResponse> call, Throwable t) {
+                Log.e("EditProfileActivity", "Error fetching profile data", t);
+            }
+        });
     }
 
     private void showToast(String message) {

@@ -136,17 +136,15 @@
 
             <!-- 후기 -->
 <!--            scrollView 로 바꿔야 될듯?-->
-            <TextView
-                android:id="@+id/profile_review"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/review_recycler_view"
                 android:layout_width="match_parent"
-                android:layout_height="85dp"
-                android:layout_weight="1"
-                android:textSize="16sp"
+                android:layout_height="100dp"
                 android:layout_marginTop="13dp"
-                android:text="후기"
-                android:textColor="@android:color/black"
-                android:background="@drawable/profile_intro_background"
-                android:padding="12dp" />
+                android:layout_weight="1"
+                android:padding="12dp"
+                android:scrollbars="vertical"
+                android:background="@drawable/profile_intro_background"/>
         </LinearLayout>
 
         <LinearLayout

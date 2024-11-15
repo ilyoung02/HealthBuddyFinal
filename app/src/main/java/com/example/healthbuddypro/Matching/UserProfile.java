@@ -1,4 +1,5 @@
 package com.example.healthbuddypro.Matching;
+
 import com.google.firebase.firestore.auth.User;
 
 import java.io.Serializable;
@@ -17,8 +18,9 @@ public class UserProfile implements Serializable {
     private String workoutGoal;
     private String region;
     private String bio;
+    private List<Review> profileReviewResponses;
 
-    public UserProfile(String workoutGoal, String region, String bio, int profileId, int UserId, String nickname, String imageUrl, String gender, int age, int workoutYears, int likeCount, List<String> favWorkouts) {
+    public UserProfile(String workoutGoal, String region, String bio, int profileId, int UserId, String nickname, String imageUrl, String gender, int age, int workoutYears, int likeCount, List<String> favWorkouts, List<Review> profileReviewResponses) {
         this.profileId = profileId;
         this.nickname = nickname;
         this.imageUrl = imageUrl;
@@ -31,6 +33,23 @@ public class UserProfile implements Serializable {
         this.region = region;
         this.bio = bio;
         this.favWorkouts = favWorkouts;
+        this.profileReviewResponses = profileReviewResponses;
+    }
+
+    public static class Review {
+        private String writer;
+        private String content;
+
+        public Review(String writer, String content) {
+            this.writer = writer;
+            this.content = content;
+        }
+
+        public String getWriter() { return writer; }
+        public void setWriter(String writer) { this.writer = writer; }
+
+        public String getContent() { return content; }
+        public void setContent(String content) { this.content = content; }
     }
 
     public int getUserId() {
@@ -127,7 +146,16 @@ public class UserProfile implements Serializable {
         this.bio = bio;
     }
 
-    // quals 및 hashCode 메서드를 추가하여 객체 비교 및 해시 기반 컬렉션에서 사용
+    // 프로필 리뷰 응답
+    public List<Review> getProfileReviewResponses() {
+        return profileReviewResponses;
+    }
+
+    public void setProfileReviewResponses(List<Review> profileReviewResponses) {
+        this.profileReviewResponses = profileReviewResponses;
+    }
+
+    // equals 및 hashCode 메서드를 추가하여 객체 비교 및 해시 기반 컬렉션에서 사용
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -143,4 +171,3 @@ public class UserProfile implements Serializable {
         return profileId;
     }
 }
-
