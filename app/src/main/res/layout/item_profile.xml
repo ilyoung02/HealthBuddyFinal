@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="16dp"
-    android:background="@drawable/profile_background"
     android:elevation="8dp">
 
     <!-- 프로필 이미지 -->
@@ -14,8 +13,23 @@
         android:scaleType="centerCrop"
         android:contentDescription="Profile Image"
         android:src="@drawable/default_user_img"
-        android:background="@drawable/profile_background"
-        android:clipToOutline="true"/> <!-- 샘플 이미지 -->
+        android:clipToOutline="true"/>
+
+    <!-- 블러 오버레이 -->
+    <View
+        android:id="@+id/blur_overlay1"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_gravity="top"
+        android:background="@drawable/blur_overlay1"/>
+
+    <!-- 블러 오버레이 -->
+    <View
+        android:id="@+id/blur_overlay2"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/blur_overlay" />
 
     <!-- 이름과 소개글을 포함한 텍스트 레이아웃 -->
     <LinearLayout
@@ -23,17 +37,18 @@
         android:layout_height="wrap_content"
         android:layout_gravity="top"
         android:orientation="horizontal"
-        android:gravity="center"
-        android:padding="16dp">
+        android:gravity="left"
+        android:padding="16dp"
+        android:layout_marginLeft="15dp">
 
         <TextView
             android:id="@+id/profile_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="홍길동"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/black"/>
+            android:textColor="@android:color/white"/>
 
         <TextView
             android:id="@+id/profile_gender"
@@ -41,9 +56,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:text="성별"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/black"/>
+            android:textColor="@android:color/white"/>
 
         <TextView
             android:id="@+id/profile_age"
@@ -51,11 +66,12 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:text="나이"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/black"/>
+            android:textColor="@android:color/white"/>
     </LinearLayout>
 
+    <!-- 좋아요 버튼 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
