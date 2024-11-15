@@ -25,8 +25,10 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import retrofit2.Call;
@@ -248,8 +250,17 @@ public class ChatActivity extends AppCompatActivity {
                     int teamId = response.body().getData().getTeamId();
                     Toast.makeText(ChatActivity.this, "매칭 수락 성공! 팀 ID: " + teamId, Toast.LENGTH_SHORT).show();
 
-                    saveTeamIdToPreferences(teamId, userId);
-                    saveTeamIdToPreferences(teamId, profileId);
+                    // Firestore에서 팀 정보를 저장
+                    saveMatchInfoToFirestore(teamId, userId, profileId);  // 현재 사용자에 대해 저장
+                    saveMatchInfoToFirestore(teamId, profileId, userId);  // 상대방에 대해 저장
+
+                    // Firestore에서 최신 팀 정보를 동기화
+                    syncTeamInfoFromFirebase(userId);  // 현재 사용자
+                    syncTeamInfoFromFirebase(profileId);  // 상대방
+
+                    // 팀 정보를 SharedPreferences에 저장 (내부 저장소)
+                    saveTeamIdToPreferences(teamId, userId, profileId);  // 현재 사용자와 상대방 정보 저장
+
                     updateMatchRequestStatusInFirestore(matchRequestId, "ACCEPTED", teamId);
                     processedMatchRequests.add(matchRequestId);
                 } else {
@@ -263,6 +274,7 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
     }
+
 
     private void rejectMatchRequest(int matchRequestId) {
         MatchRequestStatus requestStatus = new MatchRequestStatus("REJECTED");
@@ -292,17 +304,95 @@ public class ChatActivity extends AppCompatActivity {
                 .addOnFailureListener(e -> Log.e("ChatActivity", "매칭 상태 업데이트 실패: " + e.getMessage()));
     }
 
-    private void saveTeamIdToPreferences(int teamId, int targetUserId) {
-        Log.d("ChatActivity", "Saving teamId: " + teamId + " for userId: " + targetUserId);
-        SharedPreferences sharedPreferences = getSharedPreferences("user_" + targetUserId + "_prefs", MODE_PRIVATE);
+    private void saveTeamIdToPreferences(int teamId, int userId, int targetUserId) {
+        Log.d("ChatActivity", "Saving teamId: " + teamId + " for userId: " + userId + " and targetUserId: " + targetUserId);
+
+        // 현재 사용자의 SharedPreferences 파일
+        SharedPreferences sharedPreferences = getSharedPreferences("user_" + userId + "_prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt("teamId", teamId);
+
+        // teamId, targetUserId (상대방 userId)를 저장
+        editor.putInt("teamId", teamId);  // 팀 ID 저장
+        editor.putInt("현재 사용자", userId); // 현재 사용자 userId 저장
+        editor.putInt("targetUserId", targetUserId); // 상대방 userId 저장
         editor.apply();
+
+        // 상대방의 SharedPreferences 파일에 저장
+        SharedPreferences sharedPreferencesTarget = getSharedPreferences("user_" + targetUserId + "_prefs", MODE_PRIVATE);
+        SharedPreferences.Editor targetEditor = sharedPreferencesTarget.edit();
+
+        // 상대방의 teamId를 저장
+        targetEditor.putInt("teamId", teamId); // 상대방의 팀 ID 저장
+        targetEditor.putInt("현재 사용자", targetUserId); // 상대방 입장에서 상대방의 UserID 저장
+        targetEditor.putInt("targetUserId", userId); // 상대방 입장에서 현재 사용자 ID를 저장
+        targetEditor.apply();
     }
 
-    private void checkSavedTeamId(int userId) {
-        SharedPreferences prefs = getSharedPreferences("user_" + userId + "_prefs", MODE_PRIVATE);
-        int savedTeamId = prefs.getInt("teamId", -1);
-        Log.d("ChatActivity", "Retrieved teamId for userId " + userId + ": " + savedTeamId);
+    private void saveMatchInfoToFirestore(int teamId, int userId, int targetUserId) {
+        Log.d("ChatActivity", "Saving teamId: " + teamId + " for userId: " + userId + " and targetUserId: " + targetUserId);
+
+        // Firestore에서 현재 사용자 정보 확인
+        FirebaseFirestore.getInstance().collection("users").document(String.valueOf(userId))
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        // 문서가 존재하면 업데이트
+                        updateTeamInfo(userId, teamId, targetUserId);
+                    } else {
+                        // 문서가 존재하지 않으면 새로 생성
+                        createUserDocument(userId, teamId, targetUserId);
+                    }
+                })
+                .addOnFailureListener(e -> Log.e("ChatActivity", "사용자 정보 확인 실패: " + e.getMessage()));
+
+        // 상대방 사용자 정보 확인
+        FirebaseFirestore.getInstance().collection("users").document(String.valueOf(targetUserId))
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        // 문서가 존재하면 업데이트
+                        updateTeamInfo(targetUserId, teamId, userId);
+                    } else {
+                        // 문서가 존재하지 않으면 새로 생성
+                        createUserDocument(targetUserId, teamId, userId);
+                    }
+                })
+                .addOnFailureListener(e -> Log.e("ChatActivity", "상대방 정보 확인 실패: " + e.getMessage()));
+    }
+
+    private void createUserDocument(int userId, int teamId, int targetUserId) {
+        // 새 문서 생성
+        Map<String, Object> userData = new HashMap<>();
+        userData.put("teamId", teamId);
+        userData.put("targetUserId", targetUserId);
+
+        FirebaseFirestore.getInstance().collection("users").document(String.valueOf(userId))
+                .set(userData)
+                .addOnSuccessListener(aVoid -> Log.d("ChatActivity", "사용자 문서 생성 및 팀 정보 저장 성공"))
+                .addOnFailureListener(e -> Log.e("ChatActivity", "사용자 문서 생성 실패: " + e.getMessage()));
+    }
+
+    private void updateTeamInfo(int userId, int teamId, int targetUserId) {
+        // 기존 문서 업데이트
+        FirebaseFirestore.getInstance().collection("users").document(String.valueOf(userId))
+                .update("teamId", teamId, "targetUserId", targetUserId)
+                .addOnSuccessListener(aVoid -> Log.d("ChatActivity", "팀 정보 Firestore에 저장 성공: " + userId))
+                .addOnFailureListener(e -> Log.e("ChatActivity", "팀 정보 Firestore에 저장 실패: " + e.getMessage()));
+    }
+
+    private void syncTeamInfoFromFirebase(int userId) {
+        FirebaseFirestore.getInstance().collection("users")
+                .document(String.valueOf(userId))
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        int teamId = documentSnapshot.getLong("teamId").intValue();
+                        int targetUserId = documentSnapshot.getLong("targetUserId").intValue();
+                        Log.d("ChatActivity", "팀 정보 동기화 완료: teamId = " + teamId + ", targetUserId = " + targetUserId);
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("ChatActivity", "팀 정보 동기화 실패: " + e.getMessage());
+                });
     }
 }

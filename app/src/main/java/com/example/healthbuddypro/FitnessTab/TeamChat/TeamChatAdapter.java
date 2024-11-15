@@ -17,10 +17,12 @@ public class TeamChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private List<Message> messageList;
     private int currentUserId;
+    private int targetUserId;
 
-    public TeamChatAdapter(List<Message> messageList, int currentUserId) {
+    public TeamChatAdapter(List<Message> messageList, int currentUserId, int targetUserId) {
         this.messageList = messageList;
         this.currentUserId = currentUserId;
+        this.targetUserId = targetUserId;
     }
 
     @Override
