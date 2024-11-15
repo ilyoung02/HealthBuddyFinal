@@ -14,8 +14,6 @@
         <item>대구 군위군</item>
     </string-array>
 
-
-
     <!-- 운동 목표 예시 -->
     <string-array name="workout_goals_array">
         <item>체중 감량</item>
@@ -35,20 +33,30 @@ d
         <item>등</item>
         <item>어깨</item>
         <item>하체</item>
+        <item>유산소</item>
+        <item>상체</item>
+        <item>하체</item>
+        <item>논의 후 결정</item>
     </string-array>
 
     <!-- 위치 선택 예시 -->
     <string-array name="location_array">
-        <item>중리동</item>
+        <item>동구</item>
+        <item>서구</item>
+        <item>남구</item>
+        <item>북구</item>
+        <item>중구</item>
         <item>수성구</item>
         <item>달서구</item>
+        <item>달성군</item>
+        <item>군위군</item>
     </string-array>
 
     <!-- 카테고리 선택 예시 -->
     <string-array name="category_array">
         <item>성별무관</item>
-        <item>남성전용</item>
-        <item>여성전용</item>
+        <item>남성</item>
+        <item>여성</item>
     </string-array>
     <string name="title_activity_maps">MapsActivity</string>
 

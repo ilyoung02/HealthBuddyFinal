@@ -1,6 +1,8 @@
 package com.example.healthbuddypro.ShortTermMatching;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +14,11 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.healthbuddypro.Matching.Chat.ChatActivity;
 import com.example.healthbuddypro.Matching.MatchFragment;
 import com.example.healthbuddypro.R;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,27 +31,28 @@ public class ShortTermMatchFragment extends Fragment implements WritePostFragmen
     private RecyclerView shortTermMatchList;
     private MatchListAdapter matchListAdapter;
     private DayOfWeekAdapter dayAdapter;
-    private Map<String, List<ShortMatchPost>> matchData;  // 날짜별 매칭 데이터를 저장하기 위한 맵
+    private Map<String, List<ShortMatchPost>> matchData;
+
+    private FirebaseFirestore db;
+    private String selectedDay;  // 선택된 요일을 저장할 변수
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_short_term_match, container, false);
 
-        // 버튼 초기화
+        db = FirebaseFirestore.getInstance();
+
         Button btn1To1Matching = view.findViewById(R.id.btn_1to1_matching);
         Button btnShortTermMatching = view.findViewById(R.id.btn_short_term_matching);
-        Button btnWritePost = view.findViewById(R.id.btn_write_post); // 글쓰기 버튼
+        Button btnWritePost = view.findViewById(R.id.btn_write_post);
 
-        // ShortTermMatchFragment로 넘어왔을 때, 단기 매칭 버튼을 기본 선택 상태로 설정
         btnShortTermMatching.setSelected(true);
 
-        // 1:1 매칭 버튼 클릭 리스너
         btn1To1Matching.setOnClickListener(v -> {
             btn1To1Matching.setSelected(true);
             btnShortTermMatching.setSelected(false);
 
-            // MatchFragment로 전환
             FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
             transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_left);
             transaction.replace(R.id.fragment_container, new MatchFragment());
@@ -93,47 +99,73 @@ public class ShortTermMatchFragment extends Fragment implements WritePostFragmen
     private void setupMatchList() {
         shortTermMatchList.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        // 매칭 데이터 초기화
         matchData = new HashMap<>();
 
-        // 예시 데이터 삽입 (MatchPost 객체 사용)
-        addMatchData("월", new ShortMatchPost(1, 2, "홍길동", "열심히 할 사람!!🔥", "어깨", "중리동", "성별무관"));
-        addMatchData("화", new ShortMatchPost(3, 4, "방일영", "잘 부탁드려요!", "가슴", "서구", "남성전용"));
-
-        // 기본 데이터를 리스트에 설정
         matchListAdapter = new MatchListAdapter(new ArrayList<>());
         shortTermMatchList.setAdapter(matchListAdapter);
 
-        // 첫 번째 데이터 보여주기 (월요일)
-        filterMatchList("월");
-    }
-
-    private void addMatchData(String day, ShortMatchPost match) {
-        if (!matchData.containsKey(day)) {
-            matchData.put(day, new ArrayList<>());
-        }
-        matchData.get(day).add(match);
-    }
-
-    private void filterMatchList(String day) {
-        List<ShortMatchPost> filteredList = matchData.getOrDefault(day, new ArrayList<>());
-        matchListAdapter.updateList(filteredList);
+        filterMatchList("월"); // 기본적으로 월요일 데이터 불러오기
     }
 
     private void onDaySelected(String day) {
+        selectedDay = day;  // 사용자가 선택한 요일 저장
         filterMatchList(day);  // 선택된 요일에 맞는 매칭 목록 표시
     }
 
     @Override
     public void onPostSubmitted(String title, String health, String content, String location, String category) {
-        // 글 작성 완료 시 호출되는 메서드
         int senderId = 1; // 임시로 사용자 ID 설정
         int receiverId = 2; // 임시로 매칭 대상자 ID 설정
 
-        // 새로운 매칭 데이터를 현재 선택된 요일에 추가
-        addMatchData("월", new ShortMatchPost(senderId, receiverId, title, health, content, location, category));
+        // 새로운 매칭 데이터를 선택된 요일에 추가
+        ShortMatchPost newPost = new ShortMatchPost(senderId, receiverId, title, health, content, location, category);
 
-        // 매칭 목록을 갱신
-        filterMatchList("월"); // 여기서 "월"을 선택된 요일로 대체할 수 있음
+        // 선택된 요일에 맞게 Firestore에 저장
+        savePostToFirestore(selectedDay, newPost);
+
+        // 매칭 목록 갱신
+        filterMatchList(selectedDay);  // 선택된 요일로 매칭 목록을 다시 불러옴
+    }
+
+    public void savePostToFirestore(String day, ShortMatchPost post) {
+        Map<String, Object> postData = new HashMap<>();
+        postData.put("senderId", post.getSenderId());
+        postData.put("receiverId", post.getReceiverId());
+        postData.put("title", post.getTitle());
+        postData.put("health", post.getContent());
+        postData.put("content", post.getHealth());
+        postData.put("location", post.getLocation());
+        postData.put("category", post.getCategory());
+
+        db.collection("shortTermMatches")
+                .document(day)  // 선택된 요일에 문서 저장
+                .collection("posts")
+                .add(postData)
+                .addOnSuccessListener(documentReference -> {
+                    filterMatchList(day); // 성공적으로 저장 후 해당 요일에 맞는 매칭 목록 갱신
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("Firestore", "Error saving post", e);
+                });
+    }
+
+    private void filterMatchList(String day) {
+        db.collection("shortTermMatches")
+                .document(day)
+                .collection("posts")
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    List<ShortMatchPost> posts = new ArrayList<>();
+                    for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                        ShortMatchPost post = documentSnapshot.toObject(ShortMatchPost.class);
+                        if (post != null) {
+                            posts.add(post);
+                        }
+                    }
+                    matchListAdapter.updateList(posts);  // 가져온 데이터로 매칭 목록 갱신
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("Firestore", "Error getting posts", e);
+                });
     }
 }

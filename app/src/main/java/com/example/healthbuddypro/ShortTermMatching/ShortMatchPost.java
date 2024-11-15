@@ -1,49 +1,82 @@
 package com.example.healthbuddypro.ShortTermMatching;
 
 public class ShortMatchPost {
-    private int senderId; // 단기 매칭 요청 보내는 사용자 id
-    private int receiverId; // 단기 매칭 요청 받는 사용자 id
-    private String title; // 글쓰기 제목
-    private String content; // 내용
-    private String location; // 지역
-    private String category; // 성별 카테고리
-    private String health;
+    private int senderId;
+    private int receiverId;
+    private String title;
+    private String health;  // 운동 부위 (getHealth)
+    private String content; // 사용자가 작성한 글 (getContent)
+    private String location;
+    private String category;
 
-    public ShortMatchPost(int senderId, int receiverId, String title, String content, String health, String location, String category) {
+    // 기본 생성자 추가
+    public ShortMatchPost() {
+    }
+
+    public ShortMatchPost(int senderId, int receiverId, String title, String health, String content, String location, String category) {
         this.senderId = senderId;
         this.receiverId = receiverId;
         this.title = title;
+        this.health = health;
         this.content = content;
         this.location = location;
         this.category = category;
-        this.health = health;
     }
 
+    // Getter와 Setter
     public int getSenderId() {
         return senderId;
+    }
+
+    public void setSenderId(int senderId) {
+        this.senderId = senderId;
     }
 
     public int getReceiverId() {
         return receiverId;
     }
 
+    public void setReceiverId(int receiverId) {
+        this.receiverId = receiverId;
+    }
+
     public String getTitle() {
         return title;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public String getHealth() {
-        return health;
+        return health; // 운동 부위
+    }
+
+    public void setHealth(String health) {
+        this.health = health;
     }
 
     public String getContent() {
-        return content;
+        return content; // 사용자가 작성한 글
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public String getLocation() {
         return location;
     }
 
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
     public String getCategory() {
         return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

@@ -2,6 +2,7 @@ package com.example.healthbuddypro.ShortTermMatching;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.healthbuddypro.ApiService;
+import com.example.healthbuddypro.Matching.Chat.ChatActivity;
 import com.example.healthbuddypro.R;
 import com.example.healthbuddypro.RetrofitClient;
 
@@ -43,17 +45,22 @@ public class MatchListAdapter extends RecyclerView.Adapter<MatchListAdapter.View
 
         // 제목 설정
         holder.textViewMatchInfo.setText(currentPost.getTitle());
-        // 운동 부위 설정
+
+        // 운동 부위 (health) 설정
         holder.textViewHealth.setText(currentPost.getHealth());
-        // 지역 설정
-        holder.textViewLocation.setText(currentPost.getLocation());
-        // 성별 카테고리 설정
-        holder.textViewCategory.setText(currentPost.getCategory());
-        // 글 내용 설정
+
+        // 사용자가 작성한 글 (content) 설정
         holder.textViewContent.setText(currentPost.getContent());
 
+        // 지역 설정
+        holder.textViewLocation.setText(currentPost.getLocation());
+
+        // 성별 카테고리 설정
+        holder.textViewCategory.setText(currentPost.getCategory());
+
         holder.btnApply.setOnClickListener(v -> {
-            showApplyDialog(v.getContext(), currentPost);
+            // 게시글 작성자의 채팅방 열기
+            openChatRoom(v.getContext(), currentPost);
         });
     }
 
@@ -62,23 +69,16 @@ public class MatchListAdapter extends RecyclerView.Adapter<MatchListAdapter.View
         return matchList.size();
     }
 
-    private void showApplyDialog(Context context, ShortMatchPost post) {
-        new AlertDialog.Builder(context)
-                .setTitle("매칭 신청")
-                .setMessage(post.getTitle() + "에 매칭 신청하시겠습니까?")
-                .setPositiveButton("네", (dialog, which) -> {
-//                    sendMatchRequest(context, post.getSenderId(), post.getReceiverId());
-                })
-                .setNegativeButton("아니오", null)
-                .show();
-    }
+    // 채팅방을 여는 메서드
+    private void openChatRoom(Context context, ShortMatchPost post) {
+        // 채팅방 ID는 senderId로 생성
+        String chatRoomId = "chat_" + post.getSenderId();
 
-//    private void sendMatchRequest(Context context, int senderId, int receiverId) {
-//        ApiService apiService = RetrofitClient.getApiService();
-//        ShortMatchRequest request = new ShortMatchRequest(senderId, receiverId);
-//
-//
-//    }
+        // 채팅방을 여는 로직 (예: ChatActivity로 이동)
+        Intent intent = new Intent(context, ChatActivity.class);
+        intent.putExtra("chatRoomId", chatRoomId);
+        context.startActivity(intent);
+    }
 
     public void updateList(List<ShortMatchPost> newMatchList) {
         matchList = newMatchList;
