@@ -1,7 +1,7 @@
 package com.example.healthbuddypro.ShortTermMatching;
 
 public class ShortMatchPost {
-    private int senderId;
+    private int senderId;  // 글을 올린 사용자 ID
     private int receiverId;
     private String title;
     private String health;  // 운동 부위 (getHealth)
@@ -14,7 +14,7 @@ public class ShortMatchPost {
     }
 
     public ShortMatchPost(int senderId, int receiverId, String title, String health, String content, String location, String category) {
-        this.senderId = senderId;
+        this.senderId = senderId;  // senderId는 현재 사용자의 userId로 설정
         this.receiverId = receiverId;
         this.title = title;
         this.health = health;

@@ -27,9 +27,11 @@ import retrofit2.Response;
 public class MatchListAdapter extends RecyclerView.Adapter<MatchListAdapter.ViewHolder> {
 
     private List<ShortMatchPost> matchList;
+    private int currentUserId; // 현재 사용자의 ID
 
-    public MatchListAdapter(List<ShortMatchPost> matchList) {
+    public MatchListAdapter(List<ShortMatchPost> matchList, int currentUserId) {
         this.matchList = matchList;
+        this.currentUserId = currentUserId;
     }
 
     @NonNull
@@ -58,9 +60,9 @@ public class MatchListAdapter extends RecyclerView.Adapter<MatchListAdapter.View
         // 성별 카테고리 설정
         holder.textViewCategory.setText(currentPost.getCategory());
 
+        // "함께하기" 버튼 클릭 리스너
         holder.btnApply.setOnClickListener(v -> {
-            // 게시글 작성자의 채팅방 열기
-            openChatRoom(v.getContext(), currentPost);
+            showApplyDialog(v.getContext(), currentPost);
         });
     }
 
@@ -69,14 +71,24 @@ public class MatchListAdapter extends RecyclerView.Adapter<MatchListAdapter.View
         return matchList.size();
     }
 
-    // 채팅방을 여는 메서드
-    private void openChatRoom(Context context, ShortMatchPost post) {
-        // 채팅방 ID는 senderId로 생성
-        String chatRoomId = "chat_" + post.getSenderId();
+    private void showApplyDialog(Context context, ShortMatchPost post) {
+        // "함께하기" 버튼을 클릭했을 때 다이얼로그를 띄운다
+        new AlertDialog.Builder(context)
+                .setTitle("함께 하기")
+                .setMessage(post.getTitle() + "에 함께 하시겠습니까?")
+                .setPositiveButton("예", (dialog, which) -> {
+                    // "예"를 선택하면 채팅방으로 이동
+                    openChatRoom(context, post.getSenderId());  // senderId를 가지고 채팅방으로 이동
+                })
+                .setNegativeButton("아니오", null)
+                .show();
+    }
 
-        // 채팅방을 여는 로직 (예: ChatActivity로 이동)
+    // 채팅방으로 이동하는 메서드
+    private void openChatRoom(Context context, int targetUserId) {
+        // "targetUserId"를 가지고 채팅방을 여는 액티비티로 이동
         Intent intent = new Intent(context, ChatActivity.class);
-        intent.putExtra("chatRoomId", chatRoomId);
+        intent.putExtra("profileId", targetUserId);  // 채팅할 상대의 userId를 전달
         context.startActivity(intent);
     }
 

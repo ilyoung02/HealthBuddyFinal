@@ -1,12 +1,17 @@
 package com.example.healthbuddypro.ShortTermMatching;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -36,12 +41,24 @@ public class ShortTermMatchFragment extends Fragment implements WritePostFragmen
     private FirebaseFirestore db;
     private String selectedDay;  // 선택된 요일을 저장할 변수
 
+    private int currentUserId;  // 현재 사용자의 userId
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_short_term_match, container, false);
 
         db = FirebaseFirestore.getInstance();
+
+        // SharedPreferences에서 userId 가져오기
+        SharedPreferences mainPrefs = getActivity().getSharedPreferences("localID", MODE_PRIVATE);
+        currentUserId = mainPrefs.getInt("userId", -1);  // "userId"가 SharedPreferences에 저장되어 있어야 함
+
+        if (currentUserId == -1) {
+            // userId가 없으면, 로그인되지 않았거나 다른 문제가 발생한 것
+            Toast.makeText(getContext(), "UserId가 설정되지 않았습니다. 다시 로그인해주세요.", Toast.LENGTH_SHORT).show();
+            return view;
+        }
 
         Button btn1To1Matching = view.findViewById(R.id.btn_1to1_matching);
         Button btnShortTermMatching = view.findViewById(R.id.btn_short_term_matching);
@@ -101,7 +118,8 @@ public class ShortTermMatchFragment extends Fragment implements WritePostFragmen
 
         matchData = new HashMap<>();
 
-        matchListAdapter = new MatchListAdapter(new ArrayList<>());
+        // MatchListAdapter 초기화 시 사용자 ID도 전달
+        matchListAdapter = new MatchListAdapter(new ArrayList<>(), currentUserId); // userId 전달
         shortTermMatchList.setAdapter(matchListAdapter);
 
         filterMatchList("월"); // 기본적으로 월요일 데이터 불러오기
@@ -114,11 +132,20 @@ public class ShortTermMatchFragment extends Fragment implements WritePostFragmen
 
     @Override
     public void onPostSubmitted(String title, String health, String content, String location, String category) {
-        int senderId = 1; // 임시로 사용자 ID 설정
+        // SharedPreferences에서 userId 가져오기
+        SharedPreferences mainPrefs = getActivity().getSharedPreferences("localID", MODE_PRIVATE);
+        int userId = mainPrefs.getInt("userId", -1);  // "userId"가 SharedPreferences에 저장되어 있어야 함
+
+        if (userId == -1) {
+            // userId가 없으면, 로그인되지 않았거나 다른 문제가 발생한 것
+            Toast.makeText(getContext(), "UserId가 설정되지 않았습니다. 다시 로그인해주세요.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         int receiverId = 2; // 임시로 매칭 대상자 ID 설정
 
-        // 새로운 매칭 데이터를 선택된 요일에 추가
-        ShortMatchPost newPost = new ShortMatchPost(senderId, receiverId, title, health, content, location, category);
+        // 새로운 매칭 데이터를 현재 선택된 요일에 추가
+        ShortMatchPost newPost = new ShortMatchPost(userId, receiverId, title, health, content, location, category);  // userId를 senderId로 설정
 
         // 선택된 요일에 맞게 Firestore에 저장
         savePostToFirestore(selectedDay, newPost);
@@ -129,7 +156,7 @@ public class ShortTermMatchFragment extends Fragment implements WritePostFragmen
 
     public void savePostToFirestore(String day, ShortMatchPost post) {
         Map<String, Object> postData = new HashMap<>();
-        postData.put("senderId", post.getSenderId());
+        postData.put("senderId", post.getSenderId()); // 사용자의 userId를 저장
         postData.put("receiverId", post.getReceiverId());
         postData.put("title", post.getTitle());
         postData.put("health", post.getContent());
