@@ -6,21 +6,29 @@
     android:background="@android:color/white">
 
     <TextView
-        android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="top"
+        android:text="헬스장 검색"
+        android:textSize="30dp"
+        android:layout_marginTop="20dp"
         android:gravity="center"
-        android:layout_marginTop="30dp"
-        android:text="현재 나의 위치"
-        android:textColor="@color/black"
-        android:textSize="25sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="@color/blue"/>
+
+    <EditText
+        android:id="@+id/editTextSearchGym"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:gravity="center"
+        android:hint="Search"
+        android:inputType="text"
+        android:background="@drawable/search_gym"/>
 
     <FrameLayout
         android:id="@+id/map_container"
         android:layout_width="wrap_content"
-        android:layout_height="650dp"
+        android:layout_height="600dp"
         android:layout_gravity="center"
         android:layout_margin="16dp"
         android:background="@drawable/box_background"
@@ -31,6 +39,6 @@
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            map:mapType="normal"/>
+            map:mapType="normal" />
     </FrameLayout>
 </FrameLayout>
