@@ -1,0 +1,36 @@
+
+•	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(èé™J$b0dc295c-e5be-4681-9d93-4425b15e217a
+‡
+java:S1659""FDeclare "todayDate" and all following declarations on a separate line.(Åñ°ƒşÿÿÿÿJ$bfb10a60-e79f-4d8d-9ac9-bbb522a52270
+
+java:S1450!"]Remove the "btnRoutineList" field and declare it as a local variable in the relevant methods.(°Œ¥¹øÿÿÿÿJ$809beb5d-c0b3-4c05-8791-5d03e084713f
+™
+java:S1450""XRemove the "todayDate" field and declare it as a local variable in the relevant methods.(Åñ°ƒşÿÿÿÿJ$8f31369f-f99c-4e75-b83a-133b37f9400c
+¨
+java:S5854`"gUse the CANON_EQ flag with "Pattern.compile(pattern, CANON_EQ).matcher(input).replaceAll(replacement)".(È•ş†úÿÿÿÿJ$d0fe5b52-451b-4a82-8a17-316295f6632e
+‰
+java:S5361`"HReplace this call to "replaceAll()" by a call to the "replace()" method.(È•ş†úÿÿÿÿJ$fc9f5e95-33a3-416b-883e-ee26f910f678
+¨
+java:S5854_"gUse the CANON_EQ flag with "Pattern.compile(pattern, CANON_EQ).matcher(input).replaceAll(replacement)".(­×¢ùÿÿÿÿÿJ$a6be479a-528d-4022-9075-a70775e8acc0
+‰
+java:S5361_"HReplace this call to "replaceAll()" by a call to the "replace()" method.(­×¢ùÿÿÿÿÿJ$7082d15e-3bf6-44ac-a99a-ffcde88713c3
+¨
+java:S5854^"gUse the CANON_EQ flag with "Pattern.compile(pattern, CANON_EQ).matcher(input).replaceAll(replacement)".(œêŒâÿÿÿÿÿJ$52cd74fb-0758-40a1-b7b7-fcb5bff51c0c
+‰
+java:S5361^"HReplace this call to "replaceAll()" by a call to the "replace()" method.(œêŒâÿÿÿÿÿJ$34bd869b-0076-46d8-a32c-ffd24babe5cb
+£
+java:S5854]"gUse the CANON_EQ flag with "Pattern.compile(pattern, CANON_EQ).matcher(input).replaceAll(replacement)".(£ıJ$964f3d6d-5b07-4ae7-a41b-db31078016aa
+„
+java:S5361]"HReplace this call to "replaceAll()" by a call to the "replace()" method.(£ıJ$3e2c72dc-0893-42e6-8a31-5deaf3ad466b
+¨
+java:S5854\"gUse the CANON_EQ flag with "Pattern.compile(pattern, CANON_EQ).matcher(input).replaceAll(replacement)".(Üûş²ûÿÿÿÿJ$334f1845-44bc-44fd-a19f-68d17ea4e6b4
+‰
+java:S5361\"HReplace this call to "replaceAll()" by a call to the "replace()" method.(Üûş²ûÿÿÿÿJ$a2c2553e-6152-4f7b-814e-67e6719deb8a
+¨
+java:S5854["gUse the CANON_EQ flag with "Pattern.compile(pattern, CANON_EQ).matcher(input).replaceAll(replacement)".(ÀæĞ®üÿÿÿÿJ$a2f5dcf9-fb1a-4c4a-8b93-f802aab3bc0c
+‰
+java:S5361["HReplace this call to "replaceAll()" by a call to the "replace()" method.(ÀæĞ®üÿÿÿÿJ$db371dbd-772e-480a-8da7-7a729506456b
+¨
+java:S5854Z"gUse the CANON_EQ flag with "Pattern.compile(pattern, CANON_EQ).matcher(input).replaceAll(replacement)".(ŒÛºøÿÿÿÿJ$f05c3ebb-c63c-4a61-a4a2-1f75c4561712
+‰
+java:S5361Z"HReplace this call to "replaceAll()" by a call to the "replace()" method.(ŒÛºøÿÿÿÿJ$3734fe9f-9b5c-498b-8cbd-043b645b3795

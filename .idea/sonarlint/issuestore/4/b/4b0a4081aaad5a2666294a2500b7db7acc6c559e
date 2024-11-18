@@ -1,2 +1,16 @@
 
-•	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‚ßåİJ$a4a2ea5e-3b5c-41d6-a7ba-1b09cfc1f14f
+j
+java:S16044"(Make this anonymous inner class a lambda(¸öî\8åÚ˜û³2J$d7772c49-cc33-48ba-9c02-73fbab308472
+œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‚ßåİ8åÚ˜û³2J$4ed40348-13ec-41ab-8a36-4e81b2676b92
+“
+java:S1192C"PDefine a constant instead of duplicating this literal "ManageFragment" 12 times.(·ÆÉï8åÚ˜û³2J$9ef4cf5a-979c-4365-94e3-c049583d6e11
+‹
+java:S1659!"CDeclare "teamId" and all following declarations on a separate line.(¶¸Ñğıÿÿÿÿ8åÚ˜û³2J$45b508e8-dc67-43b1-9878-41e4a7e68c33
+–
+java:S1659""NDeclare "user2NameTextView" and all following declarations on a separate line.(™º¶“øÿÿÿÿ8åÚ˜û³2J$9b533012-d79b-4017-bab3-4bc69caf4946
+k
+java:S1659#"(Declare "user2Image" on a separate line.(¢˜¢†8åÚ˜û³2J$35995a49-9dd2-4ba4-82e8-1af0d1dd41db
+
+java:S1450!"URemove the "teamId" field and declare it as a local variable in the relevant methods.(¶¸Ñğıÿÿÿÿ8åÚ˜û³2J$22f9ce0a-3298-4c4e-b49c-0f8c44a0fd84
+
+java:S1450!"URemove the "userId" field and declare it as a local variable in the relevant methods.(¶¸Ñğıÿÿÿÿ8åÚ˜û³2J$2758052a-1c54-477e-9159-619eb51112cc

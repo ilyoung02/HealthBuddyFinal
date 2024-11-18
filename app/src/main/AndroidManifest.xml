@@ -42,6 +42,18 @@
             android:name=".FitnessTab.Routine.exercise_item"
             android:exported="false" />
         <activity
+            android:name=".FitnessTab.Routine.DialogEditDayActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FitnessTab.Routine.EditRoutine_AddExercise"
+            android:exported="false" />
+        <activity
+            android:name=".FitnessTab.Routine.ErrorFragment"
+            android:exported="false" />
+        <activity
+            android:name=".FitnessTab.Routine.item_routinefix"
+            android:exported="false" />
+        <activity
             android:name=".FitnessTab.Routine.moved_routineFragment"
             android:exported="false" />
         <activity
@@ -54,8 +66,15 @@
             android:name=".FitnessTab.Routine.add_workout_item"
             android:exported="false" />
         <activity
-            android:name=".FitnessTab.Routine.group_on_routinestart"
+            android:name=".FitnessTab.Routine.RoutineStartFragment"
             android:exported="false" />
+        <activity
+            android:name=".FitnessTab.Routine.RoutineCompletedFragment"
+            android:exported="false" />
+        <activity
+            android:name=".FitnessTab.Routine.frgment_replacepage"
+            android:exported="false" />
+
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -76,9 +95,10 @@
         <activity android:name=".Matching.Chat.ChatActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".Matching.ProfileDetailActivity"/>
+
         <activity android:name=".Profile.EditProfileActivity" />
         <activity android:name=".Profile.WorkoutListActivity" />
-        <activity android:name=".Profile.set_location"/>
+        <activity android:name=".Profile.set_location" />
         <activity android:name=".FitnessTab.Routine.routine_list" />
         <activity android:name=".FitnessTab.Routine.make_routine01" />
         <activity android:name=".FitnessTab.Routine.make_routine03" />
@@ -88,6 +108,10 @@
         <activity android:name=".FitnessTab.quit_hb01" />
         <activity android:name=".FitnessTab.quit_hb02" />
         <activity android:name=".FitnessTab.quit_hb03" />
+        <activity android:name=".FitnessTab.Routine.routine_check" />
+        <activity android:name=".FitnessTab.Routine.complete_today_workout" />
+        <activity android:name=".FitnessTab.Routine.fix_routine" />
+        <activity android:name=".FitnessTab.Routine.group_start02" />
 
     </application>
 

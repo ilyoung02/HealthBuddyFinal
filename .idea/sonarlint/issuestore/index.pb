@@ -25,8 +25,6 @@ Kapp/src/main/java/com/example/healthbuddypro/Matching/Chat/ChatAdapter.java,2\
 Lapp/src/main/java/com/example/healthbuddypro/Matching/Chat/ChatActivity.java,5\f\5f0a47b77513dff4a15afb6bf0f059b6c137faff
 x
 Happ/src/main/java/com/example/healthbuddypro/Matching/MatchFragment.java,d\3\d3f1cff38075d836e7bb6f5ef61b3b1616c48225
-à
-Xapp/src/main/java/com/example/healthbuddypro/ShortTermMatching/OnPostSubmitListener.java,d\d\ddb3add7c972a8b27ddb5bf6801f8bc1ed731101
 ä
 Zapp/src/main/java/com/example/healthbuddypro/ShortTermMatching/ShortTermMatchFragment.java,9\f\9f596a0ded97dbe9ee55550e43eb19da7339a4c7
 y
@@ -39,14 +37,10 @@ Iapp/src/main/java/com/example/healthbuddypro/FitnessTab/RankFragment.java,8\2\
 Kapp/src/main/java/com/example/healthbuddypro/FitnessTab/ManageFragment.java,4\b\4b0a4081aaad5a2666294a2500b7db7acc6c559e
 Ç
 Rapp/src/main/java/com/example/healthbuddypro/FitnessTab/GroupViewPagerAdapter.java,e\3\e35a1ada4a85b3f49ba67a531f047a47e0dd93ba
-y
-Iapp/src/main/java/com/example/healthbuddypro/FitnessTab/ChatFragment.java,7\e\7eb44de02d266f723ac1c80d604465f462a2b6d8
 u
 Eapp/src/main/java/com/example/healthbuddypro/Login/LoginActivity.java,9\f\9fe4de38940bd367920432f9c65e6954a75b4537
 Ñ
 Tapp/src/main/java/com/example/healthbuddypro/FitnessTab/Routine/RoutineFragment.java,a\3\a3dd5e08ab825766836b98f00b041135dd8a3449
-ä
-Zapp/src/main/java/com/example/healthbuddypro/FitnessTab/Routine/group_on_routinestart.java,8\4\84cabe0ded5e55e43730b4f4abf72c2575dc056e
 Å
 Qapp/src/main/java/com/example/healthbuddypro/FitnessTab/Routine/routine_list.java,5\a\5a54231050dfb631294bccfaf57ee4060d15bc92
 Ü
@@ -57,8 +51,6 @@ Lapp/src/main/java/com/example/healthbuddypro/FitnessTab/Routine/Routine.java,6
 Wapp/src/main/java/com/example/healthbuddypro/FitnessTab/Routine/RoutineListAdapter.java,f\8\f88087e00cc902e0f96235060b96ccd137040a9f
 É
 Sapp/src/main/java/com/example/healthbuddypro/FitnessTab/Routine/make_routine01.java,7\b\7b45708cb45ae3f85de174e4d7896930aa61aa6d
-É
-Sapp/src/main/java/com/example/healthbuddypro/FitnessTab/Routine/make_routine02.java,8\4\8446b754f476aab0d2b8a7d68a5c75a077f18819
 â
 Yapp/src/main/java/com/example/healthbuddypro/FitnessTab/Routine/set_routine_exercise.java,3\7\372c0071e5d963157f0f021aee4b52741b90adfc
 É
@@ -87,8 +79,6 @@ Rapp/src/main/java/com/example/healthbuddypro/FitnessTab/Routine/group_start02.j
 Rapp/src/main/java/com/example/healthbuddypro/FitnessTab/Routine/routine_check.java,9\c\9c038351ce0d73ceb776ab023ed5381c8834f0e1
 Ñ
 Tapp/src/main/java/com/example/healthbuddypro/FitnessTab/Routine/WorkoutResponse.java,3\6\3693f7a079d9b5e4856af6bbd7d1e2db50962ef6
-Å
-Qapp/src/main/java/com/example/healthbuddypro/FitnessTab/Routine/group_locked.java,e\0\e0948cd61478631b3d52d7a4b1a8c3f9fb4ce497
 Ä
 Papp/src/main/java/com/example/healthbuddypro/FitnessTab/Routine/fix_routine.java,0\d\0de4804f923b07a6d0994a5c43031febef4bd7ff
 Ñ
@@ -129,3 +119,13 @@ w
 Gapp/src/main/java/com/example/healthbuddypro/Community/PostAdapter.java,9\c\9c0980b28177e45675863a69c0ccf6d3df9b8947
 }
 Mapp/src/main/java/com/example/healthbuddypro/Profile/EditProfileActivity.java,6\a\6aba3e6d7c8dd6d5067312b8e73eeaaf277b62ca
+Ä
+Papp/src/main/java/com/example/healthbuddypro/FitnessTab/MatchedUserResponse.java,1\3\1384b6410ef7565537628847ec9bfe4be746b698
+â
+Yapp/src/main/java/com/example/healthbuddypro/FitnessTab/Routine/RoutineStartFragment.java,2\a\2a2e96a7186168fe20e97f4385eabd32d0e69f5c
+Ü
+Vapp/src/main/java/com/example/healthbuddypro/FitnessTab/Routine/NoRoutineFragment.java,5\1\51325461a3069ae73479b58ccbd53e2663a0b5ab
+ç
+]app/src/main/java/com/example/healthbuddypro/FitnessTab/Routine/RoutineCompletedFragment.java,1\a\1a3ee13ea94e80dc2866237afd74b016dd95e493
+@
+build.gradle.kts,d\b\dbcff70658daf80b53ce624f6adcaa529df5ed8d

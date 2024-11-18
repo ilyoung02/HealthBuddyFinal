@@ -52,6 +52,17 @@ d
         <item>군위군</item>
     </string-array>
 
+    <!--    루틴 수정할때 요일 항목-->
+    <string-array name="days_of_week">
+        <item>월요일</item>
+        <item>화요일</item>
+        <item>수요일</item>
+        <item>목요일</item>
+        <item>금요일</item>
+        <item>토요일</item>
+        <item>일요일</item>
+    </string-array>
+
     <!-- 카테고리 선택 예시 -->
     <string-array name="category_array">
         <item>성별무관</item>

@@ -1,2 +1,18 @@
 
-•	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‚ßåÝJ$4e8597a6-878c-4433-b4f9-d8dbf57765fb
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‚ßåÝ8Ç…ƒû³2
+j
+java:S1192`"MDefine a constant instead of duplicating this literal "RankFragment" 9 times.(†×û·8Ç…ƒû³2
+m
+java:S1192`"PDefine a constant instead of duplicating this literal "API call failed" 3 times.(†×û·8Ç…ƒû³2
+e
+java:S1659"CDeclare "teamId" and all following declarations on a separate line.(¶¸Ñðýÿÿÿÿ8È…ƒû³2
+L
+java:S1659 "/Declare "user2NameTextView" on a separate line.(”˜ÑÎ8È…ƒû³2
+E
+java:S1659!"(Declare "user2Image" on a separate line.(¢˜¢†8È…ƒû³2
+L
+java:S1659""/Declare "groupRankTextView" on a separate line.(—òÙ£8È…ƒû³2
+w
+java:S1450"URemove the "teamId" field and declare it as a local variable in the relevant methods.(¶¸Ñðýÿÿÿÿ8È…ƒû³2
+w
+java:S1450"URemove the "userId" field and declare it as a local variable in the relevant methods.(¶¸Ñðýÿÿÿÿ8È…ƒû³2

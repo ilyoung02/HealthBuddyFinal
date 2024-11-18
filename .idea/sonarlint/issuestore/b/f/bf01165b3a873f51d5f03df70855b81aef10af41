@@ -1,8 +1,10 @@
 
-D
-java:S1604"(Make this anonymous inner class a lambda(üèŞ}8¤†ß…¨2
-i	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(Èğø8¥†ß…¨2
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(èé™8¥†ß…¨2
-	java:S116"`Rename this field "btn_startTodayRoutine" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‰”â½ûÿÿÿÿ8¦†ß…¨2
-†
-java:S1450"dRemove the "btn_startTodayRoutine" field and declare it as a local variable in the relevant methods.(‰”â½ûÿÿÿÿ8±†ß…¨2
+j
+java:S1604-"(Make this anonymous inner class a lambda(üèŞ}8¤†ß…¨2J$5ae6ab18-f4ac-45a8-8c35-7e4a4df834b1
+	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(Èğø8¥†ß…¨2J$39e9b826-9818-4f16-ae1a-c301797b0ef6
+œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(èé™8¥†ß…¨2J$0f7ac000-f53f-44a5-8080-bb84c4fdea85
+§	java:S116"`Rename this field "btn_startTodayRoutine" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‰”â½ûÿÿÿÿ8¦†ß…¨2J$9f83db4e-4c99-4e62-aeb9-70c11b3d520a
+o
+java:S1659"'Declare "buddyName" on a separate line.(˜Ôôşÿÿÿÿ8ùáœû³2J$b1bd4719-7fbb-4fa4-bc0d-0e34caf79983
+¬
+java:S1450"dRemove the "btn_startTodayRoutine" field and declare it as a local variable in the relevant methods.(‰”â½ûÿÿÿÿ8±†ß…¨2J$0e060e83-1ec2-46d0-93e7-466c9a6a2a4a

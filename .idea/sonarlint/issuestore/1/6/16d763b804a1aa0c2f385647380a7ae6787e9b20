@@ -1,13 +1,30 @@
 
->
-java:S1604'"(Make this anonymous inner class a lambda(×³Ç¬
 C
-java:S16041"(Make this anonymous inner class a lambda(Õƒ‹Òÿÿÿÿÿ
-C
-java:S1604A"(Make this anonymous inner class a lambda(°¢Ùäûÿÿÿÿ
+java:S1604L"(Make this anonymous inner class a lambda(Õƒ‹Òÿÿÿÿÿ
+E
+java:S1604S"(Make this anonymous inner class a lambda(ùÊî¹8Ã¶û³2
+D
+java:S1604É"(Make this anonymous inner class a lambda(°¢Ùäûÿÿÿÿ
 t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÌÇÌÑÿÿÿÿÿ
-n	java:S116"TRename this field "login_btn" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(à“±Øşÿÿÿÿ
-p
-java:S1450"[Remove the "buttonLogout" field and declare it as a local variable in the relevant methods.(´¼ç
+m
+java:S1192d"PDefine a constant instead of duplicating this literal "ProfileFragment" 7 times.(¥ÿ¨Û8Ä¶û³2
+a
+java:S1659*"DDeclare "btnEdit" and all following declarations on a separate line.(â®¯È8Ä¶û³2
+g
+java:S1659+"JDeclare "profileGender" and all following declarations on a separate line.(úâ­ù8Ä¶û³2
+R
+java:S1659-"0Declare "reviewRecyclerView" on a separate line.(ª§¡Ïÿÿÿÿÿ8Ä¶û³2
+e
+java:S16590"CDeclare "userId" and all following declarations on a separate line.(±ÜŒ¡øÿÿÿÿ8Ä¶û³2
 s
-java:S1450"XRemove the "login_btn" field and declare it as a local variable in the relevant methods.(à“±Øşÿÿÿÿ
+java:S1450*"VRemove the "btnEdit" field and declare it as a local variable in the relevant methods.(â®¯È8Ä¶û³2
+x
+java:S1450*"[Remove the "buttonLogout" field and declare it as a local variable in the relevant methods.(â®¯È8Ä¶û³2
+z
+java:S14500"XRemove the "profileId" field and declare it as a local variable in the relevant methods.(±ÜŒ¡øÿÿÿÿ8Ä¶û³2
+w
+java:S14500"URemove the "teamId" field and declare it as a local variable in the relevant methods.(±ÜŒ¡øÿÿÿÿ8Å¶û³2
+w
+java:S14500"URemove the "userId" field and declare it as a local variable in the relevant methods.(±ÜŒ¡øÿÿÿÿ8Å¶û³2
+I
+java:S1068(",Remove this unused "BASE_URL" private field.(÷ÂÔ8Å¶û³2

@@ -1,5 +1,9 @@
 
-š
-java:S3776"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(¨Œşÿÿÿÿ8à®í†°2J$4689bcad-7209-4b6b-a638-a7250ec638a4
-“
-java:S18745"KRemove this use of "setOnNavigationItemSelectedListener"; it is deprecated.(ºÒñºøÿÿÿÿ8ä®í†°2J$5e28e7de-393c-4d09-9e1b-de4b4cf09465
+
+java:S1450"]Remove the "routineUpdated" field and declare it as a local variable in the relevant methods.(Ñ„–šşÿÿÿÿ8®šĞü³2
+t
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(¨Œşÿÿÿÿ8®šĞü³2
+m
+java:S18747"KRemove this use of "setOnNavigationItemSelectedListener"; it is deprecated.(ºÒñºøÿÿÿÿ8®šĞü³2
+T
+java:S1068"2Remove this unused "routineUpdated" private field.(Ñ„–šşÿÿÿÿ8®šĞü³2

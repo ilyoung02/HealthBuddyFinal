@@ -1,17 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:padding="16dp">
 
-<!--    activity_fix_routine.xml 파일-->
+    <!-- activity_fix_routine.xml -->
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/icon_back"
+        android:scaleType="centerCrop"/>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="16dp"
-        android:background="?android:attr/windowBackground">
+        android:background="?android:attr/windowBackground"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -42,7 +54,7 @@
             android:layout_marginBottom="8dp"/>
 
         <EditText
-            android:id="@+id/fix_routineTitle"
+            android:id="@+id/edit_routineTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="변경할 루틴 제목 입력"
@@ -51,112 +63,59 @@
             android:background="@android:drawable/edit_text"
             android:textSize="16sp"/>
 
-
-
-        <!-- 수행 요일 선택 -->
         <TextView
-            android:id="@+id/routine_days_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="수행 요일 수정"
+            android:text="요일 및 운동 수정"
             android:textSize="16sp"
             android:textColor="@android:color/black"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:text="# 운동 수정 시 먼저 수정하실 항목을 삭제 후 운동수정 버튼을 클릭해 주세요"
+            android:textSize="10sp"
+            android:textColor="#FF3C3C"
+            android:textStyle="bold" />
 
-            <CheckBox
-                android:id="@+id/cb_monday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="월"/>
+        <ListView
+            android:id="@+id/listview_fixRoutinelist"
+            android:layout_width="match_parent"
+            android:layout_height="370dp"
+            android:background="#F2F2F2"
+            android:layout_marginTop="5dp"
+            android:divider="@android:color/darker_gray"
+            android:dividerHeight="1dp"/>
 
-            <CheckBox
-                android:id="@+id/cb_tuesday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="화"/>
+        <Button
+            android:id="@+id/btn_routineReset"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:text="루틴 재설정"
+            android:textColor="#ffffff"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:background="@drawable/rounded_button"
+            android:layout_gravity="right"
+            android:layout_marginTop="10dp" />
 
-            <CheckBox
-                android:id="@+id/cb_wednesday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="수"/>
 
-            <CheckBox
-                android:id="@+id/cb_thursday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="목"/>
-
-            <CheckBox
-                android:id="@+id/cb_friday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="금"/>
-
-            <CheckBox
-                android:id="@+id/cb_saturday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="토"/>
-
-            <CheckBox
-                android:id="@+id/cb_sunday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="일"/>
         </LinearLayout>
 
-        <!-- 운동 종류 선택 -->
-        <TextView
-            android:id="@+id/tv_routine_exercise_type_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="운동 정보 수정"
-            android:textSize="16sp"
-            android:textColor="@android:color/black"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"/>
-
-<!--        여기 레이아웃에 동적으로 수정할 운동 정보가 오도록 해야함-->
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:orientation="vertical"
-            android:padding="16dp"
-            android:layout_marginBottom="14dp">
-
-
-<!--            linearlayout이 커스텀목록과 같은 영역의 역할-->
-            <LinearLayout
-                android:id="@+id/exercise_fixList_container"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="8dp"
-                android:layout_marginBottom="14dp">
-            </LinearLayout>
-
-
-
-        </ScrollView>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_save_fixed_routine"
-            android:layout_width="match_parent"
+            android:id="@+id/btn_save"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:text="수정 완료"
             android:textStyle="bold"
             android:textSize="18sp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/rounded_btn"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center"
+            android:background="@drawable/rounded_button"
             android:textColor="@android:color/white"/>
 
-    </LinearLayout>
 
-</ScrollView>
+</LinearLayout>

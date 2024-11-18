@@ -1,0 +1,49 @@
+
+•	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(èé™J$9b703527-7b89-42c5-ade7-4ca29514579c
+“
+java:S1192Ü"VDefine a constant instead of duplicating this literal "ë„¤íŠ¸ì›Œí¬ ì˜¤ë¥˜: " 3 times.(É”°J$d71a2743-70be-448e-bc56-35ca37acc4da
+–	java:S116&"[Rename this field "btn_startRoutine" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ğşü¤J$8f099675-3ec7-4311-b704-8d77d06fe226
+‡
+java:S1659'"FDeclare "todayDate" and all following declarations on a separate line.(Åñ°ƒşÿÿÿÿJ$3dc93f86-fb74-42e8-88ae-fec400f72de6
+
+java:S1450%"]Remove the "btnRoutineList" field and declare it as a local variable in the relevant methods.(°Œ¥¹øÿÿÿÿJ$8133b437-27da-4a63-b209-69a1f34cfb85
+›
+java:S1450&"_Remove the "btn_startRoutine" field and declare it as a local variable in the relevant methods.(Ğşü¤J$2f394a54-e33e-4e1e-800a-edcc2bf606dd
+”
+java:S1450("XRemove the "routineId" field and declare it as a local variable in the relevant methods.(ˆÂµ‹J$6d51c026-5b37-4036-baec-9fc8577b1d01
+™
+java:S1450'"XRemove the "todayDate" field and declare it as a local variable in the relevant methods.(Åñ°ƒşÿÿÿÿJ$a38de038-d2d0-4553-98cd-32f5d90ce055
+s
+java:S1135+"2Complete the task associated to this TODO comment.(„İ¨ÜúÿÿÿÿJ$dc70dcaa-8ec6-4ddf-8680-b2206ca4fea7
+m
+java:S3599-",Use another way to initialize this instance.(ÛúŞÛøÿÿÿÿJ$f0bbb55d-9ae5-44c1-9386-e1c5f6be7773
+š
+java:S1171-"YMove the contents of this initializer to a standard constructor or to field initializers.(ÛúŞÛøÿÿÿÿJ$ee957736-be83-478c-9f6b-c3bed3bb5e6e
+©
+java:S5854£"gUse the CANON_EQ flag with "Pattern.compile(pattern, CANON_EQ).matcher(input).replaceAll(replacement)".(È•ş†úÿÿÿÿJ$7662c350-5039-4897-a8c4-cdba14d63b1d
+Š
+java:S5361£"HReplace this call to "replaceAll()" by a call to the "replace()" method.(È•ş†úÿÿÿÿJ$09a42a82-c7c9-488a-941e-e32d4999adbd
+©
+java:S5854¢"gUse the CANON_EQ flag with "Pattern.compile(pattern, CANON_EQ).matcher(input).replaceAll(replacement)".(­×¢ùÿÿÿÿÿJ$df6da70e-f94f-46c8-830d-876464c2fbad
+Š
+java:S5361¢"HReplace this call to "replaceAll()" by a call to the "replace()" method.(­×¢ùÿÿÿÿÿJ$fa8fe22b-3eaa-42b1-bfbd-f728c84d9c29
+©
+java:S5854¡"gUse the CANON_EQ flag with "Pattern.compile(pattern, CANON_EQ).matcher(input).replaceAll(replacement)".(œêŒâÿÿÿÿÿJ$8ab90471-4be7-428c-8bf2-ea11db7af8b2
+Š
+java:S5361¡"HReplace this call to "replaceAll()" by a call to the "replace()" method.(œêŒâÿÿÿÿÿJ$c396ba41-d2fa-4eaa-b833-718564d59f0e
+¤
+java:S5854 "gUse the CANON_EQ flag with "Pattern.compile(pattern, CANON_EQ).matcher(input).replaceAll(replacement)".(£ıJ$cc912c46-380d-453d-a8da-b13659d01f33
+…
+java:S5361 "HReplace this call to "replaceAll()" by a call to the "replace()" method.(£ıJ$d9a5ba79-f0f0-46c5-806b-69ecb7aecb37
+©
+java:S5854Ÿ"gUse the CANON_EQ flag with "Pattern.compile(pattern, CANON_EQ).matcher(input).replaceAll(replacement)".(Üûş²ûÿÿÿÿJ$96521d79-b729-48d1-b4fb-0f01b65843a7
+Š
+java:S5361Ÿ"HReplace this call to "replaceAll()" by a call to the "replace()" method.(Üûş²ûÿÿÿÿJ$adadd497-1829-4530-af2b-007ad13153f3
+©
+java:S5854"gUse the CANON_EQ flag with "Pattern.compile(pattern, CANON_EQ).matcher(input).replaceAll(replacement)".(ÀæĞ®üÿÿÿÿJ$b36ae5a0-98a7-4f12-a9e8-0cd125e5e5fe
+Š
+java:S5361"HReplace this call to "replaceAll()" by a call to the "replace()" method.(ÀæĞ®üÿÿÿÿJ$61973982-40db-49d7-8649-e869428f9e2b
+©
+java:S5854"gUse the CANON_EQ flag with "Pattern.compile(pattern, CANON_EQ).matcher(input).replaceAll(replacement)".(ŒÛºøÿÿÿÿJ$f7f9cce9-73cd-4a2d-bc06-86f2e0d22862
+Š
+java:S5361"HReplace this call to "replaceAll()" by a call to the "replace()" method.(ŒÛºøÿÿÿÿJ$3cd0ca3c-0f1d-4a7f-b790-47fb90a46ef4

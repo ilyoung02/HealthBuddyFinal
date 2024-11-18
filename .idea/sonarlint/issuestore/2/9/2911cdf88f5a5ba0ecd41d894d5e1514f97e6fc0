@@ -1,4 +1,8 @@
 
-”	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(±ÂÒÅıÿÿÿÿ8éÑû¨2J$f1ffa781-2cd5-43b8-8026-a249ca893e8c
+J
+java:S1604 "(Make this anonymous inner class a lambda(àˆÁ§ùÿÿÿÿ8ºíû³2
+”	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(±ÂÒÅıÿÿÿÿ8éÑû¨2J$f1ffa781-2cd5-43b8-8026-a249ca893e8c
 œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(èé™8ÖÉœû¨2J$ad5c8e15-763f-42ad-9738-91d179171abc
-—	java:S116"URename this field "timer_text" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(²öÔî8é¥û¨2J$78aa93c1-1363-42ca-bcb5-1d10ee904b80
+—	java:S116"URename this field "timer_text" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(²öÔî8é¥û¨2J$78aa93c1-1363-42ca-bcb5-1d10ee904b80
+u
+java:S1450"SRemove the "back" field and declare it as a local variable in the relevant methods.(¶¿Îêşÿÿÿÿ8‚ºíû³2

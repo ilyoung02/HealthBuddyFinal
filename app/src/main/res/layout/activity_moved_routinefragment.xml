@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".FitnessTab.Routine.moved_routineFragment">
 
-<!--    빈화면이 아니라 액티비티에서 프래그먼트로 이동할때 프래그먼트가 대체될 프레임임-->
+<!--    빈화면이 아니라 프래그먼트가 대체될 프레임임-->
 
-    <FrameLayout
-        android:id="@+id/fragment_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+<!--    <FrameLayout-->
+<!--        android:id="@+id/fragment_container"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent" />-->
 
 
 </LinearLayout>

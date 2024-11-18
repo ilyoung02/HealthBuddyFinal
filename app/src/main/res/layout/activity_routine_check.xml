@@ -9,28 +9,19 @@
 
 <!--    activity_routine_check.xml 파일-->
 
-    <TextView
-        android:id="@+id/DdayView"
-        android:layout_width="70dp"
-        android:layout_height="27dp"
-        android:text="D-Day"
-        android:textColor="#6495ED"
-        android:textSize="16sp"
-        android:textAlignment="center"
-        android:paddingTop="2dp"
-        android:background="@drawable/white_blue_box" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="25dp">
 
         <TextView
             android:id="@+id/todayDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Wed 10.23"
-            android:textSize="25dp"
+            android:textSize="28dp"
             android:textStyle="bold"
             android:textColor="#6495ED"
             android:layout_weight="1"/>
@@ -65,28 +56,21 @@
 
     </LinearLayout>
 
-    <ScrollView
-        android:id="@+id/routineCheck_scrollview"
+<!--    activity_routine_check_exercise_item 이 동적으로 추가 되는 레이아웃-->
+    <ListView
+        android:id="@+id/routineCheck_listview"
         android:layout_width="match_parent"
         android:layout_height="500dp"
         android:orientation="vertical"
         android:padding="16dp">
-
-<!--        동적 추가되는 linearlayout 영역-->
-        <LinearLayout
-            android:id="@+id/routineCheck_item"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-        </LinearLayout>
-
-    </ScrollView>
+    </ListView>
 
     <ImageButton
         android:id="@+id/timer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:src="@drawable/img_3"
+        android:scaleType="centerCrop"
         android:background="#ffffff"
         android:layout_gravity="right"
         android:layout_marginRight="20dp"

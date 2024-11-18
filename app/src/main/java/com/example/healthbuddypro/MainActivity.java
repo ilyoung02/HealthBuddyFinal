@@ -18,6 +18,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity {
 
     private int currentTabIndex = 2; // 기본 탭 인덱스는 2로 설정 (MatchFragment)
+    private boolean routineUpdated;   // 루틴 업데이트 플래그
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         // Intent로 전달된 newTabIndex 값 확인 (기본값은 2로 설정)
         // routine04 에서 루틴 생성 완료하고 main 으로 넘어올때만 운동 index = 0 이 나옴
         int initialTabIndex = getIntent().getIntExtra("newTabIndex", 2);
+        routineUpdated = getIntent().getBooleanExtra("routine_updated", false); // 루틴 업뎃 플래그 확인
 
         // 기본 화면 설정
         if (savedInstanceState == null) {
@@ -92,4 +94,6 @@ public class MainActivity extends AppCompatActivity {
             return true;
         });
     }
+
 }
+
