@@ -13,62 +13,73 @@
         android:scaleType="centerCrop"
         android:contentDescription="Profile Image"
         android:src="@drawable/default_user_img"
-        android:clipToOutline="true"/>
+        android:clipToOutline="true" />
 
-    <!-- 블러 오버레이 -->
+    <!-- 상단 블러 오버레이 -->
     <View
         android:id="@+id/blur_overlay1"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="100dp"
         android:layout_gravity="top"
-        android:background="@drawable/blur_overlay1"/>
+        android:background="@drawable/blur_overlay1"
+        android:alpha="0.8" />
 
-    <!-- 블러 오버레이 -->
+    <!-- 하단 블러 오버레이 -->
     <View
         android:id="@+id/blur_overlay2"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="200dp"
         android:layout_gravity="bottom"
-        android:background="@drawable/blur_overlay" />
+        android:background="@drawable/blur_overlay"
+        android:alpha="0.6" />
 
-    <!-- 이름과 소개글을 포함한 텍스트 레이아웃 -->
+    <!-- 이름과 정보 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="top"
-        android:orientation="horizontal"
-        android:gravity="left"
-        android:padding="16dp"
-        android:layout_marginLeft="15dp">
+        android:orientation="vertical"
+        android:gravity="start"
+        android:paddingStart="16dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="16dp">
 
+        <!-- 이름 -->
         <TextView
             android:id="@+id/profile_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="홍길동"
-            android:textSize="20sp"
+            android:textSize="22sp"
             android:textStyle="bold"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="4dp" />
 
-        <TextView
-            android:id="@+id/profile_gender"
+        <!-- 성별과 나이 -->
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="성별"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"/>
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/profile_age"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="나이"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"/>
+            <TextView
+                android:id="@+id/profile_gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성별"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:id="@+id/profile_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="나이"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
     </LinearLayout>
 
     <!-- 좋아요 버튼 -->
@@ -76,15 +87,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:layout_marginBottom="16dp"
-        android:gravity="right"
+        android:layout_marginBottom="24dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:gravity="end"
         android:orientation="horizontal">
         <Button
             android:id="@+id/btnLike"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="16dp"
-            android:background="@drawable/ic_heart"/>
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/btn_like_background"
+            android:elevation="6dp"
+            android:contentDescription="좋아요 버튼"
+            android:layout_marginEnd="16dp" />
     </LinearLayout>
 </FrameLayout>
