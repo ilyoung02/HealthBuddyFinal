@@ -4,19 +4,20 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="16dp"
-    android:background="#FFFFFF"
+    android:background="#D9D9D9"
     android:gravity="center"
     android:layout_marginBottom="8dp">
 
     <TextView
         android:id="@+id/group_rank"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:text="1"
         android:textSize="20sp"
-        android:textColor="#000000"
-        android:gravity="center_vertical"
-        android:layout_marginEnd="8dp"/>
+        android:textColor="#FFFFFF"
+        android:gravity="center"
+        android:background="@drawable/black_box"
+        android:layout_marginEnd="10dp"/>
 
     <TextView
         android:id="@+id/user1_name"
@@ -40,12 +41,12 @@
 
     <TextView
         android:id="@+id/group_points"
-        android:layout_width="wrap_content"
+        android:layout_width="20dp"
         android:layout_height="wrap_content"
         android:text="0"
         android:textSize="16sp"
         android:textColor="#000000"
-        android:gravity="center_vertical" />
+        android:gravity="center" />
 
     <TextView
         android:layout_width="wrap_content"
