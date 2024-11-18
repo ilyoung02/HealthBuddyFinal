@@ -14,7 +14,7 @@
         android:padding="8dp"
         android:scrollbars="vertical" />
 
-    <!-- 메시지 입력 및 전송 영역 -->
+    <!-- 메시지 입력 및 전송 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
