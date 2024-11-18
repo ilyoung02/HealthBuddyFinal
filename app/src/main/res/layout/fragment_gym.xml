@@ -5,32 +5,57 @@
     android:layout_height="match_parent"
     android:background="@android:color/white">
 
+    <!-- 상단 타이틀 -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="헬스장 검색"
-        android:textSize="30dp"
-        android:layout_marginTop="20dp"
+        android:textSize="24sp"
+        android:layout_marginTop="25dp"
         android:gravity="center"
         android:textStyle="bold"
-        android:textColor="@color/blue"/>
+        android:textColor="@color/blue" />
 
-    <EditText
-        android:id="@+id/editTextSearchGym"
+    <!-- 검색창 -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:gravity="center"
-        android:hint="Search"
-        android:inputType="text"
-        android:background="@drawable/search_gym"/>
+        android:layout_marginTop="95dp"
+        android:padding="8dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginHorizontal="16dp"
+        android:background="@drawable/edittext_background"
+        android:elevation="4dp">
 
+        <!-- 돋보기 아이콘 -->
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/places_ic_search"
+            android:contentDescription="Search Icon"
+            android:layout_marginEnd="8dp" />
+
+        <!-- 검색창 -->
+        <EditText
+            android:id="@+id/editTextSearchGym"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="헬스장 검색"
+            android:inputType="text"
+            android:background="@null"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <!-- 지도 컨테이너 -->
     <FrameLayout
         android:id="@+id/map_container"
         android:layout_width="wrap_content"
         android:layout_height="600dp"
+        android:layout_weight="1"
         android:layout_gravity="center"
-        android:layout_margin="16dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/box_background"
         android:elevation="8dp">
 
