@@ -24,7 +24,7 @@
         android:background="@drawable/blur_overlay1"
         android:alpha="0.8" />
 
-    <!-- 하단 블러 오버레이 -->
+    <!-- 하단 블러 -->
     <View
         android:id="@+id/blur_overlay2"
         android:layout_width="match_parent"
