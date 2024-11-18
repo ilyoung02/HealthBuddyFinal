@@ -193,7 +193,7 @@ public class GymFragment extends Fragment implements OnMapReadyCallback {
                                 }
                             }
 
-                            // 첫 번째 마커를 중심으로 카메라 이동하고 줌 레벨 30으로 설정
+                            // 첫 번째 마커를 중심으로 카메라 이동
                             LatLng firstPlaceLatLng = places.get(0).getLatLng();
                             if (firstPlaceLatLng != null) {
                                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(firstPlaceLatLng, 17));  // 줌 레벨 30으로 설정
@@ -211,7 +211,7 @@ public class GymFragment extends Fragment implements OnMapReadyCallback {
 
     // 마커를 눌렀을 때 호출되는 함수
     private void onMarkerClick(Marker marker) {
-        // 마커의 제목 (검색어) 또는 snippet을 사용하여 길찾기
+        // 마커의 제목 또는 snippet 사용하여 길찾기
         String searchQuery = marker.getTitle(); // 검색한 헬스장 이름이 title로 설정되어 있다고 가정
 
         if (searchQuery != null && !searchQuery.isEmpty()) {
@@ -223,9 +223,9 @@ public class GymFragment extends Fragment implements OnMapReadyCallback {
 
     // 길찾기 URL을 생성하고 Google Maps에서 열기
     private void openGoogleMapsForDirections(String searchQuery) {
-        String uri = "google.navigation:q=" + Uri.encode(searchQuery);  // 검색어를 인코딩하여 URL 생성
+        String uri = "google.navigation:q=" + Uri.encode(searchQuery);  // 검색어 인코딩하여 URL 생성
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
-        intent.setPackage("com.google.android.apps.maps");  // Google Maps 앱을 지정
+        intent.setPackage("com.google.android.apps.maps");  // Google Maps 앱 지정
         startActivity(intent);  // Google Maps로 길찾기 열기
     }
 
