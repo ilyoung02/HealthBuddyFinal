@@ -65,8 +65,8 @@
     <Button
         android:id="@+id/btn_write_post"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_marginBottom="16dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="65dp"
         android:background="@drawable/rounded_btn"
         android:text="글쓰기"
         android:textColor="@android:color/white"
