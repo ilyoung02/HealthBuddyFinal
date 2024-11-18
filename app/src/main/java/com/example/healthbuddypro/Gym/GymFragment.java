@@ -1,7 +1,9 @@
 package com.example.healthbuddypro.Gym;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -25,6 +27,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.api.net.SearchByTextRequest;
@@ -35,6 +39,15 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -101,6 +114,12 @@ public class GymFragment extends Fragment implements OnMapReadyCallback {
         } else {
             requestLocationPermission();
         }
+
+        // 마커 클릭 리스너 설정
+        mMap.setOnMarkerClickListener(marker -> {
+            onMarkerClick(marker);  // 마커 클릭 시 길찾기 호출
+            return true;
+        });
     }
 
     private void enableUserLocation() {
@@ -190,6 +209,25 @@ public class GymFragment extends Fragment implements OnMapReadyCallback {
         }
     }
 
+    // 마커를 눌렀을 때 호출되는 함수
+    private void onMarkerClick(Marker marker) {
+        // 마커의 제목 (검색어) 또는 snippet을 사용하여 길찾기
+        String searchQuery = marker.getTitle(); // 검색한 헬스장 이름이 title로 설정되어 있다고 가정
+
+        if (searchQuery != null && !searchQuery.isEmpty()) {
+            openGoogleMapsForDirections(searchQuery);  // 검색한 단어로 길찾기
+        } else {
+            showErrorMessage("이 장소에 대한 정보가 없습니다.");
+        }
+    }
+
+    // 길찾기 URL을 생성하고 Google Maps에서 열기
+    private void openGoogleMapsForDirections(String searchQuery) {
+        String uri = "google.navigation:q=" + Uri.encode(searchQuery);  // 검색어를 인코딩하여 URL 생성
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+        intent.setPackage("com.google.android.apps.maps");  // Google Maps 앱을 지정
+        startActivity(intent);  // Google Maps로 길찾기 열기
+    }
 
     private void showErrorMessage(String message) {
         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
