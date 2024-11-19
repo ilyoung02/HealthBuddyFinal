@@ -20,6 +20,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.healthbuddypro.ApiService;
 import com.example.healthbuddypro.R;
 import com.example.healthbuddypro.RetrofitClient;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -121,7 +122,20 @@ public class RoutineStartFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_routinestart, container, false);
 
-        routineId = getRoutineIdFromStorage(); // 루틴 아이디 불러오기
+        // Firestore에서 routineId를 가져와 초기 설정
+        getRoutineIdFromFirestore(routineId -> {
+            if (routineId != -1) {
+                Log.d("RoutineStartFragment", "가져온 routineId: " + routineId);
+                // 가져온 routineId로 관련 데이터 로드
+                loadTodayRoutine(routineId);
+                loadRoutineTitle(routineId);
+            } else {
+                Log.d("RoutineStartFragment", "routineId를 가져올 수 없습니다.");
+                // routineId가 없을 경우 처리
+                replaceFragment(new GroupLockedFragment());
+            }
+        });
+
 
         btnRoutineList = view.findViewById(R.id.btn_routineList);
         btn_startRoutine = view.findViewById(R.id.btn_startRoutine);
@@ -130,9 +144,9 @@ public class RoutineStartFragment extends Fragment {
         routineTitle = view.findViewById(R.id.routineTitle);
 
         setTodayDate(todayDate);
-        loadTodayRoutine(routineId);
+//        loadTodayRoutine(routineId);
         loadBuddyNickname(); // 헬스버디 이름 로드
-        loadRoutineTitle(getRoutineIdFromStorage()); // 루틴 제목 가져옴
+//        loadRoutineTitle(routineId); // 루틴 제목 가져옴
 
         btn_startRoutine.setOnClickListener(view1 -> {
             Intent intent = new Intent(getActivity(), check_location.class);
@@ -222,24 +236,115 @@ public class RoutineStartFragment extends Fragment {
         });
     }
 
-    // 내부 저장소에서 routineId를 가져오는 함수
-    private int getRoutineIdFromStorage() {
-        Context context = getActivity();
-        if (context != null) {
-            int userId = getUserIdFromStorage(); // userId 가져오기
-            if (userId != -1) { // 유효한 userId가 있을 경우
-                return context.getSharedPreferences("routineId" + userId + "_prefs", Context.MODE_PRIVATE)
-                        .getInt("routineId", -1);
-            } else {
-                Log.e("RoutineFragment", "루틴 시작에서 루틴ID 조회 시 ID 값 조회 오류");
-            }
+
+    // Firestore에서 routineId를 가져오는 메서드
+    private void getRoutineIdFromFirestore(FirestoreRoutineIdCallback callback) {
+        int userId = getUserIdFromStorage(); // 내부 저장소에서 userId 가져오기
+
+        if (userId == -1) {
+            Log.e("RoutineStartFragment", "유효하지 않은 userId입니다.");
+            callback.onRoutineIdRetrieved(-1); // 유효하지 않은 userId일 경우 -1 반환
+            return;
         }
-        return -1; // userId 또는 routineId가 없으면 -1 반환
+
+        // Firestore에서 teamId 조회
+        FirebaseFirestore.getInstance()
+                .collection("users")
+                .document(String.valueOf(userId))
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        Long teamIdLong = documentSnapshot.getLong("teamId");
+                        if (teamIdLong != null) {
+                            int teamId = teamIdLong.intValue();
+                            Log.d("RoutineStartFragment", "Firestore에서 teamId 조회 성공: " + teamId);
+
+                            // Firestore에서 routineId 조회
+                            fetchRoutineIdFromTeamId(teamId, callback);
+                        } else {
+                            Log.e("RoutineStartFragment", "Firestore 문서에 teamId가 없습니다.");
+                            callback.onRoutineIdRetrieved(-1);
+                        }
+                    } else {
+                        Log.e("RoutineStartFragment", "Firestore 문서가 존재하지 않습니다.");
+                        callback.onRoutineIdRetrieved(-1);
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("RoutineStartFragment", "Firestore teamId 조회 실패: " + e.getMessage());
+                    callback.onRoutineIdRetrieved(-1);
+                });
     }
+
+    // teamId를 기반으로 Firestore에서 routineId 조회
+    private void fetchRoutineIdFromTeamId(int teamId, FirestoreRoutineIdCallback callback) {
+        FirebaseFirestore.getInstance()
+                .collection("routineIdShare")
+                .document(String.valueOf(teamId))
+                .get()
+                .addOnSuccessListener(routineSnapshot -> {
+                    if (routineSnapshot.exists()) {
+                        Long routineIdLong = routineSnapshot.getLong("routineId");
+                        if (routineIdLong != null) {
+                            int routineId = routineIdLong.intValue();
+                            Log.d("RoutineStartFragment", "Firestore에서 routineId 조회 성공: " + routineId);
+
+                            // routineId를 내부 저장소에 저장
+                            saveRoutineIdToSharedPreferences(routineId);
+                            callback.onRoutineIdRetrieved(routineId);
+                        } else {
+                            Log.d("RoutineStartFragment", "Firestore 문서에 routineId가 없습니다.");
+                            saveRoutineIdToSharedPreferences(-1);
+                            callback.onRoutineIdRetrieved(-1);
+                        }
+                    } else {
+                        Log.d("RoutineStartFragment", "teamId에 해당하는 Firestore 문서가 존재하지 않습니다.");
+                        saveRoutineIdToSharedPreferences(-1);
+                        callback.onRoutineIdRetrieved(-1);
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("RoutineStartFragment", "Firestore routineId 조회 실패: " + e.getMessage());
+                    saveRoutineIdToSharedPreferences(-1);
+                    callback.onRoutineIdRetrieved(-1);
+                });
+    }
+
+    // routineId를 내부 저장소에 저장하는 메서드
+    private void saveRoutineIdToSharedPreferences(int routineId) {
+        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("RoutinePrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("routineId", routineId);
+        editor.apply();
+        Log.d("RoutineStartFragment", "routineId를 내부 저장소에 저장: " + routineId);
+    }
+
+
+    // Callback 인터페이스 정의
+    public interface FirestoreRoutineIdCallback {
+        void onRoutineIdRetrieved(int routineId);
+    }
+
+
+    // 내부 저장소에서 routineId를 가져오는 함수
+//    private int getRoutineIdFromStorage() {
+//        Context context = getActivity();
+//        if (context != null) {
+//            int userId = getUserIdFromStorage(); // userId 가져오기
+//            if (userId != -1) { // 유효한 userId가 있을 경우
+//                return context.getSharedPreferences("routineId" + userId + "_prefs", Context.MODE_PRIVATE)
+//                        .getInt("routineId", -1);
+//            } else {
+//                Log.e("RoutineFragment", "루틴 시작에서 루틴ID 조회 시 ID 값 조회 오류");
+//            }
+//        }
+//        return -1; // userId 또는 routineId가 없으면 -1 반환
+//    }
 
     // 오늘 운동 정보를 불러오는 함수
     private void loadTodayRoutine(int routineId) {
         String day = new SimpleDateFormat("E", Locale.getDefault()).format(new Date()).toUpperCase();
+        Log.d("RoutineStartFragment", "요청 day: " + day + ", 요청 routineId: " + routineId);
         ApiService service = RetrofitClient.getApiService();
         Call<RoutineDetailsResponse> call = service.getRoutineDetails(routineId, day);
 
@@ -247,6 +352,7 @@ public class RoutineStartFragment extends Fragment {
             @Override
             public void onResponse(Call<RoutineDetailsResponse> call, Response<RoutineDetailsResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
+                    Log.d("RoutineStartFragment", "서버 응답 성공: " + response.body());
                     RoutineDetailsResponse.Data data = response.body().getData();
                     List<RoutineDetailsResponse.Workout> workouts = data.getWorkouts(); // data에서 workouts 리스트 가져오기
 
@@ -255,15 +361,19 @@ public class RoutineStartFragment extends Fragment {
                         displayTodayRoutine(workouts);
                     } else {
                         // 오늘 요일에 해당하는 루틴이 없을 경우 NoRoutineFragment 표시
+                        Log.d("RoutineStartFragment", "오늘의 루틴 데이터가 없습니다.");
                         replaceFragment(new NoRoutineFragment());
                     }
                 } else {
                     Toast.makeText(getActivity(), "오늘의 운동 정보를 불러오는데 실패했습니다.", Toast.LENGTH_SHORT).show();
+                    Log.e("RoutineStartFragment", "서버 응답 실패: " + response.code() + ", " + response.message());
+                    replaceFragment(new NoRoutineFragment());
                 }
             }
 
             @Override
             public void onFailure(Call<RoutineDetailsResponse> call, Throwable t) {
+                Log.e("RoutineStartFragment", "네트워크 오류: " + t.getMessage());
                 Toast.makeText(getActivity(), "네트워크 오류: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

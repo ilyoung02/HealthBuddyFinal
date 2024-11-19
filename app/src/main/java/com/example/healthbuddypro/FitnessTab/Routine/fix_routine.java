@@ -37,7 +37,7 @@ public class fix_routine extends AppCompatActivity {
     private RoutineDayAdapter routineDayAdapter;
     private List<RoutineDay> routineDayList = new ArrayList<>();
     private int routineId;
-
+    private String originalRoutineTitle = ""; // 서버에서 불러온 제목
     private static final String TAG = "fix_routine";
 
     // 한글 운동 이름을 영어로 매핑하는 해시맵
@@ -153,12 +153,9 @@ public class fix_routine extends AppCompatActivity {
         });
 
         // 루틴 리셋 버튼
-        btn_routineReset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(fix_routine.this, make_routine01.class);
-                startActivity(intent);
-            }
+        btn_routineReset.setOnClickListener(view -> {
+            Intent intent = new Intent(fix_routine.this, make_routine01.class);
+            startActivity(intent);
         });
     }
 
@@ -186,6 +183,13 @@ public class fix_routine extends AppCompatActivity {
                 public void onResponse(Call<RoutineDetailsResponse> call, Response<RoutineDetailsResponse> response) {
                     if (response.isSuccessful() && response.body() != null && response.body().getCode() == 200) {
                         RoutineDetailsResponse.Data data = response.body().getData();
+
+                        // 제목 설정 (한 번만)
+                        if (originalRoutineTitle.isEmpty() && data.getTitle() != null) {
+                            originalRoutineTitle = data.getTitle();
+                            editRoutineTitle.setHint(originalRoutineTitle); // 제목 표시
+                        }
+
                         List<RoutineDetailsResponse.Workout> workouts = data.getWorkouts();
                         routineDayList.add(new RoutineDay(day, workouts));
                         routineDayAdapter.notifyDataSetChanged();
@@ -203,7 +207,14 @@ public class fix_routine extends AppCompatActivity {
     }
 
     public void saveRoutineChanges() {
+        // 현재 제목 가져오기
         String updatedTitle = editRoutineTitle.getText().toString().trim();
+
+        // 제목이 변경되지 않은 경우 원래 제목 유지
+        if (updatedTitle.isEmpty() || updatedTitle.equals(originalRoutineTitle)) {
+            updatedTitle = originalRoutineTitle;
+        }
+
         List<RoutineFixRequest.DayRoutine> dayRoutineList = new ArrayList<>();
 
         for (RoutineDay routineDay : routineDayList) {
@@ -217,8 +228,6 @@ public class fix_routine extends AppCompatActivity {
 
         RoutineFixRequest routineRequest = new RoutineFixRequest(updatedTitle, dayRoutineList);
 
-
-
         ApiService apiService = RetrofitClient.getApiService();
         Call<Void> call = apiService.updateRoutine(routineId, routineRequest);
 
@@ -227,7 +236,6 @@ public class fix_routine extends AppCompatActivity {
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(fix_routine.this, "루틴 수정 완료", Toast.LENGTH_SHORT).show();
-                    // 최종 데이터셋을 로그로 출력
                     Log.d(TAG, "Sending RoutineFixRequest: " + routineRequest.toString());
                 } else {
                     Toast.makeText(fix_routine.this, "루틴 수정 실패", Toast.LENGTH_SHORT).show();
@@ -240,6 +248,7 @@ public class fix_routine extends AppCompatActivity {
             }
         });
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
