@@ -16,6 +16,7 @@ import com.example.healthbuddypro.FitnessTab.Routine.WorkoutResponse;
 import com.example.healthbuddypro.FitnessTab.TeamRankingListResponse;
 import com.example.healthbuddypro.FitnessTab.TeamRankingResponse;
 import com.example.healthbuddypro.FitnessTab.TeamStatusResponse;
+import com.example.healthbuddypro.FitnessTab.TeamUsersResponse;
 import com.example.healthbuddypro.Login.LoginRequest;
 import com.example.healthbuddypro.Login.LoginResponse;
 import com.example.healthbuddypro.Matching.Chat.MatchRequest;
@@ -144,6 +145,12 @@ public interface ApiService {
     // 특정 팀 랭킹 정보 조회
     @GET("/api/teams/{teamId}/rankings")
     Call<TeamRankingResponse> getTeamRanking(@Path("teamId") int teamId);
+
+    // 팀 내 사용자 정보 조회
+    @GET("/api/teams/{teamId}/users")
+    Call<TeamUsersResponse> getTeamUsers(
+            @Path("teamId") int teamId
+    );
 
     // 루틴 생성
     @POST("/api/routines/team")

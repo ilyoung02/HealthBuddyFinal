@@ -15,6 +15,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.healthbuddypro.ApiService;
@@ -22,17 +24,21 @@ import com.example.healthbuddypro.Profile.MyProfileResponse;
 import com.example.healthbuddypro.R;
 import com.example.healthbuddypro.RetrofitClient;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class RankFragment extends Fragment {
 
-    private int userId, teamId, teamUserId, profileId1, profileId2;
+    private int userId, teamId, teamUserId, profileId1, profileId2, user1Id, user2Id;
     private TextView user1NameTextView, user2NameTextView;
     private ImageView user1Image, user2Image;
     private TextView groupPointsTextView, groupRankTextView; // 추가된 UI 요소
     private boolean isTeamEnded = false;
+    private RecyclerView rankingRecyclerView;
+    private TeamRankingAdapter rankingAdapter;
 
     @Nullable
     @Override
@@ -44,8 +50,11 @@ public class RankFragment extends Fragment {
         user2NameTextView = view.findViewById(R.id.user2_name);
         user1Image = view.findViewById(R.id.user1_icon);
         user2Image = view.findViewById(R.id.user2_icon);
-        groupPointsTextView = view.findViewById(R.id.group_points); // 추가된 TextView
-        groupRankTextView = view.findViewById(R.id.group_rank); // 추가된 TextView
+        groupPointsTextView = view.findViewById(R.id.group_points);
+        groupRankTextView = view.findViewById(R.id.group_rank);
+        rankingRecyclerView = view.findViewById(R.id.recycler_view_rankings);
+        rankingRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
 
         // SharedPreferences에서 userId 및 teamId 가져오기
         SharedPreferences preferences1 = requireActivity().getSharedPreferences("localID", MODE_PRIVATE);
@@ -54,18 +63,21 @@ public class RankFragment extends Fragment {
 
         SharedPreferences preferences2 = requireActivity().getSharedPreferences("user_" + userId + "_prefs", MODE_PRIVATE);
         teamId = preferences2.getInt("teamId", -1);
-        
+
         // team 상태 가져오기
         fetchTeamStatus(teamId);
-        
+
         // teamId와 userId를 사용하여 팀원 정보 가져오기
         fetchTeamUserIdAndName(teamId, userId);
 
         // user1의 프로필 데이터 불러오기
-        fetchProfileData(userId);  
+        fetchProfileData(userId);
 
         // 그룹 포인트 및 랭킹 데이터를 가져옴
         fetchTeamRankingData(teamId);
+
+        // 랭킹 리스트 가져오기
+        fetchRankingData();
 
         return view;
     }
@@ -210,4 +222,91 @@ public class RankFragment extends Fragment {
             }
         });
     }
+
+    private void fetchRankingData() {
+        ApiService apiService = RetrofitClient.getApiService();
+
+        Call<TeamRankingListResponse> call = apiService.getTeamRankingList();
+        call.enqueue(new Callback<TeamRankingListResponse>() {
+            @Override
+            public void onResponse(Call<TeamRankingListResponse> call, Response<TeamRankingListResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    // API로부터 랭킹 데이터 리스트 가져오기
+                    List<TeamRankingListResponse.TeamRankingData> rankingList = response.body().getData();
+
+                    // RecyclerView에 Adapter 설정
+                    rankingAdapter = new TeamRankingAdapter(getContext(), rankingList);
+                    rankingRecyclerView.setAdapter(rankingAdapter);
+
+                    Log.d("RankFragment", "Fetched ranking data successfully");
+                } else {
+                    Log.e("RankFragment", "Failed to fetch ranking data.");
+                    Toast.makeText(getActivity(), "Failed to load rankings", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TeamRankingListResponse> call, Throwable t) {
+                Log.e("RankFragment", "Error fetching ranking data", t);
+                Toast.makeText(getActivity(), "Error fetching rankings", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+
+    // 랭킹에 나타낼 유저들 가져오기
+    private void fetchTeamUsers(int teamId) {
+        ApiService apiService = RetrofitClient.getApiService();
+        Call<TeamUsersResponse> call = apiService.getTeamUsers(teamId);
+
+        call.enqueue(new Callback<TeamUsersResponse>() {
+            @Override
+            public void onResponse(Call<TeamUsersResponse> call, Response<TeamUsersResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    TeamUsersResponse.TeamUsersData data = response.body().getData();
+
+                    // user1Id와 user2Id 설정
+                    user1Id = data.getUser1Id();
+                    user2Id = data.getUser2Id();
+
+                } else {
+                    Log.e("RankFragment", "Failed to fetch team users.");
+                    Toast.makeText(getActivity(), "Failed to fetch team users.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TeamUsersResponse> call, Throwable t) {
+                Log.e("RankFragment", "API call failed", t);
+                Toast.makeText(getActivity(), "Error fetching team users.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    // 사용자 이름 가져오기
+    private void fetchUserName(int profileId, UserNameCallback callback) {
+        ApiService apiService = RetrofitClient.getApiService();
+        Call<MyProfileResponse> call = apiService.getProfileData(profileId);
+
+        call.enqueue(new Callback<MyProfileResponse>() {
+            @Override
+            public void onResponse(Call<MyProfileResponse> call, Response<MyProfileResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    String nickname = response.body().getData().getNickname();
+                    callback.onUserNameFetched(nickname); // 콜백 호출
+                } else {
+                    Log.e("RankFragment", "Failed to fetch user name for profileId: " + profileId);
+                    callback.onUserNameFetched("Unknown");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MyProfileResponse> call, Throwable t) {
+                Log.e("RankFragment", "Error fetching user name", t);
+                callback.onUserNameFetched("Error");
+            }
+        });
+    }
+
 }

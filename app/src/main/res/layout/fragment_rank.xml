@@ -145,14 +145,11 @@
     </LinearLayout>
 
 <!--    그룹 랭킹 리스트 나열한게 여기에 동적으로 들어가야함-->
-    <ScrollView
-        android:id="@+id/group_list"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_rankings"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:orientation="vertical">
+        android:layout_height="match_parent" />
 
 <!--        여기에 랭킹 리스트 순서로 동적 배열되서 들어가야함-->
-
-    </ScrollView>
 
 </LinearLayout>
