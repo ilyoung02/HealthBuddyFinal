@@ -88,7 +88,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:background="#F5F5F5"
+            android:background="@drawable/lightblue_box"
             android:padding="16dp"
             android:layout_marginRight="10dp"
             android:gravity="center">
@@ -100,16 +100,17 @@
                 android:text="Group Points"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="#666666"
+                android:textColor="#ffffff"
                 android:gravity="center"/>
 
             <TextView
                 android:id="@+id/group_points"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
                 android:text="0"
                 android:textSize="24sp"
-                android:textColor="#000000"
+                android:textColor="#ffffff"
                 android:gravity="center"/>
         </LinearLayout>
 
@@ -118,7 +119,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:background="#F5F5F5"
+            android:background="@drawable/lightblue_box"
             android:layout_marginLeft="10dp"
             android:padding="16dp"
             android:gravity="center">
@@ -130,16 +131,17 @@
                 android:text="Group Rank"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="#666666"
+                android:textColor="#ffffff"
                 android:gravity="center"/>
 
             <TextView
                 android:id="@+id/group_rank"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
                 android:text="0"
                 android:textSize="24sp"
-                android:textColor="#000000"
+                android:textColor="#ffffff"
                 android:gravity="center"/>
         </LinearLayout>
     </LinearLayout>
@@ -148,7 +150,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_rankings"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="500dp"
+        android:padding="16dp"
+        android:background="@drawable/blue_white_box"/>
 
 <!--        여기에 랭킹 리스트 순서로 동적 배열되서 들어가야함-->
 

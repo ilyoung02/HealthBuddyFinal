@@ -10,11 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="헬스장 검색"
-        android:textSize="24sp"
+        android:textSize="27sp"
         android:layout_marginTop="25dp"
         android:gravity="center"
         android:textStyle="bold"
-        android:textColor="@color/blue" />
+        android:textColor="#6495ED" />
 
     <!-- 검색창 -->
     <LinearLayout

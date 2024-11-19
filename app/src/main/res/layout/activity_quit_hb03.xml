@@ -21,7 +21,7 @@
         android:layout_height="400dp"
         android:orientation="vertical"
         android:padding="10dp"
-        android:layout_marginTop="100dp">
+        android:layout_marginTop="170dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -68,7 +68,7 @@
     <!-- Next Step Button -->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/nextStepButton"
-        android:layout_width="260dp"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:text="완료"
         android:textStyle="bold"
@@ -78,6 +78,6 @@
         android:paddingHorizontal="32dp"
         android:paddingVertical="12dp"
         android:layout_gravity="center"
-        android:layout_marginTop="80dp"/>
+        android:layout_marginTop="140dp"/>
 
 </LinearLayout>

@@ -80,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:text="좋아요"
-                android:textColor="@color/blue"
+                android:textColor="#6495ED"
                 android:textSize="14sp" />
         </LinearLayout>
 
@@ -100,7 +100,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:text="댓글"
-                android:textColor="@color/blue"
+                android:textColor="#6495ED"
                 android:textSize="14sp" />
         </LinearLayout>
 
@@ -112,6 +112,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="7dp"
         android:nestedScrollingEnabled="false" />
 
     <LinearLayout
@@ -127,17 +128,19 @@
             android:layout_weight="1"
             android:hint="댓글을 입력하세요"
             android:textSize="14sp"
-            android:background="@drawable/rounded_edittext"
+            android:background="@drawable/blackwhite_box"
             android:padding="8dp" />
 
         <Button
             android:id="@+id/btnAddComment"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="38dp"
             android:layout_marginStart="8dp"
             android:text="등록"
+            android:textSize="14sp"
+            android:textStyle="bold"
             android:textColor="@color/white"
-            android:background="@drawable/rounded_btn"/>
+            android:background = "@drawable/rounded_button" />
     </LinearLayout>
 
 </LinearLayout>

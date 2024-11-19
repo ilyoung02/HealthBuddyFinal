@@ -18,12 +18,12 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="750dp"
         android:orientation="vertical"
         android:padding="16dp"
         android:background="?android:attr/windowBackground"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="80dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -83,7 +83,7 @@
         <ListView
             android:id="@+id/listview_fixRoutinelist"
             android:layout_width="match_parent"
-            android:layout_height="370dp"
+            android:layout_height="430dp"
             android:background="#F2F2F2"
             android:layout_marginTop="5dp"
             android:divider="@android:color/darker_gray"

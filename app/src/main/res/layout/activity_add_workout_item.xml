@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:background="@drawable/note_background"
     android:padding="10dp"
-    android:layout_marginBottom="20dp">
+    android:layout_marginBottom="10dp">
 
 <!--    activity_add_workout_item.xml 파일-->
 
@@ -25,7 +25,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:layout_marginBottom="5dp">
     </LinearLayout>
 
     <TextView
