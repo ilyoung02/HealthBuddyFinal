@@ -186,22 +186,25 @@ public class MatchFragment extends Fragment {
     }
 
     private void sendNotification(int matchRequestId, int senderId) {
-        Intent intent = new Intent(getContext(), ChatActivity.class);
-        intent.putExtra("matchRequestId", matchRequestId);
-        intent.putExtra("profileId", senderId);
+        Context context = getContext();
+        if (context != null) {
+            Intent intent = new Intent(context, ChatActivity.class);
+            intent.putExtra("matchRequestId", matchRequestId);
+            intent.putExtra("profileId", senderId);
 
-        PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_notification)
-                .setContentTitle("새로운 매칭 요청")
-                .setContentText("채팅방으로 이동하여 매칭 요청을 확인하세요.")
-                .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setContentIntent(pendingIntent)
-                .setAutoCancel(true);
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
+                    .setSmallIcon(R.drawable.ic_notification)
+                    .setContentTitle("새로운 매칭 요청")
+                    .setContentText("채팅방으로 이동하여 매칭 요청을 확인하세요.")
+                    .setPriority(NotificationCompat.PRIORITY_HIGH)
+                    .setContentIntent(pendingIntent)
+                    .setAutoCancel(true);
 
-        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
-        notificationManager.notify(matchRequestId, builder.build());
+            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
+            notificationManager.notify(matchRequestId, builder.build());
+        }
     }
 
     private void createNotificationChannel() {
@@ -215,6 +218,19 @@ public class MatchFragment extends Fragment {
             NotificationManager notificationManager = getContext().getSystemService(NotificationManager.class);
             if (notificationManager != null) {
                 notificationManager.createNotificationChannel(channel);
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == NOTIFICATION_PERMISSION_REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                createNotificationChannel();
+                checkPendingMatchRequests();
+            } else {
+                Toast.makeText(getContext(), "알림 권한이 거부되었습니다.", Toast.LENGTH_SHORT).show();
             }
         }
     }

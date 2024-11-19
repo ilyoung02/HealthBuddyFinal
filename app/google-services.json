@@ -2,7 +2,7 @@
   "project_info": {
     "project_number": "882767192201",
     "project_id": "healthbuddypro",
-    "storage_bucket": "healthbuddypro.appspot.com"
+    "storage_bucket": "healthbuddypro.firebasestorage.app"
   },
   "client": [
     {
