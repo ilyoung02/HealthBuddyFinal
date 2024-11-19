@@ -5,15 +5,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@android:color/white"
-    android:padding="16dp"
-    android:gravity="center">
+    android:padding="20dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginBottom="20dp"
-        android:gravity="center_vertical">
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center">
 
         <TextView
             android:id="@+id/profile_title"
@@ -41,26 +40,28 @@
     </LinearLayout>
 
     <!-- 프로필 이미지 및 정보 섹션 -->
+
+    <!-- 헬스버디 on/off 스위치 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        android:orientation="horizontal"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="10dp"
         android:gravity="center"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
+        android:orientation="horizontal">
 
         <!-- 프로필 이미지 -->
         <ImageView
             android:id="@+id/profile_image"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:scaleType="centerCrop"
+            android:layout_marginEnd="12dp"
             android:background="@drawable/box_background"
-            android:layout_marginEnd="12dp" />
+            android:scaleType="centerCrop" />
 
         <!-- 이름, 성별, 나이, 구력, 사는 지역 -->
         <LinearLayout
-            android:layout_width="160dp"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
@@ -70,9 +71,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="이름"
+                android:textColor="@android:color/black"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@android:color/black" />
+                android:textStyle="bold" />
 
             <!-- 성별과 나이를 수평으로 묶기 -->
             <LinearLayout
@@ -85,71 +86,69 @@
                     android:id="@+id/profile_gender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="성별"
-                    android:textSize="16sp"
-                    android:textColor="@android:color/black"
                     android:layout_marginTop="6dp"
-                    android:layout_marginEnd="20dp" />
+                    android:layout_marginEnd="20dp"
+                    android:text="성별"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
 
                 <!-- 나이 -->
                 <TextView
                     android:id="@+id/profile_age"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
                     android:text="나이"
-                    android:textSize="16sp"
                     android:textColor="@android:color/black"
-                    android:layout_marginTop="6dp" />
+                    android:textSize="16sp" />
             </LinearLayout>
 
             <!-- 구력과 사는 지역을 수평으로 묶기 -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="6dp">
+                android:layout_marginTop="6dp"
+                android:orientation="horizontal">
 
                 <!-- 사는 지역 -->
                 <TextView
                     android:id="@+id/profile_location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
                     android:text="지역"
-                    android:textSize="16sp"
                     android:textColor="@android:color/black"
-                    android:layout_marginEnd="20dp"/>
+                    android:textSize="16sp" />
 
                 <!-- 구력 -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="구력 "
-                    android:textSize="16sp"
                     android:textColor="@android:color/black"
-                    />
+                    android:textSize="16sp" />
+
                 <TextView
                     android:id="@+id/profile_experience"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:textSize="16sp"
                     android:textColor="@android:color/black"
-                    />
+                    android:textSize="16sp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="년"
-                    android:textSize="16sp"
                     android:textColor="@android:color/black"
-                    />
+                    android:textSize="16sp" />
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="170dp"
             android:gravity="center"
-            android:padding="5dp"
             android:orientation="vertical">
             <!-- 수정 버튼 -->
             <Button
@@ -160,9 +159,9 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:text="수정"
+                android:textColor="#FFFFFF"
                 android:textSize="15sp"
-                android:textStyle="bold"
-                android:textColor="#FFFFFF" />
+                android:textStyle="bold" />
 
             <!-- 좋아요 섹션 -->
             <LinearLayout
@@ -201,12 +200,11 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:text="헬스버디 상태"
-                android:textSize="12sp"
-                android:textColor="#000000" />
+                android:textColor="#000000"
+                android:textSize="12sp" />
         </LinearLayout>
     </LinearLayout>
 
-    <!-- 헬스버디 on/off 스위치 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

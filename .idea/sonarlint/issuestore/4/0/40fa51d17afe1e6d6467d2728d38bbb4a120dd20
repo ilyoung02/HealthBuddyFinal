@@ -1,0 +1,11 @@
+
+>
+java:S1604"(Make this anonymous inner class a lambda(¾‡µà
+>
+java:S16041"(Make this anonymous inner class a lambda(ºù¯‘
+C
+java:S1604?"(Make this anonymous inner class a lambda(Â¢«óøÿÿÿÿ
+a	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ÃÏ–U
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‚ßåİ
+o
+java:S1450"YRemove the "nameQuitHB" field and declare it as a local variable in the relevant methods.(Ó¾ú
