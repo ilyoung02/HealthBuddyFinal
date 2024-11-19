@@ -2,7 +2,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp">
+    android:padding="20dp"
+    android:gravity="center">
 
     <!-- 상단 팀 이름과 목록 버튼 -->
     <RelativeLayout

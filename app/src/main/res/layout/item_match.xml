@@ -15,11 +15,12 @@
             android:id="@+id/textViewMatchInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:textColor="@android:color/black"
             android:padding="8dp"
             android:textStyle="bold"
-            android:text="제목"/>
+            android:text="제목"
+            android:layout_marginBottom="10dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -39,6 +40,7 @@
             android:textSize="16sp"
             android:textColor="@android:color/black"
             android:padding="3dp"
+            android:layout_marginLeft="5dp"
             android:text="운동 부위"/>
     </LinearLayout>
 
@@ -56,6 +58,7 @@
             android:id="@+id/textViewLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
             android:textSize="16sp"
             android:textColor="@android:color/black"
             android:padding="3dp"
@@ -77,6 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
+            android:layout_marginLeft="5dp"
             android:textColor="@android:color/black"
             android:padding="3dp"
             android:text="성별 카테고리"/>
