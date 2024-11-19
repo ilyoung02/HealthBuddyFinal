@@ -127,7 +127,7 @@
             android:layout_weight="1"
             android:hint="댓글을 입력하세요"
             android:textSize="14sp"
-            android:background="@color/white"
+            android:background="@drawable/rounded_edittext"
             android:padding="8dp" />
 
         <Button
@@ -137,7 +137,7 @@
             android:layout_marginStart="8dp"
             android:text="등록"
             android:textColor="@color/white"
-            android:backgroundTint="@color/blue" />
+            android:background="@drawable/rounded_btn"/>
     </LinearLayout>
 
 </LinearLayout>

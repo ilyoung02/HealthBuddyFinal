@@ -15,36 +15,39 @@
         android:layout_marginLeft="40dp"
         android:background="@color/white"
         app:title="QNA 익명 게시판"
+        app:subtitle="자유롭게 질문과 답변을 공유하세요"
         android:titleTextColor="@android:color/black"/>
 
+    <!-- 게시글 작성 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="16dp"
-        android:background="@drawable/box_background">
+        android:padding="12dp"
+        android:background="@drawable/rounded_background">
 
         <EditText
             android:id="@+id/etPostContent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="게시글 내용을 입력하세요"
-            android:background="@android:color/white"
+            android:hint="무엇이 궁금하신가요?"
+            android:background="@drawable/rounded_edittext"
             android:padding="8dp"
             android:textColor="@color/black"
             android:textColorHint="@color/gray"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:imeOptions="actionDone" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnPost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="게시"
-            android:textSize="16dp"
+            android:textSize="14sp"
             android:textStyle="bold"
-            android:textColor="@android:color/white"
-            android:background="@drawable/rounded_button"
+            android:textColor="@color/white"
+            android:background="@drawable/rounded_btn"
             android:padding="12dp"
             android:layout_marginStart="8dp" />
     </LinearLayout>
