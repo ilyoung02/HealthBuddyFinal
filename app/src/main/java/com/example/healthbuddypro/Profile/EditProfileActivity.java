@@ -464,9 +464,9 @@ public class EditProfileActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 1) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                showToast("권한이 승인되었습니다.");
+//                showToast("권한이 승인되었습니다.");
             } else {
-                showToast("권한이 거부되었습니다. 이 기능을 사용하려면 권한이 필요합니다.");
+//                showToast("권한이 거부되었습니다. 이 기능을 사용하려면 권한이 필요합니다.");
                 // 로그캣에 오류 메시지 출력
                 Log.e("PermissionError", "권한이 거부되었습니다. 권한이 없으면 이 기능을 사용할 수 없습니다.");
             }

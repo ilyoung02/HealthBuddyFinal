@@ -23,7 +23,7 @@
         android:padding="16dp"
         android:background="?android:attr/windowBackground"
         android:layout_gravity="center"
-        android:layout_marginTop="80dp">
+        android:layout_marginTop="30dp">
 
         <TextView
             android:layout_width="match_parent"

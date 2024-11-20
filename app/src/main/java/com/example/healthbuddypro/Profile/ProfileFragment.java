@@ -107,7 +107,7 @@ public class ProfileFragment extends Fragment {
             fetchTeamStatus(teamId);
         } else {
             Log.e("ProfileFragment", "Team ID not found in SharedPreferences.");
-            showToast("팀 ID를 찾을 수 없습니다.");
+//            showToast("팀 ID를 찾을 수 없습니다.");
         }
 
         return view;

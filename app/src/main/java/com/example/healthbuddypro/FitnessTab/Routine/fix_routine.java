@@ -200,7 +200,7 @@ public class fix_routine extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<RoutineDetailsResponse> call, Throwable t) {
-                    Toast.makeText(fix_routine.this, "Error fetching details for " + day, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(fix_routine.this, "Error fetching details for " + day, Toast.LENGTH_SHORT).show();
                 }
             });
         }
