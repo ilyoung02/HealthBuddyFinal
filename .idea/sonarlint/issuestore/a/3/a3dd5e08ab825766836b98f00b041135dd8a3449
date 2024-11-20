@@ -1,22 +1,25 @@
 
+”	java:S117ú"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¢×û 8å¶¸¦´2J$93bd4188-8f9f-4d5d-a4e7-a85bc32c69f3
+œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(èé™8æ¶¸¦´2J$b7a0029a-8d77-4567-a52a-7e9381568da1
+—
+java:S1192ó"SDefine a constant instead of duplicating this literal "isRoutineComplete_" 3 times.(×¸¸Ø8ë¶¸¦´2J$af0a37f9-a55e-4afa-b20c-b74ebd9c682f
+
+java:S1192["GDefine a constant instead of duplicating this literal "_prefs" 3 times.(ö–¾ÿÿÿÿÿ8ë¶¸¦´2J$f444dd18-4418-4182-864f-12c9a353b958
+•
+java:S1192)"MDefine a constant instead of duplicating this literal "RoutinePrefs" 3 times.(‡ú›çşÿÿÿÿ8ë¶¸¦´2J$1ae309f2-0965-476a-bb8e-135ab16708f2
+™
+java:S11925"QDefine a constant instead of duplicating this literal "RoutineFragment" 16 times.(˜…ùğùÿÿÿÿ8ì¶¸¦´2J$049a517f-88a4-453b-826e-cca7f5b999fa
+Œ
+java:S1192u"JDefine a constant instead of duplicating this literal "routineId" 5 times.(õ¦ê8ì¶¸¦´2J$dd96b3fd-5016-499e-a5f9-3aaf62734637
+€
+java:S1144¨"<Remove this unused private "getRoutineIdFromStorage" method.(´Ç Ç8ò¶¸¦´2J$96671224-2092-460e-a8f7-c82f45636fdd
+
+java:S1117["ERename "sharedPreferences" which hides the field declared at line 34.(ö–¾ÿÿÿÿÿ8û¶¸¦´2J$4cb4f5f8-2f31-4db7-bc10-1265965bc890
+t
+java:S1602m",Remove useless curly braces around statement(”óÅÃÿÿÿÿÿ8ı¶¸¦´2J$8c630810-e598-42dd-8e9e-9e2c30ed83b9
+…
+java:S1117w"=Rename "routineId" which hides the field declared at line 32.(óÂ÷°ùÿÿÿÿ8ş¶¸¦´2J$17597ae8-0dfe-46b6-9ded-ec131d48641e
+‰
+java:S1117¶"ERename "sharedPreferences" which hides the field declared at line 34.(ÌÊ€8…·¸¦´2J$de5432b2-1906-4e2a-bec2-13ce0f32e5b9
 p
-java:S16048"(Make this anonymous inner class a lambda(’»‡Ôûÿÿÿÿ8ÜÍƒ°2J$03e922ae-49c8-42b1-a3ca-bb3869b54bf8
-p
-java:S1604A"(Make this anonymous inner class a lambda(ÌÕëÄùÿÿÿÿ8ÜÍƒ°2J$b41e499a-ac6b-4c0a-8677-409f9150490a
-œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(èé™8ÜÍƒ°2J$d49d256d-21cd-4773-aadc-5483afe26ac9
-	java:S116"[Rename this field "btn_startRoutine" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ğşü¤8‘ÜÍƒ°2J$d50c871b-48d7-498f-b692-d06cfb651b62
-j
-java:S1659"'Declare "todaydate" on a separate line.(â¡ë¾8“ÜÍƒ°2J$e285c139-25ff-4e73-9d7a-a86951d09d68
-¥
-java:S1450"]Remove the "btnRoutineList" field and declare it as a local variable in the relevant methods.(°Œ¥¹øÿÿÿÿ8“ÜÍƒ°2J$41c6d823-1e58-4f1b-9f4f-94398020b25a
-¢
-java:S1450"_Remove the "btn_startRoutine" field and declare it as a local variable in the relevant methods.(Ğşü¤8“ÜÍƒ°2J$a56f21ce-bf9f-49ee-a446-4cfab9b29e08
-š
-java:S1450"WRemove the "teamName" field and declare it as a local variable in the relevant methods.(â¡ë¾8“ÜÍƒ°2J$e20147c6-1af3-4c6a-8c55-eb0c960b47d2
-›
-java:S1450"XRemove the "todaydate" field and declare it as a local variable in the relevant methods.(â¡ë¾8”ÜÍƒ°2J$4b197e0b-9c79-406b-8146-ee21ff793bbf
-u
-java:S1135""2Complete the task associated to this TODO comment.(Ê•Şø8›ÜÍƒ°2J$d746671e-a188-49f6-a37d-f872f037c763
-ƒ	java:S1253"<This block of commented-out lines of code should be removed.(‹†‚şÿÿÿÿ8œÜÍƒ°2J$6348787b-00ed-41f7-bc03-c4b91bc97276
-z
-java:S11352"2Complete the task associated to this TODO comment.(ÅºÀÊøÿÿÿÿ8Ÿ¤Ğƒ°2J$325394ea-3eda-4e71-a96a-e19783d631ce
+java:S1068 "-Remove this unused "routineId" private field.(ˆÂµ‹8˜·¸¦´2J$ada13a46-cb69-4976-912c-c4f0faa0d4f2
