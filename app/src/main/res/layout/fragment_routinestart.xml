@@ -5,14 +5,12 @@
     android:padding="20dp"
     android:gravity="center">
 
-<!--    fragment_routinestart.xml-->
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/header_section"
         android:layout_marginBottom="50dp"
-        android:layout_marginTop="150dp">
+        android:layout_marginTop="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"

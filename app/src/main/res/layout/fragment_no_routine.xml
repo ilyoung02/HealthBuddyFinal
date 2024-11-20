@@ -10,8 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/header_section"
-        android:layout_marginBottom="50dp"
-        android:layout_marginTop="60dp">
+        android:layout_marginBottom="50dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -49,8 +48,6 @@
                 android:layout_centerInParent="true"/>
 
         </LinearLayout>
-
-
     </RelativeLayout>
 
     <LinearLayout
@@ -111,9 +108,5 @@
             android:layout_height="120dp"
             android:src="@drawable/icon_rest"
             android:scaleType="centerCrop" />
-
     </LinearLayout>
-
-
-
 </RelativeLayout>

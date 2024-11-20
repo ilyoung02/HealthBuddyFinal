@@ -5,21 +5,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@android:color/white"
-    android:padding="16dp"
-    android:gravity="center">
+    android:padding="20dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginBottom="20dp"
-        android:gravity="center_vertical">
+        android:layout_gravity="center">
 
         <TextView
             android:id="@+id/profile_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_marginTop="10dp"
             android:gravity="center"
             android:text="내 프로필"
             android:layout_marginLeft="75dp"
@@ -46,7 +45,7 @@
         android:layout_height="180dp"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp">
 
         <!-- 프로필 이미지 -->
@@ -55,8 +54,9 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:scaleType="centerCrop"
-            android:background="@drawable/box_background"
-            android:layout_marginEnd="12dp" />
+            android:background="@drawable/circle_background"
+            android:layout_marginEnd="12dp"
+            android:clipToOutline="true"/>
 
         <!-- 이름, 성별, 나이, 구력, 사는 지역 -->
         <LinearLayout
@@ -225,7 +225,7 @@
         android:orientation="vertical"
         android:background="@drawable/blackwhite_box"
         android:padding="16dp"
-        android:layout_marginBottom="16dp">
+        android:layout_marginBottom="25dp">
         <!-- 운동 목표 -->
 
         <LinearLayout
@@ -268,7 +268,7 @@
         android:orientation="vertical"
         android:background="@drawable/blackwhite_box"
         android:padding="16dp"
-        android:layout_marginBottom="16dp">
+        android:layout_marginBottom="25dp">
 
         <TextView
             android:layout_width="wrap_content"

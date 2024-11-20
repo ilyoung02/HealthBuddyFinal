@@ -1,4 +1,3 @@
-// RoutineFragment 파일 -> 그날 루틴 수행 완료여부 내부저장소로해서 프래그먼트 변경되는거 추가한 부분임 마지막에 추가하자
 package com.example.healthbuddypro.FitnessTab.Routine;
 
 import android.content.Context;
@@ -18,6 +17,7 @@ import com.example.healthbuddypro.ApiService;
 import com.example.healthbuddypro.R;
 import com.example.healthbuddypro.RetrofitClient;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.example.healthbuddypro.FitnessTab.TeamStatusResponse;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -105,39 +105,77 @@ public class RoutineFragment extends Fragment {
             return;
         }
 
-        FirebaseFirestore.getInstance()
-                .collection("routineIdShare")
-                .document(String.valueOf(teamId))
-                .get()
-                .addOnSuccessListener(documentSnapshot -> {
-                    if (documentSnapshot.exists()) {
-                        Long fetchedRoutineId = documentSnapshot.getLong("routineId");
-                        if (fetchedRoutineId != null) {
-                            int routineId = fetchedRoutineId.intValue();
-                            Log.d("RoutineFragment", "Firestore에서 routineId 조회 성공: " + routineId);
+        // 팀 상태를 먼저 확인
+        checkTeamStatus(teamId, () -> {
+            // 팀 상태가 "종료"가 아니라면 routineId를 확인
+            FirebaseFirestore.getInstance()
+                    .collection("routineIdShare")
+                    .document(String.valueOf(teamId))
+                    .get()
+                    .addOnSuccessListener(documentSnapshot -> {
+                        if (documentSnapshot.exists()) {
+                            Long fetchedRoutineId = documentSnapshot.getLong("routineId");
+                            if (fetchedRoutineId != null) {
+                                int routineId = fetchedRoutineId.intValue();
+                                Log.d("RoutineFragment", "Firestore에서 routineId 조회 성공: " + routineId);
 
-                            // routineId를 내부 저장소에 저장
-                            saveRoutineIdToSharedPreferences(routineId);
-                            // 루틴이 있음을 Fragment에 전달
-                            decideFragmentToShow(routineId);
+                                // routineId를 내부 저장소에 저장
+                                saveRoutineIdToSharedPreferences(routineId);
 
+                                // 루틴이 있음을 Fragment에 전달
+                                decideFragmentToShow(routineId);
+                            } else {
+                                Log.d("RoutineFragment", "Firestore 문서에 routineId가 없습니다.");
+                                decideFragmentToShow(-1); // 루틴이 없음을 Fragment에 전달
+                                saveRoutineIdToSharedPreferences(-1); // routineId를 -1로 저장
+                            }
                         } else {
-                            Log.d("RoutineFragment", "Firestore 문서에 routineId가 없습니다.");
-                            decideFragmentToShow(-1); // 루틴이 없음을 Fragment에 전달
+                            Log.d("RoutineFragment", "teamId에 해당하는 Firestore 문서가 존재하지 않습니다.");
                             saveRoutineIdToSharedPreferences(-1); // routineId를 -1로 저장
+                            decideFragmentToShow(-1); // 루틴이 없음을 Fragment에 전달
                         }
-                    } else {
-                        Log.d("RoutineFragment", "teamId에 해당하는 Firestore 문서가 존재하지 않습니다.");
+                    })
+                    .addOnFailureListener(e -> {
+                        Log.e("RoutineFragment", "Firestore routineId 조회 실패: " + e.getMessage());
                         saveRoutineIdToSharedPreferences(-1); // routineId를 -1로 저장
                         decideFragmentToShow(-1); // 루틴이 없음을 Fragment에 전달
-                    }
-                })
-                .addOnFailureListener(e -> {
-                    Log.e("RoutineFragment", "Firestore routineId 조회 실패: " + e.getMessage());
-                    saveRoutineIdToSharedPreferences(-1); // routineId를 -1로 저장
-                    decideFragmentToShow(-1); // 루틴이 없음을 Fragment에 전달
-                });
+                    });
+        });
     }
+
+    private void checkTeamStatus(int teamId, Runnable onSuccess) {
+        ApiService apiService = RetrofitClient.getApiService();
+
+        Call<TeamStatusResponse> call = apiService.getTeamStatus(teamId);
+        call.enqueue(new Callback<TeamStatusResponse>() {
+            @Override
+            public void onResponse(Call<TeamStatusResponse> call, Response<TeamStatusResponse> response) {
+                if (response.isSuccessful() && response.body() != null && response.body().getCode() == 200) {
+                    TeamStatusResponse.TeamData teamData = response.body().getData();
+                    String teamStatus = teamData.getTeamStatus();
+                    Log.d("RoutineFragment", "팀 상태: " + teamStatus);
+
+                    if ("종료".equals(teamStatus)) {
+                        // 팀 상태가 종료일 경우 GroupLockedFragment 표시
+                        replaceFragment(new GroupLockedFragment());
+                    } else {
+                        // 팀 상태가 "진행"일 경우 계속 진행
+                        onSuccess.run();
+                    }
+                } else {
+                    Log.e("RoutineFragment", "팀 상태 조회 실패: " + response.message());
+                    replaceFragment(new ErrorFragment());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TeamStatusResponse> call, Throwable t) {
+                Log.e("RoutineFragment", "팀 상태 조회 API 호출 실패: " + t.getMessage());
+                replaceFragment(new ErrorFragment());
+            }
+        });
+    }
+
 
     // routineId를 SharedPreferences에 저장하는 메서드
     private void saveRoutineIdToSharedPreferences(int routineId) {
