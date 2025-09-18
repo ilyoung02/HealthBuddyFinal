@@ -38,6 +38,8 @@
 
 <img width="276" height="451" alt="Image" src="https://github.com/user-attachments/assets/ed4a22fe-3af5-4c88-ae51-c311d50242ee" />
 
+매칭 후 운동 파트
+
 <img width="278" height="450" alt="Image" src="https://github.com/user-attachments/assets/2db33ab3-bb54-40fd-98b1-b364734f8dbe" />
 
 <img width="274" height="452" alt="Image" src="https://github.com/user-attachments/assets/cded01f5-c3ab-4ba0-ae62-d8350261c4a0" />
