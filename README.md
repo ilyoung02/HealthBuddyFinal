@@ -1,5 +1,4 @@
 스플래시, 로그인, 회원가입
-
 <img width="259" height="545" alt="Image" src="https://github.com/user-attachments/assets/ada3fbe4-5e79-4949-9572-667c218903a0" />
 
 <img width="256" height="544" alt="Image" src="https://github.com/user-attachments/assets/ae6351b9-4d2b-4434-b861-512573972baf" />
@@ -9,7 +8,6 @@
 
 
 매칭 화면 (1:1 매칭, 단기 매칭)
-
 <img width="278" height="451" alt="Image" src="https://github.com/user-attachments/assets/c0914cb6-12b0-4c63-85d0-7da4d737d1bf" />
 
 <img width="279" height="448" alt="Image" src="https://github.com/user-attachments/assets/663b8956-2c95-4a9c-afa6-78a5c3f321bf" />
@@ -24,10 +22,14 @@
 
 <img width="275" height="454" alt="Image" src="https://github.com/user-attachments/assets/4eb0819f-d008-4cae-83ee-6e2ba91e0561" />
 
+
+헬스장 정보
 <img width="278" height="449" alt="Image" src="https://github.com/user-attachments/assets/8d0c1bd7-d0b5-483e-8f21-5da5780c9b0b" />
 
 <img width="277" height="452" alt="Image" src="https://github.com/user-attachments/assets/1823e1eb-2c9b-4a18-ac5b-1d297ee4efd4" />
 
+
+내 프로필
 <img width="276" height="450" alt="Image" src="https://github.com/user-attachments/assets/0a8b761c-3352-45ef-8247-d053d4d94b93" />
 
 <img width="276" height="451" alt="Image" src="https://github.com/user-attachments/assets/ed4a22fe-3af5-4c88-ae51-c311d50242ee" />
