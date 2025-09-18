@@ -7,6 +7,7 @@
 <img width="262" height="547" alt="Image" src="https://github.com/user-attachments/assets/f78f66a8-32e1-4912-b360-9022c197b676" />
 
 
+
 매칭 화면 (1:1 매칭, 단기 매칭)
 
 <img width="278" height="451" alt="Image" src="https://github.com/user-attachments/assets/c0914cb6-12b0-4c63-85d0-7da4d737d1bf" />
