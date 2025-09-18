@@ -8,7 +8,7 @@
 
 
 
-매칭 화면 (1:1 매칭, 단기 매칭)
+매칭 화면 (1:1 매칭, 단기 매칭) -> 처음 메인화면에서 원하는 파트너 슬라이드로 넘기며 찾고 원하는 사람 눌러 채팅 or 파트너 요청
 
 <img width="278" height="451" alt="Image" src="https://github.com/user-attachments/assets/c0914cb6-12b0-4c63-85d0-7da4d737d1bf" />
 
@@ -25,25 +25,25 @@
 <img width="275" height="454" alt="Image" src="https://github.com/user-attachments/assets/4eb0819f-d008-4cae-83ee-6e2ba91e0561" />
 
 
-헬스장 정보
+헬스장 정보 (구글 Maps로 헬스장 정보 마커로 표시 및 클릭 시 헬스장 정보 열람 가능)
 
 <img width="278" height="449" alt="Image" src="https://github.com/user-attachments/assets/8d0c1bd7-d0b5-483e-8f21-5da5780c9b0b" />
 
 <img width="277" height="452" alt="Image" src="https://github.com/user-attachments/assets/1823e1eb-2c9b-4a18-ac5b-1d297ee4efd4" />
 
 
-내 프로필
+내 프로필 확인 및 수정
 
 <img width="276" height="450" alt="Image" src="https://github.com/user-attachments/assets/0a8b761c-3352-45ef-8247-d053d4d94b93" />
 
 <img width="276" height="451" alt="Image" src="https://github.com/user-attachments/assets/ed4a22fe-3af5-4c88-ae51-c311d50242ee" />
 
-커뮤니티
+익명의 커뮤니티
 
 <img width="274" height="452" alt="Image" src="https://github.com/user-attachments/assets/cded01f5-c3ab-4ba0-ae62-d8350261c4a0" />
 
 
-사용자 매칭 후 정보 확인, 그룹 그만두기
+사용자 매칭 후 정보 확인, 그룹 그만두기 (파트너와 1:1 대화 기능)
 
 <img width="278" height="450" alt="Image" src="https://github.com/user-attachments/assets/2db33ab3-bb54-40fd-98b1-b364734f8dbe" />
 
@@ -57,7 +57,7 @@
 
 <img width="277" height="453" alt="Image" src="https://github.com/user-attachments/assets/08755562-8bd3-4225-9f87-7b0475d9b904" />
 
-루틴 설정, 수정
+루틴 설정, 수정 (파트너 운동 요일, 운동 루틴, 방식 수정)
 
 <img width="218" height="359" alt="Image" src="https://github.com/user-attachments/assets/f79d313f-23a8-4af1-b772-415296251493" />
 
@@ -84,7 +84,7 @@
 <img width="295" height="518" alt="Image" src="https://github.com/user-attachments/assets/fc88cdbb-2bcc-4cca-ae25-16f8436a85c0" />
 
 
-그룹 운동 진행
+그룹 운동 진행 (Geofence로 헬스장에 도착해 위치 인증 및 출석체크 후 파트너 운동 수행 -> 완료 시 포인트 적립)
 
 <img width="313" height="509" alt="Image" src="https://github.com/user-attachments/assets/a5a8353e-8d7e-46cc-8301-db3382523dd2" />
 
