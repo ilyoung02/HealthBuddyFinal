@@ -43,7 +43,7 @@
 <img width="274" height="452" alt="Image" src="https://github.com/user-attachments/assets/cded01f5-c3ab-4ba0-ae62-d8350261c4a0" />
 
 
-매칭 후 운동 파트
+사용자 매칭 후 정보 확인, 그룹 그만두기
 
 <img width="278" height="450" alt="Image" src="https://github.com/user-attachments/assets/2db33ab3-bb54-40fd-98b1-b364734f8dbe" />
 
@@ -56,6 +56,8 @@
 <img width="276" height="448" alt="Image" src="https://github.com/user-attachments/assets/eb0ba49d-b929-4add-96b0-536b427e99d7" />
 
 <img width="277" height="453" alt="Image" src="https://github.com/user-attachments/assets/08755562-8bd3-4225-9f87-7b0475d9b904" />
+
+루틴 설정, 수정, 진행
 
 <img width="218" height="359" alt="Image" src="https://github.com/user-attachments/assets/f79d313f-23a8-4af1-b772-415296251493" />
 
