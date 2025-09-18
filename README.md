@@ -24,12 +24,14 @@
 
 
 헬스장 정보
+
 <img width="278" height="449" alt="Image" src="https://github.com/user-attachments/assets/8d0c1bd7-d0b5-483e-8f21-5da5780c9b0b" />
 
 <img width="277" height="452" alt="Image" src="https://github.com/user-attachments/assets/1823e1eb-2c9b-4a18-ac5b-1d297ee4efd4" />
 
 
 내 프로필
+
 <img width="276" height="450" alt="Image" src="https://github.com/user-attachments/assets/0a8b761c-3352-45ef-8247-d053d4d94b93" />
 
 <img width="276" height="451" alt="Image" src="https://github.com/user-attachments/assets/ed4a22fe-3af5-4c88-ae51-c311d50242ee" />
