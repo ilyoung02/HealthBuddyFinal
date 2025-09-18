@@ -1,4 +1,5 @@
 스플래시, 로그인, 회원가입
+
 <img width="259" height="545" alt="Image" src="https://github.com/user-attachments/assets/ada3fbe4-5e79-4949-9572-667c218903a0" />
 
 <img width="256" height="544" alt="Image" src="https://github.com/user-attachments/assets/ae6351b9-4d2b-4434-b861-512573972baf" />
@@ -7,6 +8,7 @@
 
 
 매칭 화면 (1:1 매칭, 단기 매칭)
+
 <img width="278" height="451" alt="Image" src="https://github.com/user-attachments/assets/c0914cb6-12b0-4c63-85d0-7da4d737d1bf" />
 
 <img width="279" height="448" alt="Image" src="https://github.com/user-attachments/assets/663b8956-2c95-4a9c-afa6-78a5c3f321bf" />
