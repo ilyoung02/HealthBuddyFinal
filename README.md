@@ -57,7 +57,7 @@
 
 <img width="277" height="453" alt="Image" src="https://github.com/user-attachments/assets/08755562-8bd3-4225-9f87-7b0475d9b904" />
 
-루틴 설정, 수정, 진행
+루틴 설정, 수정
 
 <img width="218" height="359" alt="Image" src="https://github.com/user-attachments/assets/f79d313f-23a8-4af1-b772-415296251493" />
 
@@ -82,6 +82,9 @@
 <img width="299" height="454" alt="Image" src="https://github.com/user-attachments/assets/c3257cde-6e37-48bc-9b4e-afd133a21fcc" />
 
 <img width="295" height="518" alt="Image" src="https://github.com/user-attachments/assets/fc88cdbb-2bcc-4cca-ae25-16f8436a85c0" />
+
+
+그룹 운동 진행
 
 <img width="313" height="509" alt="Image" src="https://github.com/user-attachments/assets/a5a8353e-8d7e-46cc-8301-db3382523dd2" />
 
